@@ -1,0 +1,446 @@
+global proc gNS_n_Objs(){
+    global string $gNamespaces[] ;
+    global string $gObjs[] ;
+    clear $gNamespaces $gObjs ;
+    string $sels[]=`ls -sl`;
+    for($i=0; $i<`size($sels)`;$i++){
+        string $caches[];
+        tokenize $sels[$i] ":" $caches;
+        int $endNum=`size $caches`-1;
+        string $cachesB[];
+        tokenize $sels[$i] "." $cachesB;
+        if(!`gmatch $cachesB[1] "*:*"`){
+            $gObjs[$i]=$caches[$endNum] ;
+            $gNamespaces[$i] = "";
+            for($j=0;$j<`size $caches`-1;$j++) $gNamespaces[$i] = ($gNamespaces[$i] +":"+ $caches[$j]); 
+            $gNamespaces[$i] = endString($gNamespaces[$i],`sizeBytes $gNamespaces[$i]`-1)+":";
+            if(`gmatch $gNamespaces[$i] ":"`) $gNamespaces[$i]="";
+        }
+        if(`gmatch $cachesB[1] "*:*"`){
+            $gObjs[$i]=($caches[$endNum-1]+":"+$caches[$endNum]) ;
+            $gNamespaces[$i] = "";
+            for($j=0;$j<`size $caches`-2;$j++) $gNamespaces[$i] = ($gNamespaces[$i] +":"+ $caches[$j]); 
+            $gNamespaces[$i] = endString($gNamespaces[$i],`sizeBytes $gNamespaces[$i]`-1)+":";
+            if(`gmatch $gNamespaces[$i] ":"`) $gNamespaces[$i]="";
+        }       
+    }
+}
+global proc string[] gSelCompsExpands(string $sel){
+    global string $gLists[];
+    clear $gLists;
+    string $caches[];
+    if(`gmatch $sel "*:*"`){
+        tokenize $sel "[:]" $caches ;
+        int $startNum = $caches[1];
+        int $endNum = $caches[2];
+        for ( $i=$startNum ; $i<=$endNum ; $i++ ){ 
+        $gLists[$i]= ($caches[0]+"["+$i+"]");
+        }
+        string $list = stringArrayToString($gLists ,"~");
+        $gLists = stringToStringArray($list, "~");
+        }else $gLists[0]=$sel;
+    return $gLists;
+}
+global proc gExpandArraysComps( string $objs[] , string $namespaces[]){
+for ($i=0; $i<`size($objs)`;$i++){ 
+if(`gmatch $objs[$i] "*:*"`){
+global string $gLists[];
+gSelCompsExpands( $objs[$i] ) ;
+stringArrayRemoveAtIndex($i,$objs);
+for ($j=0; $j<`size($gLists)`;$j++,$i++){ 
+stringArrayInsertAtIndex($i, $objs, $gLists[$j]);
+stringArrayInsertAtIndex($i, $namespaces, $namespaces[$i]);
+}
+stringArrayRemoveAtIndex($i,$namespaces);
+$i--;
+}
+}
+print $objs;
+print $namespaces;
+}
+global proc string[] gCombineArrayComps( string $objs[] , string $namespaces[]){
+global string $gNames[];
+clear $gNames;
+for ($i=0; $i<`size($objs)`;$i++){ 
+$gNames[$i]=($namespaces[$i]+$objs[$i]);
+}
+return $gNames;
+}
+global proc string[] convertSelComps(){
+global string $gNamespaces[] ;
+global string $gObjs[] ;
+clear $gNamespaces $gObjs;
+gNS_n_Objs();
+gExpandArraysComps( $gObjs ,$gNamespaces) ;
+string $sels[]=gCombineArrayComps( $gObjs ,$gNamespaces) ;
+select -r $sels;
+return $sels;
+}
+global proc string replaceEndString(string $origName ,int $amount ,string $replaceEndString ){
+string $origName ;
+int $amount ;
+string $replaceEndString ;
+string $caches[];
+tokenize $origName ":" $caches;
+int $endAdressNum = `size $caches`-1 ;
+global int $gDelStringAmount ;
+$gDelStringAmount = 0 ;   
+for($i=$endAdressNum ; $i>($endAdressNum-$amount) ; $i-- ){
+$gDelStringAmount = $gDelStringAmount +`sizeBytes $caches[$i]`+1   ;
+}
+string $newName =startString( $origName , `sizeBytes $origName`- $gDelStringAmount )+":"+$replaceEndString ;
+return $newName ;
+}
+global proc string[] stringArrayAddSuffix( string $objs[] , string $suffix ){
+string $objsSuffix[];
+for ($i=0; $i<`size($objs)`;$i++) $objsSuffix[$i]= $objs[$i]+$suffix ;
+return $objsSuffix;
+}
+global proc float[] gGetAttrs(  string $attrs[] ){
+    float $fValues[];
+	string $sels[]=`ls -sl`;
+    for ($i=0; $i<`size($attrs)`;$i++)  $fValues[$i]= `getAttr ($sels[0]+$attrs[$i])`;
+return $fValues;
+};
+global proc gSetAttrs(string $attrs[] , float $fValue[]){
+    string $sels[]=`ls -sl`;
+    for($sel in $sels){
+        for ($i=0; $i<`size($attrs)`;$i++){
+            if(!`getAttr -l ($sel+$attrs[$i])`) setAttr ($sel+$attrs[$i]) $fValue[$i];
+        };
+    };
+};
+global proc gSetStringAttrs(string $attrs[] , string $sValue[]){
+    string $sels[]=`ls -sl`;
+    for($sel in $sels){
+        for ($i=0; $i<`size($attrs)`;$i++){
+            if(!`getAttr -l ($sel+$attrs[$i])`) setAttr -type "string" ($sel+$attrs[$i]) $sValue[$i];
+            else{
+                setAttr -l 0 ($sel+$attrs[$i]) ;
+                setAttr -type "string" ($sel+$attrs[$i]) $sValue[$i];
+                setAttr -l 1 ($sel+$attrs[$i]) ;
+            } 
+        };
+    };
+};
+global proc gLockAttrs( string $attrs[] , int $lockOrNot){
+    string $sels[]=`ls -sl`;
+    for($sel in $sels) for ($i=0; $i<`size($attrs)`;$i++) setAttr -l $lockOrNot ($sel+$attrs[$i]) ;
+};
+global proc string attrSwitch(string $objName , string $attrName  , int $iValue){
+    string $objName ;
+    string $attrName ;
+    int $iValue;
+string $sels[]=`ls $objName ("*:"+$objName) ("*:*:"+$objName) ("*:*:*:"+$objName)`;
+if(`size $sels`>0){
+select -r $sels;
+for ($sel in $sels){ 
+if( `attributeQuery -node $sel -ex $attrName ` ){
+string $connectSource = `connectionInfo -sourceFromDestination  ($sel+ "." + $attrName)  `;
+if(!`gmatch $connectSource  ("*."+$attrName) `) {
+setKeyframe ($sel+ "." + $attrName) ; 
+string $iValuenputAttrName = `connectionInfo -sourceFromDestination ( $sel + "." + $attrName)` ;
+string $caches[];
+tokenize $iValuenputAttrName "." $caches ;
+delete $caches[0]; 
+setAttr ($sel+ "." + $attrName) $iValue ; 
+setKeyframe ($sel+ "." + $attrName) ;  
+}else{
+select -d $sel;
+}
+}else{
+select -d $sel;
+}
+}
+}
+return ("smooth=" + $iValue);
+}
+global proc  selChildHierarchy (string $sel ){
+    global string $selChilds[];
+    clear $selChilds;
+    select -r $sel;
+    pickWalk -d down;
+    for($i = 0; $i<999; $i++){
+        string $sels[]=`ls -sl`;
+        $selChilds[$i] = $sels[0] ;
+        pickWalk -d right;
+        string $sels[]=`ls -sl`;
+        if(`gmatch $sels[0] $selChilds[0]`==1) break;
+    }
+    select -r $selChilds;
+}
+global proc  selChildHierarchys (string $sels[] ){
+global string $gSelFathers[];
+clear $gSelFathers ;
+for($sel in $sels){
+    selChildHierarchy( $sel ) ;
+    string $nowSels[]=`ls -sl`;
+    appendStringArray( $gSelFathers , $nowSels , size($nowSels) );
+}
+select -r $gSelFathers ;
+}
+global proc RF3LevelSetsToSet( string $setName ){
+  string $sets[]=`ls ("*:"+$setName) ("*:*:"+$setName) ("*:*:*:"+$setName)`;
+  if(`size $sets`>0)for($set in $sets) sets -include $setName $set  ;
+};
+global proc gCreateSets(string $setNames[]){
+    for($setName in $setNames){
+        string $searches[]=`ls $setName`;
+        if(`size $searches `==0)sets -empty -name $setName; 
+    }
+}
+global proc gSetAdd(){
+ string $setNames[]=`ls -sl`;
+ int $times=`size $setNames`-1;
+ for($i=0;$i<`size $setNames`-1;$i++) sets -include $setNames[$times] $setNames[$i] ;
+}
+global proc gSetRemove(){
+ string $setNames[]=`ls -sl`;
+ int $times=`size $setNames`-1;
+ for($i=0;$i<`size $setNames`-1;$i++) sets -remove $setNames[$times] $setNames[$i] ;
+}
+global proc gCreateGrps(string $grpNames[]){
+    for($grpName in $grpNames){
+        string $searches[]=`ls $grpName`;
+        if(`size $searches `==0)createNode "transform" -name $grpName; 
+    }
+}
+global proc gCreateOffsets(){
+string $sels[]=`ls -sl`;
+for($sel in $sels){
+select -r $sel;
+float $fValues[] = ` gGetAttrs({".tx",".ty",".tz",".rx",".ry",".rz",".sx",".sy",".sz"}) `;
+group; xform -os -piv 0 0 0;
+string $nowSels[]=`ls -sl`;
+rename $nowSels[0] ($sel+"_offset");
+gSetAttrs({".tx",".ty",".tz",".rx",".ry",".rz",".sx",".sy",".sz"}, $fValues );
+select -r $sel;
+gSetAttrs({".tx",".ty",".tz",".rx",".ry",".rz",".sx",".sy",".sz"}, {0.0,0,0,0,0,0,1,1,1} );
+}
+select -r $sels;
+pickWalk -d up;
+size `ls -sl ` ;
+}
+global proc gCreateUpperGrps(string $suffix){
+string $sels[]=`ls -sl`;
+for($sel in $sels){
+select -r $sel;
+group; xform -os -piv 0 0 0;
+string $nowSels[]=`ls -sl`;
+rename $nowSels[0] ($sel+$suffix);
+}
+select -r $sels;
+pickWalk -d up;
+size `ls -sl ` ;
+}
+global proc renameHierarchyPrefix ( string $prefix  ){
+string $sels[]=`ls -sl` ;
+for($sel in $sels){
+  select -hi $sel ;
+  string $selsHi[]=`ls -sl` ;
+  for ( $i=`size($selsHi)`-1 ; $i>-1 ; $i--){ 
+    string $caches[] ;
+    tokenize $selsHi[$i] "|" $caches ;
+    string $toRename = $caches[`size $caches`-1];
+    rename $selsHi[$i] ($prefix + "_" + $toRename );
+    }
+  }    
+}
+global proc stringReduce (string $objs[] , int $startOrEnd , string $toReduceString , int $reduceStringCount ){
+int $reduceStringCount;
+if(`size $toReduceString`==0)$reduceStringCount=$reduceStringCount;
+else $reduceStringCount=`sizeBytes $toReduceString`;
+for ($sel in $objs){
+string $rename ;
+if($startOrEnd==0)$rename= endString($sel, `sizeBytes $sel`-$reduceStringCount );
+else if($startOrEnd==1)$rename= startString($sel,  `sizeBytes $sel`- $reduceStringCount );
+rename $sel $rename ;
+}
+}
+global proc renameHierarchys_LV1 ( string $sonName ){
+string $sels[]=`ls -sl`;
+for ($sel in $sels){ 
+select -r $sel;
+string $caches[];
+tokenize $sel "|" $caches;
+int $i = size( $caches);
+string $rename= $caches[$i-1];
+string $nowSels[]=`ls -sl`;
+selChildHierarchys( $nowSels ) ;
+select -d "*Shape*";
+string $renames[]= `ls -sl`;
+string $nameABC[] = {"A","B","C","D","E","F","G","H","I","J", "K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"} ; 
+string $name_abc[] = {"a","b","c","d","e","f","g","h","i","j", "k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"} ; 	
+for($i=0;$i<`size $renames`; $i++ ){
+    if(`gmatch $sonName "123"`)rename $renames[$i] ($rename+($i+1));
+    else if(`gmatch $sonName "ABC"`)rename $renames[$i] ($rename+$nameABC[$i]);
+    else if(`gmatch $sonName "abc"`)rename $renames[$i] ($rename+$name_abc[$i]);
+    else if(`gmatch $sonName "_123"`)rename $renames[$i] ($rename+"_"+($i+1));
+    else if(`gmatch $sonName "_ABC"`)rename $renames[$i] ($rename+"_"+$nameABC[$i]);
+    else if(`gmatch $sonName "_abc"`)rename $renames[$i] ($rename+"_"+$name_abc[$i]);
+}
+};
+selChildHierarchys( $sels ) ;
+}
+global proc delConstraint ( string $sels[] ){
+gCreateSets({"delConstraint_setTemp"});
+for($sel in $sels){
+  select -r $sel;
+  pickWalk -d down;
+  string $nowSels[]=`ls -sl`;   
+  print ($nowSels[0]+"\n");
+  for($i=0; $i<99;$i++){ 
+  pickWalk -d right;
+  string $nowSelsR[]=`ls -sl`;
+  if(`gmatch $nowSelsR[0] "*Constraint*"`)sets -include "delConstraint_setTemp" $nowSelsR[0] ;
+  print $i ;
+  if(`gmatch $nowSels[0] $nowSelsR[0] `) break ; 
+  }   
+}
+select -r "delConstraint_setTemp" ;
+select -add -ne "delConstraint_setTemp";
+doDelete;
+select -r $sels;
+print "done!! delConstraint " ;  
+}
+global proc string getConstraintSC(string $sel){
+  string $targetAttrString = ( $sel+ ".target" );
+  string $selnections[] = `listConnections $targetAttrString`;
+  string $selnectionsFlattened[] = stringArrayRemoveDuplicates($selnections);
+  for ( $f in $selnectionsFlattened )
+  if ( $f != $sel )
+  return  $f;  
+}
+global proc createClustersOnCurvesCVs ( string $sels[] ){
+for($sel in $sels){
+    int $endCVsn =  `getAttr ($sel+".degree")` +  `getAttr ($sel+".spans")`  -1 ;
+    for ($i=0; $i<= $endCVsn ;$i++){ 
+        select -r  ( $sel+".cv[" + $i +"]" ) ;
+        CreateCluster;
+        rename ( $sel+"_cv_" + $i +"__" ) ;
+        }     
+    select -r ( $sel+"_cv_*__" ) ;
+    doGroup 0 1 1;
+    rename ( $sel+"_cv_grp" ) ;
+}
+}
+global proc vexZero_and_delHistory() 
+{
+ string $sels[]=`ls -sl` ;
+ for($sel in $sels){
+ select -r $sel;
+ ConformPolygonNormals;
+ DeleteHistory;
+ }
+ select -r $sels;
+}
+global proc alignPivot(){
+   string $objs[]=`ls -sl -type "transform"`;
+   if(size($objs)>1)
+   {
+       string $lastObj=$objs[size($objs)-1];
+       float $refPiv[]=`xform -q -ws -piv $lastObj`;
+       int $id =0;
+       for($id;$id<size($objs)-1;$id++)
+       {
+           xform -ws -piv $refPiv[0] $refPiv[1] $refPiv[2] $objs[$id];
+       }
+   }
+}
+global proc getTranslateValueOfWorld () 
+{
+string $selMeshs[]=`ls -sl `;
+gCreateGrps({"tmpGrp"});
+for($selMesh in $selMeshs){
+select -r $selMesh;
+pickWalk -d up;
+string $selGrp[]=`ls -long -sl `;
+string $cache[];
+tokenize $selMesh "|" $cache;
+string $origName=$cache[`size $cache`-1];
+rename $selMesh tempName ;
+parentConstraint -weight 1 "tempName" "tmpGrp" ;
+delete "tmpGrp_parentConstraint1";
+parent "tempName" "tmpGrp" ;
+makeIdentity -apply true -t 1 -r 0 -s 0 -n 0;
+ConformPolygonNormals;
+DeleteHistory;
+if(`gmatch ("|"+$selMesh) $selGrp[0]`)parent -w tempName ;
+else parent tempName $selGrp[0];
+rename tempName $origName;
+}
+delete tmpGrp;
+select -r $selMeshs;
+}
+global proc zeroEndJoint_orientJoint ( string $objs[] ){
+for($sel in $objs){
+select -hi $sel ;
+select  -d "*Shape*" ;
+string $nowSels[]=`ls -sl`;
+int $endSN=`size $nowSels`-1;
+select -r $nowSels[$endSN];
+gSetAttrs( {".jointOrientX",".jointOrientY",".jointOrientZ"},{0,0,0  } );
+gSetAttrs( {".preferredAngleX",".preferredAngleY",".preferredAngleZ"},{0,0,0  } );
+}
+}
+global proc snapModel_lowToHi (string $lowModel, string $hiModel  ){
+select -r $lowModel;
+ConvertSelectionToVertices;
+string $vSNs[]= convertSelComps();
+for ($i=0; $i<`size($vSNs)`;$i++){ 
+select -r $vSNs[$i];
+CreateCluster ;
+rename ("ClusterTemp"+$i);
+geometryConstraint -weight 1 $hiModel ("ClusterTemp"+$i);
+}
+select -r $lowModel;
+makeIdentity -apply true -t 1 -r 0 -s 0 -n 0;
+ConformPolygonNormals;
+DeleteHistory;
+delete "ClusterTemp*";
+}
+global proc gTransObjs(string $objType , float $scale ){
+string $sels[]= convertSelComps();
+gCreateGrps({($objType+"_grp")});
+select -cl;
+global string $gNames[];
+clear $gNames;
+for ($i=0; $i<`size($sels)`;$i++){ 
+if(!`gmatch $sels[$i] "*.*"`){
+$gNames[$i]=($sels[$i]+"_"+$objType);
+if(`gmatch "loc" $objType`){
+spaceLocator ;
+rename $gNames[$i];
+gSetAttrs({".localScaleX",".localScaleY",".localScaleZ"},{ $scale , $scale , $scale });
+}
+if(`gmatch "joint" $objType`){
+select -cl;
+joint -radius $scale  -name $gNames[$i] ; 
+}
+parentConstraint -weight 1 $sels[$i] ("|"+$gNames[$i]) ;
+scaleConstraint -offset 1 1 1 -weight 1 $sels[$i] ("|"+$gNames[$i]);
+}else{
+string $caches[];
+tokenize $sels[$i] ".[]" $caches ;
+$gNames[$i] = ($caches[0]+"_"+$caches[1]+"_"+$caches[2]+"_"+$objType);
+if(`gmatch "loc" $objType`){
+spaceLocator ; 
+rename $gNames[$i] ;
+gSetAttrs({".localScaleX",".localScaleY",".localScaleZ"},{ $scale , $scale , $scale });
+}
+if(`gmatch "joint" $objType`){
+select -cl ;
+joint -radius $scale  -name $gNames[$i] ;
+}
+select -r  $sels[$i]  ("|"+$gNames[$i] ) ;
+doCreatePointOnPolyConstraintArgList 2 {   "0" ,"0" ,"0" ,"1" ,"" ,"1" ,"0" ,"0" ,"0" ,"0" };
+}
+};
+select -cl;
+for ($i=0; $i<`size($sels)`;$i++){ 
+select -add ("|"+$gNames[$i] ) ;
+}
+select -add ($objType+"_grp") ;
+parent; 
+delete -constraints; 
+}

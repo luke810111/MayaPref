@@ -1,0 +1,1260 @@
+global proc shelf_Luke () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "czDisplayColorOverrideUI" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "czDisplayColorOverrideUI" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "color" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "czDisplayColorOverrideUI();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source IKFKswitchTool;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source IKFKswitchTool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source IKFKswitchTool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "cluster of soft select --軟C" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cluster of soft select " 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "softC" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import maya.cmds as mc\nimport maya.OpenMaya as om\n\ndef softSelection():\n    selection = om.MSelectionList()\n    softSelection = om.MRichSelection()\n    om.MGlobal.getRichSelection(softSelection)\n    softSelection.getSelection(selection)\n    \n    dagPath = om.MDagPath()\n    component = om.MObject()\n    \n    iter = om.MItSelectionList( selection,om.MFn.kMeshVertComponent )\n    elements = []\n    while not iter.isDone(): \n        iter.getDagPath( dagPath, component )\n        dagPath.pop()\n        node = dagPath.fullPathName()\n        fnComp = om.MFnSingleIndexedComponent(component)   \n                \n        for i in range(fnComp.elementCount()):\n            elements.append([node, fnComp.element(i), fnComp.weight(i).influence()] )\n        iter.next()\n    return elements\n    \n\ndef createSoftCluster():\n    softElementData = softSelection()\n    selection = [\"%s.vtx[%d]\" % (el[0], el[1])for el in softElementData ] \n    \n    mc.select(selection, r=True)\n    cluster = mc.cluster(relative=True)\n    \n    for i in range(len(softElementData)):\n        mc.percent(cluster[0], selection[i], v=softElementData[i][2])\n    mc.select(cluster[1], r=True)\n    \ncreateSoftCluster()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "inves transparency 反轉透貼 14轉18阿諾用" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "inves transparency" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "inves transparency" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import pymel.core as pm\nmat = pm.ls(et=\"phong\")\nfor j in mat:\n    textureOpacity = j.transparency.inputs()\n    if textureOpacity:\n        textureOpacity[0].invert.set(1)" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "MassOBJexporterPython" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n######################################################\n## Mass ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "expOBJ" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n######################################################\n## Mass OBJ exporter script (python)                ##\n##--------------------------------------------------##\n## Script Written by Lucas morgan.                  ##\n##--------------------------------------------------##\n## Email: lucasm@enviral-design.com                 ##\n##--------------------------------------------------##\n## Website: www.enviral-design.com                  ##\n######################################################\n\n# - Installation\n## To run this script, copy all of the text in this \n## window into the python tab of your maya script editor.\n\n# - Usage\n## 1. Select all polygon mesh objects in scene\n## 2. Choose directory\n## 3. BAM!\n\n## Note: exporting anything other than polys may result in empty objs, or an error.\n\n####----------------------------------------------####\n\nimport maya.cmds as cmds\nimport maya.mel as mel\n\n#deletes old window and preference, if it still exists\nif(cmds.window('uiWindow_objLoopExport', q=1, ex=1)):\n\tcmds.deleteUI('uiWindow_objLoopExport')\nif(cmds.windowPref('uiWindow_objLoopExport', q=1, ex=1)):\n\tcmds.windowPref('uiWindow_objLoopExport', r=1)\n\t\ndef dirPath(filePath, fileType):\n\tcmds.textFieldButtonGrp('Dir', edit=True, text=str(filePath))\n\treturn 1\n\ndef startExport(path):\n\tcurentObjectSelection = cmds.ls(sl=1,fl=1)\n\tfilePathStr = cmds.textFieldButtonGrp('Dir', query = True, text = True)\n\tfor item in curentObjectSelection:\n\t\tfinalExportPath = \"%s/%s.obj\"%(filePathStr, item)\n\t\ttry:\n\t\t\tcmds.select(item)\n\t\t\tmel.eval('file -force -options \"groups=0;ptgroups=0;materials=0;smoothing=1;normals=1\" -typ \"OBJexport\" -pr -es \"%s\";'%(finalExportPath))\n\t\t\tprint finalExportPath\n\t\texcept:\n\t\t\tprint \"Ignoring object named: '%s'. Export failed, probably not a polygonal object. \"%(item)\n\tprint \"Exporting Complete!\"\n\ndef browseIt():\n\tcmds.fileBrowserDialog( m=4, fc=dirPath, ft='directory', an='Choose Directory')\n\treturn\n\ndef makeGui():\n\tuiWindow_objLoopExport = cmds.window('uiWindow_objLoopExport', title=\"Mass OBJ exporter\", iconName='uiWindow_objLoopExport', widthHeight=(330, 160) )\n\tcmds.columnLayout('uiColWrapper', w = 375, adjustableColumn=False, parent = 'uiWindow_objLoopExport' )\n\tcmds.text( label='Settings', align='left', parent = 'uiColWrapper')\n\tcmds.textFieldButtonGrp('Dir', label='Directory Path', cw3 = [80,190,50], text='(browse for directory)', buttonLabel='browse', buttonCommand=browseIt, parent = 'uiColWrapper')\n\tcmds.button('startExport', label = \"Export Selected\", parent = 'uiColWrapper', width = 322, command = startExport)\n\tcmds.showWindow( uiWindow_objLoopExport )\n\n\nmakeGui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "整理CC_morph" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "int $b=0;\nfloat $tx=20;\nfloat $ty=-25;\nfloat $tz=20;\nfor ($b=0; ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "\nsortOut" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "int $b=0;\nfloat $px=20;\nfloat $py=-25;\nfloat $pz=20;\n\nblendShape $selsB $selsA;\n\nfor ($b=0; $b<`size($selsB)`;$b++){ \n    setAttr ($selsB[$b]+\".tx\") ($b*$px);\n};\n\nsetAttr \"blendShape*.anchor_Open\" 1;\n\nfor ($b=1; $b<`size($selsB)`;$b++){ \n    string $cc = $selsB[$b];\n    setAttr (\"blendShape*.\"+$cc) 1;\n    select -r $selsA;\n    duplicate -rr;\n    rename -is (\"fix\"+$b+$cc);\n    setAttr (\"fix\"+$b+$cc+\".tx\") ($px*$b);\n    setAttr (\"fix\"+$b+$cc+\".ty\") $py;\n    setAttr (\"fix\"+$b+$cc+\".tz\") $pz;\n    setAttr (\"blendShape*.\"+$cc) 0;\n   };\n   \nsetAttr \"blendShape*.anchor_Open\" 0;\nselect -r anchor_Open ;\nmove -os -wd 0 $py $pz ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "follicle" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "string $sels[] = `ls -sl`;\nif (`objExists follicle_grp` ){    \n}..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "follicle" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $sels[] = `ls -sl`;\nif (`objExists follicle_grp` ){    \n}\nelse {\ngroup -em -n follicle_grp;\nselect -cl;\n};\nfor ($i=0; $i<`size($sels)`;$i++){ \nstring $ob = $sels[$i];\nstring $Name = `capitalizeString $ob`;\nfile -import -rdn \"Z:/principle/Setup/ctrl/follicle.ma\";\nparent nurbsByLukeFollicle1 follicle_grp;\n\nfloat $wsT[]=`xform -q -ws -t $ob`;\nxform -ws -t $wsT[0] $wsT[1] $wsT[2] nurbsByLuke_offset;\nfloat $wsR[]=`xform -q -ws -ro $ob`;\nxform -ws -ro $wsR[0] $wsR[1] $wsR[2] nurbsByLuke_offset;\nfloat $wsS[]=`xform -q -ws -s $ob`;\nxform -ws -s $wsS[0] $wsS[1] $wsS[2] nurbsByLuke_offset;\n\nsearchReplaceNames \"ByLuke\" $Name \"all\";\nprint($Name);\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "getCenterofselection" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "getCenterofselection" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "gcos" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "setToolTo moveSuperContext;\nvector $v = `manipMoveContext -q -p Move`;\nspaceLocator -a -p ($v.x) ($v.y) ($v.z);\nxform -cp;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "放權" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "//放權\n//select obj first \n//待優化:判定是否有上層 沒有的物件+gr..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "gu" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//放權\n//select obj first \n//待優化:判定是否有上層 沒有的物件+group\n//有遇到一個bug 上層的上層不能有scale值\n//目前只能先做到位移跟旋轉的轉移\n\nstring $child[] =`ls -sl`;\nfor ($ch in $child) {\n    transUp($ch);\n}\nselect -r $child;       \n        \nproc transUp (string $obj){\nselect -r $obj;\npickWalk -d up;\nstring $father[] = `ls -sl`;\nfloat $wsT[]=`xform -q -ws -t $obj`;\nmove -ws -pcp $wsT[0] $wsT[1] $wsT[2] $father[0];\nfloat $wsR[]=`xform -q -ws -ro $obj`;\nrotate -ws -pcp $wsR[0] $wsR[1] $wsR[2] $father[0];\nselect -r $obj;\n};\n\n\n " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "一串父子" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "string parent" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "strg parent" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "/*一串父子*/\nstring $fathers[] = `ls -sl`;\n\n//string $sons[] =stringArrayRemoveAtIndex(0, $fathers);\nif(size($fathers)>1) {\n    string $sons[]=$fathers;\n    stringArrayRemoveAtIndex(0, $sons);\n    for ($i=0; $i<`size($sons)`;$i++){\n        \n            print($fathers[$i]+\"----\");\n            print($sons[$i]+\"\\n\");\n    parent -a $sons[$i] $fathers[$i] ;\n    };\n}\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "createHairJoint 一管骨架" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "createHairJoint" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "crHairJt" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "/*頭髮骨架快速產生工具*/ \nstring $sels[]=`ls -sl`;\nbuiltTubeJointA($sels);\n\n  \n/*一串父子*/\nstring $sels[] = `ls -sl`;\n\nproc parentStringJoint(string $sels[]){\nif(size($sels)>1) {\n    string $son[]=$sels;\n    stringArrayRemoveAtIndex(0, $son);\n    for ($i=0; $i<`size($son)`;$i++){\n        parent -a $son[$i] $sels[$i] ;\n        };\n    }\n}  \n\n\n/*歸一 把所選的的元素都位移到平均中心*/\nproc toOne(){\nsetToolTo moveSuperContext;\nvector $v = `manipMoveContext -q -p Move`;\nmove -a  ($v.x) ($v.y) ($v.z) ;\n}\n\n/*逐層選模型元組loop\n  搭配loop使用\n  迴圈做完記得clear\n*/\nproc string[] nextRings(string $vtx[],string $dones[]){\n    string $desels[] =stringArrayCatenate($dones, $vtx);\n    $desels =stringArrayRemoveDuplicates($desels);\n    GrowPolygonSelectionRegion;\n    select -d $desels;\n    clear $vtx;\n    string $vtx[]=`ls -sl`;\n    return $desels;\n    }\n\n/*locatorsOnEdge \n來源:https://berniebernie.fr/wiki/Maya_Mel#Easy_install_tip\n跟之前寫的一條綁定是類似的思路 但是這傢伙寫的更好用\n選到的polyEdge 執行產生等分的locator\n$numberOfLocators :要幾個locator\n*/\nproc locatorsOnEdge(int $numberOfLocators){\n    cycleCheck -e off;\n    int $clones = $numberOfLocators;\n    string $objs[] = {};\n    string $edg[] = `ls -sl`;\n    string $ob[] = `ls -sl -o`;\n    string $ptc[] = `polyToCurve -form 2 -degree 3`;\n    string $lo[] = `spaceLocator -n ($ob[0]+\"_loc\")`;\n    string $pa = `pathAnimation -fractionMode true -follow true -followAxis x -upAxis y -worldUpType \"vector\" -worldUpVector 0 1 0 -inverseUp false -inverseFront false -bank false $ptc[0] $lo[0]`;\n    disconnectAttr ($pa+\"_uValue.output\") ($pa+\".uValue\");\n    for($i = 0;$i<$clones;$i++){\n        setAttr ($pa+\".uValue\") (($i*1.0)/($clones-1));\n\n        refresh;\n    string $copy[] = `duplicate $lo[0]`;\n    $objs[size($objs)]=$copy[0];   \n\n    }\n    delete $lo;\n    delete $ptc;\n    select -r $objs;\n    cycleCheck -e on;\n}\n\n/*頭髮骨架快速產生工具*/ \nproc builtTubeJointA(string $selsA[]){\n    source \"xRig_procedure\";\n    string $objs[];\n    string $desels[]; \n    $numTokens = `tokenize $selsA[0] \".[:]\" $objs`;\n    string $vtxs[]= `polyListComponentConversion -fv -tv $objs[0]`;\n    polySelectConstraint -m 3 -t 0x8000 -w 1; \n    polySelectConstraint -dis ;\n    string $border[] =`ls -sl`;\n    string $vtx[] = `polyListComponentConversion -tv $border`;\n    select -r $vtx;\n    toOne;\n    \n    for ($i=0; $i<`size($selsA)`;$i++){ \n        string $desels[]=nextRings($vtx,$desels);\n        toOne;\n        };\n    clear $desels; \n    \n\n    select -r $selsA;\n    locatorsOnEdge(7);\n    string $locs[]=`ls -sl`;\n    \n    gTransObjs(\"joint\" , .25 );\n    string $jts[]=`ls -sl`;\n    parentStringJoint($jts);\n    delete $locs;\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FK_ctrl" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FK_ctrl" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "FK_ctrl" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//建立FK控制器set\nstring $ctrls[] ={\"joint\",\"ctrl\",\"ctrl_ws\",\"ctrl_ls\",\"ctrl_sub\"};  \nstring $sels[]=`ls -sl`;\nstring $ctrlSets[] = creCtrlSets($ctrls);\nfor ($sel in $sels){ \n    creStringCtrl($sel,$ctrlSets);\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "旋轉校正" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "旋轉校正" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "rotCabrate" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r FK_ctrl_ws_set;\nstring $ws[]=`ls -sl`;\n\nfor ($i=0; $i<`size($ws)`;$i++){ \nrotate -ws -pcp 0 0 0 $ws[$i];\n};\n\nselect -r FK_ctrl_sub_set;\nstring $sub[]=`ls -sl`;\n\nfor ($i=0; $i<`size($sub)`;$i++){ \nrotate -a 0 0 0 $sub[$i];\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "刪掉全部的約束" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r `ls -type parentConstraint`;\nselect -add `ls -type poi..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "delCt" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r `ls -type parentConstraint`;\nselect -add `ls -type pointConstraint`;\nselect -add `ls -type aimConstraint`;\nselect -add `ls -type orientConstraint`;\ndelete;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "把全場的parent約束的type改成shortest" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "pcst" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "pcst" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $cons[] = `ls -type \"parentConstraint\"`;\nfor ($i=0; $i<`size($cons)`;$i++){ \nstring $shortest = ($cons[$i]+\".interpType\");\nsetAttr $shortest 2;\n};\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "放權" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "transUp " 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "transUp " 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//放權\n//select obj first \n//待優化:判定是否有上層 沒有的物件+group\n//有遇到一個bug 上層的上層不能有scale值\n//目前只能先做到位移跟旋轉的轉移\n\nstring $child[] =`ls -sl`;\nfor ($ch in $child) {\n    transUp($ch);\n}\nselect -r $child;       \n        \n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "集權" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "transBack" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "transBack" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//集權\n//select obj first \n//待優化:判定是否有上層 沒有的物件+group\n//有遇到一個bug 上層的上層不能有scale值\n//目前只能先做到位移跟旋轉的轉移\n\nstring $child[] =`ls -sl`;\nfor ($ch in $child) {\n    transDown($ch);\n}\nselect -r $child;     \n\nproc transDown (string $obj){\nselect -r $obj;\npickWalk -d up;\nstring $father[] = `ls -sl`;\nmove -ws -pcp 0 0 0 $father[0];\nrotate -ws -pcp 0 0 0 $father[0];\nselect -r $obj;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit the references for the current scene" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Reference Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "RE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconFile.png" 
+        -image1 "menuIconFile.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ReferenceEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "quick rename tool" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source Quick_rename_tool;\nQuick_rename_tool ();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "qrn" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source Quick_rename_tool;\nQuick_rename_tool ();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "create offset" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\ncrOffset($sels,\"offset\",1)\n\n/*產生一個奪權的grou..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "cOffset" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\ncrOffset($sels,\"offset\",1);\n\n/*產生一個奪權的group --lv3--lp2--rc0\n\t1.可複選執行\n\t2.後綴\n\t3.s=0(選$sels);s=1(選$offsets)\n\t*/\nglobal proc string[] crOffset(string $sels[],string $suffix,int $s){ \n\n        string $obj; //in $sels\n        string $father; //father(long name) of $obj \n        string $longs[];//long name of obj\n        string $offset; //offset of obj\n        string $offsets[]; //offset array \n        \n\n    \t$ck=ckObjs($sels,\"transform\");//--lv2--lp2--rc0\n\n        for ($i=0;$i<`size($sels)`;$i++){\n        $longs=`ls -long $sels[$i]`;\t\n        $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0\n        $father=$spName[0];\n        $obj=$spName[1];\n    \t$offset=($obj+\"_\"+$suffix);\t\t\n\n        if (`objExists $offset`==0) {\n            group -em -n $offset;\n            $pc=`parentConstraint  -weight 1 $sels[$i] $offset`;\n            $sc=`scaleConstraint  -weight 1 $sels[$i] $offset`;\n            delete $pc $sc;\n        } else {\n            print($offset+\" have same name\");\n            break;\n        }\t                \n        parent $sels[$i] $offset;\n        if (`size($father)`>0)\n                parent $offset $father;\n        $longs=`ls -long -sl`;\n        //$offsets[$i]=$longs[0];\n        $offsets[$i]=$offset;\t\t\t\n\n        if ($s==1)\n        \tselect -r $offsets;\n        else \n        \tselect -r $sels;\n        }\n\n\t    return $offsets;\n        }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\n/*1-2 drvinKey顯示切換共享 \nA組選source \nB組選target \n不用再選driverKey節點當A組*/\n//addVisDrKey($selsA,$selsB);\nproc addVisDrKey(string $selsA[],string $selsB[]){\n    \n    string $drVis[] = `listConnections ($selsA[0]+\".visibility\")`;\n    string $set[]=`listConnections ($drVis[0]+\".message\")`;\n    for ($i=0; $i<`size($selsB)`;$i++){\n    connectAttr -f ($drVis[0]+\".output\") ($selsB[$i]+\".visibility\"); //把加選物件加進set\n    if (`size($set)`==1)\n    sets -include $set[0] $selsB[$i];\n    };\n    }" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n/*1-2 drvinKey顯示切換共享 \nA組選source \nB組選target \n不用再選d..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n/*1-2 drvinKey顯示切換共享 \nA組選source \nB組選target \n不用再選driverKey節點當A組*/\naddVisDrKey($selsA,$selsB);\nproc addVisDrKey(string $selsA[],string $selsB[]){\n    \n    string $drVis[] = `listConnections ($selsA[0]+\".visibility\")`;\n    string $set[]=`listConnections ($drVis[0]+\".message\")`;\n    for ($i=0; $i<`size($selsB)`;$i++){\n    connectAttr -f ($drVis[0]+\".output\") ($selsB[$i]+\".visibility\"); //把加選物件加進set\n    if (`size($set)`==1)\n    sets -include $set[0] $selsB[$i];\n    };\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit deformer set membership" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Deformer Sets" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "DS" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "DeformerSetEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "wiz_controllers ()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "wiz_controllers ()" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "wiz_controllers" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "wiz_controllers ()" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    sets -add $sels[($n-1)] $sels[$i];\n    }" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "setAdd" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    sets -add $sels[($n-1)] $sels[$i];\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setRemove" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "setRemove" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    sets -remove $sels[($n-1)] $sels[$i];\n    }\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "sortOutTool" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source sortOutTool;\nsortOutTool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "sortOutTool" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source sortOutTool;\nsortOutTool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Add polygons to the selected polygon objects to smooth them" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Smooth" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySmooth.png" 
+        -image1 "polySmooth.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyPerformAction \"polySmooth  -mth 0 -sdt 2 -ovb 1 -ofb 3 -ofc 0 -ost 0 -ocr 0 -dv 1 -peh 0 -bnr 1 -c 1 -kb 1 -ksb 1 -khe 0 -kt 1 -kmb 1 -suv 1 -sl 1 -dpe 1 -ps 0.1 -ro 1\" f 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "performPolySmooth 1" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"xRigD_Tool\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"xRigD_Tool\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "xRigD" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"xRigD_Tool\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n這是一個會把相同名稱物件set起來的一個script\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n\n\nimport maya.cmds as cmds\n\nobjList=list(cmds.ls(type=\"transform\"))\nsameNameSet=[]\n\nif cmds.objExists(\"sameNameSet\") :\n    print(\"\")\nelse:cmds.sets(n=\"sameNameSet\")\n\n\n\nfor obj in objList:\n    cmds.select(obj)\n    if \"|\" in obj[:]:\n        sameNameSet.append(obj)\ncmds.select(sameNameSet)\ncmds.sets(add=\"sameNameSet\")\n\n\ncmds.select( \"sameNameSet\", noExpand=True )\ncmds.ls( selection=True )\n\n\nsetMembers=list(cmds.sets( \"sameNameSet\", q=True))\n\nfor setMember in setMembers:\n    cmds.select(setMember)\n    print(setMember)\n    if \"|\" not in setMember[:]:\n        cmds.sets(setMember,rm=\"sameNameSet\")\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n這是一個會把相同名稱物件..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n這是一個會把相同名稱物件set起來的一個script\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n\n\nimport maya.cmds as cmds\n\nobjList=list(cmds.ls(type=\"transform\"))\nsameNameSet=[]\n\nif cmds.objExists(\"sameNameSet\") :\n    print(\"\")\nelse:cmds.sets(n=\"sameNameSet\")\n\n\n\nfor obj in objList:\n    cmds.select(obj)\n    if \"|\" in obj[:]:\n        sameNameSet.append(obj)\ncmds.select(sameNameSet)\ncmds.sets(add=\"sameNameSet\")\n\n\ncmds.select( \"sameNameSet\", noExpand=True )\ncmds.ls( selection=True )\n\n\nsetMembers=list(cmds.sets( \"sameNameSet\", q=True))\n\nfor setMember in setMembers:\n    cmds.select(setMember)\n    print(setMember)\n    if \"|\" not in setMember[:]:\n        cmds.sets(setMember,rm=\"sameNameSet\")\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "batch prefix" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$selsA=`ls -sl`;\n    \nfor ($i=0; $i<`size($selsA)`;$i++){    \n  ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "batPrifix" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$selsA=`ls -sl`;\n    \nfor ($i=0; $i<`size($selsA)`;$i++){    \n    select -r $selsA[$i];\n    select -hi;\n    select -d $selsA[$i];\n    select -d \"*Shape*\";\n    $selsB=`ls -sl`;\n    for ($j=0; $j<`size($selsB)`;$j++){     \n        select -r $selsB[$j] ;\n        renameHierarchyPrefix( $selsA[$i] ) ;\n        }    \n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select Ama all ctrl" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$numTokens = `tokenize $sels[0] \":\" $buffer`;\n$n..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "selAma" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\nstring $selsC[],$buffer[];\n$numTokens = `tokenize $sels[0] \":\" $buffer`;\n$ns=$buffer[0];\n$AmaCtrls={\"Tongue_ctl1\",\"Tongue_ctl2\",\"Tongue_ctl3\",\"L_Teeth_ctl\",\"R_Teeth_ctl\",\"L_Upper_FaceHair_ctl1\",\"L_Upper_FaceHair_ctl2\",\"L_Mid_FaceHair_ctl1\",\"L_Upper_FaceHair_ctl3\",\"L_Mid_FaceHair_ctl2\",\"L_Mid_FaceHair_ctl3\",\"L_Lower_FaceHair_ctl1\",\"L_Lower_FaceHair_ctl2\",\"R_Upper_FaceHair_ctl1\",\"L_Lower_FaceHair_ctl3\",\"R_Upper_FaceHair_ctl2\",\"R_Upper_FaceHair_ctl3\",\"R_Mid_FaceHair_ctl1\",\"R_Mid_FaceHair_ctl2\",\"R_Lower_FaceHair_ctl1\",\"R_Mid_FaceHair_ctl3\",\"R_Lower_FaceHair_ctl2\",\"Lips_BS_Upper_M_ctl\",\"R_Lower_FaceHair_ctl3\",\"Lips_BS_Corner_R_ctl\",\"Lips_BS_Lower_M_ctl\",\"Lips_BS_Lower_R_ctl\",\"Lips_BS_Corner_L_ctl\",\"Lips_BS_Upper_R_ctl\",\"Lips_BS_Lower_L_ctl\",\"Lips_BS_Upper_L_ctl\",\"BS_Nose_ctl\",\"Facial_BS_ctl\",\"L_Eye_UI_ctl\",\"Eye_Aim_Main_ctl\",\"R_Eye_UI_ctl\",\"Texture_ctl\",\"R_Eye_Aim_ctl\",\"L_Eye_Aim_ctl\",\"FKRoot_M\",\"FKSpine1_M\",\"FKChest_M\",\"HipSwinger_M\",\"FKTail0_M\",\"FKTail1_M\",\"FKTail2_M\",\"FKTail3_M\",\"FKHipTop_L\",\"FKHipTop_R\",\"FKKnee_R\",\"FKHip_R\",\"FKBackToes_R\",\"FKBackAnkle_R\",\"FKJaw_M\",\"FKEye_R\",\"FKEar1_R\",\"FKEar2_R\",\"FKHat2_M\",\"FKHat1_M\",\"FKHat3_M\",\"FKEye_L\",\"FKEar1_L\",\"FKEar2_L\",\"FKNeck_M\",\"FKHead_M\",\"FKScapula_R\",\"FKScapula_L\",\"FKShoulder_R\",\"FKElbow_R\",\"FKFront_Ankle_R\",\"FKFront_Toes_R\",\"FKHip_L\",\"FKKnee_L\",\"FKBackAnkle_L\",\"FKBackToes_L\",\"FKElbow_L\",\"FKShoulder_L\",\"FKFront_Toes_L\",\"FKFront_Ankle_L\",\"IKLegBack_R\",\"RollBackHeel_R\",\"RollBackToes_R\",\"RollBackToesEnd_R\",\"IKBackToes_R\",\"IKLegFront_R\",\"RollFront_ToesEnd_R\",\"RollFront_Heel_R\",\"RollFront_Toes_R\",\"IKFront_Toes_R\",\"IKLegBack_L\",\"RollBackHeel_L\",\"RollBackToesEnd_L\",\"RollBackToes_L\",\"IKBackToes_L\",\"IKLegFront_L\",\"RollFront_Heel_L\",\"RollFront_ToesEnd_L\",\"RollFront_Toes_L\",\"PoleLegBack_R\",\"IKFront_Toes_L\",\"IKSplineNeck2_M\",\"IKSplineNeck1_M\",\"IKhybridSplineNeck1_M\",\"IKhybridSplineNeck2_M\",\"IKhybridSplineNeck3_M\",\"IKSplineNeck3_M\",\"PoleLegFront_R\",\"IKcvSpine1_M\",\"IKSpine2_M\",\"IKSpine1_M\",\"IKhybridSpine1_M\",\"IKSpine3_M\",\"IKhybridSpine3_M\",\"IKhybridSpine2_M\",\"PoleLegBack_L\",\"PoleLegFront_L\",\"FKIKLegFront_R\",\"FKIKSplineNeck_M\",\"FKIKLegBack_R\",\"FKIKSpine_M\",\"FKIKLegFront_L\",\"FKIKLegBack_L\",\"RootX_M\",\"MainExtra1\",\"Main\",\"MainExtra2\"};\nstring $ctrls[]=$AmaCtrls;\n\n\nfor($i=0;$i<`size($ctrls)`;$i++){\n    $selsC[$i]=($ns+\":\"+$ctrls[$i]);  \n    }\nselect -r $selsC;    " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\nAnimSchoolPicker();" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\nAnimSchoolPicker();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\nAnimSchoolPicker();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "testCoHeadKey" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$al=testFollow($selsA,$selsB,\"follow_head_ly\",1,0.382);\n\nproc st..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "testCoHeadKey" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$al=testFollow($selsA,$selsB,\"follow_head_ly\",1,0.382);\n\nproc string testFollow(string $selsA[],string $selsB[],string $aln,float $to,float $index){\n\t$al=`animLayer $aln`;\n\t$attrs={\"rx\",\"ry\",\"rz\"};\n\t\n\t$vs=1.0;\n\t$to2=0;\n\tfor($i=0;$i<`size($selsB)`;$i++){\n\t\t$vs=$index*$vs;\n\t\t$to2=$to2+$to;\n\t\tfor($attr in $attrs){\n\t\t\tcpKeywithLayer($al,$selsA[0],$attr,$selsB[$i],$attr,$to2,$vs);\n\t\t\t}\n\t\t}\n\treturn $al;\n\t}\n\nproc cpKeywithLayer(string $al,string $sObj,string $sAttr,string $tObj,string $tAttr,float $to,float $vs){\n\t/*\n\t$al:animLayer\n\t$to:timeOffset\n\t$vs:valueScale\n\t*/\n\t$source=($sObj+\".\"+$sAttr);\n\t$target=($tObj+\".\"+$tAttr);\n\tanimLayer -e -at $target $al;\n\t$trng=selTime();\n\tfloat $cv[];\n\n\tif(!`size $trng`){\n\tcopyKey $source;\n\t$cv=`keyframe -q -vc $source`;\n\t}else{\n\tcopyKey -t $trng $source;\n\t$cv=`keyframe -t $trng -q -vc $source`;\n\t}\n\tpasteKey -option \"replace\" -al $al -to $to -vo (-1*$cv[0]) $target;\n\t$testX=`animLayer -q -fcv $target $al`;\n\tscaleKey -valueScale $vs $testX;\n\t}\n\t\nproc string selTime(){\n\tstring $trng;\n\tglobal string $gPlayBackSlider;\n\tif(`timeControl -q -rv $gPlayBackSlider`){\n\t\t$ta=`timeControl -q -ra $gPlayBackSlider`;\n\t\t$trng=($ta[0]+\":\"+$ta[1]);\n\t}else{\n\t\tfloat $ta[]=`keyframe -q -tc -sl`;\n\t\t$ta=floatArrayRemoveDuplicates($ta,0);\n\t\t$ta=`sort $ta`;\n\t\t$n=(`size($ta)`-1);\n\t\tif($n>0) $trng=($ta[0]+\":\"+$ta[$n]);\n\t\t}\n\treturn $trng;\n\t}\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "selAllAni" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "selAllAni" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;\nselect -r $crvs;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "asAutoSwitchFKIK " 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asAutoSwitchFKIK " 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "IKFK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "asAutoSwitchFKIK " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "reParent" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "reParent" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "reParent" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//***********************************************//\n//                                               //\n//              RePARENT Light 1.8.3             //\n//      copyright Dmitrii Kolpakov 2020          //\n//                                               //\n//***********************************************//\n\nprogressWindow -endProgress;\noptionVar -intValue animBlendingOpt 1;\nrefresh -suspend 0; \n\nif ((`window -ex ReParentLightPanel`)==true)\ndeleteUI ReParentLightPanel;\n\nstring $reParentWindow = `window -toolbox 1 -t \"reParent Light v1.8.3 \" -wh 140 229 -s 0  -menuBar 1  ReParentLightPanel`;\n\nmenu  -l \"Help\" -to 0 helpMenu;\nmenuItem -l \"User Manual (ENG)\"  -c reParentManualENG;\nmenuItem -l \"User Manual (RUS)\"  -c reParentManualRUS;\nmenuItem -d 1 separetonMenu;\nmenuItem -l \"Intro\"  -c reParentIntro;\nmenuItem -l \"Tutorial\"  -c reParentTutorial;\n\nrowColumnLayout;\nrowLayout -nc 2 -cw 140 30;\nrowColumnLayout  -nc 2 -cw 5 30;\ncheckBox -onc CheckboxesPinOn - ofc CheckboxesPinOff -ann \"Pin selected controls (delete all animation and constrain to locator)\" -label \" Pin \" -v 0 -h 18  PinCheckBox;\ncheckBox -onc CheckboxesAimOn - ofc CheckboxesAimOff -ann \"Make aim effect for selected controls\" -label \" Aim \" -v 0 -h 18  AimCheckBox;\nrowColumnLayout;\n\nsetParent..;\nsetParent..;\nsetParent..;\n\nrowColumnLayout  -nc 1;\n\ncheckBox -onc CheckboxesGlobalOn - ofc CheckboxesGlobalOff -ann \"Make global effect for selected controls\" -label \" make Global \" -v 0 -h 18  MakeGlobalCheckBox;\nseparator  -h 2 -style \"none\";\n\nrowColumnLayout -nc 2 -columnWidth 140 70 -columnWidth 2 50;\ncheckBox -onc CheckboxesIKOn - ofc CheckboxesIKOff -ann \"rePArent three FK controls to IK mode\" -label \" IK mode \" -v 0 -h 18  IKCheckBox;\ncheckBox -onc CheckboxesIKLocalOn -ann \"rePArent three FK controls to IK mode with parent to the first control\" -label \" Local \" -v 0 -h 18  IKCheckLocalBox;\nsetParent..;\n\nrowLayout -nc 1 -cw 30 30 ;\nrowColumnLayout -nc 1 -columnWidth 1 130 ;\ncheckBox -onc CheckboxesManualnOn -ofc CheckboxesManualnOff -ann \"Move reParent locator to set required pivot and press Go\" -label \" Manual pivot \" -v 0 -h 18  ManualCheckBox;\nseparator  -h 2 -style \"none\";\n\ncheckBox -onc CheckboxesReconstrainOn -ofc CheckboxesReconstrainOff -ann \"Select controls for reParent then last control for reConstrain\" -label \" reConstrain \" -v 0 -h 18  reConstrainCheckBox;\nseparator  -h 3 -style \"none\";\n\nstring $theLayout =`frameLayout -cc ReParentLightPanelPanelSmall -ec ReParentLightPanelBig -collapsable 1 -collapse 1 -l \"Advanced\"`;\ncheckBox -ann \"Each reParent locator will be baked on new animation layer\" -label \" Bake on anim layer \" -v 0 -h 18  onLayerReParentMode;\ncheckBox -onc CheckboxesKeepKeys -ann \"Keep unbaked keys\" -label \" Keep unbaked keys \" -v 0 -h 18  KeepKeys;\ncheckBox -onc CheckboxesSaveKeys -ann \"Save control key\" -label \" Save control keys \" -v 0 -h 18  SaveKeys;\ncheckBox -ann \"Delete all redundant keys on rePaent locators\" -label \" Delete redundant \" -v 1 -h 18  DelRed;\nsetParent..;\n\nseparator    -h 1 -style \"none\";\nbutton -l \"reParent\" -c \"reParentStarter\" -bgc .8 .8 .8 -w 140 -h 40 reParentButton;\nbutton  -l \"BAKE AND DELETE\" -ann \"Bake All animation and delete rePaent locators\" -c \"BakeAndDelete_reParentInit\" -bgc .22 .22 .22 -w 140 -h 35 DeleteButton;\n\nrowColumnLayout -rs 1 140  -nc 2 -columnWidth 1 70 -columnWidth 2 50;\nbutton -l \"Go\" -c \"GoModeStarter\" -bgc .8 .8 .8 -w 40 -h 40 ;\n\nstring $cancl = `button -l \"Cancel\" -c \"GoModeCancel\" -w 60 -h 40 -bgc .22 .22 .22`;\nsetParent..;\nwindow -edit -widthHeight 140 229 ReParentLightPanel;\n\nshowWindow ReParentLightPanel;\n\nproc reParentManualENG()\n{launch -web \"https://docs.google.com/document/d/18lo4223RTf3OeSbD9zOzRLMoBxXMbIF-G8hzFJ7omek/edit\";}\n\nproc reParentManualRUS()\n{launch -web \"https://docs.google.com/document/d/1eMQW4nVOig-oLXRpxmTtfIa7w6VxfjnwxoU6Z2IU1FA/edit\";}\n\nglobal proc GoToBuyProReParent()\n{\n        string $BakeOrNot = `confirmDialog -title \"Oooops..\" -message \"     That option works only       \\n             for PRO version\"\n        -button \"  Buy reParent Pro  \" \n        -button \"No\" \n        -defaultButton \"  Buy reParent Pro  \"\n        -cancelButton \"No\" -dismissString \"No\"`;\n         \n         if( $BakeOrNot == \"  Buy reParent Pro  \" ) \n         {launch -web \"https://gumroad.com/l/reParentPro\";}\n}\n\n\n\nglobal proc ReParentLightPanelBig()\n{\n    if (`window -q -h ReParentLightPanel` == 229) \n    {window -edit -h 307 ReParentLightPanel;}\n}\n\nglobal proc ReParentLightPanelPanelSmall()\n{\n    if (`window -q -h ReParentLightPanel` == 307) \n    {window -edit -h 229 ReParentLightPanel;}\n}\n\n\nglobal proc ReParentLightPanelGoToBase()\n{\n    if (`window -q -h ReParentLightPanel` == 315) \n    {window -edit -h 307 ReParentLightPanel;}\n    if (`window -q -h ReParentLightPanel` == 237) \n    {window -edit -h 229 ReParentLightPanel;}   \n    button -e -w 140 -h 35 -vis 1 DeleteButton;\n    button  -edit -en 1 reParentButton;\n}    \n\nglobal proc ReParentLightPanelGoToCancel()\n{\n    if (`window -q -h ReParentLightPanel` == 229) \n    {window -edit -h 237 ReParentLightPanel;}\n    if (`window -q -h ReParentLightPanel` == 307) \n    {window -edit -h 315 ReParentLightPanel;}      \n    button -e -w 140 -h 1 -vis 0 DeleteButton;\n    button  -edit -en 0 reParentButton;    \n}\n\nproc reParentTutorial()\n{launch -web \"https://www.youtube.com/watch?v=CRBmV1Wq3Ug\";}\n\nproc reParentIntro()\n{launch -web \"https://www.youtube.com/watch?v=pFD0H5cQq3s\";}\n\nproc GoModeStarter()\n{\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n    int $AimButton = `checkBox -q -v AimCheckBox`;\n    int $GlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n    int $reConstrainButton = `checkBox -q -v reConstrainCheckBox`;\n        \n    if ($ManualButton==1&&$AimButton==0&&$GlobalButton==0&&$reConstrainButton==0){manualModeGo;}\n    if ($ManualButton==0&&$AimButton==1&&$GlobalButton==0){aimModeGo;}\n    if ($AimButton==0&&$GlobalButton==1){reParent;}\n    if ($reConstrainButton==1){manual_reConstrainlModeGo;}  \n}\n\nproc GoModeCancel()\n{\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n    int $AimButton = `checkBox -q -v AimCheckBox`;\n    int $GlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n    int $reConstrainButton = `checkBox -q -v reConstrainCheckBox`;\n    refresh -suspend 0;\n    ReParentLightPanelGoToBase;   \n       \n    if ($ManualButton==1&&$AimButton==0&&$GlobalButton==0&&$reConstrainButton==0){manualModeCancel;}\n    if ($ManualButton==0&&$AimButton==1&&$GlobalButton==0){aimModeCancel;}\n    if ($ManualButton==0&&$AimButton==0&&$GlobalButton==1){GlobalModeCancel;}\n    if ($reConstrainButton==1){manual_reConstrainlModeCancel;}\n    if ($ManualButton==1&&$GlobalButton==1){GlobalModeCancel;}\n}\n\nproc BakeAndDelete_reParentInit()\n{\n\n    if(!`objExists \"reParent_sets\"`){confirmDialog -b \"Ok\" -t \"Oooops..\" -m \"    There is nothing to remove    \";}\n    else\n    {\n        if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;}\n        if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n        if(`objExists \"DeleteGroupSelection_set\"`) {delete DeleteGroupSelection_set;}\n       \n        sets -em -name \"DeleteSelection_set\";\n        sets -em -name \"DeleteLocatorsSelection_set\";\n        sets -em -name \"DeleteGroupSelection_set\";\n        sets -edit -fe  reParent_sets DeleteSelection_set;\n        sets -edit -fe  reParent_sets DeleteLocatorsSelection_set;\n        sets -edit -fe  reParent_sets DeleteGroupSelection_set;\n    \n            \n        string $SelectedControls[] = `ls -sl`;\n    \n        // empty selection - BAKE ALL\n        if (`size($SelectedControls)` == 0)\n        {   \n            select -r All_Sessions_reParentControls_set;\n            string $SelectedControls[] = `ls -sl`;\n            sets -edit -forceElement DeleteSelection_set $SelectedControls;\n            \n            select -r All_Session_reParentLocator_set;\n            string $SelectedLocators[] = `ls -sl`;\n            sets -edit -forceElement DeleteLocatorsSelection_set $SelectedLocators;\n            \n            BakeAndDelete_reParent;\n            \n            if(`objExists \"All_Session_reParentLocator_set\"`) {select -r All_Session_reParentLocator_set; delete;}\n            if(`objExists \"reParent_sets\"`) {delete reParent_sets;}\n            if(`objExists \"All_Sessions_reParentControls_set\"`) {delete All_Sessions_reParentControls_set;}\n            if(`objExists \"Last_Session_reParentControls_set\"`) {delete Last_Session_reParentControls_set;}\n            if(`objExists \"Aim_Session_reParentLocator_set\"`) {delete Aim_Session_reParentLocator_set;}\n          \n            if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n            if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;}\n\n            if(`objExists \"*_ReParent_Locator_grp\"`)   {delete \"*_ReParent_Locator_grp\";}\n            if(`objExists \"*:*_ReParent_Locator_grp\"`)   {delete \"*:*ReParent_Locator_grp\";}    \n            if(`objExists \"*_reParentIK_grp\"`)   {delete \"*_reParentIK_grp\";}\n            if(`objExists \"*:*_reParentIK_grp\"`) {delete \"*:*_reParentIK_grp\";}\n            if(`objExists \"*_ReParent_grp\"`)     {delete \"*_ReParent_grp\";} \n            if(`objExists \"*:*_ReParent_grp\"`)   {delete \"*:*_ReParent_grp\";} \n            if(`objExists \"*_ReParent_Aim_grp\"`)     {delete \"*_ReParent_Aim_grp\";} \n            if(`objExists \"*:*_ReParent_Aim_grp\"`)   {delete \"*:*_ReParent_Aim_grp\";}\n            if(`objExists \"*tempLockedCtrl\"`)   {delete \"*tempLockedCtrl\";}\n            if(`objExists \"*:*tempLockedCtrl\"`)   {delete \"*:*tempLockedCtrl\";}\n        }\n      \n        // many objects\n        else\n        {\n            string $SelectedControls[] = `ls -sl`;\n           \n            // reParent locator ---> Base Controls\n            \n            for ($SelCtrl in $SelectedControls)\n            {\n              // $SelCtrl = $SelectedControls[0] \n                //locator ---> Delete Set\n                string $LocOrNot = `sets -im All_Session_reParentLocator_set $SelCtrl`;\n                \n                if ($LocOrNot==1)\n                {\n                    if ( catch( `getAttr ($SelCtrl+\".reParent_controlName\")`) ) \n                    {confirmDialog -b \"Ok\" -t \"Oooops..\" -m \"    select reParented control    \";}\n                           \n                    string $baseControls =  `getAttr ($SelCtrl+\".reParent_controlName\")`;\n                    string $arrayControls[] = stringToStringArray($baseControls, \" \");\n                    for ($EachControl in $arrayControls) \n                    {\n                        $LocatorName = substituteAllString($EachControl , \"|\", \"_\");\n                        \n                        if(`objExists $EachControl`)\n                        {sets -edit -forceElement DeleteSelection_set $EachControl;}\n                        \n                        if(`objExists ($SelCtrl+\"_grp\")`)\n                        {sets -edit -forceElement DeleteGroupSelection_set ($SelCtrl+\"_grp\");}                        \n                        if(`objExists ($LocatorName+\"_ReParent_Aim_grp\")`)\n                        {sets -edit -forceElement DeleteGroupSelection_set ($LocatorName+\"_ReParent_Aim_grp\");}\n                        if(`objExists ($LocatorName+\"_reParentIK_grp\")`)\n                        {sets -edit -forceElement DeleteGroupSelection_set ($LocatorName+\"_reParentIK_grp\");}\n                        if(`objExists ($LocatorName+\"_ReParent_grp\")`)\n                        {sets -edit -forceElement DeleteGroupSelection_set ($LocatorName+\"_ReParent_grp\");}\n                    }\n                    sets -edit -forceElement DeleteLocatorsSelection_set $SelCtrl;\n                }\n                \n                //Control ---> Delete Set\n                global string $LocatorName;\n                if(!`objExists ($SelCtrl+\"_ReParent_Locator\")`)\n                {$LocatorName = substituteAllString($SelCtrl , \"|\", \"_\");}\n                else\n                {$LocatorName = $SelCtrl;}\n            \n                string $ContOrNot = `sets -im All_Sessions_reParentControls_set $SelCtrl`;\n                if ($ContOrNot==1)\n                {\n\n                    sets -edit -forceElement DeleteSelection_set $SelCtrl;\n                    if(`objExists ($LocatorName+\"_ReParent_Locator_grp\")`)\n                    {sets -edit -forceElement DeleteGroupSelection_set ($LocatorName+\"_ReParent_Locator_grp\");}                   \n                    if(`objExists ($LocatorName+\"_ReParent_Locator\")`)\n                    {sets -edit -forceElement DeleteLocatorsSelection_set ($LocatorName+\"_ReParent_Locator\");}\n                    if(`objExists ($LocatorName+\"_ReParent_Aim_grp\")`)\n                    {sets -edit -forceElement DeleteLocatorsSelection_set ($LocatorName+\"_ReParent_Aim_grp\");}\n                }              \n            }\n            \n            BakeAndDelete_reParent;\n        }\n    }\n}\n\nproc BakeAndDelete_reParent()\n{ \n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n \tint $DelRedMode = `checkBox -query -v DelRed`;\n\n    if(`objExists \"DeleteGroupSelection_set\"`) {select -r DeleteGroupSelection_set;}\n    string $SelectedGroups[] = `ls -sl`;\n \n    if(`objExists \"DeleteSelection_set\"`) {select -r DeleteSelection_set;}\n    string $SelectedControls[] = `ls -sl`;\n    \n     if (size($SelectedControls)!=0)\n    {\n        int $KeepKeys = `checkBox -query -v KeepKeys`; \n        int $currentR =`playbackOptions -q  -min`;\n        int $currentL =`playbackOptions -q -max`;\n    \n        if ($KeepKeys == 1)\n        {\n            //Find animCurve time\n            selectKey -r -k;\n            string $selectedCurves[] = `keyframe -selected -q -name`;\n            float $allKeys[] = `keyframe  -q -timeChange $selectedCurves[0]`;        \n            $keysAmaount = `size($allKeys)`;  \n            $currentL = $allKeys[0];\n            $currentR = $allKeys[$keysAmaount-1];\n            if(`objExists \"DeleteSelection_set\"`) {select -r DeleteSelection_set;}\n            else{select -r All_Sessions_reParentControls_set;}\n        }\n     \n       refresh -suspend 1;         \n        bakeResults  \n        -t ($currentL+\":\"+$currentR)\n        -simulation 1 \n        -sampleBy 1 \n        -disableImplicitControl 1 \n        -preserveOutsideKeys 1 \n        -sparseAnimCurveBake 0 \n        -removeBakedAttributeFromLayer 0 \n        -removeBakedAnimFromLayer 0 \n        -bakeOnOverrideLayer 0 \n        -minimizeRotation 1 \n        -controlPoints 0\n        -shape 0\n        -at \"tx\" \n        -at \"ty\" \n        -at \"tz\" \n        -at \"rx\" \n        -at \"ry\" \n        -at \"rz\";\n        refresh -suspend 0; \n\n\n        if ($DelRedMode == 1&&$SaveKeys==0)\n        {\n            reParentDeleteRedundant;\n        }\n    \n        for ($findTempLock in $SelectedControls)\n        { \n            select -r $findTempLock;\n            string $SelectedControlsFTM[] = `ls -sl`;\n            string $TempLockkkk = substituteAllString($SelectedControlsFTM[0] , \"|\", \"_\");\n    \n            if(`objExists ($TempLockkkk+\"tempLockedCtrl\")`) \n            {    \n                select ($TempLockkkk+\"tempLockedCtrl\"); delete;\n            }\n        }\n                                 \n         filterCurve;\n            \n         if(`objExists \"DeleteLocatorsSelection_set\"`) {select -r DeleteLocatorsSelection_set; delete;}\n         if(`objExists \"DeleteGroupSelection_set\"`) {select -r DeleteGroupSelection_set; delete;}          \n         if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n         if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;} \n    }\n    \n    if (size($SelectedControls)==0&&size($SelectedGroups)==0)\n    {\n        string $BakeOrNot = `confirmDialog -title \"Oooops..\" -message \"                Selected control wasn't reParented \\n Do you want to BAKE AND DELETE ALL reParent locators?\"\n         -button \"  BAKE AND DELETE ALL  \" \n         -button \"No\" \n         -defaultButton \"  BAKE AND DELETE ALL  \"\n         -cancelButton \"No\" -dismissString \"No\"`;\n         \n         if( $BakeOrNot == \"  BAKE AND DELETE ALL  \" ) \n         {\n             select -cl; \n             BakeAndDelete_reParentInit;\n             if(`objExists \"DeleteLocatorsSelection_set\"`) {select -r DeleteLocatorsSelection_set; delete;}\n             if(`objExists \"DeleteGroupSelection_set\"`) {select -r DeleteGroupSelection_set; delete;}          \n             if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n             if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;}\n         }\n         else\n         {\n             if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n             if(`objExists \"DeleteGroupSelection_set\"`) {delete DeleteGroupSelection_set;}          \n             if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n             if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;}            \n         }\n\t}\n    \n    if (size($SelectedControls)==0&&size($SelectedGroups)!=0)\n    {\n         if(`objExists \"DeleteLocatorsSelection_set\"`) {select -r DeleteLocatorsSelection_set; delete;}\n         if(`objExists \"DeleteGroupSelection_set\"`) {select -r DeleteGroupSelection_set; delete;}          \n         if(`objExists \"DeleteLocatorsSelection_set\"`) {delete DeleteLocatorsSelection_set;}\n         if(`objExists \"DeleteSelection_set\"`) {delete DeleteSelection_set;}\n    }\n}\n\n\nproc reParentDeleteRedundant()\n{\n    $SelectedControls = `ls -sl`;\n    selectKey -r -k;\n    string $selectedCurves[] = `keyframe -selected -q -name`;\n    \n    for ($currentAnimCurve in $selectedCurves)\n    {\n    \tfloat $allKeys[] = `keyframe  -q -timeChange $currentAnimCurve`;\n        $valArray = `keyframe -q -valueChange $currentAnimCurve`;\n        $keysSize = `size($allKeys)`;\n        \n        for ($s=1; $s<$keysSize-1; ++$s )\n        {if ($valArray[$s] == $valArray[$s-1]&&$valArray[$s] == $valArray[$s+1]) {cutKey -time $allKeys[$s] -clear $currentAnimCurve;}}\n    }\n}\n\n\nglobal proc BakeKeysOnLocator()\n{        \n\tint $onLayerReParentMode = `checkBox -query -v onLayerReParentMode`;\n\tint $PinButton = `checkBox -q -v PinCheckBox`;\n\tint $MakeGlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n\n    string $SelectedLocators[] = `ls -sl`;\n\n    int $currentR =`playbackOptions -q  -min`;\n    int $currentL =`playbackOptions -q -max`;  \n\n    if ($PinButton == 0)\n    {    \n        refresh -suspend 1; \n        bakeResults  \n        -t ($currentL+\":\"+$currentR)\n        -simulation 1 \n        -sampleBy 1 \n        -disableImplicitControl 1 \n        -preserveOutsideKeys 1 \n        -sparseAnimCurveBake 0 \n        -removeBakedAttributeFromLayer 0 \n        -removeBakedAnimFromLayer 0 \n        -bakeOnOverrideLayer $onLayerReParentMode \n        -minimizeRotation 1 \n        -controlPoints 0\n        -shape 0\n        -at \"tx\" \n        -at \"ty\" \n        -at \"tz\" \n        -at \"rx\" \n        -at \"ry\" \n        -at \"rz\";\n        filterCurve;\n        refresh -suspend 0; \n    }\n    \n    if(`objExists \"TempParentConst*\"`) {delete \"TempParentConst*\";}\n    if(`objExists \"TempAimConst*\"`) {delete \"TempAimConst*\";}\n\n}\n\n\n///////////////////////////////////////\n//              reParent             //\n///////////////////////////////////////\n\n\nglobal proc reParentStarter()\n{\n\tint $reConstrainButton = `checkBox -q -v reConstrainCheckBox`;\n\tint $IKButton = `checkBox -q -v IKCheckBox`;\n\tint $PinButton = `checkBox -q -v PinCheckBox`;\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n    int $AimButton = `checkBox -q -v AimCheckBox`;\n\tint $MakeGlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n\n    string $SelectedControls[] = `ls -sl`;\n     if (!size($SelectedControls)) \n    {confirmDialog -b \"Ok\" -t \"Oooops..\" -m \"SELECT ANY CONTROL\";}\n    \n    else\n    {\n    \tif ($reConstrainButton+$IKButton+$PinButton+$AimButton>1) {confirmDialog -b \"Ok\" -t \"Oooops..\" -m \"Select one of mode\";}\n    \telse\n\t    {\n\t        int $IKButton = `checkBox -q -v IKCheckBox`;\n        \tif ($IKButton == 1) \n        \t{ \n        \t    string $SelectedControls[] = `ls -sl`;\n        \t    if (size($SelectedControls)!=3) \n                {  \n                    confirmDialog -b \"Ok\" -t \"Oooops..\" -m \"IK mode works only for three controls\";\n                }\n                else {IKmode;}\n             }\n            \tif ($reConstrainButton == 0&&$IKButton == 0&&$AimButton == 0&&$IKButton == 0 &&$MakeGlobalButton==0&&$ManualButton==0) {reParentBaseInit; }\n            \tif ($reConstrainButton == 0&&$IKButton == 0&&$AimButton == 0&&$IKButton == 0 &&$MakeGlobalButton==1&&$ManualButton==0) {reParentBaseInit; }\n            \tif ($reConstrainButton == 0&&$IKButton == 0&&$AimButton == 0&&$IKButton == 0 &&$MakeGlobalButton==1&&$ManualButton==1) {reParentBaseInit; }\n             \tif ($reConstrainButton == 0&&$IKButton == 0&&$ManualButton == 1&&$AimButton == 0&&$MakeGlobalButton==0&&$ManualButton==1) {reParentManualStarter;}\n            \tif ($reConstrainButton == 1&&$IKButton == 0&&$AimButton == 0) {reConstrainStarterInit;}\n            \tif ($reConstrainButton == 0&&$IKButton == 0&&$ManualButton == 0&&$AimButton == 1) {reParentAimStarter;}   \n    \t    }\n    }    \t    \n}\n\nglobal proc reParentBaseInit()\n{\n    string $SelectedControls[] = `ls -sl`;\n\n\tint $MakeGlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n\n    if($MakeGlobalButton==1&&$ManualButton==1)\n    {ReParentLightPanelGoToCancel;}\n\n    string $SelCtrl;\n    \n    if(`objExists \"TempLocator\"`) {delete TempLocator;}\n\t\n    CreateSets;    \n    \n    for ($SelCtrl in $SelectedControls)\n    {\n        select -r $SelCtrl;\n        string $SelectedControls[]=`ls -sl`;\n        \n        spaceLocator -n TempLocator;\n        setAttr \"TempLocator.rotateOrder\" 2;\n        \n        addAttr -ln \"reParent_controlName\"  -dt \"string\"  TempLocator;\n        setAttr -type \"string\" TempLocator.reParent_controlName $SelCtrl;\n\n        addAttr -ln \"reParent_Type\"  -dt \"string\"  TempLocator;\n        setAttr -type \"string\" TempLocator.reParent_Type \"Manual\";\n       \n        select -r $SelCtrl;\n        reParentLocatorSize;\n                \n        sets -edit -forceElement Last_Session_reParentLocator_set TempLocator;\n        sets -edit -forceElement All_Session_reParentLocator_set TempLocator;\n        select -r $SelCtrl TempLocator;      \n        \n        select -r $SelCtrl TempLocator;        \n        string $temps[] = `pointConstraint -offset 0 0 0 -weight 1`; delete $temps;\n        $temps = `orientConstraint -offset 0 0 0 -weight 1`; delete $temps;\n        \n        select TempLocator;\n        rename TempLocator ($SelCtrl+\"_ReParent_Locator\");\n        select -cl;\n    }\n    \n    select -r  Last_Session_reParentLocator_set;\n    if($ManualButton==0){reParent;}\n}\n\n\nglobal proc GlobalModeCancel()\n{\n    refresh -suspend 0;\n    ReParentLightPanelGoToBase;   \n    if(`objExists Last_Session_reParentLocator_set`)\n    {select -r Last_Session_reParentLocator_set; delete;}\n\n    if(`objExists Last_Session_reParentLocator_set`)     \n    {delete Last_Session_reParentLocator_set;}\n    \n    if(`objExists Last_Session_reParentControls_set`)\n    {delete Last_Session_reParentControls_set;}\n\n}\n\nglobal proc globalModeGo()\n{reParent;}\n\nglobal proc reParent()\n{\n    int $currentR =`playbackOptions -q  -min`;\n    int $currentL =`playbackOptions -q -max`;   \n    \n    int $PinButton = `checkBox -q -v PinCheckBox`;\n\tint $DelRedMode = `checkBox -query -v DelRed`;\n\tint $onLayerReParentMode = `checkBox -query -v onLayerReParentMode`;\n\tint $KeepKeys = `checkBox -query -v KeepKeys`;\n\tint $MakeGlobalButton = `checkBox -q -v MakeGlobalCheckBox`;\n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n\n    select -r Last_Session_reParentControls_set;\n    string $SelectedControls[] = `ls -sl`;\n\n    int $amountOfAllObjs = `size($SelectedControls)`;\n\n    for ($r=0; $r<$amountOfAllObjs; ++$r )\n    {\n        string $LocatorName = substituteAllString($SelectedControls[$r] , \"|\", \"_\");\n        select -r $SelectedControls[$r] ($LocatorName+\"_ReParent_Locator\"); \n        parentConstraint -n TempParentConst -mo -weight 1;   \n    }    \n    \n    select -r Last_Session_reParentControls_set;\n    string $SelCtrl;\n    $SelectedControls = `ls -sl`;\n        \n    if ($KeepKeys == 1)\n    {\n        //Find animCurve time\n        select -r Last_Session_reParentControls_set;\n        selectKey -r -k;\n        string $selectedCurves[] = `keyframe -selected -q -name`;\n        float $allKeys[] = `keyframe  -q -timeChange $selectedCurves[0]`;        \n        $keysAmaount = `size($allKeys)`;  \n        $currentL = $allKeys[0];\n        $currentR = $allKeys[$keysAmaount-1];\n    }\n          \n    select -r Last_Session_reParentLocator_set;\n    BakeKeysOnLocator;\n\n    for ($SelCtrl in $SelectedControls)\n    {\n        global string $LocatorName;\n        if(!`objExists ($SelCtrl+\"_ReParent_Locator\")`)\n        {$LocatorName = substituteAllString($SelCtrl , \"|\", \"_\");}\n        else\n        {$LocatorName = $SelCtrl;}\n    \n        filterCurve $SelCtrl ;\n\n        float $curTime = `currentTime -q`;  \n        \n    \tif (`getAttr -keyable ($SelCtrl+\".tx\")`==1&&`getAttr -lock ($SelCtrl+\".tx\")`==0&&$MakeGlobalButton==0)\n    \t{\n     \t   select ($LocatorName+\"_ReParent_Locator\") $SelCtrl;\n    \t   pointConstraint -n ($SelCtrl+\"_ReParentPointConst\") -mo -weight 1;\n    \t} \n    \tif (`getAttr -keyable ($SelCtrl+\".rx\")`==1&&`getAttr -lock ($SelCtrl+\".rx\")`==0&&\n            `getAttr -keyable ($SelCtrl+\".ry\")`==1&&`getAttr -lock ($SelCtrl+\".ry\")`==0&&\n            `getAttr -keyable ($SelCtrl+\".rz\")`==1&&`getAttr -lock ($SelCtrl+\".rz\")`==0)\n    \t{\n    \t    select ($LocatorName+\"_ReParent_Locator\") $SelCtrl;\n    \t    orientConstraint -n ($SelCtrl+\"_ReParentOrientConst\") -mo -weight 1;\n        }\n        \n    \tif ($MakeGlobalButton==1)\n    \t{\n    \t    select $SelCtrl ($LocatorName+\"_ReParent_Locator\");\n           \tpointConstraint -n ($SelCtrl+\"_ReParentPointGlobalConst\") -mo -weight 1;\n           \tcutKey -cl -t \":\" -f \":\" -at \"tx\" -at \"ty\" -at \"tz\" ($LocatorName+\"_ReParent_Locator\");\n           \tcutKey -cl -t \":\" -f \":\" -at \"rx\" -at \"ry\" -at \"rz\" $SelCtrl;\n           \tsetAttr -lock true ($LocatorName+\"_ReParent_Locator.tx\");\n           \tsetAttr -lock true ($LocatorName+\"_ReParent_Locator.ty\");\n           \tsetAttr -lock true ($LocatorName+\"_ReParent_Locator.tz\");\n        }\n        else\n        {\n            cutKey -cl -t \":\" -f \":\" -at \"tx\" -at \"ty\" -at \"tz\" -at \"rx\" -at \"ry\" -at \"rz\" $SelCtrl;\n        }\n\n    }\n    \n    if ($DelRedMode == 1)\n    {\n        select -r Last_Session_reParentLocator_set;\n        reParentDeleteRedundant;\n    }\n   \n    // euler all anim curves\n    select -r $SelectedControls;\n    filterCurve;\n    select -r Last_Session_reParentLocator_set;\n    filterCurve;\n    ReParentLightPanelGoToBase;\n}\n\n///////////////////////////////////////\n//            Manual MODE            //\n///////////////////////////////////////\nglobal proc reParentManualStarter()\n{\n    ReParentLightPanelGoToCancel;    \n \n    int $PinButton = `checkBox -q -v PinCheckBox`;\n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n\n    string $SelCtrl;\n    string $SelectedControls[] = `ls -sl`;\n    \n    if(`objExists \"TempLocator\"`) {delete TempLocator;}\n    \n    CreateSets;    \n\n    for ($SelCtrl in $SelectedControls)\n    {\n        select -r $SelCtrl;\n        string $SelectedControls[]=`ls -sl`;\n        \n        spaceLocator -n TempLocator;\n        setAttr \"TempLocator.rotateOrder\" 2;\n        \n        addAttr -ln \"reParent_controlName\"  -dt \"string\"  TempLocator;\n        setAttr -type \"string\" TempLocator.reParent_controlName $SelCtrl;\n        \n        addAttr -ln \"reParent_Type\"  -dt \"string\"  TempLocator;\n        setAttr -type \"string\" TempLocator.reParent_Type \"Manual\";\n\n        select -r $SelCtrl;\n        reParentLocatorSize;  \n\n        sets -edit -forceElement Last_Session_reParentLocator_set TempLocator;\n        sets -edit -forceElement All_Session_reParentLocator_set TempLocator;\n        select -r $SelCtrl TempLocator;\n        \n        string $temps[] = `pointConstraint -offset 0 0 0 -weight 1`; delete $temps;\n        $temps = `orientConstraint -offset 0 0 0 -weight 1`; delete $temps;\n        \n        select TempLocator;\n        rename TempLocator ($SelCtrl+\"_ReParent_Locator\");\n     } \n}\n\nglobal proc manualModeCancel()\n{\n    refresh -suspend 0;\n    ReParentLightPanelGoToBase;\n     \n    if(`objExists Last_Session_reParentLocator_set`)\n    {select -r Last_Session_reParentLocator_set; delete;} \n    \n    if(`objExists Last_Session_reParentLocator_set`)\n    {delete Last_Session_reParentLocator_set;} \n    \n    if(`objExists Last_Session_reParentControls_set`)\n    {delete Last_Session_reParentControls_set;}\n\n}\n\nglobal proc manualModeGo()\n{\n    int $PinButton = `checkBox -q -v PinCheckBox`;\n\tint $DelRedMode = `checkBox -query -v DelRed`;\n    int $onLayerReParentMode = `checkBox -query -v onLayerReParentMode`; \n\tint $SaveKeys = `checkBox -query -v SaveKeys`;\n\n\n    select -r Last_Session_reParentControls_set;\n    string $SelectedControls[] = `ls -sl`;\n    \n    int $currentR =`playbackOptions -q  -min`;\n    int $currentL =`playbackOptions -q -max`;\n        \n    for ($SelCtrl in $SelectedControls)\n    {\n        global string $LocatorName;\n        if(!`objExists ($SelCtrl+\"_ReParent_Locator\")`)\n        {$LocatorName = substituteAllString($SelCtrl , \"|\", \"_\");}\n        else\n        {$LocatorName = $SelCtrl;}\n            \n        select -r $SelCtrl ($LocatorName+\"_ReParent_Locator\");\n        parentConstraint -n TempParentConst -mo  -weight 1;\n    }  \n\n\n    int $KeepKeys = `checkBox -query -v KeepKeys`; \n    if ($KeepKeys == 1)\n    {\n        //Find animCurve time\n        select -r Last_Session_reParentControls_set;\n        selectKey -r -k;\n        string $selectedCurves[] = `keyframe -selected -q -name`;\n        float $allKeys[] = `keyframe  -q -timeChange $selectedCurves[0]`;        \n        $keysAmaount = `size($allKeys)`;  \n        $currentL = $allKeys[0];\n        $currentR = $allKeys[$keysAmaount-1];\n    }\n  \n    select -r Last_Session_reParentLocator_set;       \n    BakeKeysOnLocator;\n   \n    if(`objExists \"TempParentConst*\"`) {delete \"TempParentConst*\";}\n\n    for ($SelCtrl in $SelectedControls)\n    {\n        global string $LocatorName;\n        if(!`objExists ($SelCtrl+\"_ReParent_Locator\")`)\n        {$LocatorName = substituteAllString($SelCtrl , \"|\", \"_\");}\n        else\n        {$LocatorName = $SelCtrl;}\n        \n        \n    \tif (`getAttr -keyable ($SelCtrl+\".tx\")`==1&&`getAttr -lock ($SelCtrl+\".tx\")`==0&&`getAttr -keyable ($SelCtrl+\".rx\")`==1&&`getAttr -lock ($SelCtrl+\".rx\")`==0)\n    \t{\n     \t   select ($LocatorName+\"_ReParent_Locator\") $SelCtrl;\n    \t   parentConstraint -n ($SelCtrl+\"ReParent\") -weight 1 -mo;\n    \t} \n    \telse\n    \t{ \t\n        \tif (`getAttr -keyable ($SelCtrl+\".tx\")`==1&&`getAttr -lock ($SelCtrl+\".tx\")`==0)\n        \t{\n         \t   select ($LocatorName+\"_ReParent_Locator\") $SelCtrl;\n        \t   pointConstraint -n ($SelCtrl+\"ReParent\") -weight 1 -mo;\n        \t} \n        \tif (`getAttr -keyable ($SelCtrl+\".rx\")`==1&&`getAttr -lock ($SelCtrl+\".rx\")`==0)\n        \t{\n        \t    select ($LocatorName+\"_ReParent_Locator\") $SelCtrl;\n        \t    orientConstraint -n ($SelCtrl+\"ReParent\") -weight 1 -mo;\n            }\n        }\n        cutKey -cl -t \":\" -f \":\" -at \"tx\" -at \"ty\" -at \"tz\" -at \"rx\" -at \"ry\" -at \"rz\" $SelCtrl;\n    }\n\n    if ($DelRedMode == 1)\n    {\n        select -r Last_Session_reParentLocator_set;\n        reParentDeleteRedundant;\n    }\n\n    // euler all anim curves\t\n    select -r $SelectedControls;\n    filterCurve;\n    select -r Last_Session_reParentLocator_set;\n    filterCurve;\n    ReParentLightPanelGoToBase;   \n}\n\n\nproc CreateSets()\n{\n\tint $reConstrainButton = `checkBox -q -v reConstrainCheckBox`;\n\tint $IKButton = `checkBox -q -v IKCheckBox`;\n\tint $PinButton = `checkBox -q -v PinCheckBox`;\n    int $ManualButton = `checkBox -q -v ManualCheckBox`;\n    int $AimButton = `checkBox -q -v AimCheckBox`;\n\n    string $SelectedControls[] = `ls -sl`;\n\n    if(!`objExists \"reParent_sets\"`) \n    {$createSetResult = `sets -em -name \"reParent_sets\"`;}\n\n    if(`objExists \"All_Sessions_reParentControls_set\"`) \n    { \n        sets -edit -forceElement All_Sessions_reParentControls_set $SelectedControls;\n        sets -edit -fe  reParent_sets All_Sessions_reParentControls_set ;\n    }\n    else \n    {\n    \t$createSetResult = `sets -name \"All_Sessions_reParentControls_set\"`;\n    \tsets -edit -fe  reParent_sets All_Sessions_reParentControls_set ;\n    }\n    \n   \n    if(`objExists \"Last_Session_reParentControls_set\"`) \n    { \n       \tdelete Last_Session_reParentControls_set;\n       \t$createSetResult = `sets -name \"Last_Session_reParentControls_set\"`;\n        sets -edit -forceElement Last_Session_reParentControls_set $SelectedControls;\n        sets -edit -fe  reParent_sets Last_Session_reParentControls_set ;\n    }\n    else \n    {\n    \t$createSetResult = `sets -name \"Last_Session_reParentControls_set\"`;\n    \tsets -edit -fe  reParent_sets Last_Session_reParentControls_set ;\n    }\n    \n    select -cl;\n        \n    if(`objExists \"Last_Session_reParentLocator_set\"`) \n    { \n    \tdelete Last_Session_reParentLocator_set;\n    \t$createSetResult = `sets -name \"Last_Session_reParentLocator_set\"`;\n    \tsets -edit -fe  reParent_sets Last_Session_reParentLocator_set ;\n    }\n    else \n    {\n    \t$createSetResult = `sets -name \"Last_Session_reParentLocator_set\"`;\n    \tsets -edit -fe reParent_sets Last_Session_reParentLocator_set ;\n    } \n    \n    if(!`objExists \"All_Session_reParentLocator_set\"`) \n    { \n     $createSetResult = `sets -em -name \"All_Session_reParentLocator_set\"`;\n     sets -edit -fe  reParent_sets All_Session_reParentLocator_set ;\n    }\n\n    if ($AimButton==1)\n    {\n        if(!`objExists \"Aim_Session_reParentLocator_set\"`) \n        { \n         $createSetResult = `sets -em -name \"Aim_Session_reParentLocator_set\"`;\n         sets -edit -fe  reParent_sets Aim_Session_reParentLocator_set ;\n        }\n    }\n\n}\n\n\n\n//Locator Size       \nglobal proc reParentLocatorSize()\n{\n    string $SelectedControls[]=`ls -sl`;  \n\n    // Clean Joints\n    if (`objectType $SelectedControls[0]`==\"joint\" && !`objExists ($SelectedControls[0]+\"Shape\")` && !`objExists ($SelectedControls[0]+\"Shape1\")`)\n        {               \n            vector $firstPos;\n            vector $secondPos;\n            vector $firstVect;\n            float $firstLen;\n            string $UpHierarchyObject[];\n            \n            select -r $SelectedControls[0];\n            pickWalk -d down;\n            $UpHierarchyObject = `ls -sl`;\n            \n            if ($SelectedControls[0]!=$UpHierarchyObject[0])\n                {\n                    $firstPos = `xform -q -t -ws $SelectedControls[0]`;\n                    $secondPos = `xform -q -t -ws $UpHierarchyObject[0]`;\n                    $firstVect = ($secondPos - $firstPos);\n                    $firstLen = sqrt( pow(($firstVect.x), 2) + pow(($firstVect.y), 2) + pow(($firstVect.z), 2) );\n                    setAttr \"TempLocatorShape.localScaleX\" ($firstLen*2);\n                    setAttr \"TempLocatorShape.localScaleY\" ($firstLen*2);\n                    setAttr \"TempLocatorShape.localScaleZ\" ($firstLen*2);\n                }   \n            else\n                {\n                    select -r $SelectedControls[0];\n                    pickWalk -d up ;\n                    \n                    $UpHierarchyObject = `ls -sl`;\n                    if ($SelectedControls[0]!=$UpHierarchyObject[0])\n                        {\n                            $firstPos = `xform -q -t -ws $SelectedControls[0]`;\n                            $secondPos = `xform -q -t -ws $UpHierarchyObject[0]`;\n                            $firstVect = ($secondPos - $firstPos);\n                            $firstLen = sqrt( pow(($firstVect.x), 2) + pow(($firstVect.y), 2) + pow(($firstVect.z), 2) );\n                            setAttr \"TempLocatorShape.localScaleX\" ($firstLen*2);\n                            setAttr \"TempLocatorShape.localScaleY\" ($firstLen*2);\n                            setAttr \"TempLocatorShape.localScaleZ\" ($firstLen*2);\n                        }      \n                }\n        }\n        \n        \n    // Joint with Shapes\n    if (`objectType $SelectedControls[0]`==\"joint\" && `objExists ($SelectedControls[0]+\"Shape\")`)\n    {\n        $SelectedControls[0]=($SelectedControls[0]+\"Shape\");\n        \n        float $bbox[] = `exactWorldBoundingBox $SelectedControls[0]`;\n\t    float $locatorSizeX = $bbox[3] - $bbox[0];\n        float $locatorSizeY = $bbox[4] - $bbox[1];\n        float $locatorSizeZ = $bbox[5] - $bbox[2];\n        float $locatorSize = (($locatorSizeX+$locatorSizeY+$locatorSizeZ)/3);            \n        \n        setAttr \"TempLocatorShape.localScaleX\" ($locatorSize/1);\n        setAttr \"TempLocatorShape.localScaleY\" ($locatorSize/1);\n        setAttr \"TempLocatorShape.localScaleZ\" ($locatorSize/1);      \n    }\n    \n   // Simple transforms\n    if (`objectType $SelectedControls[0]`==\"transform\")\n        {\n            float $bbox[] = `exactWorldBoundingBox $SelectedControls[0]`;\n    \t    float $locatorSizeX = $bbox[3] - $bbox[0];\n            float $locatorSizeY = $bbox[4] - $bbox[1];\n            float $locatorSizeZ = $bbox[5] - $bbox[2];\n            float $locatorSize = (($locatorSizeX+$locatorSizeY+$locatorSizeZ)/3);            \n    \n            if (`objExists \"*ctlArmUpGimbalLf\"`||`objExists \"*:*ctlArmUpGimbalLf\"`) \n            {\n                setAttr \"TempLocatorShape.localScaleX\" 0.6;\n                setAttr \"TempLocatorShape.localScaleY\" 0.6;\n                setAttr \"TempLocatorShape.localScaleZ\" 0.6;           \n            }\n           \n           else\n           {\n                setAttr \"TempLocatorShape.localScaleX\" ($locatorSize/1);\n                setAttr \"TempLocatorShape.localScaleY\" ($locatorSize/1);\n                setAttr \"TempLocatorShape.localScaleZ\" ($locatorSize/1);\n           }      \n        }\n   // AS\n    if (`objExists \"*MotionSystem*\"`||`objExists \"*:*MotionSystem*\"`)\n        {\n            if (`objExists ($SelectedControls[0]+\"Shape\")`)\n                {\n                    $SelectedControls[0]=($SelectedControls[0]+\"Shape\");\n                    float $bbox[] = `exactWorldBoundingBox $SelectedControls[0]`;\n            \t    float $locatorSizeX = $bbox[3] - $bbox[0];\n                    float $locatorSizeY = $bbox[4] - $bbox[1];\n                    float $locatorSizeZ = $bbox[5] - $bbox[2];\n                    float $locatorSize = (($locatorSizeX+$locatorSizeY+$locatorSizeZ)/3);            \n            \n                    setAttr \"TempLocatorShape.localScaleX\" ($locatorSize/1);\n                    setAttr \"TempLocatorShape.localScaleY\" ($locatorSize/1);\n                    setAttr \"TempLocatorShape.localScaleZ\" ($locatorSize/1);\n                 }\n        }      \n}\n\nproc CheckboxesSaveKeys()\n{checkBox -e -v 0 SaveKeys; GoToBuyProReParent;}\t  \n\nproc CheckboxesKeepKeys()\n{checkBox -e -v 0 KeepKeys; GoToBuyProReParent;}\n\nproc CheckboxesPinOn()\n{\n    checkBox -e -en 0 AimCheckBox;\n    checkBox -e -en 0 MakeGlobalCheckBox;\t  \n    checkBox -e -en 0 IKCheckBox;\t  \n    checkBox -e -en 0 IKCheckLocalBox;\t  \n    checkBox -e -en 0 ManualCheckBox;\t  \n    checkBox -e -en 0 reConstrainCheckBox;\n    \n    checkBox -e -en 0 onLayerReParentMode;    \t  \n    checkBox -e -en 0 KeepKeys;\t  \n    checkBox -e -en 0 SaveKeys;\t\t  \n}\n\nproc CheckboxesPinOff()\n{\n    checkBox -e -en 1 AimCheckBox;\n    checkBox -e -en 1 MakeGlobalCheckBox;\t  \n    checkBox -e -en 1 IKCheckBox;\t  \n    checkBox -e -en 1 IKCheckLocalBox;\t  \n    checkBox -e -en 1 ManualCheckBox;\t  \n    checkBox -e -en 1 reConstrainCheckBox;\n    \n    checkBox -e -en 1 onLayerReParentMode;    \t  \n    checkBox -e -en 1 KeepKeys;\t  \n    checkBox -e -en 1 SaveKeys;\t \n}\n\nproc CheckboxesAimOn()\n{checkBox -e -v 0 AimCheckBox; GoToBuyProReParent;}\n\n\nproc CheckboxesGlobalOn()\n{checkBox -e -v 0 MakeGlobalCheckBox; GoToBuyProReParent;}\n\n\nproc CheckboxesIKOn()\n{checkBox -e -v 0 IKCheckBox; GoToBuyProReParent;}\n\nproc CheckboxesIKLocalOn()\n{checkBox -e -v 0 IKCheckLocalBox; GoToBuyProReParent;}\n\n\nproc CheckboxesManualnOn()\n{\n    checkBox -e -en 0 PinCheckBox;\n    checkBox -e -en 0 AimCheckBox;\t  \n    checkBox -e -en 0 IKCheckBox;\t  \n    checkBox -e -en 0 IKCheckLocalBox;\n    checkBox -e -en 0 MakeGlobalCheckBox;\n    checkBox -e -en 0 reConstrainCheckBox; \n}\n\nproc CheckboxesManualnOff()\n{\n    checkBox -e -en 1 PinCheckBox;\n    checkBox -e -en 1 AimCheckBox;\t  \n    checkBox -e -en 1 IKCheckBox;\t  \n    checkBox -e -en 1 IKCheckLocalBox;\n    checkBox -e -en 1 MakeGlobalCheckBox;\n    checkBox -e -en 1 reConstrainCheckBox; \n}\n\nproc CheckboxesReconstrainOn()\n{checkBox -e -v 0 reConstrainCheckBox; GoToBuyProReParent;}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Studio Library" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\\studiolibrary\\resource\\icons\\icon.png" 
+        -image1 "C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\\studiolibrary\\resource\\icons\\icon.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

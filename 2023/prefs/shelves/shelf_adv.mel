@@ -1,0 +1,377 @@
+global proc shelf_adv () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "AdvancedSkeleton5" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "AdvancedSkeleton5" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/AS5.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/AS5.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5.mel\";AdvancedSkeleton5;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Selector:biped" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Selector:biped" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/Selector/biped.mel\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Selector:face" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Selector:face" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/asFace.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/icons/asFace.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/Selector/face.mel\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "picker" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "picker" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"C:/Users/luke/Documents/maya/scripts/Advance/AdvancedSkeleton5Files/picker/picker.mel\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "move -r 10 10 -20 FKIKArm_L.cv[0:11];\nmove -r -10 10 -20 FKIKArm_R.cv[0:11];\nmove -r 10 0 -20 FKIKLeg_L.cv[0:11];\nmove -r -10 0 -20 FKIKLeg_R.cv[0:11];\nmove -r -30 0 0 HipSwinger_M.cv[0:7] ;\nmove -r 30 0 0 FKIKSpine_M.cv[0:11] ;\n\nscale -ws -r -ocp 2 1 1.5 IKLeg_LShape.cv[0:15] IKLeg_RShape.cv[0:15] ;\nmove -r 0 0 5 IKLeg_LShape.cv[4:5] IKLeg_LShape.cv[9] IKLeg_LShape.cv[12] IKLeg_RShape.cv[2] IKLeg_RShape.cv[7] IKLeg_RShape.cv[14:15] ;\nmove -r 0 0 -2.5 IKLeg_LShape.cv[0:15] IKLeg_RShape.cv[0:15] ;\n\nscale -ws -r -ocp 1.618 1.618 1.618 MainShape.cv[0:7] ;\nscale -ws -r -ocp 2 2 2 FKChest_MShape.cv[0:7] FKRoot_MShape.cv[0:7] RootX_MShape.cv[0:6] RootX_MShape3.cv[0:6] RootX_MShape1.cv[0:6] RootX_MShape2.cv[0:6] FKSpine1_M.cv[0:7];\nscale -ws -r -ocp 2 2 1.5 IKhybridSpine2_MShape.cv[0:15] IKhybridSpine1_MShape.cv[0:15] IKSpine3_MShape.cv[0:15] IKSpine2_MShape.cv[0:7] IKSpine1_MShape.cv[0:15] IKhybridSpine3_MShape.cv[0:15] ;\n\nscale -ws -r -ocp 2 2 2  FKNeck_M.cv[0:7] FKHead_MShape.cv[0:7] FKAnkle_RShape.cv[0:7] FKElbow_LShape.cv[0:7] FKWrist_LShape.cv[0:7] FKToes_RShape.cv[0:7] FKWrist_RShape.cv[0:7] FKElbow_RShape.cv[0:7] FKAnkle_LShape.cv[0:7] FKToes_LShape.cv[0:7] ;\nscale -ws -r -ocp 1.3 1.3 1.3 FKShoulder_LShape.cv[0:7] FKShoulder_RShape.cv[0:7] FKKnee_RShape.cv[0:7] FKKnee_LShape.cv[0:7] FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] FKAnkle_RShape.cv[0:7] FKAnkle_LShape.cv[0:7];\nrotate -r -p 0cm 8.043202cm -0.907758cm -os -fo 0 0 30 FKAnkle_LShape.cv[0:7] FKAnkle_RShape.cv[0:7] ;\nscale -ws -r -p 0cm 121.420059cm -0.443115cm 1.3 1.3 1.3 FKShoulder_RShape.cv[0:7] FKShoulder_LShape.cv[0:7] ;\n\n\nscale -ws -r -ocp 1.3 1.3 1.3 FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] ;\nmove -r 0 -11.74631 0 FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] ;\n\nscale -ws -r -ocp 2 2 2  FKNeck_M.cv[0:7];\nmove -r 0 7 0 FKNeck_M.cv[0:7];\n\nmove -r 0 -60 0 FKHead_MShape.cv[0:7] ;\n\nscale -ws -r -ocp 2 2 2 FKScapula_LShape.cv[0:20] FKScapula_RShape.cv[0:20];\nmove -r 20 -2 0 FKScapula_LShape.cv[0:20] ;\nmove -r -20 -2 0 FKScapula_RShape.cv[0:20];\nmove -r -os -wd 20 0 0 Fingers_LShape.cv[0:10] Fingers_RShape.cv[0:10] ;\nselect -r FKIndexFinger1_RShape.cv[0:7] FKIndexFinger2_RShape.cv[0:7] FKThumbFinger3_RShape.cv[0:7] FKIndexFinger2_LShape.cv[0:7] FKIndexFinger1_LShape.cv[0:7] FKThumbFinger3_LShape.cv[0:7] FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKPinkyFinger3_RShape.cv[0:7] FKPinkyFinger2_RShape.cv[0:7] FKRingFinger1_RShape.cv[0:7] FKRingFinger2_RShape.cv[0:7] FKRingFinger3_LShape.cv[0:7] FKRingFinger2_LShape.cv[0:7] FKRingFinger1_LShape.cv[0:7] FKPinkyFinger3_LShape.cv[0:7] FKRingFinger3_RShape.cv[0:7] FKPinkyFinger2_LShape.cv[0:7] FKPinkyFinger1_LShape.cv[0:7] FKCup_LShape.cv[0:7] FKIndexFinger3_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKPinkyFinger1_RShape.cv[0:7] FKIndexFinger3_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] FKMiddleFinger3_LShape.cv[0:7] FKMiddleFinger2_LShape.cv[0:7] FKMiddleFinger1_LShape.cv[0:7] FKMiddleFinger3_RShape.cv[0:7] FKMiddleFinger2_RShape.cv[0:7] FKMiddleFinger1_RShape.cv[0:7] ;\nscale -ws -r -ocp 1 2 0.8 FKIndexFinger1_RShape.cv[0:7] FKIndexFinger2_RShape.cv[0:7] FKThumbFinger3_RShape.cv[0:7] FKIndexFinger2_LShape.cv[0:7] FKIndexFinger1_LShape.cv[0:7] FKThumbFinger3_LShape.cv[0:7] FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKPinkyFinger3_RShape.cv[0:7] FKPinkyFinger2_RShape.cv[0:7] FKRingFinger1_RShape.cv[0:7] FKRingFinger2_RShape.cv[0:7] FKRingFinger3_LShape.cv[0:7] FKRingFinger2_LShape.cv[0:7] FKRingFinger1_LShape.cv[0:7] FKPinkyFinger3_LShape.cv[0:7] FKRingFinger3_RShape.cv[0:7] FKPinkyFinger2_LShape.cv[0:7] FKPinkyFinger1_LShape.cv[0:7] FKCup_LShape.cv[0:7] FKIndexFinger3_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKPinkyFinger1_RShape.cv[0:7] FKIndexFinger3_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] FKMiddleFinger3_LShape.cv[0:7] FKMiddleFinger2_LShape.cv[0:7] FKMiddleFinger1_LShape.cv[0:7] FKMiddleFinger3_RShape.cv[0:7] FKMiddleFinger2_RShape.cv[0:7] FKMiddleFinger1_RShape.cv[0:7] ;\nscale -ws -r -ocp 1 1.5 4 FKThumbFinger1_LShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] ;\n\nmove -r 0 1.5 0  FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKCup_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] ;\n\nmove -r -os -wd 1.5 0 0 FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] ;\nmove -r -os -wd -1.5 0 0  FKThumbFinger2_LShape.cv[0:7] ;\n\nmove -r -os -wd 5 0 0  FKCup_RShape.cv[0:7] ;\nmove -r -os -wd -5 0 0 FKCup_LShape.cv[0:7] ; " 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "move -r 10 10 -20 FKIKArm_L.cv[0:11];\nmove -r -10 10 -20 FKIKArm..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "move -r 10 10 -20 FKIKArm_L.cv[0:11];\nmove -r -10 10 -20 FKIKArm_R.cv[0:11];\nmove -r 10 0 -20 FKIKLeg_L.cv[0:11];\nmove -r -10 0 -20 FKIKLeg_R.cv[0:11];\nmove -r -30 0 0 HipSwinger_M.cv[0:7] ;\nmove -r 30 0 0 FKIKSpine_M.cv[0:11] ;\n\nscale -ws -r -ocp 2 1 1.5 IKLeg_LShape.cv[0:15] IKLeg_RShape.cv[0:15] ;\nmove -r 0 0 5 IKLeg_LShape.cv[4:5] IKLeg_LShape.cv[9] IKLeg_LShape.cv[12] IKLeg_RShape.cv[2] IKLeg_RShape.cv[7] IKLeg_RShape.cv[14:15] ;\nmove -r 0 0 -2.5 IKLeg_LShape.cv[0:15] IKLeg_RShape.cv[0:15] ;\n\nscale -ws -r -ocp 1.618 1.618 1.618 MainShape.cv[0:7] ;\nscale -ws -r -ocp 2 2 2 FKChest_MShape.cv[0:7] FKRoot_MShape.cv[0:7] RootX_MShape.cv[0:6] RootX_MShape3.cv[0:6] RootX_MShape1.cv[0:6] RootX_MShape2.cv[0:6] FKSpine1_M.cv[0:7];\nscale -ws -r -ocp 2 2 1.5 IKhybridSpine2_MShape.cv[0:15] IKhybridSpine1_MShape.cv[0:15] IKSpine3_MShape.cv[0:15] IKSpine2_MShape.cv[0:7] IKSpine1_MShape.cv[0:15] IKhybridSpine3_MShape.cv[0:15] ;\n\nscale -ws -r -ocp 2 2 2  FKNeck_M.cv[0:7] FKHead_MShape.cv[0:7] FKAnkle_RShape.cv[0:7] FKElbow_LShape.cv[0:7] FKWrist_LShape.cv[0:7] FKToes_RShape.cv[0:7] FKWrist_RShape.cv[0:7] FKElbow_RShape.cv[0:7] FKAnkle_LShape.cv[0:7] FKToes_LShape.cv[0:7] ;\nscale -ws -r -ocp 1.3 1.3 1.3 FKShoulder_LShape.cv[0:7] FKShoulder_RShape.cv[0:7] FKKnee_RShape.cv[0:7] FKKnee_LShape.cv[0:7] FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] FKAnkle_RShape.cv[0:7] FKAnkle_LShape.cv[0:7];\nrotate -r -p 0cm 8.043202cm -0.907758cm -os -fo 0 0 30 FKAnkle_LShape.cv[0:7] FKAnkle_RShape.cv[0:7] ;\nscale -ws -r -p 0cm 121.420059cm -0.443115cm 1.3 1.3 1.3 FKShoulder_RShape.cv[0:7] FKShoulder_LShape.cv[0:7] ;\n\n\nscale -ws -r -ocp 1.3 1.3 1.3 FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] ;\nmove -r 0 -11.74631 0 FKHip_RShape.cv[0:7] FKHip_LShape.cv[0:7] ;\n\nscale -ws -r -ocp 2 2 2  FKNeck_M.cv[0:7];\nmove -r 0 7 0 FKNeck_M.cv[0:7];\n\nmove -r 0 -60 0 FKHead_MShape.cv[0:7] ;\n\nscale -ws -r -ocp 2 2 2 FKScapula_LShape.cv[0:20] FKScapula_RShape.cv[0:20];\nmove -r 20 -2 0 FKScapula_LShape.cv[0:20] ;\nmove -r -20 -2 0 FKScapula_RShape.cv[0:20];\nmove -r -os -wd 20 0 0 Fingers_LShape.cv[0:10] Fingers_RShape.cv[0:10] ;\nselect -r FKIndexFinger1_RShape.cv[0:7] FKIndexFinger2_RShape.cv[0:7] FKThumbFinger3_RShape.cv[0:7] FKIndexFinger2_LShape.cv[0:7] FKIndexFinger1_LShape.cv[0:7] FKThumbFinger3_LShape.cv[0:7] FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKPinkyFinger3_RShape.cv[0:7] FKPinkyFinger2_RShape.cv[0:7] FKRingFinger1_RShape.cv[0:7] FKRingFinger2_RShape.cv[0:7] FKRingFinger3_LShape.cv[0:7] FKRingFinger2_LShape.cv[0:7] FKRingFinger1_LShape.cv[0:7] FKPinkyFinger3_LShape.cv[0:7] FKRingFinger3_RShape.cv[0:7] FKPinkyFinger2_LShape.cv[0:7] FKPinkyFinger1_LShape.cv[0:7] FKCup_LShape.cv[0:7] FKIndexFinger3_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKPinkyFinger1_RShape.cv[0:7] FKIndexFinger3_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] FKMiddleFinger3_LShape.cv[0:7] FKMiddleFinger2_LShape.cv[0:7] FKMiddleFinger1_LShape.cv[0:7] FKMiddleFinger3_RShape.cv[0:7] FKMiddleFinger2_RShape.cv[0:7] FKMiddleFinger1_RShape.cv[0:7] ;\nscale -ws -r -ocp 1 2 0.8 FKIndexFinger1_RShape.cv[0:7] FKIndexFinger2_RShape.cv[0:7] FKThumbFinger3_RShape.cv[0:7] FKIndexFinger2_LShape.cv[0:7] FKIndexFinger1_LShape.cv[0:7] FKThumbFinger3_LShape.cv[0:7] FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKPinkyFinger3_RShape.cv[0:7] FKPinkyFinger2_RShape.cv[0:7] FKRingFinger1_RShape.cv[0:7] FKRingFinger2_RShape.cv[0:7] FKRingFinger3_LShape.cv[0:7] FKRingFinger2_LShape.cv[0:7] FKRingFinger1_LShape.cv[0:7] FKPinkyFinger3_LShape.cv[0:7] FKRingFinger3_RShape.cv[0:7] FKPinkyFinger2_LShape.cv[0:7] FKPinkyFinger1_LShape.cv[0:7] FKCup_LShape.cv[0:7] FKIndexFinger3_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKPinkyFinger1_RShape.cv[0:7] FKIndexFinger3_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] FKMiddleFinger3_LShape.cv[0:7] FKMiddleFinger2_LShape.cv[0:7] FKMiddleFinger1_LShape.cv[0:7] FKMiddleFinger3_RShape.cv[0:7] FKMiddleFinger2_RShape.cv[0:7] FKMiddleFinger1_RShape.cv[0:7] ;\nscale -ws -r -ocp 1 1.5 4 FKThumbFinger1_LShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] ;\n\nmove -r 0 1.5 0  FKThumbFinger2_LShape.cv[0:7] FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] FKCup_LShape.cv[0:7] FKCup_RShape.cv[0:7] FKThumbFinger1_LShape.cv[0:7] ;\n\nmove -r -os -wd 1.5 0 0 FKThumbFinger2_RShape.cv[0:7] FKThumbFinger1_RShape.cv[0:7] ;\nmove -r -os -wd -1.5 0 0  FKThumbFinger2_LShape.cv[0:7] ;\n\nmove -r -os -wd 5 0 0  FKCup_RShape.cv[0:7] ;\nmove -r -os -wd -5 0 0 FKCup_LShape.cv[0:7] ; " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "add Quad leg system main ctrl" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n\n$md=`listConnections -type \"multiplyDivide\" \"Main\"`;\n$dup=dupA..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "addQMove" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n//me:mainExtra /md:multiDivide\n$me=dupAdvMain(\"Main\",1);\n\n$md=`listConnections -type \"multiplyDivide\" \"Main\"`;\n$md2=conMainScale($me,$md[0]);\n\n\n$me=dupAdvMain($me,2);\n$md2=conMainScale($me,$md2);\n\nproc string dupAdvMain(string $main,int $n){\n\n    $dup=`duplicate -rr -n (\"MainExtra\"+$n) $main`;\n    $del=`listRelatives -c -f -type \"transform\" $dup`; \n    if (`size($del[0])`) delete $del;  \n\n    $delAttr=`listAttr -ud -cb $dup[0]`;\n    for($d in $delAttr){\n        deleteAttr -at $d $dup;\n        }\n    setAttr -lock true -keyable false -channelBox false ($dup[0]+\".v\");\n\n         \n    string $me=$dup[0];\n    scale -r -ocp 1.382 1.382 1.382 ($me+\".cv[*]\");\n    \n    parent $main $me;\n    \n    return $me;\n    }\n    \nproc string conMainScale(string $me,string $md){\n\n    string $md2=($me+\"ScaleMultiplyDivide\");   \n    if (`objExists $md2`) delete $md2;\n    shadingNode -n $md2 -asUtility \"multiplyDivide\";\n    connectAttr -f ($md2+\".output\") ($md+\".input2\");\n    connectAttr -f ($me+\".scale\") ($md2+\".input1\");\n    \n    return $md2;\n    }    \n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "add default system main ctrl" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n//me:mainExtra /md:multiDivide\n$me=dupAdvMain(\"Main\",1);\n$me=du..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "addBMove" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n//me:mainExtra /md:multiDivide\n$me=dupAdvMain(\"Main\",1);\n$me=dupAdvMain($me,2);\n\n\nproc string dupAdvMain(string $main,int $n){\n\n    $dup=`duplicate -rr -n (\"MainExtra\"+$n) $main`;\n    $del=`listRelatives -c -f -type \"transform\" $dup`; \n    if (`size($del[0])`) delete $del;  \n\n    $delAttr=`listAttr -ud -cb $dup[0]`;\n    for($d in $delAttr){\n        deleteAttr -at $d $dup;\n        }\n    setAttr -lock true -keyable false -channelBox false ($dup[0]+\".v\");\n\n         \n    string $me=$dup[0];\n    scale -r -ocp 1.382 1.382 1.382 ($me+\".cv[*]\");\n    \n    parent $main $me;\n    \n    return $me;\n    }\n    \nproc string conMainScale(string $me,string $md){\n\n    string $md2=($me+\"ScaleMultiplyDivide\");   \n    if (`objExists $md2`) delete $md2;\n    shadingNode -n $md2 -asUtility \"multiplyDivide\";\n    connectAttr -f ($md2+\".output\") ($md+\".input2\");\n    connectAttr -f ($me+\".scale\") ($md2+\".input1\");\n    \n    return $md2;\n    }    \n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setAttr \"Root.inbetweenJoints\" 0;\nsetAttr \"Spine1.inbetweenJoints\" 0;\nsetAttr \"Neck.inbetweenJoints\" 0;\nsetAttr \"Shoulder.twistJoints\" 1;\nsetAttr \"Elbow.twistJoints\" 1;\nsetAttr \"Hip.twistJoints\" 1;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "setAttr \"Root.inbetweenJoints\" 0;\nsetAttr \"Spine1.inbetweenJoint..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "simple" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "setAttr \"Root.inbetweenJoints\" 0;\nsetAttr \"Spine1.inbetweenJoints\" 0;\nsetAttr \"Neck.inbetweenJoints\" 0;\nsetAttr \"Shoulder.twistJoints\" 1;\nsetAttr \"Elbow.twistJoints\" 1;\nsetAttr \"Hip.twistJoints\" 1;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "asAutoSwitchFKIK" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asAutoSwitchFKIK" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "asAutoSwitchFKIK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "asAutoSwitchFKIK" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "test" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "uiReOrientCtrlTool();\nglobal proc uiReOrientCtrlTool(){\n        ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "test" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "uiReOrientCtrlTool();\nglobal proc uiReOrientCtrlTool(){\n        if (`window -exists uiReOrientCtrlTool`)\n                deleteUI -window uiReOrientCtrlTool;\n                        \n        $window = `window -title \"uiReOrientCtrl\" -h 80 -w 100 -rtf 1  -s 1  uiReOrientCtrlTool`;\n        frameLayout -bgc 0.2 0.2 0.2 -label \"for_IK_ctrl\";        \n            button -h 23 -w 100 -l \"reverseIK\" -bgc 0.1 0.2 0.2 -c \"reverseIKOrient()\";\n            button -h 23 -w 100 -l \"recoverIK\" -bgc 0.1 0.2 0.2 -c \"recoverIKOrient()\";   \n                           \n        showWindow uiReOrientCtrlTool;\n        }\n        \nproc reverseIKOrient(){\n    $sels=`ls -sl`; -=\n    refresh -suspend 1; \n       \n    if(!`objExists \"dont_delete_grp\"`)\n        group -em -n \"dont_delete_grp\";     \n    string $pa[]=`listRelatives -p $sels`;\n    string $sh[]=`listRelatives -s $sels`;\n    $offset=($pa[0]+\"_reOrient\");\n    $reOrient=($sels[0]+\"_reOrient\");\n    duplicate -po -n $offset $pa;\n    parent -w $offset;\n    parent $offset \"dont_delete_grp\";\n    $dup =`duplicateCurve $sh`;\n    rename $dup[0] $reOrient;\n    parent $reOrient $offset;\n    move -os -a 0 0 0 $reOrient;\n    rotate -a -os -fo 0 0 0 $reOrient;\n    \n    setAttr ($reOrient+\".overrideEnabled\") 1;\n    setAttr  ($reOrient+\".overrideColor\") 20;\n    \n    setAttr -k on -l off ($offset+\".scaleX\");\n    setAttr -k on -l off ($offset+\".scaleY\");\n    setAttr -k on -l off ($offset+\".scaleZ\");\n    setAttr ($offset+\".scaleX\") -1;\n\n    $acT=`listConnections  -t \"animCurveTL\" $sels`;\n    $acR=`listConnections -t \"animCurveTA\" $sels`;\n    float $keyTimes[]=`keyframe -q $acT $acR`;\n    if(`size($keyTimes)`){        \n        floatArrayRemoveDuplicates($keyTimes,0);\n        $keyTimes = `sort $keyTimes`;\n        }\n    parentConstraint -mo $pa $offset;\n    $p=`xform -q -ws -t $sels[0]`;\n    $r=`xform -q -ws -ro $sels[0]`;\n    move -os -a 0 0 0 $sels[0];\n    rotate -a -os -fo 0 0 0 $sels[0];\n    $cons=`parentConstraint -mo $sels[0] $reOrient`; \n    xform -ws -t $p[0] $p[1] $p[2] $sels[0]; \n    xform -ws -ro $r[0] $r[1] $r[2] $sels[0];\n    if(`size($keyTimes)`){\n        setKeyframe -t $keyTimes[0] -at \"translate\"  $reOrient; \n        setKeyframe -t $keyTimes[0] -at \"rotate\"  $reOrient;               \n        setAttr ($reOrient+\".blendParent1\") 1;        \n        //fastbakeKey({$reOrient});\n        for($t in $keyTimes){\n            currentTime $t;    \n            setKeyframe -t $t -at \"translate\"  $reOrient; \n            setKeyframe -t $t -at \"rotate\"  $reOrient;              \n            }\n        }\n    delete $cons;\n    \n    \n    parentConstraint -mo $reOrient $sels;\n    \n    for($s in $sh){\n        setAttr ($s+\".visibility\") 0;        \n        }\n    cutKey -cl -t \":\" -f \":\" -at \"v\" $sels[0];  \n    \n    refresh -suspend 0; \n\n    }\n\nproc recoverIKOrient() {\n    $sels=`ls -sl`;\n         \n    refresh -suspend 1;  \n       \n\n    $del=`listRelatives -p $sels`;\n    $cons=`listConnections -s off -t \"constraint\" $sels`; \n    $cons = stringArrayRemoveDuplicates ($cons); \n    $dvn=selectConDvn(); \n\n\n    cutKey -at \"translate\" $dvn;  \n    cutKey -at \"rotate\" $dvn;        \n    \n    $acT=`listConnections  -t \"animCurveTL\" $sels`;\n    $acR=`listConnections -t \"animCurveTA\" $sels`;\n    float $keyTimes[]=`keyframe -q $acT $acR`;\n    if(`size($keyTimes)`){          \n        floatArrayRemoveDuplicates($keyTimes,0);\n        $keyTimes = `sort $keyTimes`;  \n        setKeyframe -t $keyTimes[0] -at \"translate\"  $dvn; \n        setKeyframe -t $keyTimes[0] -at \"rotate\"  $dvn;               \n        setAttr ($dvn[0]+\".blendParent1\") 1;        \n        //fastbakeKey({$reOrient});\n        for($t in $keyTimes){\n            currentTime $t;    \n            setKeyframe -t $t -at \"translate\"  $dvn; \n            setKeyframe -t $t -at \"rotate\"  $dvn;              \n            }\n        }\n    //fastbakeKey($dvn);\n    delete $cons;\n    \n    $sh=`listRelatives -s $dvn[0]`;\n    for($s in $sh){\n        setAttr ($s+\".visibility\") 1;        \n        }\n    \n    cutKey -cl -t \":\" -f \":\" -at \"v\" $dvn[0];\n    delete $del;\n    \n    refresh -suspend 0;   \n       \n    }\n    \nproc string getTimeRange() {\n    $minTime = `playbackOptions -q -minTime`; \n    $maxTime = `playbackOptions -q -maxTime`; \n    string $tg=($minTime+\":\"+$maxTime); \n    return $tg;\n    }        \n    \nproc fastbakeKey(string $objs[]){\n    $tg=getTimeRange(); \n    //refresh -suspend 1; \n    bakeResults \n    -t $tg \n    -simulation 1 \n    -sampleBy 1 \n    -disableImplicitControl 1 \n    -preserveOutsideKeys 1 \n    -sparseAnimCurveBake 0 \n    -removeBakedAttributeFromLayer 0 \n    -removeBakedAnimFromLayer 0 \n    -bakeOnOverrideLayer 0   \n    -minimizeRotation 1 \n    -controlPoints 0\n    -shape 0\n    -at \"tx\" \n    -at \"ty\" \n    -at \"tz\" \n    -at \"rx\" \n    -at \"ry\" \n    -at \"rz\" \n    $objs;\n    filterCurve;    \n    //refresh -suspend 0;     \n    }    \n\nproc string[] selectConDvn() {\n    string $follows[]; \n    $sels=`ls -sl`;\n    \n    $tempsA=`listConnections -s off -t \"constraint\" $sels`; \n    $tempsA = stringArrayRemoveDuplicates ($tempsA); \n    $tempsB=`listConnections -d off -t \"constraint\" $sels`; \n    $tempsB = stringArrayRemoveDuplicates ($tempsB); \n    $con = stringArrayRemoveExact ($tempsB, $tempsA);\n    \n    for ($x in $con) {\n    $tempsC=`listConnections -type \"transform\" ($x+\".constraintParentInverseMatrix\")`; \n        $tempsD = stringArrayRemoveExact ({$x}, $tempsC); \n        $tempsE = stringArrayRemoveDuplicates ($tempsD);\n        $follows=stringArrayCatenate ($follows, $tempsE);\n        }\n    if (`size $follows`) select -r $follows; \n    return $follows;\n    }    \n    \n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\nasMirrorOptions asSelectorbiped;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\nasMirrorOptions asSelectorbiped;\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "\nasMirror" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\nasMirrorOptions asSelectorbiped;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

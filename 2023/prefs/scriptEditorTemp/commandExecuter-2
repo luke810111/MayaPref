@@ -1,0 +1,101 @@
+/*
+//$selsA=`ls -sl`;
+//$selsB=`ls -sl`;
+$rps=crRps($selsB);
+offsetPCRp($selsA[0],$rps[0]);
+reOffsetPCRp($selsA[0],$rps[0]);
+*/
+proc string[] crRps(string $objs[]) { 
+    string $rps[];
+    if(!`objExists ("rp_grp")`)
+        group -em -n "rp_grp"; 
+   
+    for($i=0;$i<`size($objs)`; $i++) {  
+        $rps[$i]=($objs[$i]+"_rp");          
+        if(`objExists ($rps[$i])`)
+            delete $rps[$i];
+        spaceLocator -n $rps[$i];         
+
+        $roo=`xform -q -roo $objs[$i]`;
+        xform -roo $roo $rps[$i];
+        
+        $t=`xform -q -ws -t $objs[$i]`;
+        xform -ws -t $t[0] $t[1] $t[2] $rps[$i];
+        $r=`xform -q -ws -ro $objs[$i]`;
+        xform -ws -ro $r[0] $r[1] $r[2] $rps[$i];        
+        }
+    parent $rps "rp_grp";        
+    return $rps;
+    } 
+    
+proc string getTimeRange() {
+    $minTime = `playbackOptions -q -minTime`; 
+    $maxTime = `playbackOptions -q -maxTime`; 
+    string $tg=($minTime+":"+$maxTime); 
+    return $tg;
+    }    
+    
+proc fastbakeKey(string $objs[]){
+    $tg=getTimeRange(); 
+    //refresh -suspend 1; 
+    bakeResults 
+    -t $tg 
+    -simulation 1 
+    -sampleBy 1 
+    -disableImplicitControl 1 
+    -preserveOutsideKeys 1 
+    -sparseAnimCurveBake 0 
+    -removeBakedAttributeFromLayer 0 
+    -removeBakedAnimFromLayer 0 
+    -bakeOnOverrideLayer 0   
+    -minimizeRotation 1 
+    -controlPoints 0
+    -shape 0
+    -at "tx" 
+    -at "ty" 
+    -at "tz" 
+    -at "rx" 
+    -at "ry" 
+    -at "rz" 
+    $objs;
+    filterCurve;    
+    //refresh -suspend 0;     
+    }  
+    
+proc offsetPCRp(string $obj,string $rp){
+    $cons=`parentConstraint -mo $obj $rp`;
+    fastbakeKey({$rp});
+    delete $cons;
+    parentConstraint -mo $rp $obj;    
+    }  
+proc reOffsetPCRp(string $obj,string $rp){
+    $cons=`listConnections  -s on  -d off -type "parentConstraint" $obj`;
+    fastbakeKey({$obj});
+    delete $cons;   
+    }         
+//crAimRPs($selsA[0],$selsB[0]);
+proc string[] crAimRPs(string $selA,string $selB){
+    /*
+    $cons=`listConnections -s on -d off -type "parentConstraint" $obj`;
+    if(`size $cons`) delete $cons;
+    */
+    $rps=crRps({$selB});
+    $aimRps=crRps({$selA});
+    $cons=`aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "objectrotation" -worldUpObject $selA $rps[0] $aimRps[0]`;
+    delete $cons;
+    $dup=`duplicate -rr $aimRps`;
+    move -r -os -wd 0 100 0 $dup;
+    $bakes[0]=$rps[0];
+    $bakes[1]=$dup[0];
+    $bakes[2]= $aimRps[0];    
+    string $conb[];
+    for($b in $bakes){
+        $cons=`parentConstraint -mo $selA $b`;
+        $conb=stringArrayCatenate($conb,$cons);
+        }
+    fastbakeKey($bakes);
+    delete $conb;
+    aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "object" -worldUpObject $bakes[1] $bakes[0] $bakes[2];
+    orientConstraint -mo $bakes[2] $selA;
+    return $bakes;     
+    }

@@ -1,0 +1,139 @@
+global proc shelf_xRigC () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "controlMaker;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "controlMaker;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/CM.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/CM.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "controlMaker;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "impCsA" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "impCsA" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsA.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsA.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -import \"Z:/principle/Setup/ctrl/moveNcenterA.ma\";\n\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "impCsAa" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "impCsAa" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "joints" 
+        -overlayLabelColor 1 1 1 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsA.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsA.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -import \"Z:/principle/Setup/ctrl/moveNcenterAa.ma\";\n\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "impCsB" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "impCsB" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsB.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/impCsB.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -import \"Z:/principle/Setup/ctrl/moveNcenterB.ma\";\r\n\r\n\r\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;

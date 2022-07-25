@@ -1,0 +1,424 @@
+//Maya Preference 2023 (Release 1)
+//
+//
+
+nameCommand
+	-annotation "keyDelNameCommand"
+	-sourceType "mel"
+	-command ("keyDel")
+	keyDelNameCommand;
+
+nameCommand
+	-annotation "keyPasteNameCommand"
+	-sourceType "mel"
+	-command ("keyPaste")
+	keyPasteNameCommand;
+
+nameCommand
+	-annotation "display_polygon_1NameCommand"
+	-sourceType "mel"
+	-command ("display_polygon_1")
+	display_polygon_1NameCommand;
+
+nameCommand
+	-annotation "display_polygon_0NameCommand"
+	-sourceType "mel"
+	-command ("display_polygon_0")
+	display_polygon_0NameCommand;
+
+nameCommand
+	-annotation "display_wireframe_0NameCommand"
+	-sourceType "mel"
+	-command ("display_wireframe_0")
+	display_wireframe_0NameCommand;
+
+nameCommand
+	-annotation "display_wireframe_1NameCommand"
+	-sourceType "mel"
+	-command ("display_wireframe_1")
+	display_wireframe_1NameCommand;
+
+nameCommand
+	-annotation "display_surface_0NameCommand"
+	-sourceType "mel"
+	-command ("display_surface_0")
+	display_surface_0NameCommand;
+
+nameCommand
+	-annotation "display_surface_1NameCommand"
+	-sourceType "mel"
+	-command ("display_surface_1")
+	display_surface_1NameCommand;
+
+nameCommand
+	-annotation "display_deformer_0NameCommand"
+	-sourceType "mel"
+	-command ("display_deformer_0")
+	display_deformer_0NameCommand;
+
+nameCommand
+	-annotation "display_deformer_1NameCommand"
+	-sourceType "mel"
+	-command ("display_deformer_1")
+	display_deformer_1NameCommand;
+
+nameCommand
+	-annotation "display_joint_0NameCommand"
+	-sourceType "mel"
+	-command ("display_joint_0")
+	display_joint_0NameCommand;
+
+nameCommand
+	-annotation "display_joint_1NameCommand"
+	-sourceType "mel"
+	-command ("display_joint_1")
+	display_joint_1NameCommand;
+
+nameCommand
+	-annotation "channel_selLock_0NameCommand"
+	-sourceType "mel"
+	-command ("channel_selLock_0")
+	channel_selLock_0NameCommand;
+
+nameCommand
+	-annotation "channel_selLock_1NameCommand"
+	-sourceType "mel"
+	-command ("channel_selLock_1")
+	channel_selLock_1NameCommand;
+
+nameCommand
+	-annotation "channel_selMute_0NameCommand"
+	-sourceType "mel"
+	-command ("channel_selMute_0")
+	channel_selMute_0NameCommand;
+
+nameCommand
+	-annotation "channel_selMute_1NameCommand"
+	-sourceType "mel"
+	-command ("channel_selMute_1")
+	channel_selMute_1NameCommand;
+
+nameCommand
+	-annotation "display_iso_0NameCommand"
+	-sourceType "mel"
+	-command ("display_iso_0")
+	display_iso_0NameCommand;
+
+nameCommand
+	-annotation "display_iso_1NameCommand"
+	-sourceType "mel"
+	-command ("display_iso_1")
+	display_iso_1NameCommand;
+
+nameCommand
+	-annotation "keyCopyNameCommand"
+	-sourceType "mel"
+	-command ("keyCopy")
+	keyCopyNameCommand;
+
+nameCommand
+	-annotation "channel_setZeroNameCommand"
+	-sourceType "mel"
+	-command ("channel_setZero")
+	channel_setZeroNameCommand;
+
+nameCommand
+	-annotation "channel_breakSelConnectionNameCommand"
+	-sourceType "mel"
+	-command ("channel_breakSelConnection")
+	channel_breakSelConnectionNameCommand;
+
+nameCommand
+	-annotation "channel_keySelAttrNameCommand"
+	-sourceType "mel"
+	-command ("channel_keySelAttr")
+	channel_keySelAttrNameCommand;
+
+nameCommand
+	-annotation "hyperShade_addSelNameCommand"
+	-sourceType "mel"
+	-command ("hyperShade_addSel")
+	hyperShade_addSelNameCommand;
+
+nameCommand
+	-annotation "hyperShade_removeSelNameCommand"
+	-sourceType "mel"
+	-command ("hyperShade_removeSel")
+	hyperShade_removeSelNameCommand;
+
+nameCommand
+	-annotation "sets_creatSetNameCommand"
+	-sourceType "mel"
+	-command ("sets_creatSet")
+	sets_creatSetNameCommand;
+
+nameCommand
+	-annotation "searchNreplaceNamesNameCommand"
+	-sourceType "mel"
+	-command ("searchNreplaceNames")
+	searchNreplaceNamesNameCommand;
+
+nameCommand
+	-annotation "channel_FTNameCommand"
+	-sourceType "mel"
+	-command ("channel_FT")
+	channel_FTNameCommand;
+
+nameCommand
+	-annotation "centerPivotNameCommand"
+	-sourceType "mel"
+	-command ("centerPivot")
+	centerPivotNameCommand;
+
+nameCommand
+	-annotation "parentConstraint_NameCommand"
+	-sourceType "mel"
+	-command ("parentConstraint_")
+	parentConstraint_NameCommand;
+
+nameCommand
+	-annotation "parentConstraint_matainOffset_NameCommand"
+	-sourceType "mel"
+	-command ("parentConstraint_matainOffset_")
+	parentConstraint_matainOffset_NameCommand;
+
+nameCommand
+	-annotation "selMask_jointAndSurface_0NameCommand"
+	-sourceType "mel"
+	-command ("selMask_jointAndSurface_0")
+	selMask_jointAndSurface_0NameCommand;
+
+nameCommand
+	-annotation "selMask_jointAndSurface_1NameCommand"
+	-sourceType "mel"
+	-command ("selMask_jointAndSurface_1")
+	selMask_jointAndSurface_1NameCommand;
+
+nameCommand
+	-annotation "window_reNameNameCommand"
+	-sourceType "mel"
+	-command ("window_reName")
+	window_reNameNameCommand;
+
+nameCommand
+	-annotation "QselSetKeysGRP_bodyNameCommand"
+	-sourceType "mel"
+	-command ("QselSetKeysGRP_body")
+	QselSetKeysGRP_bodyNameCommand;
+
+nameCommand
+	-annotation "QselSetKeysGRP_faceNameCommand"
+	-sourceType "mel"
+	-command ("QselSetKeysGRP_face")
+	QselSetKeysGRP_faceNameCommand;
+
+nameCommand
+	-annotation "QselSetKeysGRP_bodyAndFaceNameCommand"
+	-sourceType "mel"
+	-command ("QselSetKeysGRP_bodyAndFace")
+	QselSetKeysGRP_bodyAndFaceNameCommand;
+
+nameCommand
+	-annotation "display_curveAndLocAndIKhandle_0NameCommand"
+	-sourceType "mel"
+	-command ("display_curveAndLocAndIKhandle_0")
+	display_curveAndLocAndIKhandle_0NameCommand;
+
+nameCommand
+	-annotation "display_curveAndLocAndIKhandle_1NameCommand"
+	-sourceType "mel"
+	-command ("display_curveAndLocAndIKhandle_1")
+	display_curveAndLocAndIKhandle_1NameCommand;
+
+nameCommand
+	-annotation "stopCtrlVNameCommand"
+	-sourceType "mel"
+	-command ("stopCtrlV")
+	stopCtrlVNameCommand;
+
+nameCommand
+	-annotation "LassoToolNameCommand"
+	-sourceType "mel"
+	-command ("LassoTool")
+	LassoToolNameCommand;
+
+nameCommand
+	-annotation "ToolSettingsWindowNameCommand"
+	-sourceType "mel"
+	-command ("ToolSettingsWindow")
+	ToolSettingsWindowNameCommand;
+
+nameCommand
+	-annotation "keyleftNameCommand"
+	-sourceType "mel"
+	-command ("keyleft")
+	keyleftNameCommand;
+
+nameCommand
+	-annotation "setKeyToolNameCommand"
+	-sourceType "mel"
+	-command ("setKeyTool")
+	setKeyToolNameCommand;
+
+nameCommand
+	-annotation "dingNameCommand"
+	-sourceType "mel"
+	-command ("ding")
+	dingNameCommand;
+
+nameCommand
+	-annotation "key_rightNameCommand"
+	-sourceType "mel"
+	-command ("key_right")
+	key_rightNameCommand;
+
+nameCommand
+	-annotation "key_upNameCommand"
+	-sourceType "mel"
+	-command ("key_up")
+	key_upNameCommand;
+
+nameCommand
+	-annotation "key_downNameCommand"
+	-sourceType "mel"
+	-command ("key_down")
+	key_downNameCommand;
+
+nameCommand
+	-annotation "key_convergeLNameCommand"
+	-sourceType "mel"
+	-command ("key_convergeL")
+	key_convergeLNameCommand;
+
+nameCommand
+	-annotation "key_convergeRNameCommand"
+	-sourceType "mel"
+	-command ("key_convergeR")
+	key_convergeRNameCommand;
+
+nameCommand
+	-annotation "clean_keyNameCommand"
+	-sourceType "mel"
+	-command ("clean_key")
+	clean_keyNameCommand;
+
+nameCommand
+	-annotation "spreed_keyNameCommand"
+	-sourceType "mel"
+	-command ("spreed_key")
+	spreed_keyNameCommand;
+
+nameCommand
+	-annotation "squeeze_keyNameCommand"
+	-sourceType "mel"
+	-command ("squeeze_key")
+	squeeze_keyNameCommand;
+
+nameCommand
+	-annotation "GraphCopyNameCommand"
+	-sourceType "mel"
+	-command ("GraphCopy")
+	GraphCopyNameCommand;
+
+nameCommand
+	-annotation "GraphPasteNameCommand"
+	-sourceType "mel"
+	-command ("GraphPaste")
+	GraphPasteNameCommand;
+
+nameCommand
+	-annotation "Studio_LibNameCommand"
+	-sourceType "mel"
+	-command ("Studio_Lib")
+	Studio_LibNameCommand;
+
+nameCommand
+	-annotation "PickerNameCommand"
+	-sourceType "mel"
+	-command ("Picker")
+	PickerNameCommand;
+
+nameCommand
+	-annotation "Select_AttributeNameCommand"
+	-sourceType "mel"
+	-command ("IKFK")
+	Select_AttributeNameCommand;
+
+nameCommand
+	-annotation "Grp_ANameCommand"
+	-sourceType "mel"
+	-command ("Grp_A")
+	Grp_ANameCommand;
+
+nameCommand
+	-annotation "Grp_BNameCommand"
+	-sourceType "mel"
+	-command ("Grp_B")
+	Grp_BNameCommand;
+
+nameCommand
+	-annotation "Animation_Polish_ModeNameCommand"
+	-sourceType "mel"
+	-command ("Animation_Polish_Mode")
+	Animation_Polish_ModeNameCommand;
+
+nameCommand
+	-annotation "Animation_blocking_modeNameCommand"
+	-sourceType "mel"
+	-command ("Animation_blocking_mode")
+	Animation_blocking_modeNameCommand;
+
+nameCommand
+	-annotation "svmNameCommand"
+	-sourceType "mel"
+	-command ("svm")
+	svmNameCommand;
+
+nameCommand
+	-annotation "pwmNameCommand"
+	-sourceType "mel"
+	-command ("pwm")
+	pwmNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchRXNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchRX")
+	selectAttributesSwitchRXNameCommand;
+
+nameCommand
+	-annotation "selectAttributesOffNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesOff")
+	selectAttributesOffNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchRYNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchRY")
+	selectAttributesSwitchRYNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchRZNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchRZ")
+	selectAttributesSwitchRZNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchTYNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchTY")
+	selectAttributesSwitchTYNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchTZNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchTZ")
+	selectAttributesSwitchTZNameCommand;
+
+nameCommand
+	-annotation "selectAttributesSwitchTXNameCommand"
+	-sourceType "mel"
+	-command ("selectAttributesSwitchTX")
+	selectAttributesSwitchTXNameCommand;
+

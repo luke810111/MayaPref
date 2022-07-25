@@ -1,0 +1,1260 @@
+global proc shelf_xRigD () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "del constraints" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "delC" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "delC" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"xRig_procedure\";\nstring $sels[]=`ls -sl`;\ndelConstraint ( $sels ) ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "for ($i=0; $i<`size($selsA)`;$i++){ \nconnectAttr -f ($selsA[$i]+..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "for ($i=0; $i<`size($selsA)`;$i++){ \nconnectAttr -f ($selsA[$i]+..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "snap" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "global proc Snap (){\nif (`window -ex snapWin`) deleteUI snapWin;\nwindow -t \"Snap\" snapWin;\ncolumnLayout -adj 1;\nrowColumnLayout -nc 4 -cw 1 75 -cw 2 50 -cw 3 50 -cw 4 50;\ncheckBox -l \"Translate\" -v 1 snp_t;\n\ncheckBox -l \"X\" -v 1 snp_tx;\ncheckBox -l \"Y\" -v 1 snp_ty;\ncheckBox -l \"Z\" -v 1 snp_tz;\ncheckBox -l \"Rotate\" -v 1 snp_r;\n\ncheckBox -l \"X\" -v 1 snp_rx;\ncheckBox -l \"Y\" -v 1 snp_ry;\ncheckBox -l \"Z\" -v 1 snp_rz;\ncheckBox -l \"Scale\" -v 1 snp_s;\n\ncheckBox -l \"X\" -v 1 snp_sx;\ncheckBox -l \"Y\" -v 1 snp_sy;\ncheckBox -l \"Z\" -v 1 snp_sz;\n\nsetParent..;\nbutton -l \"Snap it\" -c\"doSnap\";\nwindow -e -wh 215 100 snapWin;\nshowWindow snapWin;\n}\n\nglobal proc doSnap (){\nint $tx,$ty,$tz,$rx,$ry,$rz,$sx,$sy,$sz,$t,$r,$s;\nfloat $fps[],$pos[],$tps[],$rps[],$sps[];\nstring $snp[] = `ls -sl`;\n$sps[0]=`getAttr ($snp[0]+\".sx\")`;\n$sps[1]=`getAttr ($snp[0]+\".sy\")`;\n$sps[2]=`getAttr ($snp[0]+\".sz\")`;\n$tps= `xform -q -ws -t $snp[1]`;\n$rps= `xform -q -ws -ro $snp[1]`;\nfloat $rpA[] = `xform -q -rp $snp[1]`;\nfloat $rpB[] = `xform -q -rp $snp[0]`;\n$tx=`checkBox -q -v snp_tx`;\n$ty=`checkBox -q -v snp_ty`;\n$tz=`checkBox -q -v snp_tz`;\n\n$rx=`checkBox -q -v snp_rx`;\n$ry=`checkBox -q -v snp_ry`;\n$rz=`checkBox -q -v snp_rz`;\n\n$sx=`checkBox -q -v snp_sx`;\n$sy=`checkBox -q -v snp_sy`;\n$sz=`checkBox -q -v snp_sz`;\n\n$t=`checkBox -q -v snp_t`;\n$r=`checkBox -q -v snp_r`;\n$s=`checkBox -q -v snp_s`;\nif ($t){\nif ($tx) $fps[0]=($tps[0] + $rpA[0] - $rpB[0] );\nif ($ty) $fps[1]=($tps[1] + $rpA[1] - $rpB[1] );\nif ($tz) $fps[2]=($tps[2] + $rpA[2] - $rpB[2] );\nxform -ws -t $fps[0] $fps[1] $fps[2] $snp[0];\n}\nif ($r){\nif ($rx) $fps[0]=($rps[0] + $rpA[0] - $rpB[0] );\nif ($ry) $fps[1]=($rps[1] + $rpA[1] - $rpB[1] );\nif ($rz) $fps[2]=($rps[2] + $rpA[2] - $rpB[2] );\nxform -ws -ro $fps[0] $fps[1] $fps[2] $snp[0];\n}\nif ($s){\nif ($sx) $sps[0]=`getAttr ($snp[1]+\".sx\")`;\nif ($sy) $sps[1]=`getAttr ($snp[1]+\".sy\")`;\nif ($sz) $sps[2]=`getAttr ($snp[1]+\".sz\")`;\nsetAttr ($snp[0]+\".sx\") $sps[0];\nsetAttr ($snp[0]+\".sy\") $sps[1];\nsetAttr ($snp[0]+\".sz\") $sps[2];\n}\n}\nSnap;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "size" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "size" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "size" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "size `ls -sl ` ;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "加全約束(base)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "string $Objs2[]=`ls -sl`;\nselect -cl ;\nselect -add $Objs2[1] $Ob..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "constrain" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $Objs2[]=`ls -sl`;\nselect -cl ;\nselect -add $Objs2[1] $Objs2[0] ;\n\nparentConstraint -mo -weight 1;\nscaleConstraint -mo -weight 1;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "A組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "A組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/Administrator/Documents/maya/Icon_Custom/A組.bmp" 
+        -image1 "C:/Users/Administrator/Documents/maya/Icon_Custom/A組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selsA[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsA=`ls -sl`;\nelse select -r $selsA ;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "B組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "B組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/Administrator/Documents/maya/Icon_Custom/B組.bmp" 
+        -image1 "C:/Users/Administrator/Documents/maya/Icon_Custom/B組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selsB[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsB=`ls -sl`;\nelse select -r $selsB ;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "string $selsC[];\nstring $searches[]=`ls -sl`;\nif(`size $searches..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "string $selsC[];\nstring $searches[]=`ls -sl`;\nif(`size $searches..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "grpC" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selsC[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsC=`ls -sl`;\nelse select -r $selsC ;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "xfT組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "xfT組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "xfT組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nfloat $wsT[]=`xform -q -ws -t $selsA[$i]`;\nxform -ws -t $wsT[0] $wsT[1] $wsT[2] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "xfR組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "xfR組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "xfR組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nfloat $wsR[]=`xform -q -ws -ro $selsA[$i]`;\nxform -ws -ro $wsR[0] $wsR[1] $wsR[2] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "xfS組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "xfS組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "xfS組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nfloat $wsS[]=`xform -q -ws -s $selsA[$i]`;\nxform -ws -s $wsS[0] $wsS[1] $wsS[2] $selsB[$i];\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "piv組2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "piv組2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "piv組2-2(A組分別對齊到B組)" 
+        -overlayLabelColor 1 1 1 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/Administrator/Documents/maya/Icon_Custom/alignPivot.Bmp" 
+        -image1 "C:/Users/Administrator/Documents/maya/Icon_Custom/alignPivot.Bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nfloat $refPiv[]=`xform -q -ws -piv $selsB[$i]`;\nxform -ws -piv $refPiv[0] $refPiv[1] $refPiv[2] $selsA[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "p組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "p組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "p組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparent $selsA[$i] $selsB[$i] ;\n}\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "pS組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "pS組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "pS組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparent -r -s $selsA[$i] $selsB[$i] ;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "reNm組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "reNm組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "reNm組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nrename $selsB[$i] $selsA[$i] ;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "prefix組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "prefix組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "prefix組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"xRig_procedure\";\nfor ($i=0; $i<`size($selsB)`;$i++){ \nselect -r $selsB[$i] ;\nrenameHierarchyPrefix( $selsA[$i] ) ;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FCm2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FCm2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -mo -weight 1 $selsA[$i] $selsB[$i] ;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "SCm2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "SCm2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "SCm2-2組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nscaleConstraint -mo -weight 1 $selsA[$i] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FC2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FC2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FC2-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FC2-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -weight 1 $selsA[$i] $selsB[$i] ;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "SC2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "SC2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "SC2-2組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nscaleConstraint -offset 1 1 1 -weight 1 $selsA[$i] $selsB[$i] ;\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FCm1-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FCm1-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm1-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm1-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -mo -weight 1 $selsA[0] $selsB[$i];\n}\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "SCm1-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "SCm1-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "SCm1-2組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nscaleConstraint  -mo -weight 1 $selsA[0] $selsB[$i];\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FC1-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FC1-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FC1-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FC1-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -weight 1 $selsA[0] $selsB[$i] ;\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "PCm2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "PCm2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "PCm2-2" 
+        -overlayLabelColor 1 1 1 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \npointConstraint -mo -weight 1 $selsA[$i] $selsB[$i] ;\n}\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "PCm1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "PCm1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "PCm1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \npointConstraint -mo -weight 1 $selsA[0] $selsB[$i] ;\n}\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "PC2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "PC2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "PC2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \npointConstraint -offset 0 0 0 -weight 1 $selsA[$i] $selsB[$i] ;\n}\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "OCm1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "OCm1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "OCm1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \norientConstraint -mo -weight 1 $selsA[0] $selsB[$i] ;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "normail約束1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "NC1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "NC1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nnormalConstraint -weight 1 -aimVector 0 1 0 -upVector 0 1 0 -worldUpType \"vector\" -worldUpVector 0 1 0 $selsA[0] $selsB[$i] ;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "geometry約束1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "GC1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "GC1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ngeometryConstraint -weight 1 $selsA[0] $selsB[$i];\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "pointOnPoly約束2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "pointOnPolyConstrain2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "popc2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nselect -r $selsA[$i]; \nselect -add $selsB[$i];\ndoCreatePointOnPolyConstraintArgList 2 {   \"0\" ,\"0\" ,\"0\" ,\"1\" ,\"\" ,\"1\" ,\"0\" ,\"0\" ,\"0\" ,\"0\" };\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "pacm2-1" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "pacm2-1" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "pacm2-1" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $cons[]=`ls -sl`;\nselect -r $cons[1];\nsource \"xRig_procedure\";\ngCreateOffsets() ;\nsearchReplaceNames \"offset\" \"con\" \"selected\";\n\nstring $selsC[] = {$cons[0],($cons[1]+\"_con\"),$cons[2]};\nfor ($i=0; $i<`size($selsC)`;$i++){ \nparentConstraint -mo -weight 1 $selsC[0] $selsC[1] ;\nparentConstraint -mo -weight 1 $selsC[2] $selsC[1] ;\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "pocm2-1" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "pocm2-1" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "pocm2-1" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $cons[]=`ls -sl`;\nselect -r $cons[1];\nsource \"xRig_procedure\";\ngCreateOffsets() ;\nsearchReplaceNames \"offset\" \"con\" \"selected\";\n\nstring $selsC[] = {$cons[0],($cons[1]+\"_con\"),$cons[2]};\nfor ($i=0; $i<`size($selsA)`;$i++){ \npointConstraint -mo -weight 1 $selsC[0] $selsC[1] ;\npointConstraint -mo -weight 1 $selsC[2] $selsC[1] ;\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "orient約束2-1" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "oc2-1" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "oc2-1" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $cons[]=`ls -sl`;\nselect -r $cons[1];\nsource \"xRig_procedure\";\ngCreateOffsets() ;\nsearchReplaceNames \"offset\" \"con\" \"selected\";\n\nstring $selsC[] = {$cons[0],($cons[1]+\"_con\"),$cons[2]};\nfor ($i=0; $i<`size($selsC)`;$i++){ \norientConstraint -weight 1 $selsC[0] $selsC[1] ;\norientConstraint -weight 1 $selsC[2] $selsC[1] ;\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "conV" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "conV" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "conV" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//1-2 drvinKey顯示切換共享 A組選source B組選target 不用再選driverKey節點當A組\naddVisDrKey($selsA,$selsB);\n/*1-2 drvinKey顯示切換共享 \nA組選source \nB組選target \n不用再選driverKey節點當A組*/\nproc addVisDrKey(string $selsA[],string $selsB[]){\n    \n    string $drVis[] = `listConnections ($selsA[0]+\".visibility\")`;\n    string $set[]=`listConnections ($drVis[0]+\".message\")`;\n    for ($i=0; $i<`size($selsB)`;$i++){\n    connectAttr -f ($drVis[0]+\".output\") ($selsB[$i]+\".visibility\"); //把加選物件加進set\n    sets -include $set[0] $selsB[$i];\n    };\n    }\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "conT2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "conT2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "conT2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nconnectAttr -f ($selsA[$i]+\".translateX\") ($selsB[$i]+\".translateX\");\nconnectAttr -f ($selsA[$i]+\".translateY\") ($selsB[$i]+\".translateY\");\nconnectAttr -f ($selsA[$i]+\".translateZ\") ($selsB[$i]+\".translateZ\");\nconnectAttr -f ($selsA[$i]+\".rotateX\") ($selsB[$i]+\".rotateX\");\nconnectAttr -f ($selsA[$i]+\".rotateY\") ($selsB[$i]+\".rotateY\");\nconnectAttr -f ($selsA[$i]+\".rotateZ\") ($selsB[$i]+\".rotateZ\");\nconnectAttr -f ($selsA[$i]+\".scaleX\") ($selsB[$i]+\".scaleX\");\nconnectAttr -f ($selsA[$i]+\".scaleY\") ($selsB[$i]+\".scaleY\");\nconnectAttr -f ($selsA[$i]+\".scaleZ\") ($selsB[$i]+\".scaleZ\");\n};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "複製權重2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cpSW2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "cpSW2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "複製權重1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cpSW1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "cpSW1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "int $mo =1; //maintainOffset開關\nfor ($i=0; $i<size($selsA);$i++..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "int $mo =1; //maintainOffset開關\nfor ($i=0; $i<size($selsA);$i++..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "wireRig" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//要做約束的控制器設為A組\nselect $selsA;\nsize($selsA);\nsource \"xRig_procedure\";\ngCreateOffsets() ;\nsearchReplaceNames \"offset\" \"anchor\" \"selected\";\n\nint $mo =0; //maintainOffset開關\nfor ($i=0; $i<size($selsA);$i++){\nif ($i==0 || $i>=8){\nprint(\"不動作\");\n}\nelse {\nint $c =100;\nstring $an = \"_anchor\";\nif ($i%4==0) //%是取餘數\n$c =4;\nelse if($i%2==0)\n$c =2;\nelse\n$c =1;\nif ($mo == 0){\npointConstraint -weight 1 $selsA[$i-$c] ($selsA[$i]+$an) ;\npointConstraint -weight 1 $selsA[$i+$c] ($selsA[$i]+$an) ;\n}\nelse {\npointConstraint -mo -weight 1 $selsA[$i-$c] ($selsA[$i]+$an) ;\npointConstraint -mo -weight 1 $selsA[$i+$c] ($selsA[$i]+$an) ;\n}\n}\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

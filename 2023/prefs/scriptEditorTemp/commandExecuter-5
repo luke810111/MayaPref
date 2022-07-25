@@ -1,0 +1,73 @@
+exportAniFBXTest();
+proc exportAniFBXTest(){
+    string $sn = `file -q -sn`;
+    string $fileN = `file -q -sn -shn`;
+    string $dir = `match "^.*/" $sn`;
+    
+    $en=substring($sn, 0, size($sn) - 3);
+    $fileN=substring($fileN, 0, size($fileN) - 3);
+    $exportN=($en+"_export.mb");
+    
+    //refresh -suspend 1;  
+    
+    file -rename $exportN; 
+    file -save -type "mayaBinary";
+    
+    ImportRefAndDeleteNameSpace();
+    
+    //需要sets 要輸出的骨架
+    select -r "*DeformationSystem" ;
+    $bakeSets=`ls -sl`;
+    float $minTime = `playbackOptions -q -minTime`;
+    float $maxTime = `playbackOptions -q -maxTime`;
+    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+    
+    
+    
+    //抽象化語法
+    //setAttr "WeaponR.blendParent1" 0;
+
+    setAttr "DeformationSystem|Cloak.translateX" 0;
+    setAttr "DeformationSystem|Cloak.translateY" 0;
+    setAttr "DeformationSystem|Cloak.translateZ" 0;
+    setAttr "DeformationSystem|Cloak.rotateX" 0;
+    setAttr "DeformationSystem|Cloak.rotateY" 0;
+    setAttr "DeformationSystem|Cloak.rotateZ" 0;
+	setAttr "DeformationSystem|Cloak.scaleZ" 1;
+	setAttr "DeformationSystem|Cloak.scaleX" 1;
+	setAttr "DeformationSystem|Cloak.scaleY" 1;
+    setAttr "DoubleEdgedSword.translateX" 0;
+    setAttr "DoubleEdgedSword.translateY" 0;
+    setAttr "DoubleEdgedSword.translateZ" 0;
+    setAttr "DoubleEdgedSword.rotateX" 0;
+    setAttr "DoubleEdgedSword.rotateY" 0;
+    setAttr "DoubleEdgedSword.rotateZ" 0;	
+	setAttr "DoubleEdgedSword.scaleZ" 1;
+	setAttr "DoubleEdgedSword.scaleX" 1;
+	setAttr "DoubleEdgedSword.scaleY" 1;
+
+
+ cutKey "DoubleEdgedSword" "|SK_Player_Armor01_Cloak|DeformationSystem|Cloak";
+    
+    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`;
+    //print $buffer
+    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    
+    select -r "SK_Player_Armor_001|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxChara);
+    select -r "|SK_Player_Armor01_Cloak|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxCloak);
+    select -r "|SK_Player_Weapon_GreatSword_001|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxWeapon);
+    
+    file -force -save -options "v=0";
+    file -f -new;
+    file -open $sn;
+    //refresh -suspend 0; 
+    print "working successful!!";
+    }
+    

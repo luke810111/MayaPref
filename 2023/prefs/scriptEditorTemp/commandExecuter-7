@@ -1,0 +1,30 @@
+/*
+aniFinalMode();
+aniEditMode();
+*/
+move -r -os -wd -2.332486 0 0 ;
+
+proc aniFinalMode(){
+    workspaceLayoutManager -setCurrent "Rendering - Expert";
+    $mps=`getPanel -type modelPanel`;
+    $x=`modelEditor -q -imagePlane $mps[0]`;        
+    int $y=(1-$x);
+    for($mp in $mps){                        
+        modelEditor -e -allObjects 0 $mp;    
+        modelEditor -e -polymeshes 1 $mp; 
+        modelEditor -e -hud 0 $mp;  
+        modelEditor -e -grid 0 $mp;     
+        }
+    }
+    
+proc aniEditMode(){    
+    workspaceLayoutManager -setCurrent "Animation";
+    $mps=`getPanel -type modelPanel`;
+
+    for($mp in $mps){                        
+        modelEditor -e -allObjects 1 $mp;    
+        modelEditor -e -hud 1 $mp;  
+        modelEditor -e -grid 1 $mp;     
+        }
+    }
+    

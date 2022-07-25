@@ -1,0 +1,12 @@
+wiz_controllers ()
+source sortOutTool;
+sortOutTool;
+
+source "xRigD_Tool";
+
+AnimSchoolPicker();
+IKFKswitchToolbyLuke();
+source "IKFKSwitchTool";
+source exportFBXPipeline;
+asMirrorOptions asSelectorbiped;
+

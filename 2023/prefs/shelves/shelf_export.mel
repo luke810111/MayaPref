@@ -1,0 +1,823 @@
+global proc shelf_export () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "reOpen" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit the references for the current scene" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Reference Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "RE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconFile.png" 
+        -image1 "menuIconFile.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ReferenceEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Namespace Editor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Namespace Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "NE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "NamespaceEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "File Path Editor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "File Path Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "FPE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "FilePathEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "asAnimationTesterRemoveBody;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asAnimationTesterRemoveBody;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "delKey" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "hide joint" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\nasJointsVisibility 0;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "hdJt" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\nasJointsVisibility 0;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "delLayer" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "delLayer" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displayLayersRemoves[]={\"defaultLayer\"};\nstring $displayLayers[] = stringArrayRemove($displayLayersRemoves, $displayLayers);\ndelete $displayLayers;\nprint \"delete displayLayers\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "deleteunusde nodes" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unuse..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "dn" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unused nodes deleted.\\n\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "delete unused influnces" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asRemoveAllUnusedInfluences;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "dui" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "asRemoveAllUnusedInfluences;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "asDeleteUnusedJoints;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asDeleteUnusedJoints;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "duj" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "asDeleteUnusedJoints;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "GoToBuildPose " 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    a..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "gtbp" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    asGoToBuildPose faceSetup;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentTime 1 ;\ndelete \"geo\" \"Geometry\";\nrename \"Group\" \"KFP\";\nparent \"Hip_fix_loc_grp\" \"Mesh\" \"KFP\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentTime 1 ;\ndelete \"geo\" \"Geometry\";\nrename \"Group\" \"KFP\";\np..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "KFP" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentTime 1 ;\ndelete \"geo\" \"Geometry\";\nrename \"Group\" \"KFP\";\nparent \"Hip_fix_loc_grp\" \"Mesh\" \"KFP\";\nsetAttr \"Hip_fix_loc_grp.visibility\" 0;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "LM" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\nrotate -a -os -fo 0 12 0 FKScapula_R FKScapula_L;\nrotate -a -os..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "LM" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "rotate -a -os -fo 0 12 0 FKScapula_L FKScapula_R ;\nrotate -a -os -fo 0 72 0 FKShoulder_L FKShoulder_R ;\nrotate -a -os -fo 0 8 0 FKWrist_L FKWrist_R ;\nrotate -a -os -fo -72 14 0 FKThumbFinger1_L FKThumbFinger1_R ;\n\nsetAttr \"Fingers_L.cup\" 1.5;\nsetAttr \"Fingers_R.cup\" 1.5;\nsetAttr \"Fingers_L.indexCurl\" 1;\nsetAttr \"Fingers_R.indexCurl\" 1;\nsetAttr \"Fingers_L.middleCurl\" 1.2;\nsetAttr \"Fingers_R.middleCurl\" 1.2;\nsetAttr \"Fingers_L.ringCurl\" 1.4;\nsetAttr \"Fingers_R.ringCurl\" 1.4;\nsetAttr \"Fingers_L.pinkyCurl\" 1.6;\nsetAttr \"Fingers_R.pinkyCurl\" 1.6;\nsetAttr \"Fingers_L.thumbCurl\" 1;\nsetAttr \"Fingers_R.thumbCurl\" 1;\n\n\nsetAttr \"eyebrowCtrl.darkLine\" 0;\nsetAttr \"eyebrowCtrl.veiny\" 0;\n\nrename \"Group\" \"LM\";\n\nparent clothes_rig face_rig LM ;\nparent LM_Gp Geometry;\n\nsets -add Sets smooth_set;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "CM" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "rotate -a -os -fo 0 12 0 FKScapula_L FKScapula_R ;\nrotate -a -os..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "CM" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "rotate -a -os -fo 0 12 0 FKScapula_L FKScapula_R ;\nrotate -a -os -fo 0 78 0 FKShoulder_L FKShoulder_R ;\nrotate -a -os -fo 0 8 0 FKWrist_L FKWrist_R ;\nrotate -a -os -fo -72 14 0 FKThumbFinger1_L FKThumbFinger1_R ;\nsetAttr \"FKShoulder_L.translateX\" -7.363;\nsetAttr \"FKShoulder_R.translateX\" 7.363;\nsetAttr \"Fingers_L.cup\" 1.5;\nsetAttr \"Fingers_R.cup\" 1.5;\nsetAttr \"Fingers_L.indexCurl\" 1;\nsetAttr \"Fingers_R.indexCurl\" 1;\nsetAttr \"Fingers_L.middleCurl\" 1.2;\nsetAttr \"Fingers_R.middleCurl\" 1.2;\nsetAttr \"Fingers_L.ringCurl\" 1.4;\nsetAttr \"Fingers_R.ringCurl\" 1.4;\nsetAttr \"Fingers_L.pinkyCurl\" 1.6;\nsetAttr \"Fingers_R.pinkyCurl\" 1.6;\nsetAttr \"Fingers_L.thumbCurl\" 1;\nsetAttr \"Fingers_R.thumbCurl\" 1;\n\nsetAttr \"eyebrowCtrl.darkLine\" 0;\nsetAttr \"eyebrowCtrl.veiny\" 0;\n\nrename \"Group\" \"CM\";\n\nparent clothes_rig face_rig CM ;\n\n//parent CM_GP Geometry;\n\nsets -add Sets smooth_set;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "delete temp1;\n\nparent  face_rig MotionSystem ;\nparent HP_Model_V02:HP_Gp Geometry ;\n\nsets -add \"Sets\" \"smooth_set\" \"custom_ctrl_set\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "delete temp1;\n\nparent  face_rig MotionSystem ;\nparent HP_Model_V..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "HP" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "delete temp1;\n\nparent  face_rig MotionSystem ;\nparent HP_Model_V02:HP_Gp Geometry ;\n\nselect -r smooth_set ;\ndisplaySmoothness -divisionsU 0 -divisionsV 0 -pointsWire 4 -pointsShaded 1 -polygonObject 1;\n\nsets -add \"Sets\" \"smooth_set\" \"custom_ctrl_set\";\nrename \"Group\" \"HP\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setAttr \"mouth_bs.visibility\" 0;\nsetAttr \"mouth_base.visibility\" 0;\n\n\nrotate -r -os -fo 0 8 0 FKScapula_L FKScapula_R ;\nrotate -r -os -fo 0 56 0 FKShoulder_R FKShoulder_L ;\nrotate -r -os -fo 0 8 0 FKElbow_L FKElbow_R ;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "setAttr \"mouth_bs.visibility\" 0;\nsetAttr \"mouth_base.visibility\"..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "HPST" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "proc string dupAdvMain(string $main,int $n){\n\n    $dup=`duplicate -rr -n (\"MainExtra\"+$n) $main`;\n    $del=`listRelatives -c -f -type \"transform\" $dup`; \n    if (`size($del[0])`) delete $del;  \n\n    $delAttr=`listAttr -ud -cb $dup[0]`;\n    for($d in $delAttr){\n        deleteAttr -at $d $dup;\n        }\n    setAttr -lock true -keyable false -channelBox false ($dup[0]+\".v\");\n\n         \n    string $me=$dup[0];\n    scale -r -ocp 1.382 1.382 1.382 ($me+\".cv[*]\");\n    \n    parent $main $me;\n    \n    return $me;\n    }\n    \nproc string conMainScale(string $me,string $md){\n\n    string $md2=($me+\"ScaleMultiplyDivide\");   \n    if (`objExists $md2`) delete $md2;\n    shadingNode -n $md2 -asUtility \"multiplyDivide\";\n    connectAttr -f ($md2+\".output\") ($md+\".input2\");\n    connectAttr -f ($me+\".scale\") ($md2+\".input1\");\n    \n    return $md2;\n    }    \n    \nsetAttr \"mouth_bs.visibility\" 0;\nsetAttr \"mouth_base.visibility\" 0;\n\n\nrotate -r -os -fo 0 8 0 FKScapula_L FKScapula_R ;\nrotate -r -os -fo 0 56 0 FKShoulder_R FKShoulder_L ;\nrotate -r -os -fo 0 8 0 FKElbow_L FKElbow_R ;\n\nparent face_rig  Group;\nparent HPST_model_V01:HPST_Gp Geometry;\n\nrename \"Group\" \"HPST\";    \n\nselect -r smooth_set ;\ndisplaySmoothness -divisionsU 0 -divisionsV 0 -pointsWire 4 -pointsShaded 1 -polygonObject 1;    \n\nsets -add \"Sets\" \"smooth_set\" ;    \nselect -r \"Main\";\n//me:mainExtra /md:multiDivide\n$me=dupAdvMain(\"Main\",1);\n$me=dupAdvMain($me,2);\nshadingNode -asUtility  -n  \"multiMainExtra\" multiplyDivide;\nshadingNode -asUtility  -n  \"multiMain\" multiplyDivide;\nconnectAttr -f \"MainExtra1.scale\" \"multiMainExtra.input1\";\nconnectAttr -f \"MainExtra2.scale\" \"multiMainExtra.input2\";\nconnectAttr -f \"Main.scale\" \"multiMain.input2\";\nconnectAttr -f \"multiMainExtra.output\" \"multiMain.input1\";\nconnectAttr -f \"multiMain.output\" \"deltaMush1.scale\";\n\nselect -r \"Main\";\n\nsetAttr -lock true \"FKTail0_M.tx\";\nsetAttr -lock true \"FKTail0_M.ty\";\nsetAttr -lock true \"FKTail0_M.tz\";\nsetAttr \"FKTooth1_M_joint.visibility\" 0;\nsetAttr \"FKEyeBrow1_R_joint.visibility\" 0;\nsetAttr \"FKEye1_R_joint.visibility\" 0;\nsetAttr \"FKEyeBrow1_L_joint.visibility\" 0;\nsetAttr \"FKEye1_L_joint.visibility\" 0;\nsetAttr \"joint_grp.visibility\" 0;\nsetAttr \"mouth_bs_Face_follicle_grp.visibility\" 0;\nsetAttr \"mouth_base.visibility\" 0;\nsetAttr \"mouth_bs.visibility\" 0;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -os -fo 0 0 59.527993 ;\nselect -r FKScapula_L ;\nselect -tgl FKScapula_R ;\nrotate -r -os -fo 0 0 6.379033 ;\nselect -r FKhairA1_M ;\nselect -tgl FKhairA2_M ;\nrotate -r -os -fo -24 0 0 ;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -o..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "Jenet" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -os -fo 0 0 59.527993 ;\nselect -r FKScapula_L ;\nselect -tgl FKScapula_R ;\nrotate -r -os -fo 0 0 6.379033 ;\nselect -r FKhairA1_M ;\nselect -tgl FKhairA2_M ;\nrotate -r -os -fo -24 0 0 ;\n\ndelete set1 set2 set3 set4 set5 set6 set7 set8 set9 ;\n\n\nparent jenet_geo jenet_hat  Geometry;\nparent facial_ctrl_grp hat_rig Group ;\nrename \"Group\" \"Jenet\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "delete \"delete_after_final\" skin_set;\nrotate -r -os -fo 0 58 0 FKShoulder_L FKShoulder_R ;\n\n\nparent bird_geo bird_hat  Geometry;\nparent facial_ctrl_grp hair_rig tail_rig hat_rig Group ;\nrename \"Group\" \"bird\";\n\nselect -r Geometry ;\ndisplaySmoothness -divisionsU 3 -divisionsV 3 -pointsWire 16 -pointsShaded 4 -polygonObject 3;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "delete \"delete_after_final\" skin_set;\nrotate -r -os -fo 0 58 0 F..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "bird" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "delete \"delete_after_final\" skin_set;\nrotate -r -os -fo 0 58 0 FKShoulder_L FKShoulder_R ;\n\n\nparent bird_geo bird_hat  Geometry;\nparent facial_ctrl_grp hair_rig tail_rig hat_rig Group ;\nrename \"Group\" \"bird\";\n\nselect -r Geometry ;\ndisplaySmoothness -divisionsU 3 -divisionsV 3 -pointsWire 16 -pointsShaded 4 -polygonObject 3;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -os -fo 0 0 59.527993 ;\nselect -r FKScapula_L ;\nselect -tgl FKScapula_R ;\nrotate -r -os -fo 0 0 6.379033 ;\n\n\n\nparent yang_geo yang_hat  Geometry;\nparent facial_ctrl_grp hat_rig Group ;\nrename \"Group\" \"yang\";\n\nselect -r Geometry ;\ndisplaySmoothness -divisionsU 3 -divisionsV 3 -pointsWire 16 -pointsShaded 4 -polygonObject 3;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -o..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "yang" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r FKShoulder_L ;\nselect -tgl FKShoulder_R ;\nrotate -r -os -fo 0 0 59.527993 ;\nselect -r FKScapula_L ;\nselect -tgl FKScapula_R ;\nrotate -r -os -fo 0 0 6.379033 ;\n\n\n\nparent yang_geo yang_hat  Geometry;\nparent facial_ctrl_grp hat_rig Group ;\nrename \"Group\" \"yang\";\n\nselect -r Geometry ;\ndisplaySmoothness -divisionsU 3 -divisionsV 3 -pointsWire 16 -pointsShaded 4 -polygonObject 3;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "delete \"delete_after_final\" ;\nrotate -r -os -fo 0 62 0 FKShoulder_L FKShoulder_R ;\nrotate -r -os -fo 0 6 0 FKScapula_R FKScapula_L ;\nsetAttr \"Main.paw_vis\" 0;\nsetAttr \"Facial_BS_ctl.Angry_A\" 0;\nsetAttr \"Facial_BS_ctl.Angry_B\" 0;\nsetAttr \"Body_Facial_BS_rig_geo.visibility\" 0;\nsetAttr \"body_base.visibility\" 0;\n\nrename \"Group\" \"WMAST\";\nparent FacialSystem  Main;\nparent CustomSystem  MotionSystem;\nparent WAMST_Model_V02:wam_Gp  Geometry;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "delete \"delete_after_final\" ;\nrotate -r -os -fo 0 62 0 FKShoulde..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "WMAST" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "delete \"delete_after_final\" ;\nrotate -r -os -fo 0 62 0 FKShoulder_L FKShoulder_R ;\nrotate -r -os -fo 0 6 0 FKScapula_R FKScapula_L ;\nsetAttr \"Main.paw_vis\" 0;\nsetAttr \"Facial_BS_ctl.Angry_A\" 0;\nsetAttr \"Facial_BS_ctl.Angry_B\" 0;\nsetAttr \"Body_Facial_BS_rig_geo.visibility\" 0;\nsetAttr \"body_base.visibility\" 0;\n\nrename \"Group\" \"WMAST\";\nparent FacialSystem  Main;\nparent CustomSystem  MotionSystem;\nparent WAMST_Model_V02:wam_Gp  Geometry;\n\nsetAttr \"AimEye.visibility\" 0;\nsetAttr \"Face_fol_grp.visibility\" 0;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "addSmooth" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$sset=\"smooth_set\";\naddSmooth($sels[0],$sset);\n\n..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "addSm" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n$sset=\"smooth_set\";\naddSmooth($sels[0],$sset);\n\nproc addSmooth(string $main,string $sset){\n    addAttr -ln \"smooth\" -nn \"smooth\" -at long  -min 0 -max 2 -dv 0 $main;\n    setAttr -e-keyable true ($main+\".smooth\");\n    \n    select -r $sset;\n    $sGeo=`ls -sl`;\n    polyPerformAction \"polySmooth  -mth 0 -sdt 2 -ovb 1 -ofb 3 -ofc 0 -ost 0 -ocr 0 -dv 1 -peh 0 -bnr 1 -c 1 -kb 1 -ksb 1 -khe 0 -kt 1 -kmb 1 -suv 1 -sl 1 -dpe 1 -ps 0.1 -ro 1\" f 0;\n    \n    $ps=`ls -type polySmoothFace`;\n    for($x in $ps){\n        connectAttr -f ($main+\".smooth\") ($x+\".divisions\");\n        }\n    }   " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "rename \"Group\" \"YuZ\";\n\nparent JD_Model_V01:YuZ_Gp Geometry ;\ndelete tongue_set lips_set;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "rename \"Group\" \"YuZ\";\n\nparent JD_Model_V01:YuZ_Gp Geometry ;\ndel..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "rename \"Group\" \"YuZ\";\n\nparent JD_Model_V01:YuZ_Gp Geometry ;\ndelete tongue_set lips_set;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "rename \"Group\" \"socles\";\n\nparent JD_Model_V01:Socles_Gp Geometry ;\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "rename \"Group\" \"socles\";\n\nparent JD_Model_V01:Socles_Gp Geometry..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "socles" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "rename \"Group\" \"socles\";\n\nparent JD_Model_V01:Socles_Gp Geometry ;\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "rename \"Group\" \"WZ\";\n\nparent JD_Model_V01:WZ_Gp Geometry ;\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "rename \"Group\" \"WZ\";\n\nparent JD_Model_V01:WZ_Gp Geometry ;\nsetAt..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "WZ" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "rename \"Group\" \"WZ\";\n\nparent JD_Model_V01:WZ_Gp Geometry ;\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;\n\nsetAttr \"EyeLid_R_ctl_grp1.visibility\" 0;\nsetAttr \"EyeLid_L_ctl_grp1.visibility\" 0;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

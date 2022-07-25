@@ -1,0 +1,273 @@
+/*
+$sels=`ls -sl`;
+$b=getChara($sels[0]);
+print $b;
+	*/
+global proc string getChara(string $sel){
+    string $charas[];
+	
+    if(`gmatch $sel "*:*"`){
+        $temp=`tokenize $sel ":" $charas`;
+        print($charas);
+        return ($charas[0]+":");        
+    }else{
+        return "";
+        }
+    }
+	
+global proc string[] getNameSapceFromReferenceObject(){
+    $refs=`file -q -r`;
+    string $nSs[];
+    for($ref in $refs){
+        $rfn=`file -q -rfn $ref`;
+        $nns[0]=`referenceQuery -namespace $rfn`;
+        $nSs=stringArrayCatenate($nSs,$nns);
+        }
+    return $nSs;
+    }
+  
+
+global proc ImportRefAndDeleteNameSpace(){ 
+    $refs=`file -q -r`;
+    $ns=getNameSapceFromReferenceObject();
+          
+    for($ref in $refs){
+        file -importReference $ref;
+        } 
+        
+    for($n in $ns){   
+        if ($n!=":"){
+            namespace -mergeNamespaceWithRoot -removeNamespace $n;        
+            }
+        }
+    }
+
+//exportPipelineTest();
+global proc exportPipelineTest(){
+    string $sn = `file -q -sn`;
+    $en=substring($sn, 0, size($sn) - 3);
+    string $fileN = `file -q -sn -shn`;
+    $fileN=substring($fileN, 0, size($fileN) - 3);
+    $exportN=($en+"_export.mb");
+    string $dir = `match "^.*/" $sn`;
+    
+    refresh -suspend 1;  
+    
+     
+    file -rename $exportN; 
+    file -save -type "mayaAscii";
+    
+    
+    $refs=`file -q -r`;
+    for($ref in $refs){
+    file -importReference $ref;
+    }
+    //調整自動找namespace
+    namespace -mergeNamespaceWithRoot -removeNamespace "Player_Armor01_Rigging";
+    namespace -mergeNamespaceWithRoot -removeNamespace "SK_Weapon_Bow_01_rig";
+    
+    //需要sets 要輸出的骨架
+    select -r "DeformationSystem|Cloak" "Root_M" "bow_root";
+    $bakeSets=`ls -sl`;
+    float $minTime = `playbackOptions -q -minTime`;
+    float $maxTime = `playbackOptions -q -maxTime`;
+    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+    cutKey -cl -t ":" -f ":" -at "tx" -at "ty" -at "tz" -at "rx" -at "ry" -at "rz" "DeformationSystem|Cloak";
+    cutKey -cl -t ":" -f ":" -at "tx" -at "ty" -at "tz" -at "rx" -at "ry" -at "rz" "bow_root";
+    
+    //抽象化語法
+    setAttr "bow_root.translateX" 0;
+    setAttr "bow_root.translateY" 0;
+    setAttr "bow_root.translateZ" 0;
+    setAttr "bow_root.rotateX" 0;
+    setAttr "bow_root.rotateY" 0;
+    setAttr "bow_root.rotateZ" 0;
+    setAttr "DeformationSystem|Cloak.rotateZ" 0;
+    setAttr "DeformationSystem|Cloak.translateX" 0;
+    setAttr "DeformationSystem|Cloak.translateY" 0;
+    setAttr "DeformationSystem|Cloak.translateZ" 0;
+    setAttr "DeformationSystem|Cloak.rotateX" 0;
+    setAttr "DeformationSystem|Cloak.rotateY" 0;
+    
+    
+    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`;
+    //print $buffer
+    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
+    $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
+    $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
+    select -r "Root_M";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxChara);
+    select -r "DeformationSystem|Cloak";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxCloak);
+    select -r "bow_root";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxWeapon);
+    
+    file -force -save -options "v=0";
+    refresh -suspend 0; 
+    }
+	
+//exportRig();
+global proc exportRig(){
+    $sels=`ls -sl`;
+    if(`size($sels)`){
+        string $sn = `file -q -sn`;
+        string $dir = `match "^.*/" $sn`;
+        $x=`size $dir`;
+        $dir2=`substring $dir 2 $x`;    
+    
+        $refs=`file -q -r`;    
+        for($ref in $refs){
+            file -importReference $ref;
+            }
+        
+        string $nSs[];
+        string $fNs[];
+        string $buffer[];
+        for($i=0;$i<`size($sels)`; $i++) {  
+            $numTokens = `tokenize $sels[$i] ":" $buffer`;
+            $nSs[$i]=$buffer[0];
+            $fNs[$i]=$buffer[1];
+            namespace -mergeNamespaceWithRoot -removeNamespace $nSs[$i];    
+            }
+        //delete temp object;    
+        if(`objExists "delete_after_export"`) delete "delete_after_export";   
+        if(`objExists "delete_set"`) delete "delete_set";     
+             
+        //delete layer
+        string $displayLayers[]=`ls -type "displayLayer"`;
+        string $displayLayersRemoves[]={"defaultLayer"};
+        $displayLayers = stringArrayRemove($displayLayersRemoves, $displayLayers);
+        delete $displayLayers;
+        print "delete displayLayers";
+    
+        file -rename ($dir+"temp"); 
+        file -save -type "mayaBinary";
+        
+        
+        for($i=0;$i<`size($fNs)`; $i++) { 
+            for($obj in $fNs){
+                if(!`gmatch $obj $fNs[$i]`){
+                    if(`objExists $obj`) delete $obj;
+                    }
+                }
+            $obj=$fNs[$i];
+            rename "temp_rig" $obj;
+            $local=("Z"+$dir2+$obj+"/");        
+            exportRigCombo($local,$obj);
+    
+            $cloud=("X"+$dir2+$obj+"/");        
+            exportRigCombo($cloud,$obj);
+            //file -force -options "v=0;" -typ "FBX export" -pr -es ($cloud+"/FBX/"+$fNs[$i]);   
+            hyperShadePanelMenuCommand("", "deleteUnusedNodes");
+            file -f -new;    
+            file -open ($dir+"temp.mb");
+            }
+        file -f -new;    
+        file -open $sn;        
+           
+        print "working successful!!";
+        }else{
+        print "select geo";
+        }
+    }
+
+global proc exportRigCombo(string $dir,string $fN){
+    file -force -options "v=0;" -type "mayaBinary" -pr -ea ($dir+$fN+"_rig.mb");
+    select -r "DeformationSystem" "Geometry";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN); 
+    playblast  -fr 1 -format image -cf ($dir+$fN+"_rig.jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+    
+    }
+	
+global proc exportRiggingFBX(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    string $dirF=($dir+"FBX");
+    
+    string $fileN = `file -q -sn -shn`;
+    $fileN=substring($fileN, 0, size($fileN) - 7);    
+    
+    $work=`file -q -ex $dirF`;
+    if($work==1){
+        select -r "DeformationSystem" "Geometry";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dirF+"/"+$fileN);
+    }else{
+        print ("找不到:"+$dirF);
+    }
+    }
+
+global proc exportAniFBXTest(){
+    string $sn = `file -q -sn`;
+    string $fileN = `file -q -sn -shn`;
+    string $dir = `match "^.*/" $sn`;
+    
+    $en=substring($sn, 0, size($sn) - 3);
+    $fileN=substring($fileN, 0, size($fileN) - 3);
+    $exportN=($en+"_export.mb");
+    
+    refresh -suspend 1;  
+    
+    file -rename $exportN; 
+    file -save -type "mayaBinary";
+    
+    ImportRefAndDeleteNameSpace();
+    
+    //需要sets 要輸出的骨架
+    select -r "*DeformationSystem" ;
+    $bakeSets=`ls -sl`;
+    float $minTime = `playbackOptions -q -minTime`;
+    float $maxTime = `playbackOptions -q -maxTime`;
+    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+    
+    
+    
+    //抽象化語法
+    //setAttr "WeaponR.blendParent1" 0;
+
+    setAttr "DeformationSystem|Cloak.translateX" 0;
+    setAttr "DeformationSystem|Cloak.translateY" 0;
+    setAttr "DeformationSystem|Cloak.translateZ" 0;
+    setAttr "DeformationSystem|Cloak.rotateX" 0;
+    setAttr "DeformationSystem|Cloak.rotateY" 0;
+    setAttr "DeformationSystem|Cloak.rotateZ" 0;
+	setAttr "DeformationSystem|Cloak.scaleZ" 1;
+	setAttr "DeformationSystem|Cloak.scaleX" 1;
+	setAttr "DeformationSystem|Cloak.scaleY" 1;
+    setAttr "DoubleEdgedSword.translateX" 0;
+    setAttr "DoubleEdgedSword.translateY" 0;
+    setAttr "DoubleEdgedSword.translateZ" 0;
+    setAttr "DoubleEdgedSword.rotateX" 0;
+    setAttr "DoubleEdgedSword.rotateY" 0;
+    setAttr "DoubleEdgedSword.rotateZ" 0;	
+	setAttr "DoubleEdgedSword.scaleZ" 1;
+	setAttr "DoubleEdgedSword.scaleX" 1;
+	setAttr "DoubleEdgedSword.scaleY" 1;
+
+
+ cutKey "DoubleEdgedSword" "|SK_Player_Armor01_Cloak|DeformationSystem|Cloak";
+    
+    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`;
+    //print $buffer
+    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+"_"+$buffer[4]+".fbx");
+    
+    select -r "SK_Player_Armor_001|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxChara);
+    select -r "|SK_Player_Armor01_Cloak|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxCloak);
+    select -r "|SK_Player_Weapon_GreatSword_001|DeformationSystem";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxWeapon);
+    
+    file -force -save -options "v=0";
+    file -f -new;
+    file -open $sn;
+    refresh -suspend 0; 
+    print "working successful!!";
+    }
+    
+    	

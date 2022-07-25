@@ -1,0 +1,882 @@
+global proc smoothConnect() {
+string $smoothCtrls[]={
+    "smooth", "*:smooth", "*:*:smooth", "*:*:*:smooth", 
+    "smooth_maxOne", "*:smooth_maxOne", "*:*:smooth_maxOne", "*:*:*:smooth_maxOne",
+    "smooth_custom", "*:smooth_custom", "*:*:smooth_custom", "*:*:*:smooth_custom",
+    "smooth_customB", "*:smooth_customB", "*:*:smooth_customB", "*:*:*:smooth_customB"
+};
+select -cl ;
+for($smoothCtrl in $smoothCtrls) if (`objExists $smoothCtrl`) select -add $smoothCtrl;
+string $sels[]=`ls -sl`;
+if (`size $sels `==1){
+  string $searches[]=`ls -type polySmoothFace`;
+  for ($search in $searches) connectAttr -f ($sels[0]+".model")  ($search+".divisions");
+}else{
+print " !!!!!!!!!!!!!!!   smooth计秖ぃ单1,叫浪琩" ;
+}
+}
+global proc scaleCheckToCtrl() {
+if( `objExists  "scaleCheck_set"` )delete  "scaleCheck_set";
+sets -empty -name "scaleCheck_set" ;
+string $sets[]={"TSM2Controls","faceControls"} ;
+select -cl;
+for($set in $sets)if(`objExists $set`)select -add $set;
+string $sels[]=`ls -sl`;
+for($sel in $sels){
+vector $scaleValue = `getAttr ($sel+".scale")`;
+     if(  ($scaleValue.x)<0.00001 && ($scaleValue.x)>-0.00001 )sets -add  "scaleCheck_set"  $sel ;
+else if(  ($scaleValue.y)<0.00001 && ($scaleValue.y)>-0.00001 )sets -add  "scaleCheck_set"  $sel ;
+else if(  ($scaleValue.z)<0.00001 && ($scaleValue.z)>-0.00001 )sets -add  "scaleCheck_set"  $sel ;
+}
+select -r "scaleCheck_set" ;
+string $sels[]=`ls -sl`;
+if( `size $sels`>0 )print "!!!!叫浪琩!!!!-->Τ北竟scale单0";
+else {
+    delete  "scaleCheck_set";
+    print "⊿Τ北竟scale单0";
+}
+}
+global proc checkAndFixMaterial (string $imp_or_RF) {
+source "xRig_procedure";
+string $sets[]={
+    "checkMaterials_sets",
+    "checkMaterials_set",
+    "checkRFmaterials_set",
+    "assignNone_set",
+    "assignedByLambert1_set_autoFixBy_mTemp",
+    "assignToFace_set",	
+    "assignToFace_set_autoFix"
+    };
+for($set in $sets)if(`objExists $set`)delete $set ;
+if(`objExists  "assignToFace_set_*" `)delete  "assignToFace_set_*" ;
+gCreateSets($sets);
+select -r -ne $sets;
+select -add -ne $sets[0];
+gSetAdd();
+hyperShadePanelMenuCommand("hyperShadePanel1", "selectShadingGroupsAndMaterials");
+select -d -ne `ls -type "shadingEngine"` ;
+select -d particleCloud1;
+if(`objExists  "mTemp"`)select -d mTemp;
+string $sels[] = `ls -sl`;
+if(`gmatch $imp_or_RF "imp_n_RF"` ){
+    for($sel in $sels){
+      if(!`referenceQuery -inr $sel`) sets -include "checkMaterials_set" $sel ;
+      else  sets -include "checkRFmaterials_set" $sel ;
+    }     
+}else if(`gmatch $imp_or_RF "imp"` ){
+    for($sel in $sels)  if(!`referenceQuery -inr $sel`) sets -include "checkMaterials_set" $sel ;  
+}else if(`gmatch $imp_or_RF "RF"` ){
+    for($sel in $sels)  if(`referenceQuery -inr $sel`)  sets -include "checkRFmaterials_set" $sel ;          
+}
+if(!`objExists "mTemp"`){
+shadingNode -asShader "surfaceShader" -name "mTemp";
+setAttr "mTemp.outColor" -type double3 1 0 0 ;
+}
+if(`objExists "saveMaterialTemp"`)delete "saveMaterialTemp";
+if(!`objExists "saveMaterialTemp"`){
+    createNode "transform" -name "saveMaterialTemp" ;
+    hide "saveMaterialTemp";
+} 
+if(!`objExists "saveMaterialTemp_mTemp"`){
+    polyPlane -w 1 -h 1 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1  -name "saveMaterialTemp_mTemp";
+    parent "saveMaterialTemp_mTemp" "saveMaterialTemp";
+}
+select -r  "saveMaterialTemp_mTemp";
+hyperShade -assign "mTemp";
+select -r "checkMaterials_set" "checkRFmaterials_set" ;
+string $sels[] = `ls -sl`;
+select -r  "saveMaterialTemp_mTemp";
+for($sel in $sels)    hyperShade -assign $sel;
+hyperShade -assign "mTemp";
+for($sel in $sels){
+hyperShade -objects $sel ;
+global string $gNamespaces[] ;
+global string $gObjs[] ;
+gNS_n_Objs();
+string $selObjs[]= gCombineArrayComps( $gObjs ,$gNamespaces); 
+if(!`size $selObjs` && !`gmatch "lambert1" $sel` || `gmatch $selObjs[0] "saveMaterialTemp_*" ` ){
+    sets -include  "assignNone_set" $sel ;
+    if(!`objExists ("saveMaterialTemp_"+$sel)`){
+    polyPlane -w 1 -h 1 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1  -name ("saveMaterialTemp_"+$sel);
+    parent ("saveMaterialTemp_"+$sel) "saveMaterialTemp";
+    select -r ("saveMaterialTemp_"+$sel);
+    hyperShade -assign $sel;
+    }
+}else{
+ global string $gSelObjs[];
+ clear $gSelObjs;
+ for ($i=0; $i<`size($selObjs)`;$i++){ 
+  if(!`gmatch $selObjs[$i] "*.f*"`) {
+    select -r $selObjs[$i];
+    hyperShade -smn $selObjs[$i];
+    string $objMs[]=`ls -sl`;
+    if(`gmatch "lambert1" $objMs[0]` && !`referenceQuery -inr $selObjs[$i]`){
+       select -r $selObjs[$i];   
+       hyperShade -assign "mTemp";  
+       sets -add "assignedByLambert1_set_autoFixBy_mTemp" $selObjs[$i] ;  
+    }
+ } else{
+   string $caches[];
+   tokenize $selObjs[$i] "." $caches;
+   $gSelObjs[$i]=$caches[0]; 
+ } 
+ }   
+   string $selObjs[]= stringArrayRemoveDuplicates($gSelObjs);
+   string $selObjs[] = stringArrayRemove( {""} , $selObjs);
+   for ($selObj in $selObjs){
+   select -r $selObj ;
+   ConvertSelectionToFaces;
+   hyperShade -smn "" ;
+   string $selMs[]=`ls -sl`;
+    if(`size $selMs`>1 || `referenceQuery -inr $selMs[0]`){
+      select -add $selObj;
+      string $objName= `substitute  ":" $selObj "_" `;
+      string $objName= `substitute  ":" $objName "_" `;
+      string $objName= `substitute  ":" $objName "_" `;
+      string $objName= `substitute  ":" $objName "_" `;
+      string $setName= ("assignToFace_set_"+$objName);
+      if(!`objExists $setName` )sets -name $setName;
+      sets -add "assignToFace_set" $setName;
+    }else{
+        if(`gmatch "lambert1" $selMs[0]` ){
+            sets -add "assignedByLambert1_set_autoFixBy_mTemp" $selObj;
+            if(!`referenceQuery -inr $selObj`){
+                select -r $selObj; 
+                hyperShade -assign "mTemp";
+            }
+        }else{            
+          sets -add "assignToFace_set_autoFix" $selObj;
+          select -r $selObj;
+          hyperShade -assign $selMs[0];          
+        }        
+   }
+   }    
+}
+}
+if(`objExists "saveMaterialTemp_mTemp"`)delete "saveMaterialTemp_mTemp";
+hyperShade -objects mTemp;
+string $mObjs[]=`ls -sl` ;
+if(`size $mObjs`<1)delete "mTemp" "mTempSG" ;
+else sets -add "assignedByLambert1_set_autoFixBy_mTemp" $mObjs ;
+select -r "assignedByLambert1_set_autoFixBy_mTemp" "assignNone_set" "assignToFace_set"  ;
+string $sels[]= `ls -sl`;
+if(`size $sels`==0){
+  delete $sets "saveMaterialTemp" ;
+  print "there is no material wrong of this file !!!!" ;      
+}else{
+  select -r "checkMaterials_set" ;
+  hyperShade -objects "";
+  print "done!!" ;
+}
+}
+global proc clearFile() {
+hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes");
+string $unknownNodes[]= `ls -typ unknown`;
+if(`size $unknownNodes`)delete  $unknownNodes;
+string $searches[]=`ls "*UNKNOWN_REF_NODE*"`;
+if(`size $searches`)delete "*UNKNOWN_REF_NODE*";
+string $xt_dos[] = `listConnections -s 1 -p 1 defaultObjectSet.message`;
+ for ( $invalue in $xt_dos ){
+ 	disconnectAttr defaultObjectSet.message $invalue;		
+ }
+ string $xt_dls[] = `listConnections -s 1 -p 1 defaultLightSet.message`;
+ for ( $invalue in $xt_dls ){
+ 	disconnectAttr defaultLightSet.message $invalue;		
+};
+string $lightObjs[]=
+{
+"defaultLightSet",
+"initialParticleSE",
+"initialShadingGroup"
+};
+for($lightObj in $lightObjs){
+string $lightDestinations[]=`connectionInfo -destinationFromSource ($lightObj+".message")`;
+for($lightDestination in $lightDestinations) disconnectAttr ($lightObj+".message") $lightDestination;
+}
+}
+global proc createMove () {
+string $sels[]=`ls -sl`;
+string $search[]=`ls "move_Grp"`;
+if(`size $search `==0)createNode "transform" -name "move_Grp";
+ file -import "Z:/principle/Setup/ctrl/settingCtrl_Cube.ma";
+for ($sel in $sels){
+duplicate -rr settingCtrl_Cube;
+if(`gmatch $sel "*_offset"`==1){
+string $newName =startString($sel,`sizeBytes $sel`-7);
+rename "settingCtrl_Cube1"  ($newName+"_move");
+select -r ($newName+"_move") ;
+}else{
+rename "settingCtrl_Cube1"  ($sel+"_move");
+select -r ($sel+"_move") ;
+}
+string $nowSels_move[]=`ls -sl`;
+createNode "transform" -name ($nowSels_move[0]+"_offset");
+parent $nowSels_move[0] ($nowSels_move[0]+"_offset") ;
+parentConstraint -weight 1 $sel ($nowSels_move[0]+"_offset") ;
+scaleConstraint -offset 1 1 1 -weight 1 $sel ($nowSels_move[0]+"_offset") ;
+select -r ($nowSels_move[0]+"_offset") ;
+delete -constraints; 
+parentConstraint -mo -weight 1 $nowSels_move[0] $sel;
+scaleConstraint -offset 1 1 1 -weight 1 $nowSels_move[0] $sel;
+parent ($nowSels_move[0]+"_offset") "move_Grp" ;
+ select -r $sel;
+ pickWalk -d down;
+ string $nowSels[]=`ls -sl`;
+ if(`gmatch $nowSels[0]  "*:*Shape*"`)HideSelectedObjects;
+};
+delete  settingCtrl_Cube ;
+select -cl;
+for($sel in $sels){
+if(`gmatch $sel "*_offset"`==1){
+select -add (startString($sel,`sizeBytes $sel`-7)+"_move");
+}else{
+select -add ($sel+"_move") ;
+}
+}
+}
+global proc createCtrl () {
+string $sels[]=`ls -sl`;
+string $search[]=`ls "ctrl_Grp"`;
+if (`size $search `==0){
+select -cl ;
+group -em; xform -os -piv 0 0 0;
+string $nowSels[]=`ls -sl`;
+rename $nowSels[0] "ctrl_Grp" ;
+}
+file -import "Z:/principle/Setup/ctrl/ctrlSourceImp.ma"; 
+for ($sel in $sels){
+duplicate -rr ctrlSource;
+if(`gmatch $sel "*_offset"`==1){
+string $newName =startString($sel,`sizeBytes $sel`-7);
+rename "ctrlSource1"  ($newName+"Ctrl");
+select -r ($newName+"Ctrl") ;
+}else{
+rename "ctrlSource1"  ($sel+"Ctrl");
+select -r ($sel+"Ctrl") ;
+}
+string $nowSelsCtrl[]=`ls -sl`;
+group; xform -os -piv 0 0 0;
+string $nowSels[]=`ls -sl`;
+rename $nowSels[0] ($nowSelsCtrl[0]+"_offset");
+string $nowSelsOffset[]=`ls -sl`;
+select -r $sel $nowSelsOffset[0] ;
+parentConstraint -weight 1;
+delete ($nowSelsOffset[0]+"_parentConstraint1") ;
+select -r $nowSelsCtrl[0] $sel ;
+parentConstraint -mo -weight 1;
+scaleConstraint -mo -weight 1;
+select -r $nowSelsOffset[0] "ctrl_Grp";
+parent;
+};
+delete  ctrlSource ;
+select -cl;
+for($sel in $sels){
+if(`gmatch $sel "*_offset"`==1){
+select -add (startString($sel,`sizeBytes $sel`-7)+"Ctrl");
+}else{
+select -add ($sel+"Ctrl") ;
+}
+}
+}
+global proc createCtrlB () {
+string $sels[]=`ls -sl`;
+if(`size $sels`>0){
+string $search[]=`ls "ctrl_Grp"`;
+if (`size $search `==0) createNode "transform" -n "ctrl_Grp";
+string $search[]=`ls "saveRig_Grp"`;
+if (`size $search `==0) createNode "transform" -n "saveRig_Grp";
+global string $gNewName ;
+for ($sel in $sels){
+file -import "Z:/principle/Setup/ctrl/ctrlSourceImpB.ma"; 
+parent nameWhatCtrl_offset ctrl_Grp;
+if(`gmatch $sel "*_offset"` ){
+$gNewName =startString($sel,`sizeBytes $sel`-`sizeBytes "_offset"`);
+}else{
+$gNewName = $sel ;
+}
+string $prefix = startString($gNewName, 1);
+string $root = endString($gNewName,`sizeBytes $gNewName`-1);
+string $reName= (`toupper $prefix` + $root);
+searchReplaceNames "NameWhat" $reName "all";
+searchReplaceNames "nameWhat" $reName "all";
+searchReplaceNames ($reName+"Ctrl") ($gNewName+"Ctrl") "all";
+deformer -e -g $gNewName ("squash"+$reName);
+deformer -e -g $gNewName ("bend"+$reName);
+float $wsT[]=`xform -q -ws -t $gNewName`;
+xform -ws -t $wsT[0] $wsT[1] $wsT[2] ($gNewName+"Ctrl_offset");
+float $wsRo[]=`xform -q -ws -ro $gNewName`;
+xform -ws -ro $wsRo[0] $wsRo[1] $wsRo[2] ($gNewName+"Ctrl_offset");
+float $wsS[]=`xform -q -ws -s $gNewName`;
+xform -ws -s $wsS[0] $wsS[1] $wsS[2] ($gNewName+"Ctrl_offset");
+parentConstraint -weight 1 ($gNewName+"Ctrl") $sel;
+scaleConstraint -weight 1 ($gNewName+"Ctrl") $sel;
+}
+parent  "*saveRig*" "saveRig_Grp" ;
+delete saveRig_Grp ;
+}
+}
+global proc aRFProxy_lowest () {
+string $RN[]=`ls -sl`;
+for($eachRN in $RN)
+{
+    if(!`referenceQuery -inr $eachRN`)
+        continue;
+    string $RNname = `referenceQuery -rfn $eachRN`;
+    print ($RNname +"\n" );
+if (`gmatch $RNname "*RN" ` ==1 )
+{
+string $RNpath = `referenceQuery -filename $RNname` ;
+	if(`gmatch $RNpath "*}" ` ==1 )
+	{
+	string $cache[];
+	tokenize $RNpath "{" $cache;
+	print $cache[1];
+	$strSize=sizeBytes($cache[1]);
+	$reduceSize=4+$strSize;
+	string $RNlowestpath = startString($RNpath,`sizeBytes $RNpath`-$reduceSize)+"_lowest.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNlowestpath +"\n" ) ;
+	proxyAdd $RNname  $RNlowestpath  "lowest";
+	}else{
+	string $RNlowestpath = startString($RNpath,`sizeBytes $RNpath`-3)+"_lowest.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNlowestpath +"\n" ) ;
+	proxyAdd $RNname  $RNlowestpath  "lowest";
+	}
+string $RNnameNew =startString($RNname,`sizeBytes $RNname`-2)+"lowestRN" ;
+proxySwitch $RNnameNew ;
+}
+else
+{
+string $RNpath = `referenceQuery -filename $RNname` ;
+	if(`gmatch $RNpath "*}" ` ==1 )
+	{
+	string $cache[];
+	tokenize $RNpath "{" $cache;
+	print $cache[1];
+	$strSize=sizeBytes($cache[1]);
+	$reduceSize=4+$strSize;
+	string $RNlowestpath = startString($RNpath,`sizeBytes $RNpath`-$reduceSize)+"_lowest.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNlowestpath +"\n" ) ;
+	proxyAdd $RNname  $RNlowestpath  "lowest";
+	}else{
+	string $RNlowestpath = startString($RNpath,`sizeBytes $RNpath`-3)+"_lowest.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNlowestpath +"\n" ) ;
+	proxyAdd $RNname  $RNlowestpath  "lowest";
+	}
+string $RNnameNew = ($RNname + "lowestRN");
+proxySwitch $RNnameNew ;
+}
+}
+}
+global proc aRFProxy_none () {
+string $RN[]=`ls -sl`;
+for($eachRN in $RN)
+{
+    if(!`referenceQuery -inr $eachRN`)
+        continue;
+    string $RNname = `referenceQuery -rfn $eachRN`;
+    print ($RNname +"\n" );
+if (`gmatch $RNname "*RN*lowestRN" ` ==1 )
+{
+string $RNpath = `referenceQuery -filename $RNname` ;
+	if(`gmatch $RNpath "*}" ` ==1 )
+	{
+	string $cache[];
+	tokenize $RNpath "{" $cache;
+	print $cache[1];
+	$strSize=sizeBytes($cache[1]);
+	$reduceSize=11+$strSize;
+	string $RNnonepath = startString($RNpath,`sizeBytes $RNpath`-$reduceSize)+"_none.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNnonepath +"\n" ) ;
+	proxyAdd $RNname  $RNnonepath  "none";
+	}else{
+	string $RNnonepath = startString($RNpath,`sizeBytes $RNpath`-10)+"_none.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNnonepath +"\n" ) ;
+	proxyAdd $RNname  $RNnonepath  "none";
+	}
+string $RNnameNew =startString($RNname,`sizeBytes $RNname`-8)+"noneRN" ;
+proxySwitch $RNnameNew ;
+}
+else
+{
+string $RNpath = `referenceQuery -filename $RNname` ;
+	if(`gmatch $RNpath "*}" ` ==1 )
+	{
+	string $cache[];
+	tokenize $RNpath "{" $cache;
+	print $cache[1];
+	$strSize=sizeBytes($cache[1]);
+	$reduceSize=11+$strSize;
+	string $RNnonepath = startString($RNpath,`sizeBytes $RNpath`-$reduceSize)+"_none.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNnonepath +"\n" ) ;
+	proxyAdd $RNname  $RNnonepath  "none";
+	}else{
+	string $RNnonepath = startString($RNpath,`sizeBytes $RNpath`-10)+"_none.ma" ;
+	print ($RNpath +"\n" ) ;
+	print ($RNnonepath +"\n" ) ;
+	proxyAdd $RNname  $RNnonepath  "none";
+	}
+string $RNnameNew = (startString($RNname,`sizeBytes $RNname`-8) + "noneRN");
+proxySwitch $RNnameNew ;
+}
+}
+}
+global proc hiLoSwitch01a1_rfLo(string $selMove){
+select -r $selMove;
+pickWalk -d down;
+string $nowSels[]=`ls -sl`;
+if(`gmatch $nowSels[0]  "*Shape*"`||`gmatch $nowSels[0]  "*:*Shape*"`){
+setAttr ($nowSels[0]+".overrideEnabled") 1 ;
+setAttr ($nowSels[0]+".overrideColor")  20 ;   
+}    
+global string $gNamespaceHi ;
+global string $gNamespaceLo ;
+global string $gRFpathHi ;
+global string $gRFpathLo ;
+global string $gUpperGrp ;
+sets -include hiLoSwitchMove_set $selMove;
+string $caches[];
+tokenize $selMove ":" $caches;
+if(`gmatch $caches[0] "*_lowest*" `){
+$gNamespaceLo = $caches[0];
+string $cacheSubs[];
+tokenize $caches[0] "_" $cacheSubs;
+int $endNum=`size $cacheSubs`-1;
+string $end= endString($cacheSubs[$endNum],`sizeBytes $cacheSubs[$endNum]`-6) ;
+$gNamespaceHi = "";
+for($i=0;$i<`size $cacheSubs`-1;$i++) $gNamespaceHi = ($gNamespaceHi +"_"+ $cacheSubs[$i]); 
+$gNamespaceHi = endString($gNamespaceHi,`sizeBytes $gNamespaceHi`-1)+"_"+$end;
+string $RFpath = `referenceQuery -f ($gNamespaceLo+":annotation_rig")` ;
+tokenize $RFpath "{" $caches;
+$gRFpathLo = ( startString($caches[0],`sizeBytes $caches[0]`-3) + ".ma" );
+$gRFpathHi = ( startString($caches[0],`sizeBytes $caches[0]`-10) + ".ma" );
+if(`namespace -exists $gNamespaceHi`) namespace -removeNamespace $gNamespaceHi ;
+file -namespace $gNamespaceHi -r $gRFpathHi; 
+select -r ($gNamespaceHi+":move") ;
+pickWalk -d up;pickWalk -d up;pickWalk -d up;pickWalk -d up;
+string $nowSels[]=`ls -sl`;
+tokenize $nowSels[0] ":" $caches;
+$gUpperGrp = $caches[1]; 
+parentConstraint -weight 1 $selMove ($gNamespaceHi+":move") ;
+scaleConstraint -offset 1 1 1 -weight 1 $selMove ($gNamespaceHi+":move") ;
+select -r ($gNamespaceHi+":move");
+pickWalk -d down;
+string $nowSels[]=`ls -sl`;
+if(`gmatch $nowSels[0] "*:*Shape*"`)HideSelectedObjects; 
+}else{ 
+$gNamespaceHi = $caches[0];
+$gNamespaceLo = ($caches[0]+"lowest");
+string $RFpath = `referenceQuery -f ($gNamespaceHi+":annotation_rig")` ;
+tokenize $RFpath "{" $caches;
+$gRFpathHi = ( startString($caches[0],`sizeBytes $caches[0]`-3) + ".ma" );
+$gRFpathLo = ( startString($caches[0],`sizeBytes $caches[0]`-3) + "_lowest.ma" );
+if(`namespace -exists $gNamespaceLo`) namespace -removeNamespace $gNamespaceLo ;
+file -namespace $gNamespaceLo -r $gRFpathLo; 
+select -r ($gNamespaceLo+":move") ;
+pickWalk -d up;pickWalk -d up;pickWalk -d up;pickWalk -d up;
+string $nowSels[]=`ls -sl`;
+tokenize $nowSels[0] ":" $caches;
+$gUpperGrp = $caches[1]; 
+parentConstraint -weight 1 $selMove ($gNamespaceLo+":move") ;
+scaleConstraint -offset 1 1 1 -weight 1 $selMove ($gNamespaceLo+":move") ;
+select -r ($gNamespaceLo+":move");
+pickWalk -d down;
+string $nowSels[]=`ls -sl`;
+if(`gmatch $nowSels[0] "*:*Shape*"`)HideSelectedObjects;
+}
+string $RFnodeHi = `referenceQuery -rfn ($gNamespaceHi+":annotation_rig")` ;
+string $RFnodeLo = `referenceQuery -rfn ($gNamespaceLo+":annotation_rig")` ;
+if(!`attributeQuery -node $selMove -ex "RFnodeHi"`) addAttr -ln "RFnodeHi" -nn "RFnodeHi" -dt "string" $selMove ;
+setAttr -type "string" ($selMove+".RFnodeHi") $RFnodeHi ;
+setAttr -l true ($selMove+".RFnodeHi");
+if(!`attributeQuery -node $selMove -ex "RFnodeLo"`) addAttr -ln "RFnodeLo" -nn "RFnodeLo" -dt "string" $selMove ;
+setAttr -type "string" ($selMove+".RFnodeLo") $RFnodeLo ;
+setAttr -l true ($selMove+".RFnodeLo");
+if(!`attributeQuery -node $selMove -ex "RFpathHi"`) addAttr -ln "RFpathHi" -nn "RFpathHi" -dt "string" $selMove ;
+setAttr -type "string" ($selMove+".RFpathHi") $gRFpathHi ;
+setAttr -l true ($selMove+".RFpathHi");
+if(!`attributeQuery -node $selMove -ex "RFpathLo"`) addAttr -ln "RFpathLo" -nn "RFpathLo" -dt "string" $selMove ;
+setAttr -type "string" ($selMove+".RFpathLo") $gRFpathLo ;
+setAttr -l true ($selMove+".RFpathLo"); 
+if(!`attributeQuery -node $selMove -ex "upperGrp"`) addAttr -ln "upperGrp" -nn "upperGrp" -dt "string" $selMove ;
+setAttr -type "string" ($selMove+".upperGrp") $gUpperGrp ;
+setAttr -l true ($selMove+".upperGrp");
+select -r ($gNamespaceHi+":"+$gUpperGrp) ;
+pickWalk -d up;
+string $nowUpperGrps[]=`ls -sl`;
+if(`gmatch $nowUpperGrps[0] "RFfiles" ` || `gmatch $nowUpperGrps[0] ($gNamespaceHi+":"+$gUpperGrp) `  ) parent ($gNamespaceHi+":"+$gUpperGrp) orig_grp ;
+select -r ($gNamespaceLo+":"+$gUpperGrp) ;
+pickWalk -d up;
+string $nowUpperGrps[]=`ls -sl`;
+if(`gmatch $nowUpperGrps[0] "RFfiles" ` || `gmatch $nowUpperGrps[0] ($gNamespaceLo+":"+$gUpperGrp) `  ) parent ($gNamespaceLo+":"+$gUpperGrp) lowest_grp ;
+string $searchs[]=`ls ($gNamespaceHi+":"+$gUpperGrp+"_sets")`;
+if(`size $searchs`>0) sets -include RF_sets ($gNamespaceHi+":"+$gUpperGrp+"_sets") ;
+string $searchs[]=`ls ($gNamespaceLo+":"+$gUpperGrp+"_sets")`;
+if(`size $searchs`>0) sets -include RF_sets ($gNamespaceLo+":"+$gUpperGrp+"_sets") ;
+print "hiLoSwitch01a1_createRig-->done!!";
+}
+global proc hiLoSwitch01a2_connectHiToLo(string $selMove){
+string $selMove;
+string $caches[];
+tokenize $selMove ":" $caches;
+global string $gNamespaceLo ;
+global string $gNamespaceHi ;
+if(`gmatch $caches[0] "*_lowest*" `){
+$gNamespaceLo = $caches[0];
+string $cacheSubs[];
+tokenize $caches[0] "_" $cacheSubs;
+int $endNum=`size $cacheSubs`-1;
+string $end= endString($cacheSubs[$endNum],`sizeBytes $cacheSubs[$endNum]`-6) ;
+$gNamespaceHi = "";
+for($i=0;$i<`size $cacheSubs`-1;$i++) $gNamespaceHi = ($gNamespaceHi +"_"+ $cacheSubs[$i]); 
+$gNamespaceHi = endString($gNamespaceHi,`sizeBytes $gNamespaceHi`-1)+"_"+$end;
+}else{ 
+$gNamespaceHi = $caches[0];
+$gNamespaceLo = ($caches[0]+"lowest");
+}
+string $searches[]=`ls ($gNamespaceHi+":hiLoConnection_set")`;
+if(`size $searches`>0){
+select -r $searches[0]; 
+sets -include hiLoConnect_sets ($gNamespaceHi+":hiLoConnection_set") ($gNamespaceLo+":hiLoConnection_set") ;
+}
+else {
+select -cl;
+string $commonConnectObjs_Hi2Lo[]={"smooth","smooth_maxOne","smooth_custom","smooth_customB","smooth_sculpt","display"};
+for($commonConnectObj_Hi2Lo in $commonConnectObjs_Hi2Lo){
+string $searches[]=`ls ($gNamespaceHi+":"+$commonConnectObj_Hi2Lo)`;
+if(`size $searches`>0)select -add $searches;
+}
+string $searches[]=`ls ($gNamespaceHi+":hiLoConnection_setAuto_Hi2Lo")`;
+if(`size $searches`==0)sets -name ($gNamespaceHi+":hiLoConnection_setAuto_Hi2Lo") ;
+sets -include hiLoConnect_sets ($gNamespaceHi+":hiLoConnection_setAuto_Hi2Lo") ;
+}
+string $connectObjs_Hi2Lo[]=`ls -sl`;
+for($connectObj_Hi2Lo in $connectObjs_Hi2Lo){
+string $caches[];
+tokenize $connectObj_Hi2Lo ":" $caches;
+string $connectObj_Hi2Lo=$caches[1];
+string $attrs[]=`listAttr -k ($gNamespaceHi+":"+$connectObj_Hi2Lo) `;
+for($attr in $attrs) {
+if(`getAttr -settable ($gNamespaceLo+":"+$connectObj_Hi2Lo+"."+$attr)`)connectAttr -f ($gNamespaceHi+":"+$connectObj_Hi2Lo+"."+$attr) ($gNamespaceLo+":"+$connectObj_Hi2Lo+"."+$attr) ;
+} 
+}
+select -cl;
+string $upperGrp=`getAttr ($selMove+".upperGrp")`;
+string $commonConnectObjs_Lo2Hi[]={ $upperGrp };
+for($commonConnectObj_Lo2Hi in $commonConnectObjs_Lo2Hi){
+string $searches[]=`ls ($gNamespaceHi+":"+$commonConnectObj_Lo2Hi)`;
+if(`size $searches`>0)select -add $searches;
+}
+string $searches[]=`ls ($gNamespaceHi+":hiLoConnection_setAuto_Lo2Hi")`;
+if(`size $searches`==0)sets -name ($gNamespaceHi+":hiLoConnection_setAuto_Lo2Hi") ;
+sets -include hiLoConnect_sets ($gNamespaceHi+":hiLoConnection_setAuto_Lo2Hi") ;
+string $connectObjs_Lo2Hi[]=`ls -sl`;
+for($connectObj_Lo2Hi in $connectObjs_Lo2Hi){
+string $caches[];
+tokenize $connectObj_Lo2Hi ":" $caches;
+string $connectObj_Lo2Hi=$caches[1];
+string $attrs[]=`listAttr -k ($gNamespaceHi+":"+$connectObj_Lo2Hi) `;
+for($attr in $attrs) {
+if(`getAttr -settable ($gNamespaceHi+":"+$connectObj_Lo2Hi+"."+$attr)`)connectAttr -f  ($gNamespaceLo+":"+$connectObj_Lo2Hi+"."+$attr) ($gNamespaceHi+":"+$connectObj_Lo2Hi+"."+$attr) ;
+} 
+}
+print "hiLoSwitch01a2_connectHiToLo-->done!!";
+}
+global proc hiLoSwitchRig01a_rfLo_n_connectHiToLo () {
+string $sels[]=`ls -sl`;
+string $createTransforms[]={
+"model",
+"RFfiles",
+"RFtrash",
+"common_grp",
+"orig_grp",
+"lowest_grp"
+};
+for($createTransform in $createTransforms){
+string $search[]=`ls $createTransform`;
+if(`size $search `==0)createNode "transform" -name $createTransform; 
+}
+hide "RFtrash" ;
+string $fathers[]=`listRelatives -p "RFfiles"`;
+if(!`gmatch "model" $fathers[0]`)parent "RFfiles" "model";
+string $children[]={ "RFtrash","common_grp" ,"orig_grp" , "lowest_grp" };
+for($child in $children){
+string $fathers[]=`listRelatives -p $child`;
+if(!`gmatch "RFfiles" $fathers[0]`)parent $child "RFfiles"; 
+}
+string $createSets[]={
+"RF_sets",
+"hiLoSwitchMove_set",
+"hiLoConnect_sets",
+"materialMergeExclude_set"
+};
+for($createSet in $createSets){
+string $search[]=`ls $createSet`;
+if(`size $search `==0)sets -name $createSet -empty ;
+}
+if(`size $sels`>0){
+for($sel in $sels){
+if(!`attributeQuery -node $sel -ex upperGrp`){
+hiLoSwitch01a1_rfLo($sel);
+hiLoSwitch01a2_connectHiToLo($sel);
+print "hiLoSwitch01a1_rfLo + hiLoSwitch01a2_connectHiToLo -->done!!";
+}else{
+hiLoSwitch01a2_connectHiToLo($sel);
+} 
+}
+string $searchs[]=`ls "*UNKNOWN_REF_NODE*"`;
+if(`size $searchs`)delete "*UNKNOWN_REF_NODE*";
+select -r $sels;
+}else{
+select -r "hiLoSwitchMove_set" ;
+string $sels[]=`ls -sl`;
+if(`size $sels`>0) for($sel in $sels)hiLoSwitch01a2_connectHiToLo($sel);
+select -r hiLoSwitchMove_set ;
+} 
+}
+global proc hiLoSwitch01b_miMoveInfo(string $selA , string $selB){
+select -r $selB;
+pickWalk -d down;
+string $nowSels[]=`ls -sl`;
+if(`gmatch $nowSels[0]  "*Shape*"`||`gmatch $nowSels[0]  "*:*Shape*"`){
+setAttr ($nowSels[0]+".overrideEnabled") 1 ;
+setAttr ($nowSels[0]+".overrideColor")  3 ;   
+}    
+string $infos[]={
+"RFnodeHi",
+"RFnodeLo",
+"RFpathHi",
+"RFpathLo",
+"upperGrp"
+};
+for($info in $infos){
+if(!`attributeQuery -node $selB -ex $info`)  addAttr -ln $info -nn $info -dt "string" $selB ;
+setAttr -type "string" ($selB+"."+$info) `getAttr ($selA+"."+$info)` ;
+setAttr -l true ($selB+"."+$info);
+}
+global string $gNamespace ;
+string $caches[];
+tokenize $selB "_" $caches;
+string $prefix = startString($caches[1], 1);
+string $root = endString($caches[1],`sizeBytes $caches[1]`-1);
+$gNamespace = ( "dup"+ `toupper $prefix` + $root);
+for($j=2;$j<`size $caches`-1;$j++) $gNamespace = ($gNamespace +"_"+ $caches[$j]); 
+if(!`attributeQuery -node $selB -ex "namespace"`)  addAttr -ln "namespace" -nn "namespace" -dt "string" $selB ;
+setAttr -type "string" ($selB+".namespace" ) $gNamespace ;
+setAttr -l true ($selB+".namespace" );
+}
+global proc hiLoSwitchRig01b_miLoInfo (string $selsA[] , string $selsB[]){
+string $createSets[]={
+"hiLoSwitchMoveDup_set",
+"materialMergeExclude_set"
+};
+for($createSet in $createSets){
+string $search[]=`ls $createSet`;
+if(`size $search `==0)sets -name $createSet -empty ;
+}
+if(`size $selsA`== 1){
+    for($i=0; $i<`size($selsB)`;$i++){
+      if(`attributeQuery -node $selsB[$i] -ex namespace`)continue;
+      sets -include hiLoSwitchMoveDup_set $selsB[$i];     
+      hiLoSwitch01b_miMoveInfo($selsA[0],$selsB[$i]) ;  
+    } 
+}else if(`size $selsA`== `size $selsB`) {
+    for($i=0; $i<`size($selsB)`;$i++){
+        selChildHierarchy($selsB[$i]) ;
+        pickWalk -d down;
+        $selsSubB=`ls -sl`;
+        for($k=0; $k<`size($selsSubB)`;$k++){
+            if(`attributeQuery -node $selsSubB[$k] -ex namespace`)continue;
+            sets -include hiLoSwitchMoveDup_set $selsSubB[$k];
+            hiLoSwitch01b_miMoveInfo($selsA[$i],$selsSubB[$k]) ;
+        } 
+    }            
+}else print "the number of selections is not correct!!!! please check. " ;
+}
+global proc hiLoSwitchRig01c_delMiInfo () {
+string $infos[]={  
+"RFnodeHi",
+"RFnodeLo",
+"RFpathHi",
+"RFpathLo",
+"upperGrp",
+"namespace"
+};
+string $search[]=`ls "delMiInfoMove_setTemp"`;
+if(`size $search `==0)sets -name "delMiInfoMove_setTemp" -empty ;
+string $sels[]=`ls -sl`;
+for($sel in $sels){
+    if(`gmatch $sel "*_move"`){
+        if(!`attributeQuery -node $sel -ex "namespace"`) continue ;
+        for($info in $infos){
+            if(`attributeQuery -node $sel -ex $info`){
+               setAttr -l 0 ($sel+"."+$info); 
+               deleteAttr -at $info $sel;   
+               sets -remove hiLoSwitchMoveDup_set $sel; 
+               sets -include delMiInfoMove_setTemp $sel;           
+            }
+        }
+    }else if(`gmatch $sel "*_move_grp"`){
+        selChildHierarchy($sel) ;
+        pickWalk -d down;
+        string $selsSub[]=`ls -sl`;
+        for($selSub in $selsSub){
+            if(!`attributeQuery -node $selSub -ex "namespace"`) continue ;
+            for($info in $infos){
+                if(`attributeQuery -node $selSub -ex $info`){
+                   setAttr -l 0 ($selSub+"."+$info); 
+                   deleteAttr -at $info $selSub;   
+                   sets -remove hiLoSwitchMoveDup_set $selSub; 
+                   sets -include delMiInfoMove_setTemp $selSub;      
+                   }
+            }
+        }
+    }
+}
+select -r delMiInfoMove_setTemp ;
+delete delMiInfoMove_setTemp ;
+}
+global proc hiLoSwitch02a_switchHiAndLo () {
+string $sels[]=`ls -sl`;
+if(`size $sels`==0)select -r "hiLoSwitchMove_set" ;
+string $sels[]=`ls -sl`;
+for($sel in $sels)
+{
+ string $RFnodeLo = `getAttr ($sel+".RFnodeLo")`;
+ string $RFpathLo = `referenceQuery -f  $RFnodeLo` ;
+ string $RFnodeHi = `getAttr ($sel+".RFnodeHi")`;
+ string $RFpathHi = `referenceQuery -f  $RFnodeHi` ;
+ if( `file -q -dr $RFpathLo`)  file -lr `getAttr ($sel+".RFnodeLo")`;
+ if( `file -q -dr $RFpathHi`)  file -lr `getAttr ($sel+".RFnodeHi")`;
+}
+select -r $sels;
+}
+global proc hiLoSwitch02b_switchHi () {
+string $sels[]=`ls -sl`;
+if(`size $sels`==0)select -r "hiLoSwitchMove_set" ;
+string $sels[]=`ls -sl`;
+for($sel in $sels)
+{
+ string $RFnodeLo = `getAttr ($sel+".RFnodeLo")`;
+ string $RFpathLo = `referenceQuery -f  $RFnodeLo` ;
+ string $RFnodeHi = `getAttr ($sel+".RFnodeHi")`;
+ string $RFpathHi = `referenceQuery -f  $RFnodeHi` ;
+ if(! `file -q -dr $RFpathLo`)  file -ur `getAttr ($sel+".RFnodeLo")`;
+ if( `file -q -dr $RFpathHi`)  file -lr `getAttr ($sel+".RFnodeHi")`;
+}
+parent  "*RN*fosterParent*" RFtrash ;
+select -r $sels;
+}
+global proc createNN () {
+}
+global proc hiLoSwitchRig02c_switchLo () {
+string $sels[]=`ls -sl`;
+if(`size $sels`==0)select -r "hiLoSwitchMove_set" ;
+string $sels[]=`ls -sl`;
+for($sel in $sels)
+{
+ string $RFnodeLo = `getAttr ($sel+".RFnodeLo")`;
+ string $RFpathLo = `referenceQuery -f  $RFnodeLo` ;
+ string $RFnodeHi = `getAttr ($sel+".RFnodeHi")`;
+ string $RFpathHi = `referenceQuery -f  $RFnodeHi` ;
+ if( `file -q -dr $RFpathLo`)  file -lr `getAttr ($sel+".RFnodeLo")`;
+ if(! `file -q -dr $RFpathHi`)  file -ur `getAttr ($sel+".RFnodeHi")`;
+}
+parent  "*RN*fosterParent*" RFtrash ;
+select -r $sels;
+}
+global proc hiLoSwitch03_outputAa_RFarrange () {
+string $sels[]=`ls -sl`;
+for($sel in $sels)
+{
+ string $RFnodeHi = `getAttr ($sel+".RFnodeHi")`;
+ string $RFpathHi = `referenceQuery -f $RFnodeHi ` ;
+ string $RFnodeLo = `getAttr ($sel+".RFnodeLo")`;
+ string $RFpathLo = `referenceQuery -f $RFnodeLo ` ;
+ if( `file -q -dr $RFpathLo`)  file -lr $RFnodeLo ;
+ file -rr $RFpathHi ;
+ file -importReference $RFpathLo;
+ string $search[]=`ls ($RFnodeHi+"fosterParent*")`;
+ if(`size $search `>0) delete ($RFnodeHi+"fosterParent*") ;
+}
+}
+global proc hiLoSwitch03_outputAb_RFarrangeAndCheck () {
+string $sels[]=`ls -sl`;
+int $total = `size $sels`;
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~ hi/low switch output -- start  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+"\n");
+for ($i=0; $i<`size($sels)`;$i++)print ( ($i+1) + ":" + $sels[$i]+"\n");
+for ($i=0; $i<`size($sels)`;$i++){
+ string $RFnodeHi = `getAttr ($sels[$i]+".RFnodeHi")`;
+ if( `objExists $RFnodeHi` ) {
+   string $RFpathHi = `referenceQuery -f $RFnodeHi ` ;
+   file -rr $RFpathHi ;
+   print ( "removeHi  "+($i+1) +"/" + $total + ": " + $sels[$i] + "\n" );
+   string $search[]=`ls ($RFnodeHi+"fosterParent*")`;
+   if(`size $search `>0) delete ($RFnodeHi+"fosterParent*") ;
+ } else {
+   print ( "removeHi  "+($i+1) +"/" + $total + ": " + $sels[$i] +"--------error"+ "\n" ); 
+ }   
+}
+for ($i=0; $i<`size($sels)`;$i++){
+ string $RFnodeLo = `getAttr ($sels[$i]+".RFnodeLo")`;
+ if( `objExists $RFnodeLo` ) {
+   string $RFpathLo = `referenceQuery -f $RFnodeLo ` ;
+   if( `file -q -dr $RFpathLo`)  file -lr $RFnodeLo ;
+   file -importReference $RFpathLo;
+   print ( "importLo  "+ ($i+1) +"/" + $total + ": " + $sels[$i] + "\n" );
+ } else {
+ print ( "importLo  "+ ($i+1) +"/" + $total + ": " + $sels[$i] +"--------error"+ "\n" );
+ }
+}
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~ hi/low switch output -- end  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+"\n");
+}
+global proc hiLoSwitch03_outputB_materialArrange () {
+string $search[]=`ls "materials_set"`;
+if(`size $search `==0){
+$createSetResult = `sets -name "materials_set"`;
+}
+hyperShadePanelMenuCommand("hyperShadePanel1", "selectShadingGroupsAndMaterials");
+select -d -ne `ls -type "shadingEngine"` ;
+select -d lambert1 particleCloud1 ;
+string $search[]=`ls "materialMergeExclude_set"`;
+if(`size $search `>0) select -d "materialMergeExclude_set" ;
+string $sels[] = `ls -sl`;
+for($sel in $sels){
+    if(!`referenceQuery -isNodeReferenced $sel` ) sets -include "materials_set" $sel ;
+    }
+select -r materials_set ;
+string $sels[] = `ls -sl`;
+for($sel in $sels){
+    if(`gmatch $sel "*:*" `){
+        string $caches[];
+        tokenize $sel ":" $caches ;
+        string $objName = $caches[1];
+        string $setName = (  startString($caches[0],`sizeBytes $caches[0]`-6)   );
+        tokenize $setName "0123456789" $caches ;
+        string $setName = ("m_"+$caches[0]+"_set"); 
+        string $theMaterialName = ($caches[0]+"lowest:"+ $objName ); 
+        select -cl;
+        string $search[]=`ls $setName `;
+        if(`size $search `==0) $createSetResult = `sets -name $setName `;
+        sets -include "materials_set" $setName ;
+        if(`gmatch $setName ("*"+$caches[0]+"*")`  ) sets -include $setName  $sel ; 
+        string $searchs[] = `ls $theMaterialName`;
+        if(`size $searchs `==0){
+           rename $sel $theMaterialName ; 
+        }else{
+            hyperShade -objects $sel ;
+            hyperShade -assign $theMaterialName ;
+        }
+    }
+}  
+select -cl;
+hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes");
+ string $searchs[]=`ls "*UNKNOWN_REF_NODE*"`;
+ if(`size $searchs`)delete "*UNKNOWN_REF_NODE*";
+}
