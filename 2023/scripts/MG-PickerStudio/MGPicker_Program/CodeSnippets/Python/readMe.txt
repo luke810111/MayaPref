@@ -1,1 +1,0 @@
-The Factory default python code snippets. Better not to change them.

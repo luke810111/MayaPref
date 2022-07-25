@@ -1,12 +1,10 @@
-wiz_controllers ()
-source sortOutTool;
-sortOutTool;
 
-source "xRigD_Tool";
-
+setKeyTool;
+print $prefScrpit
 AnimSchoolPicker();
 IKFKswitchToolbyLuke();
 source "IKFKSwitchTool";
 source exportFBXPipeline;
 asMirrorOptions asSelectorbiped;
 
+source "byLuke/mathProcedure";
