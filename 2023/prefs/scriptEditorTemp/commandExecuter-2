@@ -1,101 +1,96 @@
-/*
-//$selsA=`ls -sl`;
-//$selsB=`ls -sl`;
-$rps=crRps($selsB);
-offsetPCRp($selsA[0],$rps[0]);
-reOffsetPCRp($selsA[0],$rps[0]);
-*/
-proc string[] crRps(string $objs[]) { 
-    string $rps[];
-    if(!`objExists ("rp_grp")`)
-        group -em -n "rp_grp"; 
-   
-    for($i=0;$i<`size($objs)`; $i++) {  
-        $rps[$i]=($objs[$i]+"_rp");          
-        if(`objExists ($rps[$i])`)
-            delete $rps[$i];
-        spaceLocator -n $rps[$i];         
-
-        $roo=`xform -q -roo $objs[$i]`;
-        xform -roo $roo $rps[$i];
+//exportPlayerRig();
+global proc exportPlayerRig(){
+    $expSets=`sets -q "export_sets"`;
+    if(`size($expSets)`){
+        refresh -suspend 1;         
+        string $sn = `file -q -sn`;
+        string $dir = `match "^.*/" $sn`;
         
-        $t=`xform -q -ws -t $objs[$i]`;
-        xform -ws -t $t[0] $t[1] $t[2] $rps[$i];
-        $r=`xform -q -ws -ro $objs[$i]`;
-        xform -ws -ro $r[0] $r[1] $r[2] $rps[$i];        
+        //import all reference and delete namespace
+        ImportRefAndDeleteNameSpace();
+        
+        //delete editing object
+        if(`objExists "delete_after_export"`) delete "delete_after_export";   
+        if(`objExists "delete_set"`) delete`select -r "delete_set"`; 
+        
+        //clean file
+        advCleanComboForExportRig();
+        
+        $en=substring($sn, 0, size($sn) - 3);
+        $exportN=($en+"_export.mb");  
+        file -rename $exportN; 
+        file -save -type "mayaBinary";  
+        
+        exportPlayerRigFBX($expSets,$exportN,$dir);  
+        refresh -suspend 0;  
+        exportPlayerRigMaya($expSets,$exportN,$dir);
+        file -open $sn;                  
+        print "working successful!!";        
+    }else{
+        print "select geo";
         }
-    parent $rps "rp_grp";        
-    return $rps;
-    } 
-    
-proc string getTimeRange() {
-    $minTime = `playbackOptions -q -minTime`; 
-    $maxTime = `playbackOptions -q -maxTime`; 
-    string $tg=($minTime+":"+$maxTime); 
-    return $tg;
-    }    
-    
-proc fastbakeKey(string $objs[]){
-    $tg=getTimeRange(); 
-    //refresh -suspend 1; 
-    bakeResults 
-    -t $tg 
-    -simulation 1 
-    -sampleBy 1 
-    -disableImplicitControl 1 
-    -preserveOutsideKeys 1 
-    -sparseAnimCurveBake 0 
-    -removeBakedAttributeFromLayer 0 
-    -removeBakedAnimFromLayer 0 
-    -bakeOnOverrideLayer 0   
-    -minimizeRotation 1 
-    -controlPoints 0
-    -shape 0
-    -at "tx" 
-    -at "ty" 
-    -at "tz" 
-    -at "rx" 
-    -at "ry" 
-    -at "rz" 
-    $objs;
-    filterCurve;    
-    //refresh -suspend 0;     
-    }  
-    
-proc offsetPCRp(string $obj,string $rp){
-    $cons=`parentConstraint -mo $obj $rp`;
-    fastbakeKey({$rp});
-    delete $cons;
-    parentConstraint -mo $rp $obj;    
-    }  
-proc reOffsetPCRp(string $obj,string $rp){
-    $cons=`listConnections  -s on  -d off -type "parentConstraint" $obj`;
-    fastbakeKey({$obj});
-    delete $cons;   
-    }         
-//crAimRPs($selsA[0],$selsB[0]);
-proc string[] crAimRPs(string $selA,string $selB){
-    /*
-    $cons=`listConnections -s on -d off -type "parentConstraint" $obj`;
-    if(`size $cons`) delete $cons;
-    */
-    $rps=crRps({$selB});
-    $aimRps=crRps({$selA});
-    $cons=`aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "objectrotation" -worldUpObject $selA $rps[0] $aimRps[0]`;
-    delete $cons;
-    $dup=`duplicate -rr $aimRps`;
-    move -r -os -wd 0 100 0 $dup;
-    $bakes[0]=$rps[0];
-    $bakes[1]=$dup[0];
-    $bakes[2]= $aimRps[0];    
-    string $conb[];
-    for($b in $bakes){
-        $cons=`parentConstraint -mo $selA $b`;
-        $conb=stringArrayCatenate($conb,$cons);
+    }
+
+proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
+       
+    select -r $expSets;
+    $sels=`ls -sl`;
+    string $fN;
+    for($obj in $sels){
+        $fN=("SK_Player_"+$obj);
+        //rename "Group" $fN; 
+        select -r $obj "DeformationSystem";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN);     
+        file -f -new;    
+        file -open $sn;        
         }
-    fastbakeKey($bakes);
-    delete $conb;
-    aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "object" -worldUpObject $bakes[1] $bakes[0] $bakes[2];
-    orientConstraint -mo $bakes[2] $selA;
-    return $bakes;     
+    }
+ 
+proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
+    for($i=0;$i<`size($expSets)`; $i++) {
+        $fNset=$expSets[$i]; 
+        //deleteUnusedPart 
+        $delMembers=`listRelatives -c "Geometry"`;
+        $members=`sets -q $fNset`;
+        $delMembers = stringArrayRemove($members,$delMembers); 
+        delete $delMembers;
+        
+        //setPath
+        $fileN=`substitute "_set" $fNset ""`;    
+        $part=`substitute "SK_Player_" $fileN ""`;     
+        $dir2=($dir+$part+"/"+$fileN+"_rig");  
+        //export
+        select -r "Group" "Sets";      
+        file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
+    
+        //pb
+        select -cl;
+        playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+            
+        file -f -new;    
+        file -open $sn;       
+        }    
+    }  
+
+proc advCleanComboForExportRig(){
+    source "Advance/AdvancedSkeleton5.mel";
+    //delete adv Key
+    asMCLRemoveBody "";
+    //hide adv jt
+    asJointsVisibility 0;
+    
+    //delete layer
+    $displayLayers=`ls -type "displayLayer"`;
+    $displayLayersRemoves={"defaultLayer"};
+    $displayLayers= stringArrayRemove($displayLayersRemoves, $displayLayers);
+    delete $displayLayers;
+        
+    //delete unused node
+    hyperShadePanelMenuCommand("", "deleteUnusedNodes");
+    //delete unused skin weight
+    asRemoveAllUnusedInfluences;
+    //go to adv bind pose
+    asGoToBuildPose bodySetup;
+    if (`objExists FaceControlSet`) asGoToBuildPose faceSetup;
+        
     }

@@ -1,37 +1,15 @@
-//crAimRPs($selsA[0],$selsB[0]);
-/*
-$sels=`ls -sl`;
-crAimRPs($sels[0],$sels[1]);
-*/
-proc string[] crAimRPs(string $selA,string $selB){
-    /*
-    $cons=`listConnections -s on -d off -type "parentConstraint" $obj`;
-    if(`size $cons`) delete $cons;
-    */
-    $rps=crRps({$selB});
-    $aimRps=crRps({$selA});
-    $cons=`parentConstraint $selB $rps`;
-    delete $cons;
-    $cons=`parentConstraint $selA $aimRps`;
-    delete $cons; 
-    
-    $cons=`aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "objectrotation" -worldUpObject $selA $rps[0] $aimRps[0]`;
-    delete $cons;
-    $dup=`duplicate -rr $aimRps`;
-    move -r -os -wd 0 100 0 $dup;
-    $bakes[0]=$rps[0];
-    $bakes[1]=$dup[0];
-    $bakes[2]= $aimRps[0];    
-    string $conb[];
-    for($b in $bakes){
-        $cons=`parentConstraint -mo $selA $b`;
-        $conb=stringArrayCatenate($conb,$cons);
+exportPlayerRigFBX($expSets,$exportN,$dir); 
+proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
+       
+    select -r $expSets;
+    $sels=`ls -sl`;
+    string $fN;
+    for($obj in $sels){
+        $fN=("SK_Player_"+$obj);
+        //rename "Group" $fN; 
+        select -r $obj "DeformationSystem";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN);     
+        file -f -new;    
+        file -open $sn;        
         }
-    fastbakeKey($bakes);
-    delete $conb;
-    aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "object" -worldUpObject $bakes[1] $bakes[0] $bakes[2];
-    orientConstraint -mo $bakes[2] $selA;
-    
-    return $bakes; 
-    //return $rps;     
     }
