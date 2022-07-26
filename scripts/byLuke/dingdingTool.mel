@@ -1,9 +1,5 @@
 dingdingTool;
 
-
-
-
-
 global proc dingdingTool(){
     global string $anchors[];
     string $window;
@@ -21,7 +17,7 @@ global proc dingdingTool(){
         button -label "ding" -bgc 0.5 0.2 0.3 -c "$dings=crDings();";
         button -label "ding" -bgc 0.3 0.5 0.2 -c "alignDings($dings);";   
     	setParent ..;	
-	frameLayout -label "combo" -cll 1 -cl 1;	
+	frameLayout -label "combo" -cll 1 -cl 1;
     	frameLayout -label "spaceSwitchDing" ;
 			textFieldButtonGrp -label "attribute:"
 			-buttonLabel "Choose" -columnWidth3 50 90 46
@@ -30,15 +26,22 @@ global proc dingdingTool(){
 			
         	rowColumnLayout -nc 2 -cw 1 100 -cw 2 100;
             intFieldGrp -label "space:" -v1 0 -columnWidth 1 40 -columnWidth 2 20 spaceIFG;			
-            button -label "ding" -bgc 0.3 0.5 0.2 -c "int $mod[] =`intFieldGrp -q -v spaceIFG`; string $attr=`textFieldButtonGrp -q -text spaceTFG`;batchSwitchSpaceDing($mod[0]);";  
+            button -label "ding" -bgc 0.3 0.5 0.2 -c "int $mod[] =`intFieldGrp -q -v spaceIFG`; string $attr=`textFieldButtonGrp -q -text spaceTFG`;batchSwitchSpaceDing($mod[0],$attr);";  
         	setParent ..;     
-		setParent ..;     
+		setParent ..; 
+		
     	frameLayout -label "snapStepDing" ;
         	rowColumnLayout -nc 1 -cw 1 60 ;
             button -label "ding" -bgc 0.3 0.5 0.2 -c "batchSnapStepDing 0";  
             button -label "bake ding" -bgc 0.3 0.5 0.2 -c "batchSnapStepDing 1"; 
             setParent ..;  			
         setParent ..; 
+		
+    	frameLayout -label "MovingDings" ;
+			button -label "dings" -bgc 0.5 0.2 0.3 -c "$sels=`ls -sl`;$dings=crMotionDings($sels);";
+			button -label "dings" -bgc 0.3 0.5 0.2 -c "alignMotionDings($sels);select -r $sels;"; 
+			setParent ..;     
+	
     	frameLayout -label "collapseDing" ;
         	rowColumnLayout -nc 2 -cw 1 60 -cw 2 60;
             button -label "handR" -bgc 0.3 0.5 0.2 -c "collapseHandAttrForJUR \"R\"";  
@@ -326,3 +329,109 @@ global proc batchCollapseLegIKAttr(string $footJt, string $legIKCtrls[],string $
 		}
 	clear $kValue;
 	}
+
+global proc string[] crMotionDings(string $sels[]){
+    $ding=crDings();
+    string $cons[];
+    for($i=0;$i<`size($sels)`; $i++) {
+        $temp=smartConstraint( $sels[$i],$ding[$i]);
+        $cons=stringArrayCatenate($cons,$temp);
+        }    
+    fastbakeKey($ding);  
+    delete $cons;    
+    for($i=0;$i<`size($sels)`; $i++) {     
+        $temp=smartConstraint($ding[$i],$sels[$i]);
+        }
+    return $ding;
+    }    
+
+global proc alignMotionDings(string $sels[]){
+    float $keyTimes[]=getAniCurveKeyWithPairBlend ($sels);;   
+    if(`size($keyTimes)`){           
+        for($t in $keyTimes){
+            currentTime $t;    
+            setKeyframe -t $t -at "translate" $sels; 
+            setKeyframe -t $t -at "rotate" $sels;              
+            }             
+        }       
+    if(`objExists "DingDingTool_grp"`) delete "DingDingTool_grp";    
+    }
+        
+global proc string[] getAniCurveWithPairBlend(string $sels[]){
+    //only work with "animCurveTL" "animCurveTA"
+    string $objs[]=$sels;
+    $pbs=`listConnections -t "pairBlend" $sels`;
+    if(`size($pbs)`){         
+            $pbs=stringArrayRemoveDuplicates($pbs);
+            $objs=stringArrayCatenate($objs, $pbs);
+            }    
+    $acT=`listConnections  -t "animCurveTL" $objs`;
+    $acR=`listConnections -t "animCurveTA" $objs`;
+    string $acs[]=stringArrayCatenate($acT,$acR);    
+    return $acs;          
+    }
+    
+global proc float[] getAniCurveKeyWithPairBlend(string $sels[]){
+    //only work with "animCurveTL" "animCurveTA"
+    string $objs[]=$sels;
+    $pbs=`listConnections -t "pairBlend" $sels`;
+    if(`size($pbs)`){         
+            $pbs=stringArrayRemoveDuplicates($pbs);
+            $objs=stringArrayCatenate($objs, $pbs);
+            }    
+    $acT=`listConnections  -t "animCurveTL" $objs`;
+    $acR=`listConnections -t "animCurveTA" $objs`;
+    
+    float $keyTimes[]=`keyframe -q $acT $acR`;   
+    if(`size($keyTimes)`){          
+        floatArrayRemoveDuplicates($keyTimes,0);
+        $keyTimes = `sort $keyTimes`;        
+        } 
+    return $keyTimes;          
+    }    
+    
+global proc fastbakeKey(string $objs[]){
+    $tg=getTimeRange(); 
+    //refresh -suspend 1; 
+    bakeResults 
+    -t $tg 
+    -simulation 1 
+    -sampleBy 1 
+    -disableImplicitControl 1 
+    -preserveOutsideKeys 1 
+    -sparseAnimCurveBake 0 
+    -removeBakedAttributeFromLayer 0 
+    -removeBakedAnimFromLayer 0 
+    -bakeOnOverrideLayer 0   
+    -minimizeRotation 1 
+    -controlPoints 0
+    -shape 0
+    -at "tx" 
+    -at "ty" 
+    -at "tz" 
+    -at "rx" 
+    -at "ry" 
+    -at "rz" 
+    $objs;
+    filterCurve;    
+    //refresh -suspend 0;     
+    }  
+    
+global proc string[] smartConstraint(string $source,string $target){
+    string $temp[];
+    if(`getAttr -l ($target+".rotateX")`||`getAttr -l ($target+".rotateY")`||`getAttr -l ($target+".rotateZ")`){     
+        $temp=`pointConstraint $source $target`;
+    }else if(`getAttr -l ($target+".translateX")`||`getAttr -l ($target+".translateY")`||`getAttr -l ($target+".translateZ")`){     
+        $temp=`orientConstraint $source $target`;        
+    }else{
+        $temp=`parentConstraint $source $target`;        
+        }
+    return $temp;   
+    }        
+	
+global proc string getTimeRange() {
+    $minTime = `playbackOptions -q -minTime`; 
+    $maxTime = `playbackOptions -q -maxTime`; 
+    string $tg=($minTime+":"+$maxTime); 
+    return $tg;
+    }	

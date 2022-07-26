@@ -60,7 +60,7 @@ proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
         $part=`substitute "SK_Player_" $fileN ""`;     
         $dir2=($dir+$part+"/"+$fileN+"_rig");  
         //export
-        select -r "Group" "Sets";      
+        select -r - "Group" "Sets";      
         file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
     
         //pb
