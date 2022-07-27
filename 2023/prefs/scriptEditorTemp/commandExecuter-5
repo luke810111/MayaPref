@@ -1,0 +1,5 @@
+string $buffer[];
+$numTokens = tokenize("Mildred Pierce Femme Fatale",":", $buffer);
+
+string $buffer[];
+$numTokens = `tokenize "testing=non-default separators" "=" $buffer`;

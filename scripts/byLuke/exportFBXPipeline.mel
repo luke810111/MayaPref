@@ -18,10 +18,13 @@ global proc string getChara(string $sel){
 global proc string[] getNameSapceFromReferenceObject(){
     $refs=`file -q -r`;
     string $nSs[];
+	string $ref;	
     for($ref in $refs){
-        $rfn=`file -q -rfn $ref`;
-        $nns[0]=`referenceQuery -namespace $rfn`;
-        $nSs=stringArrayCatenate($nSs,$nns);
+        if(`gmatch $ref "*.mb"`||`gmatch $ref "*.ma"`){        
+            $rfn=`file -q -rfn $ref`;
+            $nns[0]=`referenceQuery -namespace $rfn`;
+            $nSs=stringArrayCatenate($nSs,$nns);
+            }
         }
     return $nSs;
     }
@@ -366,6 +369,41 @@ global proc exportAniFBXTest(){
     file -force -save -options "v=0";
     file -f -new;
     file -open $sn;
+    refresh -suspend 0; 
+    print "working successful!!";
+    }
+
+
+//exportEnemyAniFBX();
+global proc exportEnemyAniFBX(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;    
+    string $fileN = `file -q -sn -shn`;
+    $fileN=substring($fileN, 0, size($fileN) - 3);
+    
+    $en=substring($sn, 0, size($sn) - 3);
+    $exportN=($en+"_export.mb");
+    
+    //refresh -suspend 1; 
+                 
+    ImportRefAndDeleteNameSpace();    
+
+    select -r "DeformationSystem" ;
+    $bakeSets=`ls -sl`;
+    float $minTime = `playbackOptions -q -minTime`;
+    float $maxTime = `playbackOptions -q -maxTime`;
+    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+
+    file -rename $exportN; 
+    file -save -type "mayaBinary";
+
+    $fbx=($dir+"FBX/"+$fileN+".fbx");
+ 
+    select -r "DeformationSystem" ;
+    file -force -options "v=0;" -typ "FBX export" -pr -es $fbx;
+
+    file -force -save -options "v=0";
+
     refresh -suspend 0; 
     print "working successful!!";
     }

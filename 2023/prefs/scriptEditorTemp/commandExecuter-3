@@ -1,15 +1,56 @@
-exportPlayerRigFBX($expSets,$exportN,$dir); 
-proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
-       
-    select -r $expSets;
+//exportRig();
+global proc exportRig(){
     $sels=`ls -sl`;
-    string $fN;
-    for($obj in $sels){
-        $fN=("SK_Player_"+$obj);
-        //rename "Group" $fN; 
-        select -r $obj "DeformationSystem";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN);     
+    if(`size($sels)`){
+        string $sn = `file -q -sn`;
+        string $dir = `match "^.*/" $sn`;
+        $x=`size $dir`;
+        $dir2=`substring $dir 2 $x`; 
+           
+        string $fNs[];
+        string $buffer[];
+
+        for($i=0;$i<`size($sels)`; $i++) {  
+            eval("$numTokens = tokenize(\""+$sels[0]+"\",\":\",$buffer);");
+            //print("$numTokens = tokenize(\""+$sels[0]+"\",\":\",$buffer);");            
+            //$numTokens = tokenize($sels[$i],":",$buffer);            
+            $fNs[$i]=$buffer[1];
+            }    
+            
+        ImportRefAndDeleteNameSpace();
+
+        //delete temp object;    
+        if(`objExists "delete_after_export"`) delete "delete_after_export";   
+        if(`objExists "delete_set"`) delete "delete_set";     
+
+
+             
+        advCleanComboForExportRig();
+    
+        file -rename ($dir+"temp"); 
+        file -save -type "mayaBinary";
+        
+        
+        for($i=0;$i<`size($fNs)`; $i++) { 
+            for($obj in $fNs){
+                if(!`gmatch $obj $fNs[$i]`){
+                    if(`objExists $obj`) delete $obj;
+                    }
+                }
+            $obj=$fNs[$i];
+            rename "Group" $obj;
+            $local=("Z"+$dir2+$obj+"/");        
+            exportRigCombo($local,$obj);
+
+            //file -force -options "v=0;" -typ "FBX export" -pr -es ($cloud+"/FBX/"+$fNs[$i]);   
+            file -f -new;    
+            file -open ($dir+"temp.mb");
+            }
         file -f -new;    
         file -open $sn;        
+           
+        print "working successful!!";
+        }else{
+        print "select geo";
         }
     }
