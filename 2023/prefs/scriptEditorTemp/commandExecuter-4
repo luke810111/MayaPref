@@ -1,0 +1,14 @@
+global proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
+       
+    select -r $expSets;
+    $sels=`ls -sl`;
+    string $fN;
+    for($obj in $sels){
+        $fN=("SK_Player_"+$obj);
+        rename "Group" $fN; 
+        select -r $obj "DeformationSystem";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN);     
+        file -f -new;    
+        file -open $sn;        
+        }
+    }

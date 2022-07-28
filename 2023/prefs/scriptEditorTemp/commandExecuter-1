@@ -1,72 +1,26 @@
-//exportAniFBXTest();
-proc exportAniFBXTest(){
-    string $sn = `file -q -sn`;
+proc deleteConstraint(){
 
-    string $dir = `match "^.*/" $sn`;
-    
-    string $fileN = `file -q -sn -shn`;
-    $fileN=substring($fileN, 0, size($fileN) - 3);
-
-    
-    refresh -suspend 1;      
-    ImportRefAndDeleteNameSpace();
-    
-    $en=substring($sn, 0, size($sn) - 3);
-    $exportN=($en+"_export.mb");    
-    file -rename $exportN; 
-    file -save -type "mayaBinary";
-    
-        
-    //需要sets 要輸出的骨架
-    select -r "*DeformationSystem" ;
-    $bakeSets=`ls -sl`;
-    float $minTime = `playbackOptions -q -minTime`;
-    float $maxTime = `playbackOptions -q -maxTime`;
-    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
-    
-    
-    
-    //抽象化語法
-    //setAttr "WeaponR.blendParent1" 0;
-
-    setAttr "CloakRoot.translateX" 0;
-    setAttr "CloakRoot.translateY" 0;
-    setAttr "CloakRoot.translateZ" 0;
-    setAttr "CloakRoot.rotateX" 0;
-    setAttr "CloakRoot.rotateY" 0;
-    setAttr "CloakRoot.rotateZ" 0;
-	setAttr "CloakRoot.scaleZ" 1;
-	setAttr "CloakRoot.scaleX" 1;
-	setAttr "CloakRoot.scaleY" 1;
-    setAttr "WeaponRoot.translateX" 0;
-    setAttr "WeaponRoot.translateY" 0;
-    setAttr "WeaponRoot.translateZ" 0;
-    setAttr "WeaponRoot.rotateX" 0;
-    setAttr "WeaponRoot.rotateY" 0;
-    setAttr "WeaponRoot.rotateZ" 0;	
-	setAttr "WeaponRoot.scaleZ" 1;
-	setAttr "WeaponRoot.scaleX" 1;
-	setAttr "WeaponRoot.scaleY" 1;
-
-
-    cutKey "WeaponRoot" "CloakRoot";
-    
-    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
-    string $buffer[];
-    $numTokens = `tokenize $fileN "_" $buffer`;
-    //print $buffer
-    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");
-    $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+"_"+$buffer[4]+".fbx");
-    $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+"_"+$buffer[4]+".fbx");
-    
-    select -r "Root_M";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxChara);
-    select -r "CloakRoot";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxCloak);
-    select -r "WeaponRoot";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxWeapon);
-    
-    refresh -suspend 0; 
-    print "working successful!!";
+    string $cons[]=`listConnections -t "constraint"`;
+    delete $cons;
     }
-    
+/*        
+select -r "*:WeaponR";
+deleteConstraint();   
+parentConstraint  "*:DoubleEdgedSword" "*:WeaponR";
+*/
+
+parentConstraint "*:FKNeck_M" "*:FKNeck_M_Hook";
+parentConstraint "*:CloakRoot" "*:Cloak_Anchor";
+
+select -r "DoubleEdgedSword2_helper1" "*:WeaponR_Anchor";
+select -r  "*:WeaponR_Anchor";
+deleteConstraint();  
+
+
+parentConstraint "IKArm_R_helper" "*:IKArm_R";
+parentConstraint "IKArm_L_helper" "*:IKArm_L";
+parentConstraint -mo "*:DoubleEdgedSword2" "DoubleEdgedSword2_helper1";
+parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
+select -r "*:WeaponR_Anchor";
+file -force -save -options "v=0";
+exportOnlyPlayerAniFBXTest();

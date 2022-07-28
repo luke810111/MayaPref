@@ -1,96 +1,20 @@
-//exportPlayerRig();
-global proc exportPlayerRig(){
-    $expSets=`sets -q "export_sets"`;
-    if(`size($expSets)`){
-        refresh -suspend 1;         
-        string $sn = `file -q -sn`;
-        string $dir = `match "^.*/" $sn`;
-        
-        //import all reference and delete namespace
-        ImportRefAndDeleteNameSpace();
-        
-        //delete editing object
-        if(`objExists "delete_after_export"`) delete "delete_after_export";   
-        if(`objExists "delete_set"`) delete`select -r "delete_set"`; 
-        
-        //clean file
-        advCleanComboForExportRig();
-        
-        $en=substring($sn, 0, size($sn) - 3);
-        $exportN=($en+"_export.mb");  
-        file -rename $exportN; 
-        file -save -type "mayaBinary";  
-        
-        exportPlayerRigFBX($expSets,$exportN,$dir);  
-        refresh -suspend 0;  
-        exportPlayerRigMaya($expSets,$exportN,$dir);
-        file -open $sn;                  
-        print "working successful!!";        
-    }else{
-        print "select geo";
-        }
+proc deleteConstraint(){
+
+    string $cons[]=`listConnections -t "constraint"`;
+    delete $cons;
     }
 
-proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
-       
-    select -r $expSets;
-    $sels=`ls -sl`;
-    string $fN;
-    for($obj in $sels){
-        $fN=("SK_Player_"+$obj);
-        //rename "Group" $fN; 
-        select -r $obj "DeformationSystem";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN);     
-        file -f -new;    
-        file -open $sn;        
-        }
-    }
- 
-proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
-    for($i=0;$i<`size($expSets)`; $i++) {
-        $fNset=$expSets[$i]; 
-        //deleteUnusedPart 
-        $delMembers=`listRelatives -c "Geometry"`;
-        $members=`sets -q $fNset`;
-        $delMembers = stringArrayRemove($members,$delMembers); 
-        delete $delMembers;
-        
-        //setPath
-        $fileN=`substitute "_set" $fNset ""`;    
-        $part=`substitute "SK_Player_" $fileN ""`;     
-        $dir2=($dir+$part+"/"+$fileN+"_rig");  
-        //export
-        select -r - "Group" "Sets";      
-        file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
-    
-        //pb
-        select -cl;
-        playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
-            
-        file -f -new;    
-        file -open $sn;       
-        }    
-    }  
+parentConstraint "*:FKNeck_M" "*:FKNeck_M_Hook";
+parentConstraint "*:CloakRoot" "*:Cloak_Anchor";
 
-proc advCleanComboForExportRig(){
-    source "Advance/AdvancedSkeleton5.mel";
-    //delete adv Key
-    asMCLRemoveBody "";
-    //hide adv jt
-    asJointsVisibility 0;
-    
-    //delete layer
-    $displayLayers=`ls -type "displayLayer"`;
-    $displayLayersRemoves={"defaultLayer"};
-    $displayLayers= stringArrayRemove($displayLayersRemoves, $displayLayers);
-    delete $displayLayers;
-        
-    //delete unused node
-    hyperShadePanelMenuCommand("", "deleteUnusedNodes");
-    //delete unused skin weight
-    asRemoveAllUnusedInfluences;
-    //go to adv bind pose
-    asGoToBuildPose bodySetup;
-    if (`objExists FaceControlSet`) asGoToBuildPose faceSetup;
-        
-    }
+select -r  "*:WeaponR_Anchor";
+deleteConstraint();  
+
+
+parentConstraint "IKArm_R_helper" "*:IKArm_R";
+parentConstraint "IKArm_L_helper" "*:IKArm_L";
+
+parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
+select -r "*:WeaponR_Anchor";
+file -force -save -options "v=0";
+exportOnlyPlayerAniFBXTest();

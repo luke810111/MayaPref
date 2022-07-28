@@ -1,0 +1,170 @@
+
+global proc IKFKswitchToolbyLuke(){
+	if(`window -exists IKFKswitchToolWin`)
+		deleteUI -window IKFKswitchToolWin;
+	$window = `window -title "IKFKswtichToolWin" -h 24 -w 80 -rtf 1 -s 1 IKFKswitchToolWin`;
+	frameLayout -label "Arm";
+		rowColumnLayout -nc 3 -cw 1 40 -cw 2 20 -cw 3 40;
+			frameLayout -label "R_Arm";
+				button -label "toFK" -bgc 0.5 0.5 0.7 -w 30 -c "batchIKFKswitchHub(0,\"R\",\"Arm\")";
+				button -label "toIK" -bgc 0.7 0.5 0.5  -c "batchIKFKswitchHub(1,\"R\",\"Arm\")";
+				setParent ..;
+			separator -st "none";
+			frameLayout -label "L_Arm";
+				button -label "toFK" -bgc 0.5 0.5 0.7  -c "batchIKFKswitchHub(0,\"L\",\"Arm\")";
+				button -label "toIK" -bgc 0.7 0.5 0.5  -c "batchIKFKswitchHub(1,\"L\",\"Arm\")";
+				setParent ..;	
+			setParent ..;
+		setParent ..;
+	frameLayout -label "R_Leg";
+		rowColumnLayout -nc 3 -cw 1 40 -cw 2 20 -cw 3 40;
+			frameLayout -label "R_Leg";
+				button -label "toFK" -bgc 0.5 0.5 0.7  -c "batchIKFKswitchHub(0,\"R\",\"Leg\")";
+				button -label "toIK" -bgc 0.7 0.5 0.5  -c "batchIKFKswitchHub(1,\"R\",\"Leg\")";
+				setParent ..;
+			separator -st "none";
+			frameLayout -label "L_Leg";
+				button -label "toFK" -bgc 0.5 0.5 0.7  -c "batchIKFKswitchHub(0,\"L\",\"Leg\")";
+				button -label "toIK" -bgc 0.7 0.5 0.5  -c "batchIKFKswitchHub(1,\"L\",\"Leg\")";
+				setParent ..;	
+			setParent ..;
+		setParent ..;
+
+	showWindow IKFKswitchToolWin;		
+	}
+
+global proc IKFKswitchHub(int $mode,string $side,string $limb){
+
+	$sels=`ls -sl`;
+	if(`size($sels)`){
+		$chara=getChara($sels[0]);
+		//$sides={"L","R"};
+		//$limbs={"Arm","Leg"};
+		if($mode==0){
+        IK2FKforAdvSkeleton($chara,$side,$limb);
+		}else{
+        FK2IKforAdvSkeleton($chara,$side,$limb);
+    		}
+    	}	
+    				
+    }
+	
+global proc batchIKFKswitchHub(int $mode,string $side,string $limb){	
+	$times=getKeyPoseTime();
+	$tn=`currentTime -q`;
+	if(`size $times`){
+		refresh -suspend 1;
+		for($t in $times){
+			currentTime $t;
+			IKFKswitchHub($mode,$side,$limb);
+			}
+		currentTime $tn;
+		refresh -suspend 0;
+	}else{
+		IKFKswitchHub($mode,$side,$limb);
+		}
+	}
+
+global proc string getChara(string $sel){
+    string $charas[];
+    if(`gmatch $sel "*:*"`){
+        $temp=`tokenize $sel ":" $charas`;
+        print($charas);
+        return ($charas[0]+":");        
+    }else{
+        return "";
+        }
+    }
+	
+global proc string getOffset(string $obj){
+	string $loc;
+	$loc=`group -em  -n ($obj+"_loc")`;
+	$m=`xform -q -ws -m $obj`;
+	xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $loc;
+	return $loc;
+	}
+
+global proc IK2FKforAdvSkeleton(string $chara,string $side,string $limb){
+	if($side=="R") $side="R";
+	else if ($side=="L") $side="L";
+	if($limb=="Arm") $limbs={"Arm","Shoulder","Elbow","Wrist"};
+	else if ($limb=="Leg") $limbs={"Leg","Hip","Knee","Ankle"};	
+	$temp=($chara+$limb+"_"+$side);
+	$jt={($chara+$limbs[1]+"_"+$side),($chara+$limbs[2]+"_"+$side),($chara+$limbs[3]+"_"+$side)};
+	$FK={($chara+"FK"+$limbs[1]+"_"+$side),($chara+"FK"+$limbs[2]+"_"+$side),($chara+"FK"+$limbs[3]+"_"+$side)};
+	$IK={($chara+"IK"+$limbs[0]+"_"+$side),($chara+"Pole"+$limbs[0]+"_"+$side)};	
+	
+	$switcher=($chara+"FKIK"+$limbs[0]+"_"+$side+".FKIKBlend");
+	$t=`currentTime -q`;
+	if(`getAttr $switcher`>0&&`getAttr $switcher`<1){
+		print ("Warning: Checkout the value of \""+$switcher+"\"at"+$t+" frame. It must be 0 or 1 to be switching.\n");
+	}else{
+		for($i=0;$i<3;$i++){
+			$m=`xform -q -ws -m $jt[$i]`;
+			xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $FK[$i];
+			}
+		setKeyframe -t $t -ott "step" $switcher;
+		setAttr $switcher 0;
+		
+		$FKloc=getOffset($FK[2]);
+		$FKjtloc=getOffset($jt[2]);
+		parent $FKloc $FKjtloc;
+		$ro=`xform -q -os -ro $FKloc`;
+		xform -os -r -ro $ro[0] $ro[1] $ro[2] $FK[2];
+		delete $FKjtloc $FKloc;
+		
+		select -r $FK[2];
+		}
+	
+	
+	
+	}
+	
+global proc FK2IKforAdvSkeleton(string $chara,string $side,string $limb){
+	if($side=="R") $side="R";
+	else if ($side=="L") $side="L";
+	if($limb=="Arm") $limbs={"Arm","Shoulder","Elbow","Wrist"};
+	else if ($limb=="Leg") $limbs={"Leg","Hip","Knee","Ankle"};	
+
+	$jt={($chara+$limbs[2]+"_"+$side),($chara+$limbs[3]+"_"+$side)};
+	$IKjt={($chara+"IKX"+$limbs[2]+"_"+$side),($chara+"IKX"+$limbs[3]+"_"+$side)};
+	$IK={($chara+"Pole"+$limbs[0]+"_"+$side),($chara+"IK"+$limbs[0]+"_"+$side)};	
+	
+	$switcher=($chara+"FKIK"+$limbs[0]+"_"+$side+".FKIKBlend");
+	$t=`currentTime -q`;
+	
+	if(`getAttr $switcher`>0&&`getAttr $switcher`<10){
+		print ("Warning: Checkout the value of \""+$switcher+"\"at"+$t+" frame. It must be 0 or 1 to be switching.\n");
+	}else{
+		$IKloc=getOffset($IK[1]);
+		$IKjtloc=getOffset($IKjt[1]);
+		parent $IKloc $IKjtloc;
+		$m=`xform -q -ws -m $jt[1]`;
+		xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $IKjtloc;
+		$m=`xform -q -ws -m $IKloc`;
+		xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $IK[1];
+		delete $IKloc $IKjtloc;
+		$p=`xform -q -ws -t $jt[1]`;
+		xform -ws -t $p[0] $p[1] $p[2] $IK[1];
+		
+
+		$pvloc=getOffset($IK[0]);
+		$pvJtloc=getOffset($IKjt[0]);
+		parent $pvloc $pvJtloc;
+
+		$m=`xform -q -ws -m $jt[0]`;
+		xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $pvJtloc;
+		$m=`xform -q -ws -m $pvloc`;
+		xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $IK[0];
+		delete $pvloc $pvJtloc;
+		/*
+		if(`gmatch $side "R"`)
+			move -r -os -wd 0 0 -100 $IK[0];
+		else
+			move -r -os -wd 0 0 100 $IK[0];	
+			*/
+		setKeyframe -t $t -ott "step" $switcher;
+		setAttr $switcher 10;
+		select -r $IK;
+		}
+	}	
