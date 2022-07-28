@@ -1,53 +1,56 @@
 //exportRig();
 global proc exportRig(){
-    $sels=`ls -sl`;
-    if(`size($sels)`){
+    $expSets=`sets -q "export_sets"`;
+    if(`size($expSets)`){
         string $sn = `file -q -sn`;
         string $dir = `match "^.*/" $sn`;
-        $x=`size $dir`;
-        $dir2=`substring $dir 2 $x`; 
-           
-        string $fNs[];
-        string $buffer[];
-
-        for($i=0;$i<`size($sels)`; $i++) {  
-            eval("$numTokens = tokenize(\""+$sels[0]+"\",\":\",$buffer);");
-            //print("$numTokens = tokenize(\""+$sels[0]+"\",\":\",$buffer);");            
-            //$numTokens = tokenize($sels[$i],":",$buffer);            
-            $fNs[$i]=$buffer[1];
-            }    
             
+        //import all reference and delete namespace
         ImportRefAndDeleteNameSpace();
 
         //delete temp object;    
         if(`objExists "delete_after_export"`) delete "delete_after_export";   
-        if(`objExists "delete_set"`) delete "delete_set";     
+        if(`objExists "delete_set"`)  delete `sets -q "delete_set"`;     
 
+        //clean file
+        advCleanComboForExportRig();             
 
-             
-        advCleanComboForExportRig();
-    
-        file -rename ($dir+"temp"); 
+        $en=substring($sn, 0, size($sn) - 3);
+        $exportN=($en+"_export.mb");    
+        file -rename $exportN; 
         file -save -type "mayaBinary";
         
-        
-        for($i=0;$i<`size($fNs)`; $i++) { 
-            for($obj in $fNs){
-                if(!`gmatch $obj $fNs[$i]`){
-                    if(`objExists $obj`) delete $obj;
-                    }
-                }
-            $obj=$fNs[$i];
-            rename "Group" $obj;
-            $local=("Z"+$dir2+$obj+"/");        
-            exportRigCombo($local,$obj);
+        global string $fileN;
+        //export maya
+        for($i=0;$i<`size($expSets)`; $i++) { 
 
+            $delMembers=`listRelatives -c "Geometry"`;
+            $members=`sets -q $expSets[$i]`;
+            $delMembers = stringArrayRemove($members,$delMembers); 
+            if(`size $delMembers`) delete $delMembers;
+            
+            eval("$fileN=`substitute \"_set\" \""+$expSets[$i]+"\" \"\"`;");             
+            //$fileN=`substitute "_set" $expSets[$i] ""`; 
+                  
+            $dir2=($dir+$fileN+"/"+$fileN+"_rig"); 
+            $dir3=($dir+$fileN+"/FBX/"+$fileN);
+            rename "Group" $fileN;
+            select -r -ne ("|"+$fileN);      
+            file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
+
+            select -cl;
+            playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+
+            select -r -ne "Geometry" "DeformationSystem";            
+            file -force -options "v=0;" -typ "FBX export" -pr -es $dir3;            
+                   
             //file -force -options "v=0;" -typ "FBX export" -pr -es ($cloud+"/FBX/"+$fNs[$i]);   
             file -f -new;    
-            file -open ($dir+"temp.mb");
+            file -open $exportN;
             }
-        file -f -new;    
-        file -open $sn;        
+                    
+        //file -f -new;    
+        //file -open $sn;        
            
         print "working successful!!";
         }else{
