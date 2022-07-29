@@ -1,0 +1,5 @@
+select -r "*:WeaponL_Anchor";
+
+select -r SK_Player_Weapon_Shield_001_rig:WeaponRoot ;
+select -r SK_Player_Armor_001_rig:WeaponL_Anchor ;
+parentConstraint SK_Player_Weapon_Shield_001_rig:WeaponRoot SK_Player_Armor_001_rig:WeaponL_Anchor ;

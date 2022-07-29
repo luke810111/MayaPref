@@ -1,10 +1,7 @@
-
-setKeyTool;
-print $prefScrpit
-AnimSchoolPicker();
-IKFKswitchToolbyLuke();
-source "IKFKSwitchTool";
-source exportFBXPipeline;
+string $sn = `file -q -sn`;
+$en=substring($sn, 0, size($sn) - 3);
+playblast  -fr 1 -format image -cf ($en+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+ 
 asMirrorOptions asSelectorbiped;
 
 source "byLuke/mathProcedure";
