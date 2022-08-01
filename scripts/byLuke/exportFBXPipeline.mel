@@ -188,7 +188,7 @@ global proc exportPlayerRig(){
         print "select geo";
         }
     }
-
+/*
 global proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
        
     select -r $expSets;
@@ -203,6 +203,20 @@ global proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
         file -open $sn;        
         }
     }
+*/
+global proc exportPlayerRigFBX(string $expSets[],string $sn,string $dir){
+    //$expSets=`sets -q "export_sets"`;       
+    select -r $expSets;
+    $sels=`ls -sl`;
+
+    for($obj in $sels){
+        rename "Group" $obj; 
+        select -r ("Geometry|"+$obj) "DeformationSystem";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$obj);   
+        rename ("|"+$obj) "Group";           
+     
+        }
+    }	
  
 global proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
     for($i=0;$i<`size($expSets)`; $i++) {

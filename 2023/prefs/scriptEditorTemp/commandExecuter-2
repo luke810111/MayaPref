@@ -3,18 +3,18 @@ proc deleteConstraint(){
     string $cons[]=`listConnections -t "constraint"`;
     delete $cons;
     }
+select -r "*:WeaponR_Anchor";
+select -r "DoubleEdgedSword2_helper1";
+select -r "*:FKNeck_M_Hook";
+select -r "*:Cloak_Anchor";
+
+select -r "*:Cloak_Anchor" "*:FKNeck_M_Hook" "*:WeaponR_Anchor" "*:WeaponRoot";
+deleteConstraint(); 
 
 parentConstraint "*:FKNeck_M" "*:FKNeck_M_Hook";
 parentConstraint "*:CloakRoot" "*:Cloak_Anchor";
-
-select -r  "*:WeaponR_Anchor";
-deleteConstraint();  
-
-
-parentConstraint "IKArm_R_helper" "*:IKArm_R";
-parentConstraint "IKArm_L_helper" "*:IKArm_L";
-
+parentConstraint -mo "*:DoubleEdgedSword2" "DoubleEdgedSword2_helper1";
 parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
-select -r "*:WeaponR_Anchor";
-file -force -save -options "v=0";
+
+
 exportOnlyPlayerAniFBXTest();
