@@ -25,6 +25,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "init" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -59,6 +60,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "getTop" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -93,6 +95,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "gcos" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -127,6 +130,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "pptsl" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -161,6 +165,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "IKFK" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -195,6 +200,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "setGerminiTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -229,6 +235,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "A" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -263,6 +270,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "B" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -297,6 +305,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "helper" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -305,7 +314,7 @@ global proc shelf_CGCG () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "crHelper($selsA,$selsB);" 
+        -command "crHelper ($selsA, $selsB); \nglobal proc crHelper (string $selsA[], string $selsB[]) { \n    if (`size $selsA`!=`size $selsB`) { \n        print \"A B數量不一 \"; \n    }else if(!`size $selsA`||!`size $selsB`) {\n        print \"A B is empty\"; \n    }else{ \n        for ($i=0;$i<`size $selsA`; $i++) {\n            $dvn=`spaceLocator -n ($selsB[$i]+\"_loc\")`; \n            $ro=`xform -q -roo $selsB[$i]`; \n            xform -roo $ro $dvn; \n            $dvnOffset=`duplicate -n ($dvn[0]+\"_offset\") $dvn`; \n            parent $dvn[0] $dvnOffset[0]; \n            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con; \n            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con;\n            if(!`objExists ($selsA[$i]+\"_loc\")`) {\n                $drv=`spaceLocator -n ($selsA[$i]+\"_loc\")` ; \n                $ro=`xform -q -roo $selsA[$i]`; \n                xform -roo $ro $drv; \n                $drvOffset=`duplicate -n ($drv[0] +\"_offset\") $drv`; \n                parent $drv[0] $drvOffset[0]; \n                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con; \n                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con;\n                if(!`objExists \"dont delete\"`)\n                    group -em -n \"dont_delete\"; \n                parent $drvOffset \"dont_delete\";\n                parentConstraint $selsA[$i] $drvOffset ; \n                //scaleConstraint $selsA[$i] Sdrvoffset \n                }\n            parent $dvnOffset[0] ($selsA[$i]+\"_loc\"); \n            if(`getAttr -l ($selsB[$i]+\".tx\")`||`getAttr -l ($selsB[$i]+\".ty\") `||`getAttr -l ($selsB[$i]+\".tz\")`)\n                orientConstraint $dvn $selsB[$i]; \n            else if(`getAttr -l ($selsB[$i]+\".rx\")`||`getAttr -l ($selsB[$i]+\".ry\")`||`getAttr -l ($selsB[$i]+\".rz\")`)\n                pointConstraint $dvn $selsB[$i];\n            else\n                parentConstraint $dvn $selsB[$i]; \n            //scaleConstraint sdyn $selsB[$i];\n            }\n        }\n    }\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -331,6 +340,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "testA" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -365,6 +375,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "testC" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -399,6 +410,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "parallel" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -433,6 +445,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "gPCS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -467,6 +480,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "getPCT" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -501,6 +515,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "delsCons" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -535,6 +550,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "rpBack" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -569,6 +585,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "rpLoc" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -603,6 +620,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "bkSnap" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -637,6 +655,7 @@ global proc shelf_CGCG () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "bk" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
