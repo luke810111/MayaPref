@@ -1,19 +1,44 @@
-proc deleteConstraint(){
-
-    string $cons[]=`listConnections -t "constraint"`;
-    delete $cons;
+//crHelper ($selsA, $selsB); 
+global proc crHelper (string $selsA[], string $selsB[]) { 
+    if (`size $selsA`!=`size $selsB`) { 
+        print "A B數量不一 "; 
+    }else if(!`size $selsA`||!`size $selsB`) {
+        print "A B is empty"; 
+    }else{ 
+        for ($i=0;$i<`size $selsA`; $i++) {
+            $dvn=`spaceLocator -n ($selsB[$i]+"_loc")`; 
+            $ro=`xform -q -roo $selsB[$i]`; 
+            xform -roo $ro $dvn; 
+            $dvnOffset=`duplicate -n ($dvn[0]+"_offset") $dvn`; 
+            parent $dvn[0] $dvnOffset[0]; 
+            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; 
+            delete $con; 
+            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; 
+            delete $con;
+            if(!`objExists ($selsA[$i]+"_loc")`) {
+                $drv=`spaceLocator -n ($selsA[$i]+"_loc")` ; 
+                $ro=`xform -q -roo $selsA[$i]`; 
+                xform -roo $ro $drv; 
+                $drvOffset=`duplicate -n ($drv[0] +"_offset") $drv`; 
+                parent $drv[0] $drvOffset[0]; 
+                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; 
+                delete $con; 
+                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; 
+                delete $con;
+                if(!`objExists "dont delete"`)
+                    group -em -n "dont_delete"; 
+                parent $drvOffset "dont_delete";
+                parentConstraint $selsA[$i] $drvOffset ; 
+                //scaleConstraint $selsA[$i] Sdrvoffset 
+                }
+            parent $dvnOffset[0] ($selsA[$i]+"_loc"); 
+            if(`getAttr -l ($selsB[$i]+".tx")`||`getAttr -l ($selsB[$i]+".ty") `||`getAttr -l ($selsB[$i]+".tz")`)
+                orientConstraint $dvn $selsB[$i]; 
+            else if(`getAttr -l ($selsB[$i]+".rx")`||`getAttr -l ($selsB[$i]+".ry")`||`getAttr -l ($selsB[$i]+".rz")`)
+                pointConstraint $dvn $selsB[$i];
+            else
+                parentConstraint $dvn $selsB[$i]; 
+            //scaleConstraint sdyn $selsB[$i];
+            }
+        }
     }
-select -r "*:WeaponR_Anchor";
-select -r "*:FKNeck_M_Hook";
-select -r "*:Cloak_Anchor";
-
-select -r "*:Cloak_Anchor" "*:FKNeck_M_Hook" "*:WeaponR_Anchor" "*:WeaponRoot";
-deleteConstraint(); 
-
-parentConstraint "*:FKNeck_M" "*:FKNeck_M_Hook";
-parentConstraint "*:CloakRoot" "*:Cloak_Anchor";
-parentConstraint -mo "*:DoubleEdgedSword2" "DoubleEdgedSword2_helper1";
-parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
-
-
-exportOnlyPlayerAniFBXTest();
