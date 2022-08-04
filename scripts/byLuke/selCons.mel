@@ -1,0 +1,58 @@
+/* 
+selectConDrv(); 
+selectConDvn(); 
+deleteConstraint();
+*/ 
+global proc string[] selectConDrv () {
+    string $masters [] ; 
+    $sels=`ls -sl`; 
+    $sels=getPairBlend ($sels);
+    
+    $temps=`listConnections -s on -d off -t "constraint" $sels`; 
+    $con = stringArrayRemoveDuplicates ($temps); 
+    for($x in $con) {
+        string $type = `objectType $x` ; 
+        string $command= ($type+" -q -targetList "+$x); 
+        $temp= `eval $command`; 
+        $masters=stringArrayCatenate ($masters, $temp);
+        }
+    if(`size $masters`) select -r $masters; 
+    return $masters;
+    }
+    
+global proc string[] selectConDvn() {
+    string $follows[]; 
+    $sels=`ls -sl`;
+    
+    $tempsA=`listConnections -s off -t "constraint" $sels`; 
+    $tempsA = stringArrayRemoveDuplicates ($tempsA); 
+    $tempsB=`listConnections -d off -t "constraint" $sels`; 
+    $tempsB = stringArrayRemoveDuplicates ($tempsB); 
+    $con = stringArrayRemoveExact ($tempsB, $tempsA);
+    
+    for ($x in $con) {
+    $tempsC=`listConnections -type "transform" ($x+".constraintParentInverseMatrix")`; 
+        $tempsD = stringArrayRemoveExact ({$x}, $tempsC); 
+        $tempsE = stringArrayRemoveDuplicates ($tempsD);
+        $follows=stringArrayCatenate ($follows, $tempsE);
+        }
+    if (`size $follows`) select -r $follows; 
+    return $follows;
+    }
+
+global proc string[] getPairBlend(string $sels[]){
+    //only work with "animCurveTL" "animCurveTA"
+    string $objs[]=$sels;
+    $pbs=`listConnections -t "pairBlend" $sels`;
+    if(`size($pbs)`){         
+            $pbs=stringArrayRemoveDuplicates($pbs);
+            $objs=stringArrayCatenate($objs, $pbs);
+            }     
+    return $objs;          
+    }
+	
+
+global proc deleteConstraint(){
+    string $cons[]=`listConnections -t "constraint"`;
+    delete $cons;
+    }

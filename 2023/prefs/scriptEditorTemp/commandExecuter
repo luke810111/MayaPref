@@ -5,12 +5,33 @@ playblast  -fr 1 -format image -cf ($en+".jpg") -sequenceTime 0 -clearCache 1 -v
  
 asMirrorOptions asSelectorbiped;
 
-exportRig();
+/*
+//2-2
+for ($i=0; $i<`size($selsB)`;$i++){ 
+$jts=`skinCluster -q -inf $selsA[$i]`;
+select -r $selsB[$i] $jts;
+SmoothBindSkin;
+copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];
+};
+
+//1-2
+for ($i=0; $i<`size($selsB)`;$i++){ 
+$jts=`skinCluster -q -inf $selsA[0]`;
+select -r $selsB[$i] $jts;
+SmoothBindSkin;
+copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
+};
+
+file -open $sn;  
+$sn=exportRig();
 exportPlayerRig();
 exportOnlyPlayerAniFBXTest();
 */
+source "byLuke/sortOut";
 source "byLuke/mathProcedure";
 source "byLuke/dingdingTool.mel";
 source "byLuke/setKeyTool.mel";
 source "byLuke/IKFKswitchTool";
 source "byLuke/exportFBXPipeline";
+source "byLuke/selCons";
+source "byLuke/EzRig";

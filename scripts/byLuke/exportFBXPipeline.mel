@@ -70,7 +70,7 @@ global proc ImportRefAndDeleteNameSpace(){
 
 global proc advCleanComboForExportRig(){
     source "Advance/AdvancedSkeleton5.mel";
-	if(`objExists "Root_M"`){
+	if(`objExists "Root_M"`&&`objExists "Sets"`){
 		//delete adv Key
 		asMCLRemoveBody "";
 		//hide adv jt
@@ -100,14 +100,25 @@ global proc toZero(string $obj){
     setAttr ($obj+".visibility") 1;	
     cutKey $obj;
     }  
+
+global proc resetPerspCamera(){
+    if(`objExists "persp_anchor"`){
+        select -r  "persp" "persp_anchor";
+        MatchTransform;
+        }
+    }
 	
 //exportRig();
-global proc exportRig(){
+global proc string exportRig(){
     $expSets=`sets -q "export_sets"`;
+	string $sn = `file -q -sn`;
+	string $dir = `match "^.*/" $sn`;
     if(`size($expSets)`){
-        string $sn = `file -q -sn`;
-        string $dir = `match "^.*/" $sn`;
-            
+
+
+		//resetPerspCamera
+		resetPerspCamera();
+		
         //import all reference and delete namespace
         ImportRefAndDeleteNameSpace();
 
@@ -117,9 +128,9 @@ global proc exportRig(){
 
         //clean file
         advCleanComboForExportRig();             
-
+		
         $en=substring($sn, 0, size($sn) - 3);
-        $exportN=($en+"_export.mb");    
+        $exportN=($en+"_export.mb");    		
         file -rename $exportN; 
         file -save -type "mayaBinary";
         
@@ -159,6 +170,7 @@ global proc exportRig(){
         }else{
         print "select geo";
         }
+	return $sn;
     }
 	
 global proc exportRigCombo(string $dir,string $fN){

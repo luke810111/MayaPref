@@ -1,0 +1,793 @@
+/*key整理
+選兩條Key作業
+只處理keyPose 預設整段Key 先不處理tengent
+1.AverangeKey A=B=(A+B)/2
+2.transferKey A=0; B=A+B
+3.subtractKey A=A-B; B=B
+4.balanceKey absolute: B=-A;
+5.balanceKey relative: B=B1+A1-A; 相對於前一個key
+6.imitateKey B=A --lv1
+7.scaleHalfKey A=A*0.5 --lv1
+
+待更新功能
+copyKey 新增align方法
+
+*/
+
+global proc setKeyTool(){
+        string $sels[];
+        string $window;
+        string $skt;
+        string $lh_c;
+        
+        
+        if (`window -exists skt`)
+                deleteUI -window skt;
+                        
+        $window = `window -title "setKeyTool" -h 240 -w 90 -rtf 1  -s 1  skt `;
+			columnLayout -adjustableColumn 1;   
+			frameLayout -bgc 0.3 0.3 0.0 -label "blockKey" -cll 1 -cl 1;
+				button -label "generalFullKey" -c "generalFullKey(0)" ;	
+				button -label "specialFullKey" -c "$sels=`ls -sl`;for($sel in $sels){specialFullKeyB($sel);}";	
+				button -label "autoBD" -c "autoBD" ;	
+				setParent ..;			
+			frameLayout -bgc 0.3 0.3 0.0 -label "playKey" -cll 1 -cl 1;
+				frameLayout -bgc 0.3 0.3 0.0 -label "offset";				
+					checkBox -l "maintain_offset" -v 1 mt;
+
+				frameLayout -bgc 0.5 0.5 0.1 -label "rowKey" -cll 1 -cl 0;
+					rowColumnLayout -nc 2 -cw 1 60 -cw 2 60;
+					radioCollection RKRC;
+						
+						radioButton -label "front" RKFtRB;
+						radioButton -label "behind" RKBdRB;
+						
+					setParent ..;					
+					radioCollection -edit -select RKFtRB RKRC;
+					rowColumnLayout -nc 3 -cw 1 60 -cw 2 60 -cw 3 80;
+						//separator -style "none";					
+						separator -style "none";		
+						separator -style "none";							
+						button -label "averangeKey" -c "$mt=`checkBox -q  -v mt`;$bd=`radioButton  -q  -sl  RKBdRB`; averangeKey($mt,$bd);" ;
+						floatFieldGrp -label "scale:" -v1 1 -columnWidth 1 30 -columnWidth 2 30 queueSBlnFFG;
+						intFieldGrp -label "shift:" -v1 0 -columnWidth 1 30 -columnWidth 2 30 queueSBlnIFG;						
+						button -label "balanceKey" -c "$mt=`checkBox -q  -v mt`;$bd=`radioButton  -q  -sl RKBdRB`;$s = `floatFieldGrp -q -v queueSBlnFFG`;$sh = `intFieldGrp -q -v queueSBlnIFG`; imitateKey($mt,$bd,$sh[0],1,(-1*$s[0]))";	
+						floatFieldGrp -label "scale:" -v1 1 -columnWidth 1 30 -columnWidth 2 30 queueSCpyFFG;			
+						intFieldGrp -label "shift:" -v1 0 -columnWidth 1 30-columnWidth 2 30 queueSCpyIFG;	
+						button -label "coKey" -c "$mt=`checkBox -q  -v mt`;$bd=`radioButton  -q  -sl RKBdRB`;$s = `floatFieldGrp -q -v queueSCpyFFG`;$sh = `intFieldGrp -q -v queueSCpyIFG`; imitateKey($mt,$bd,$sh[0],1,$s[0])";
+						setParent ..;						
+					setParent ..;
+				setParent ..;					
+				frameLayout -bgc 0.5 0.5 0.1 -label "scaleKey" -cll 1 -cl 0;
+					rowColumnLayout -nc 3 -cw 1 60 -cw 2 60 -cw 3 60; 
+						radioCollection CKRC;
+						
+						radioButton -label "front" CKFtRB;
+						radioButton -label "Max" CKMaxRB;						
+						radioButton -label "Averange" CKAvgRB;						
+						radioButton -label "behind" CKBdRB;
+						radioButton -label "Min" CKMinRB;						
+						
+						setParent ..;					
+					radioCollection -edit -select CKFtRB CKRC;
+					rowColumnLayout -nc 2 -cw 1 100 -cw 2 100;					
+						radioCollection MuDiRC;
+						
+						radioButton -label "X" MuRB;
+						radioButton -label "/" DiRB;
+						setParent..;
+					radioCollection -e -select MuRB MuDiRC;
+					rowColumnLayout -nc 2 -cw 1 100 -cw 2 100;
+						floatFieldGrp -label "scale:" -v1 0.5 -columnWidth 1 60 -columnWidth 2 30 queueSScalFFG;
+						button -label "scaleKey" -c "$ss=`floatFieldGrp -q  -v queueSScalFFG`;batchscaleKeyByLuke($ss[0]);" ;	
+						separator -style "none";	
+						setParent ..;			
+					rowColumnLayout -nc 6 -cw 1 34 -cw 2 33 -cw 3 33 -cw 4 33 -cw 5 33 -cw 6 33;
+/*					
+						button -label "0" -bgc 0.7 0.2 0.2 -c "batchscaleKeyByLuke(0)" ;	
+						button -label "0.1" -bgc 0.3 0.2 0.6 -c "batchscaleKeyByLuke(0.1)" ;	
+						button -label "0.25" -bgc 0.3 0.4 0.4 -c "batchscaleKeyByLuke(0.25)" ;	
+						button -label "0.5" -bgc 0.3 0.6 0.2 -c "batchscaleKeyByLuke(0.5)" ;	
+						button -label "0.75" -bgc 0.5 0.4 0.2 -c "batchscaleKeyByLuke(0.75)" ;	
+						button -label "0.9" -bgc 0.7 0.2 0.2 -c "batchscaleKeyByLuke(0.9)" ;	
+						
+						button -label "-1" -bgc 0.2 0.5 0.8 -c "batchscaleKeyByLuke(-1)" ;	
+						button -label "100" -bgc 0.8 0.1 0.1 -c "batchscaleKeyByLuke(100)" ;	
+						button -label "10" -bgc 0.45 0.45 0.1 -c "batchscaleKeyByLuke(10)" ;	
+						button -label "2" -bgc 0.1 0.8 0.1 -c "batchscaleKeyByLuke(2)" ;	
+						button -label "1.5" -bgc 0.1 0.45 0.45 -c "batchscaleKeyByLuke(1.5)" ;	
+						button -label "1.1" -bgc 0.2 0.5 0.8 -c "batchscaleKeyByLuke(1.1)" ;
+*/
+						button -label "0" -bgc 0.7 0.2 0.2 -c "batchscaleKeyByLuke(0)" ;	
+						button -label "0.1" -bgc 0.3 0.2 0.6 -c "batchscaleKeyByLuke(0.1)" ;	
+						button -label "0.25" -bgc 0.3 0.4 0.4 -c "batchscaleKeyByLuke(0.25)" ;	
+						button -label "0.5" -bgc 0.3 0.6 0.2 -c "batchscaleKeyByLuke(0.5)" ;	
+						button -label "0.75" -bgc 0.5 0.4 0.2 -c "batchscaleKeyByLuke(0.75)" ;	
+						button -label "0.9" -bgc 0.7 0.2 0.2 -c "batchscaleKeyByLuke(0.9)" ;	
+						
+						button -label "-1" -bgc 0.2 0.5 0.8 -c "batchscaleKeyByLuke(-1)" ;	
+						button -label "0.618" -bgc 0.8 0.1 0.1 -c "batchscaleKeyByLuke(0.618)" ;	
+						button -label "0.382" -bgc 0.45 0.45 0.1 -c "batchscaleKeyByLuke(0.382)" ;	
+						button -label "0.236" -bgc 0.1 0.8 0.1 -c "batchscaleKeyByLuke(0.236)" ;	
+						button -label "0.146" -bgc 0.1 0.45 0.45 -c "batchscaleKeyByLuke(0.146)" ;	
+						button -label "0.09" -bgc 0.2 0.5 0.8 -c "batchscaleKeyByLuke(0.09)" ;
+						separator -style "none";						
+						setParent ..;						
+					setParent ..;					
+				setParent ..;						
+			setParent ..;															
+			frameLayout -bgc 0.1 0.2 0.1 -label "interKey" -cll 1-cl 1;
+				rowColumnLayout -nc 4 -cw 1 80 -cw 2 30 -cw 3 30 -cw 4 30;
+					checkBox -l "Translate" -cc "checkAllITK(0)" allTransITK;
+					
+					checkBox -l "X" -cc "unCheckITK(\"trans\")" transXITK;
+					checkBox -l "Y" -cc "unCheckITK(\"trans\")" transYITK;
+					checkBox -l "Z" -v 1 -cc "unCheckITK(\"trans\")" transZITK;
+					
+					checkBox -l "Rotate" -cc "checkAllITK(1)" allRotsITK;
+					
+					checkBox -l "X" -cc "unCheckITK(\"rot\")" rotXITK;
+					checkBox -l "Y" -cc "unCheckITK(\"rot\")" rotYITK;
+					checkBox -l "Z" -cc "unCheckITK(\"rot\")" rotZITK;
+					
+					checkBox -l "Scale" -cc "checkAllITK(2)" allScsITK;
+					
+					checkBox -l "X" -cc "unCheckITK(\"sc\")" scXITK;
+					checkBox -l "Y" -cc "unCheckITK(\"sc\")" scYITK;
+					checkBox -l "Z" -cc "unCheckITK(\"sc\")" scZITK;					
+				setParent ..;				
+				columnLayout -adjustableColumn 1;    
+					button -label "interKey" -c "runInterKey" ;
+					setParent ..;							
+				setParent ..;
+			frameLayout -bgc 0.5 0.5 0.1 -label "extendKey" -cll 1 -cl 1;
+				rowColumnLayout -nc 3 -cw 1 50 -cw 2 50 -cw 3 50;				
+					button -label "<" -c "extendFrameRangerPr" btnExPr;
+					floatField -v 24 -pre 1 -w 30 ffExtend;
+					button -label ">" -c "extendFrameRangeNx" btnExNx;
+					button -label "Prev" -c "extendLinearKeyHub 0" ;						
+					button -label "Pro" -c "extendLinearKeyHub 2" ;		
+					button -label "Next" -c "extendLinearKeyHub 1" ;					
+				setParent ..;							
+			setParent ..;					
+			frameLayout -bgc 0.2 0.1 0.2 -label "CleanKey" -cll 1-cl 1;
+				rowColumnLayout -nc 2 -cw 1 100 -cw 2 100 ;				
+					button -label "Clean" -c "ackDeleteRedundant" ;
+					button -label "Delete" -c "delKeys" ;					
+				setParent ..;							
+			setParent ..;					
+				
+			setParent ..;	
+			
+			frameLayout -bgc 0.1 0.1 0.1 -label "test2" -cll 1-cl 1;
+
+				button -label "ackSetup" -c "ackSetup \"setup\"" ;								
+				button -label "setGerminTool" -c "source \"setGerminTool.mel\";setGerminiTool;";								
+				button -label "IKFKswitchTool" -c "source \"IKFKSwitchTool.mel\";IKFKswitchToolbyLuke();";				
+								
+				separator -h 20 -style "none";	
+
+				
+			setParent ..;					
+			setParent ..;					
+								
+                //setParent $skt;                
+                showWindow skt;
+        }
+
+global proc unCheckITK(string $checkBoxes){
+    string $transXITK = `checkBox -q -value transXITK`;
+    string $transYITK = `checkBox -q -value transYITK`;
+    string $transZITK = `checkBox -q -value transZITK`;
+    string $rotXITK = `checkBox -q -value rotXITK`;
+    string $rotYITK = `checkBox -q -value rotYITK`;
+    string $rotZITK = `checkBox -q -value rotZITK`;
+    string $scXITK = `checkBox -q -value scXITK`;
+    string $scYITK = `checkBox -q -value scYITK`;
+    string $scZITK = `checkBox -q -value scZITK`;
+    
+    switch ($checkBoxes){
+    	
+    	case "trans":
+    		if (($transXITK == 0) || ($transYITK == 0) || ($transZITK == 0))		
+    			checkBox -e -v false allTransITK;
+    
+    		
+    		if ($transXITK && $transYITK && $transZITK)
+    			checkBox -e -v true allTransITK;
+			break;
+    
+    	case "rot":
+    		if (($rotXITK == 0) || ($rotYITK == 0) || ($rotZITK == 0))		
+    			checkBox -e -v false allRotsITK;		
+    		if ($rotXITK && $rotYITK && $rotZITK)
+    			checkBox -e -v true allRotsITK;
+			break;
+    
+    	case "sc":
+    		if (($scXITK == 0) || ($scYITK == 0) || ($scZITK == 0))		
+    			checkBox -e -v false allScsITK;		
+    		if ($scXITK && $scYITK && $scZITK)
+    			checkBox -e -v true allScsITK;
+			break;
+        }
+    }
+/*全部打勾
+$t:0(translation);1(rotate);2(scale);
+*/
+global proc checkAllITK(int $t){
+	if ($t==0){
+		int $t = `checkBox -q -value allTransITK`;
+		checkBox -e -v $t transXITK;
+		checkBox -e -v $t transYITK;
+		checkBox -e -v $t transZITK;		
+	}else if($t==1){
+		int $t = `checkBox -q -value allRotsITK`;
+		checkBox -e -v $t rotXITK;
+		checkBox -e -v $t rotYITK;
+		checkBox -e -v $t rotZITK;		
+	}else if($t=2){
+		int $t = `checkBox -q -value allScsITK`;
+		checkBox -e -v $t scXITK;
+		checkBox -e -v $t scYITK;
+		checkBox -e -v $t scZITK;		
+		}
+	}
+
+global proc runInterKey(){
+    string $checks[]={"transXITK","transYITK","transZITK","rotXITK","rotYITK","rotZITK","scXITK","scYITK","scZITK"};
+    string $trzs[]={"tx","ty","tz","rx","ry","rz","sx","sy","sz"};
+    for($i=0;$i<`size $trzs`;$i++){
+        eval ("string $"+$checks[$i]+" = `checkBox -q -value "+$checks[$i]+"`");  
+        eval ("if($"+$checks[$i]+"==1) interTranslationKey(\""+$trzs[$i]+"\")");        
+        }
+    }
+
+
+
+/*列出多條運動線的keyPoseTime --lv2--lp0--rc0
+	list two curves keyPose time in array
+	*/	
+global proc float[] getKeyPoseTime(){
+	float $temps[];
+	float $keyTimes[];
+	$temps=`keyframe -q -sl`;
+	floatArrayRemoveDuplicates($temps,0);
+	$keyTimes = `sort $temps`;
+	
+	return $keyTimes;
+	}
+
+
+
+/*AverangeKey A=B=(A+B)/2 --lv3--lp1--rc0
+int $mode:0/1(maintainOffset)
+int $align:0(left)/1(right)
+	*/
+global proc averangeKey(int $mt,int $align){
+    float $kValues[];
+    float $v;
+    $sels=`keyframe -q -n`;        
+    $keyTimes=getKeyPoseTime();        
+    $lastKey = size($keyTimes) - 1;  
+    if ($mt==1){
+        int $pivotTime;
+        float $pivotValue[];        
+        switch ($align){
+                case 0:
+                        $pivotTime = `findKeyframe -which "previous" -time $keyTimes[0] $sels`;
+                        setKeyframe -t $pivotTime $sels;
+                        $pivotValue = `keyframe -time $pivotTime -q -valueChange $sels`;
+                        break;
+                case 1:
+                        $pivotTime = `findKeyframe -which "next" -time $keyTimes[$lastKey] $sels`;
+                        setKeyframe -t $pivotTime $sels;
+                        $pivotValue = `keyframe -time $pivotTime -q -valueChange $sels`;
+                        break;   
+                }                        
+        for($i=0;$i<`size $keyTimes`;$i++){
+            setKeyframe -t $keyTimes[$i] $sels;
+
+            $kValue=`keyframe  -t $keyTimes[$i] -q -vc $sels `;    
+            $kValue=plusMnusAverageFloat(1,$kValue,$pivotValue);        
+            $v=multiAverageFloat($kValue);//複數平均浮點數 --lv1--lp1--rc0
+            for($j=0;$j<`size $kValue`;$j++){
+                $kValue[$j]=$v+$pivotValue[$j];
+                //scaleKey -t $keyTimes[$i] -valuePivot $v -valueScale 0 $sels;
+                setKeyframe -t $keyTimes[$i] -e  -v $kValue[$j] $sels[$j];                
+                }
+
+            
+            $iAng=`keyTangent  -time $keyTimes[$i]  -q -inAngle $sels`;
+            $iA=multiAverageFloat($iAng);
+            $iWgt=`keyTangent  -time $keyTimes[$i]  -q -inWeight $sels`;
+            $iW=multiAverageFloat($iWgt);
+            $oAng=`keyTangent  -time $keyTimes[$i]  -q -outAngle $sels`;
+            $oA=multiAverageFloat($oAng);
+            $oWgt=`keyTangent  -time $keyTimes[$i]  -q -outWeight $sels`;
+            $oW=multiAverageFloat($oWgt);
+            keyTangent  -time $keyTimes[$i] -e -ia $iA -iw $iW $sels;
+            keyTangent  -time $keyTimes[$i] -e -oa $oA -ow $oW $sels;    
+            }                         
+    }else{
+                        
+        for($i=0;$i<`size $keyTimes`;$i++){
+            setKeyframe -t $keyTimes[$i] $sels;
+            $kValue=`keyframe  -t $keyTimes[$i] -q -vc $sels `;
+            $v=multiAverageFloat($kValue);//複數平均浮點數 --lv1--lp1--rc0
+            //scaleKey -t $keyTimes[$i] -valuePivot $v -valueScale 0 $sels;
+            setKeyframe -t $keyTimes[$i] -e  -v $v $sels;
+            
+            $iAng=`keyTangent  -time $keyTimes[$i]  -q -inAngle $sels`;
+            $iA=multiAverageFloat($iAng);
+            $iWgt=`keyTangent  -time $keyTimes[$i]  -q -inWeight $sels`;
+            $iW=multiAverageFloat($iWgt);
+            $oAng=`keyTangent  -time $keyTimes[$i]  -q -outAngle $sels`;
+            $oA=multiAverageFloat($oAng);
+            $oWgt=`keyTangent  -time $keyTimes[$i]  -q -outWeight $sels`;
+            $oW=multiAverageFloat($oWgt);
+            keyTangent  -time $keyTimes[$i] -e -ia $iA -iw $iW $sels;
+            keyTangent  -time $keyTimes[$i] -e -oa $oA -ow $oW $sels;    
+            }
+        }
+    }
+
+/*imitateKey(模仿) B=A --lv1--lp0--rc0
+int $mode:0/1(maintain offset)
+int $align: 0(對齊前面)/1(對齊後面)
+int $tOffset(位移)
+float $tScale:(縮放時間區間)
+float $vScale:(縮放數值)
+*/
+global proc imitateKey(int $mode,int $align,int $tOffset,float $tScale,float $vScale){
+    $sels=`keyframe -q -n`;
+    if(`size($sels)`!=2){
+        print("請選兩條key");
+    }else{
+        $keyA=$sels[0];
+        $keyB=$sels[1];
+        //get array of key times in selection (to find closest match key)
+        $timeArray = `keyframe -selected -q -timeChange $keyA`;
+        $lastKey = size($timeArray) - 1;
+        $tRange=($timeArray[0]+":"+$timeArray[$lastKey]);
+        //get pivot point
+        float $pivotTime;
+        float $pivotValueA;
+        float $pivotValueB[];
+        if ($align==1)
+            $pivotTime = `findKeyframe -which "next" -time $timeArray[$lastKey] $keyB`;            
+        else
+            $pivotTime = `findKeyframe -which "previous" -time $timeArray[0] $keyB`;        
+        $pivotValueB = `keyframe -time $pivotTime -q -valueChange $keyB`;
+        $effects = `listConnections -plugs true $keyA`;
+        $pivotValueA=`getAttr -t $pivotTime $effects[0]`;
+        $vOffset=$pivotValueB[0]-$pivotValueA;
+    
+        if($mode==0){
+            $vOffset=0;
+            $pivotValueB[0]=0;
+            }
+        copyKey -time $tRange $keyA;
+        pasteKey -option "replace" -timeOffset $tOffset -valueOffset $vOffset $keyB;
+        $tRange=(($timeArray[0]+$tOffset)+":"+($timeArray[$lastKey]+$tOffset));    
+        scaleKey -time $tRange -valuePivot $pivotValueB[0] -valueScale $vScale -timePivot $pivotTime -timeScale $tScale $keyB;
+
+		selectKey -t $tRange $keyB;
+        }
+    }
+
+
+/*imitate Key ( 0) B=A --lvl--1po--rco 
+string $keyA: 來源
+string $keyb: 目標
+int $sta: 開始
+int $end: 結束 
+int $mt: 0/1 (maintain offset) 
+int $align: 0(對齊前面)/1(對齊後面)
+int $toffset (位移) 
+float $tScale: (縮放時間區間) 
+float $vScale: (縮放數值)
+*/
+global proc imitateKeyB(string $source, string $sAttr, string $target, string $tAttr, int $sta, int $end, int $mt, int $align, float $tOffset,float $tScale, float $vScale) {
+
+	$keysA=`keyframe -at $sAttr -q -n $source`;
+	$keysB=`keyframe -at $tAttr -q -n $target`;
+	$keyA=$keysA[0]; 
+	$keyB=$keysB[0];
+
+	//get array of key times in selection (to find closest match key) 
+	$tRange=($sta+": "+$end);
+
+	//get pivot point 
+	float $pivotTime; 
+	float $pivotValueA; 
+	float $pivotValueB[]; 
+	if ($align==1)
+		$pivotTime = `findKeyframe which "next" -time Send $keyB`; 
+	else
+		$pivotTime = `findKeyframe -which "previous" -time $sta $keyB`; 
+	$pivotValueB = `keyframe -time $pivotTime -q -valueChange $keyB`; 
+	$effects = `listConnections -plugs true $keyA`; 
+	$pivotValueA=`getAttr -t $pivotTime $effects[0]`;
+	$vOffset=$pivotValueB[0]-$pivotValueA;
+
+	if( $mt==0){
+		$vOffset=0;
+		$pivotValueB[0]=0;
+		}
+	copyKey -time $tRange $keyA; 
+	pasteKey -option "replace" -timeoffset $tOffset -valueoffset $vOffset $keyB; 
+	$tRange=(($sta+$tOffset)+":"+($end+$tOffset)); 
+	scaleKey -time $tRange -valuePivot $pivotValueB[0] -valueScale $vScale -timePivot $pivotTime -timeScale $tScale $keyB;
+
+	selectKey -t $tRange $keyB;
+
+	}
+
+global proc interTranslationKey(string $trz){
+    $sels=`ls -sl`; 
+   
+    setKeyframe -at $trz $sels;      
+    $keys=`keyframe -at $trz -q  -n $sels`; 
+    
+    interKey($keys);
+    }
+
+global proc interKey(string $keys[]){
+       
+    $keyTimes=getKeyPoseTime();        
+    if(!`size($keyTimes)`)
+        $keyTimes[0]=`currentTime -q`;
+    $n = (size($keys)-1);  
+   
+    for($i=0;$i<`size $keyTimes`;$i++){
+        setKeyframe -t $keyTimes[$i] $keys;        
+        $kValue=`keyframe  -t $keyTimes[$i] -q -vc $keys `;  
+        $akValue=arrangeFloatString($kValue);    
+
+        $iAng=`keyTangent  -time $keyTimes[$i]  -q -inAngle $keys`;
+        $aiA=arrangeFloatString($iAng);        
+        $iWgt=`keyTangent  -time $keyTimes[$i]  -q -inWeight $keys`;
+        $aiW=arrangeFloatString($iWgt);
+        
+        $oAng=`keyTangent  -time $keyTimes[$i]  -q -outAngle $keys`;
+        $aoA=arrangeFloatString($oAng);
+        $oWgt=`keyTangent  -time $keyTimes[$i]  -q -outWeight $keys`;
+        $aoW=arrangeFloatString($oWgt);      
+          
+        for($j=1;$j<$n;$j++){
+            setKeyframe -t $keyTimes[$i] -v $akValue[$j]  $keys[$j];
+            keyTangent  -time $keyTimes[$i] -e -ia $aiA[$j] -iw $aiW[$j] $keys[$j];   
+            keyTangent  -time $keyTimes[$i] -e -oa $aoA[$j] -ow $aoW[$j] $keys[$j];          
+            }
+        }
+    }
+	
+global proc float getScaleKeyPivot(int $am,string $keyA,float $selKeyTimes[]){
+	float $pivotTime;
+	float $pivotValues[];
+	
+	switch($am){
+		case 0:
+		
+			$pivotTime = `findKeyframe -which "previous" -time $selKeyTimes[0] $keyA`;
+			$pivotValues=`keyframe -time $pivotTime -q -valueChange $keyA`;
+			print ("front" +$pivotValues[0]+"\n");
+			break;
+		case 1:
+		
+			$n=(`size($selKeyTimes)`-1);
+			$pivotTime = `findKeyframe -which "next" -time $selKeyTimes[$n] $keyA`;
+			$pivotValues=`keyframe -time $pivotTime -q -valueChange $keyA`;
+			print ("behind" +$pivotValues[0]+"\n");
+			break;		
+		case 2:
+			$kV=`keyframe -selected -q -vc $keyA`;
+			$pivotValues[0]=getMax($kV,0,$kV[0]);
+			print ("max "+$pivotValues[0]+"\n");
+			break;
+		case 3:
+			$kV=`keyframe -selected -q -vc $keyA`;
+			$pivotValues[0]=getMin($kV,0,$kV[0]);
+			print ("min "+$pivotValues[0]+"\n");
+			break;			
+		case 4:
+			$kV=`keyframe -selected -q -vc $keyA`;
+			$pivotValues[0]=multiAverageFloat($kV);
+			print("avg "+$pivotValues[0]+"\n");
+			break;
+		}
+	return $pivotValues[0];
+	}
+
+/*scaleKeyByLuke	--lv3--lp1--rc0
+int $am(align method):0(front)/1(behind)/2(max)/3(min)/4(averange)
+*/
+global proc scaleKeyByLuke(int $mt,int $am,float $scale,string $keyA){
+	float $pivotValue;
+	$selKeyTimes=`keyframe -selected -q -timeChange $keyA`;
+	$selected =`keyframe -selected -q -indexValue $keyA`;
+	if(!`size $selKeyTimes`){
+		print("請選Key");
+	}else{
+		if($mt==0){
+			for($i=0;$i<`size($selected)`;$i++){
+				scaleKey -index $selected[$i] -vs $scale $keyA;
+				}
+				
+		}else{			
+						
+			
+			$pivotValue = getScaleKeyPivot($am,$keyA,$selKeyTimes);
+			
+			
+			
+
+			for($i=0; $i<size($selected);$i++){
+				scaleKey -index $selected[$i] -valuePivot $pivotValue -valueScale $scale $keyA;
+
+
+				
+				}
+
+			}
+		}
+	}
+	
+/*batchScaleKey	--lv4--lp2--rc0
+*/	
+global proc batchscaleKeyByLuke(float $s){
+	$sels=`keyframe -q -n`;
+	int $m=`checkBox -q -v mt`;
+	int $am=0;
+	$qCKRC=`radioCollection -q -select CKRC`;
+	$MuDi=`radioCollection -q -select MuDiRC`;
+	
+	if($MuDi=="DiRB") $s=1/$s;
+	if($qCKRC=="CKFtRB")
+		$am=0;	
+	if($qCKRC=="CKMaxRB")
+		$am=2;
+	if($qCKRC=="CKAvgRB")
+		$am=4;
+	if($qCKRC=="CKBdRB")
+		$am=1;
+	if($qCKRC=="CKMinRB")
+		$am=3;	
+	
+	for($keyA in $sels){
+		scaleKeyByLuke($m,$am,$s,$keyA);
+		}
+	}
+	
+global proc delKeys(){
+	string $selectedCurves[]=`keyframe -selected -q -name`;
+	for($keyA in $selectedCurves){
+		$vArray =`keyframe -selected -q -valueChange $keyA`;
+		
+		if(`size($vArray)`==1)
+			cutKey $keyA;
+		if(`size($vArray)`==2 && $vArray[0]==$vArray[1])
+			cutKey $keyA;
+		}
+	}
+	
+/*對選取的參數在KeyPose setKey*/
+global proc specialFullKey(string $gChannelBoxName) {
+    $obj=`ls -sl`; 
+    $attr=`channelBox -q -sma $gChannelBoxName`; 
+    $timeArray=getKeyPoseTime(); 
+    for($o in $obj){ 
+        for($a in $attr){
+            $curves=`listConnections -s on -t "animCurve" ($o+""+$a)`; 
+            if(!`size($curves)`)
+                setKeyframe-t $timeArray [0] -at $a $o; 
+            for ($t in $timeArray) {
+                setKeyframe -t $t -insert -at $a $o;
+                }
+            }
+        }
+    }
+
+/* selected anim cureves full key */ 
+global proc generalFullKey(int $mode) {
+    $obj=`ls -sl`;
+    $sels=`keyframe -q -n $obj`;
+    $timeArray=getKeyPoseTime();
+    if( $mode==1)
+        setKeyframe -t $timeArray [0] $sels;
+    if( size($timeArray) ) {
+        refresh -suspend 1;
+        for ($t in $timeArray) {
+            setKeyframe -t $t -insert $sels;
+            }
+        refresh -suspend 0; 
+        }
+    }
+    
+/*對channel的所有可key參數full Key*/
+
+
+
+
+
+global proc fullKeyB(string $sel) {
+
+    $anics=`listConnections -t "animCurve" $sel`;
+    $temps=`keyframe -q $anics`;
+    floatArrayRemoveDuplicates ($temps, 0);
+    $keyTimes = `sort Stemps`;
+    
+    $attrs=`listAttr -k -u -w $sel`;
+    for ($j=0;$j<`size($attrs)`;$j++){
+        getAttr -k ($sel+"."+$attrs[$j]);
+        if(!size(`listConnections ($sel+"."+$attrs[$j])`)) {
+            //print "haha\n"; 626
+            setKeyframe -t $keyTimes[0] ($sel+"."+$attrs[$j]);
+            }
+        
+        }
+    $anicsB=`listConnections -t "animCurve" $sel`; 
+    for($k in $keyTimes) {
+        setKeyframe -t $k -insert $anicsB;
+        }
+    }
+
+
+
+
+
+
+
+global proc extendLinearKeyHub(int $mode) {
+    $Ct=`currentTime -q`; 
+    $sels=`ls -sl`; 
+    $aniCs=`getAniCurves ($sels)`;
+    
+    if(!`size Sanics`) {
+        print ($sels[0]+" is no Key\n"); 
+    }else{ 
+        switch ($mode) { 
+            case 0:
+                extendLinearKey($aniCs, "next", $Ct);
+                break; 
+            case 1:
+                extendLinearKey($aniCs, "previous", $Ct);
+                break; 
+            case 2:
+                int $x=24; 
+                $x=`floatField -q -v ffExtend`; 
+                $minTime = `playbackOptions -q -minTime`; 
+                $maxTime = `playbackOptions -q -maxTime`; 
+                setKeyframe -t $minTime -insert $aniCs; 
+                setKeyframe -t $maxTime -insert $aniCs; 
+                extendLinearKey($aniCs, "next", ($minTime-$x)); 
+                extendLinearkey ($aniCs, "previous", ($maxTime+ $x)); 
+                break;
+            }
+        }
+    }
+
+/*
+aniCurves
+要避免物件有drivnKey 
+*/ 
+global proc string[] getAniCurves (string $sels[]) {
+
+    $aniCs=`keyframe -q -sl -n`; 
+    if(! `size SaniCs`)
+        $aniCs=`listConnections -t "animCurve" $sels`; 
+    return $aniCs;
+    }
+
+
+/*
+$side: "previous" "next" 
+$ct:currentTime 
+*/ 
+global proc extendLinearKey(string $anics[],string $side, float $Ct) {
+    float $Cv; 
+    float $Av[];
+    
+    
+    for ($anic in $anics) {
+        $At =`findKeyframe -which $side -time $Ct $anic`; 
+        $AV =`keyframe -time $At -q -valueChange $anic`; 
+        //print (Sanic+" > A time: "+$At+" value: "+SAV[0] + "\n"); 
+        $Bt = `findKeyframe -which $side -time $At $anic`; 
+        $Bv = `keyframe -time $Bt -q -valueChange $anic`;
+        //print ($anic+" > B time:"+ $BE+" value: "+$By [0] + "\n"); 
+        if($At !=$Bt) {
+            $Cv=(($Ct-$Bt)*($AV [0] - $Bv [0])/($At-$Bt))+ $Bv[0]; 
+        }else{
+            $Cv=$Av[0];
+            }
+        setKeyframe -t $Ct -v $Cv $anic; 
+        //print ($anic+" > C time: "+$Ct+" value: "+$Cv+"\n\n");
+        }
+    }
+	
+/*extendFrame Range Pr
+*/
+global proc extendFrameRangePr(){
+    string $lb; 
+    global float $exMinTime; 
+    $mintime =`playbackOptions -q -minTime`; 
+    $maxTime =`playbackOptions -q -maxTime`; 
+    $x=`floatField -q -v ffExtend`; 
+    $lb=`button -q -label btnExpr`; 
+    if(`gmatch $lb "<"`){
+        $exMinTime = `playbackOptions -q -minTime`; 
+        button -e -label ">" btnExpr;
+        playbackOptions -e -minTime ($exMinTime-$x); 
+    }else{
+        button -e -label "<" btnExPr; 
+        playbackOptions -e -ast ($exMinTime);
+        }
+}
+
+/*extendFrameRangePr 
+*/ 
+global proc extendFrameRangeNx(){ 
+    string $lb;
+    global float $exMaxTime;
+    $x=`floatField -q -v ffExtend`; 
+    $lb=`button -q -label btnExNx`;
+    if(`gmatch $lb ">"`){ 
+        $exMaxTime =`playbackOptions -q -maxTime`;
+        button -e -label "<" btnExNx;
+        playbackOptions -e -maxTime ($exMaxTime+$x);
+    }else{ 
+        button -e -label ">" btnExNx;
+        playbackOptions -e -aet ($exMaxTime);
+        }
+    }
+    
+global proc autoBD() {
+    $sels=`ls -sl`; 
+    $anics=getAniCurves ($sels); 
+    // print $anics; 
+    $Ct=`currentTime -q`; 
+    float $At=`findKeyframe -which "previous" -time $Ct $anics`; 
+    float $Bt=`findKeyframe -which "next" -time $Ct $anics`; 
+    keyTangent -e -t ($At+":"+$Bt) -itt "auto" -ott "auto" $anics;
+    setKeyframe -t $Ct -insert $anics; 
+    keyTangent -e -t ($At+":" + $Bt) -ott "step" $anics;
+    }
+
+global proc string selTime() {
+    string $trng; 
+    global string $gPlayBackSlider; 
+    if(`timeControl -q -rv $gPlayBackSlider`) {
+        //String='timeControl -q -ing $gPlayBackslider ; 
+        $ta=`timeControl -q -ra $gPlayBackSlider`;
+        $trng=($ta[0]+": "+$ta[1]); 
+    }else{
+        float $ta[]=`keyframe -q -tc -sl`; 
+        $ta=floatArrayRemoveDuplicates ($ta, 0); 
+        $ta=`sort $ta`; 
+        $n=(`size($ta)`-1); 
+        if($n>0) $trng= ($ta[0]+": "+$ta[$n]);
+        }
+    return $trng;
+    }
+
+global proc cpKeywithLayer(string $al, string $sObj, string $sAttr, string $tObj, string $tAttr, float $to, float $vs) { 
+    /*
+    $al: animLayer 
+    $to:time Offset 
+    $vs: valueScale 
+    */ 
+    $source=($sObj+"."+$sAttr); 
+    $target=($tObj+"."+$tAttr); 
+    animLayer -e -at $target $al;
+    
+    copyKey $source; 
+    $cv=`keyframe -q -vc $source`;
+    
+    pasteKey -option "replace" -al $al -to $to -vo (-1*$cv[0]) $target;
+    
+    $testX=`animLayer -q -fcv $target $al`;
+    
+    scaleKey -valueScale $vs $testX; 
+    }

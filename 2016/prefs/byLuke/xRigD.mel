@@ -1,0 +1,217 @@
+/*全域參數*/
+global string $selsA[];
+global string $selsB[];
+global string $constrains[] ={"parentConstraint","pointConstraint","orientConstraint","scaleConstraint","geometryConstraint","normalConstraint" };
+  
+/////////////////////////////////////////////////////////////////////////////
+/*A組B組 --lv1--lp0--rc0
+	有選東西:重新定義組
+	沒選東西:選原組
+	return: $selsA=grpArray($selsA);
+	*/
+global proc string[] grpArray(string $sels[]){
+    string $searches[]=`ls -sl`;
+    if(`size $searches ` >0 ) $sels=`ls -sl`;
+    else select -r $sels ;
+	return $sels;
+    }
+
+/////////////////////////////////////////////////////////////////////////////
+	
+/*對constrain做set --lv1--lp0--rc0
+	*/
+global proc int setsConstrain(string $constrains[],int $n){
+    string $con[];
+    string $sel[]=`ls -sl`;
+
+    if (`size($sel)`>0){
+        select -hi;
+        $con = `ls -sl -type $constrains[$n]`;
+        select -r $sel;
+    }else{
+        $con = `ls -type $constrains[$n]`;
+        }
+    if (`size($con)`>0){
+        if (!`objExists ($constrains[$n]+"_set")`) {
+            sets -n ($constrains[$n]+"_set") $con;
+        }else{
+            sets -add ($constrains[$n]+"_set") $con;
+            }
+        }
+    return size($con);
+    }
+
+/*set各種約束或刪掉全部的約束    --lv2--lp--rc0
+	$del: 1(刪掉約束);
+    */
+global proc advSetsConstrain(string $constrains[],int $del){
+    string $set;
+    int $n;
+	
+    if (!`objExists "constrain_sets"`) {
+        sets -em -n "constrain_sets"; 
+        }
+	//--lp1	
+    for ($i=0; $i<`size($constrains)`;$i++){     
+        $set=($constrains[$i]+"_set");
+        $n=setsConstrain($constrains,$i);//--lv1--lp0--rc0
+        if (`objExists $set`){
+            print("有"+$n+"個"+$set+"\n");
+            sets -add "constrain_sets" $set;
+        }else{
+            print("沒有"+$set+"\n");
+            }
+        }
+    if($del==1){
+        select -r "constrain_sets";
+        $sels=`ls -sl`;
+        $n=size($sels);
+        print("刪掉"+$n+"個約束");
+        delete $sels;
+        }
+    }
+
+/*綜合約束 --lv1--lp0--rc0
+	$c:決定用哪一種約束(0=parent/1=point/2=orient/3=scale/4=geometry/5=normal)
+	$m:是否maintain offet
+	$driver:控制
+	$drivn:被控制
+	*/
+global proc mixConstrain(int $c,int $m,string $driver,string $drivn,string $constrains[]){
+    string $mo[] ={"","-mo"};
+    if ($c>=4) $m=0;
+    eval ($constrains[$c]+$mo[$m]+"-w 1 "+$driver+" "+$drivn+" ;");
+    }
+
+/*進階綜合約束 --lv2--lp1--rc0
+	$m : maintinOffset
+	$c:決定用哪一種約束(0=parent/1=point/2=orient/3=scale/4=geometry/5=normal)	
+	$mode : 1(多對多2-2);2(一對多1-2);3(多對一2-1);
+	$selsA : A組
+	$selsB : B組
+	$constrains	: 約束類型 
+	*/
+global proc advMixConstrain(int $c,int $m,int $mode,string $drivers[],string $drivns[],string $constrains[]){
+	if (`size($drivers)`==0){
+		print "A組沒東西";
+	}else if(`size($drivns)`==0){	
+		print "B組沒東西";	
+	}else if($mode==1){
+		print "2-2";
+		//--lp1
+		for ($i=0; $i<`size($drivers)`;$i++){ 
+			mixConstrain($c,$m,$drivers[$i],$drivns[$i],$constrains);//lv1--lp0--rc0
+			}
+	}else if($mode==2){
+		print "1-2";
+		//--lp1
+		for ($i=0; $i<`size($drivns)`;$i++){ 
+			$drivers[$i]=$drivers[0];
+			mixConstrain($c,$m,$drivers[$i],$drivns[$i],$constrains);//lv1--lp0--rc0
+			}			
+	}else if($mode==3){
+		print "2-1";
+		//--lp1
+		for ($i=0; $i<`size($drivers)`;$i++){ 
+			$drivns[$i]=$drivns[0];
+			mixConstrain($c,$m,$drivers[$i],$drivns[$i],$constrains);//lv1--lp0--rc0
+			}
+		}		
+	}
+ 
+//new
+/*把parent&orient約束都改成shortest --lv1--lp1--rc0
+	可針對所選群組做小範圍執行
+	*/
+global proc string[] setShotestConstrains(){
+
+    string $typs[]={"parentConstraint","orientConstraint"};    
+    string $sels[]=`ls -sl`;
+    if (`size($sels)`==0)
+        select -all;
+    select -hi;
+
+    string $PCs[]=`ls -sl -typ $typs[0]`; //ParentConstraint
+    string $OCs[]=`ls -sl -typ $typs[1]`; //OrientConstraint  
+    string $Cs[]=stringArrayCatenate($PCs,$OCs); 
+    if (`size($Cs)`!=0){
+		select -r $Cs;
+		for ($c in $Cs){
+			setAttr ($c+".interpType") 2;
+			}
+		sets -n "shortest_set" $Cs;
+		}
+    select -cl;
+    return $Cs;
+    }
+    
+/////////////////////////////////////////////////////////////////////////////
+
+
+ /*對齊 --lv1--lp0--rc0
+    $piv:0做位移對齊/1做軸心對齊
+	$tranzCB:([0]:tx;[1]:ty;...[8]:sz) 0(off);1(on);
+    */
+ global proc snap (int $tranzCB[],string $source,string $target){
+    float $fps[],$frs[],$tps[],$rps[],$sps[],$rpA[],$rpB[];
+                   
+	$fps=`xform -q -ws -t $target`;
+	$frs=`xform -q -ws -ro $target`;
+	$sps[0]=`getAttr ($target+".sx")`;
+	$sps[1]=`getAttr ($target+".sy")`;
+	$sps[2]=`getAttr ($target+".sz")`;
+	
+	$tps= `xform -q -ws -t $source`;
+	$rps= `xform -q -ws -ro $source`;
+	$rpA = `xform -q -rp $source`;
+	$rpB = `xform -q -rp $target`;
+		
+	if ($tranzCB[0]) $fps[0]=($tps[0] + $rpA[0] - $rpB[0] );
+	if ($tranzCB[1]) $fps[1]=($tps[1] + $rpA[1] - $rpB[1] );
+	if ($tranzCB[2]) $fps[2]=($tps[2] + $rpA[2] - $rpB[2] );
+	xform -ws -t $fps[0] $fps[1] $fps[2] $target;
+	
+	
+	if ($tranzCB[3]) $fps[0]=($rps[0] + $rpA[0] - $rpB[0] );
+	if ($tranzCB[4]) $fps[1]=($rps[1] + $rpA[1] - $rpB[1] );
+	if ($tranzCB[5]) $fps[2]=($rps[2] + $rpA[2] - $rpB[2] );
+	xform -ws -ro $fps[0] $fps[1] $fps[2] $target;
+	
+	if ($tranzCB[6]) $sps[0]=`getAttr ($source+".sx")`;
+	if ($tranzCB[7]) $sps[1]=`getAttr ($source+".sy")`;
+	if ($tranzCB[8]) $sps[2]=`getAttr ($source+".sz")`;
+	setAttr ($target+".sx") $sps[0];
+	setAttr ($target+".sy") $sps[1];
+	setAttr ($target+".sz") $sps[2];        
+    }
+ 
+ /*批次Snap --lv2--lp1--rc0
+    $mode:1(2-2);2(1-2);
+	$tranzCB:([0]:tx;[1]:ty;...[8]:sz) 0(off);1(on);
+    */
+global proc mutiSnap(int $mode,int $tranzCB[],string $targets[],string $sources[]){
+	if (`size($targets)`==0){
+		print "A組沒東西";
+	}else if (`size($sources)`==0){
+		print "B組沒東西";    		
+	}else if ($mode==1){
+        //作2-2    
+		for ($i=0; $i<`size($targets)`;$i++){ 
+			snap($tranzCB,$sources[$i],$targets[$i]);
+			}    
+    }else if($mode==2){
+        //作1-2
+        print "snap不做1-2"; 	      
+    }else if($mode==3){
+        //作2-1
+		for ($i=0; $i<`size($targets)`;$i++){ 
+			$sources[$i]=$sources[0];
+			snap($tranzCB,$sources[$i],$targets[$i]);
+			}	    		
+ 
+        }         	
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////
+

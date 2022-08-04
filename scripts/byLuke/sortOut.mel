@@ -211,7 +211,7 @@ global proc queue(string $sels[],float $n){
 	n=1是小寫字母
 	n=2是大寫字母
 	*/
-proc string[] renameChild(string $sel,int $n){
+global proc string[] renameChild(string $sel,int $n){
 
         $let="a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1u1s1t1u1v1w1x1y1z";
         $letter = stringToStringArray($let, "1");
@@ -264,7 +264,7 @@ global proc string[] renameChildsMuti(string $sels[],int $n){
 	//有遇到一個bug 上層的上層不能有scale值
 	//目前只能先做到位移跟旋轉的轉移
 	*/
-proc transUp (string $obj){
+global proc transUp (string $obj){
 	$longs=`ls -long $obj`;	
     $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0
     $father=$spName[0];
@@ -282,7 +282,7 @@ proc transUp (string $obj){
 	//有遇到一個bug 上層的上層不能有scale值
 	//目前只能先做到位移跟旋轉的轉移
 	*/
-proc transDown (string $obj){
+global proc transDown (string $obj){
 	$longs=`ls -long $obj`;	
     $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0
     $father=$spName[0];

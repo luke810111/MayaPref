@@ -1,0 +1,86 @@
+global proc crHelper (string $selsA[], string $selsB[]) { 
+    if (`size $selsA`!=`size $selsB`) { 
+        print "A B數量不一 "; 
+    }else if(!`size $selsA`||!`size $selsB`) {
+        print "A B is empty"; 
+    }else{ 
+        for ($i=0;$i<`size $selsA`; $i++) {
+            $dvn=`spaceLocator -n ($selsB[$i]+"_loc")`; 
+            $ro=`xform -q -roo $selsB[$i]`; 
+            xform -roo $ro $dvn; 
+            $dvnOffset=`duplicate -n ($dvn[0]+"_offset") $dvn`; 
+            parent $dvn[0] $dvnOffset[0]; 
+            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; 
+            delete $con; 
+            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; 
+            delete $con;
+            if(!`objExists ($selsA[$i]+"_loc")`) {
+                $drv=`spaceLocator -n ($selsA[$i]+"_loc")` ; 
+                $ro=`xform -q -roo $selsA[$i]`; 
+                xform -roo $ro $drv; 
+                $drvOffset=`duplicate -n ($drv[0] +"_offset") $drv`; 
+                parent $drv[0] $drvOffset[0]; 
+                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; 
+                delete $con; 
+                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; 
+                delete $con;
+                if(!`objExists "dont delete"`)
+                    group -em -n "dont_delete"; 
+                parent $drvOffset "dont_delete";
+                parentConstraint $selsA[$i] $drvOffset ; 
+                //scaleConstraint $selsA[$i] Sdrvoffset 
+                }
+            parent $dvnOffset[0] ($selsA[$i]+"_loc"); 
+            if(`getAttr -l ($selsB[$i]+".tx")`||`getAttr -l ($selsB[$i]+".ty") `||`getAttr -l ($selsB[$i]+".tz")`)
+                orientConstraint $dvn $selsB[$i]; 
+            else if(`getAttr -l ($selsB[$i]+".rx")`||`getAttr -l ($selsB[$i]+".ry")`||`getAttr -l ($selsB[$i]+".rz")`)
+                pointConstraint $dvn $selsB[$i];
+            else
+                parentConstraint $dvn $selsB[$i]; 
+            //scaleConstraint sdyn $selsB[$i];
+            }
+        }
+    }
+
+global proc string[] batchCreateFolicle(string $geo,string $selsB[]){
+    string $fols[];
+    for($obj in $selsB){
+        $n=($obj+"_follicle");
+        $uv=findClosetUVcoordinate($geo,$obj);  
+        $fol=createFolicle($geo,$uv[0] ,$uv[1],$n);
+        $fols=stringArrayCatenate( $fols, {$fol});
+    }    
+    return $fols; 
+    }
+global proc string createFolicle(string $geo,float $u ,float $v,string $n){
+    //$fol=`createNode -n $n "follicle"`;
+    $fol=`shadingNode -n ($n+"Shape") -asUtility "follicle"` ;
+    setAttr ($fol+".parameterU") $u;
+    setAttr ($fol+".parameterV") $v;
+    $folTrans=`listRelatives -p $fol`;
+    $geoShape=`listRelatives -s $geo`;
+    
+    connectAttr ($geoShape[0]+".outMesh") ($fol+".inputMesh");
+    connectAttr ($geoShape[0]+".worldMatrix") ($fol+".inputWorldMatrix");   
+    connectAttr  ($fol+".outRotate") ($folTrans[0]+".rotate");
+    connectAttr  ($fol+".outTranslate") ($folTrans[0]+".translate");      
+    //print  $geoShape[0];
+    return $folTrans[0];
+    }
+    
+global proc float[] findClosetUVcoordinate(string $geo,string $obj){
+    float $uv[];
+    $loc="findClosestPointOnMesh_loc";
+    $cPOM=`createNode "closestPointOnMesh"`;
+    $geoShape=`listRelatives -s $geo`;    
+    connectAttr ($geoShape[0]+".worldMesh") ($cPOM+".inMesh");    
+    connectAttr ($geoShape[0]+".worldMatrix") ($cPOM+".inputMatrix");  
+    if(!`objExists $loc`) spaceLocator -n $loc;    
+    matchTransform $loc $obj;
+    connectAttr ($loc+".translate") ($cPOM+".inPosition"); 
+    $uv[0]=`getAttr ($cPOM+".parameterU")`;  
+    $uv[1]=`getAttr ($cPOM+".parameterV")`;      
+    delete $loc $cPOM;
+    return $uv;
+    }
+ 

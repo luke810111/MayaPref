@@ -1,0 +1,326 @@
+
+/*列出相同名稱物件	--lv1--lp1--rc0
+	1.如果$sels為空列表，對全域做檢查
+	2.$type must be dagNode/transform etc...
+	return : name of set
+	*/
+global proc string lsSameNameObj(string $sels[],string $type){
+    string $set=("sameName_"+$type+"_set");
+	string $list[];
+	
+    //if (!`objExists($set)`) sets  -em -n $set;	
+    if (`objExists($set)`) delete $set;
+	sets  -em -n $set;	    
+        
+	if(`size($sels)`==0)
+		$list=`ls -type $type`;
+	else
+		$list=`ls -sl -type $type`;
+    //--lp1
+    for ($i=0; $i<`size($list)`;$i++){
+        if (`gmatch $list[$i] "*|*"`==1)        
+                sets -add $set $list[$i] ;                
+        }
+    $sameName=`sets -q $set`;
+    if (`size($sameName)`>0)
+        print("有相同名字的物件 請檢察");
+    return $set;        
+    }
+
+/*檢查重複名稱&lockAttr	--lv2--lp2--rc0
+	return : $ck=1(True);
+	*/
+global proc int ckObjs(string $sels[],string $type){
+	string $ckObj; //($obj+"."+$attr)
+	string $trzs[]={"tx","ty","tz","rx","ry","rz","sx","sy","sz"};
+	$ck=0; //check value
+	$l=0;  //lock value
+
+	$snSet= lsSameNameObj({},$type);//--lv1--lp1--rc0
+	$sameName=`sets -q $snSet`;
+	if(`size($sameName)`>0){
+		$ck=0;
+	}else{
+		$ck=1;
+		//--lp2
+		for ($obj in $sels){		
+			for ($attr in $trzs){
+				$ckObj=($obj+"."+$attr);
+				$l=`getAttr -lock $ckObj`;
+				if ($l==1){
+					$ck=0;
+					print($ckObj+" is lock\n");	
+					}
+				}
+			}
+
+		delete $snSet;
+		}
+	if ($ck==1)
+		print("沒有物件重複名稱或上鎖參數");
+	return $ck;
+	}	
+
+/*切分絕對名稱 --lv1--lp0--rc0
+	1.請給long name
+	return : $spName[0]=$father; $spName[1]=$obj;	
+	*/
+global proc string[] seperateLongNameOfObject(string $longName){
+
+        string $spName[]; //seperate name
+        string $obj; //本名
+        string $father; //姓氏
+        
+        $obj = `match "[^|]*$" $longName`;
+        $father = `substitute "|[^|]*$" $longName ""`;
+        $spName={$father,$obj};
+        return $spName;
+        }
+
+/*產生一個奪權的group --lv3--lp2--rc0
+	1.可複選執行
+	2.後綴
+	3.s=0(選$sels);s=1(選$offsets)
+	*/
+global proc string[] crOffset(string $sels[],string $suffix,int $s){ 
+
+        string $obj; //in $sels
+        string $father; //father(long name) of $obj 
+        string $longs[];//long name of obj
+        string $offset; //offset of obj
+        string $offsets[]; //offset array 
+        
+
+    	$ck=ckObjs($sels,"transform");//--lv2--lp2--rc0
+    	if($ck==0){
+    		print("");
+    	}else{
+			//--lp1
+  	        for ($i=0;$i<`size($sels)`;$i++){
+	            $longs=`ls -long $sels[$i]`;	
+	            $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0
+	            $father=$spName[0];
+	            $obj=$spName[1];
+	        	$offset=($obj+"_"+$suffix);		
+	
+	            if (`objExists $offset`==0) {
+	                group -em -n $offset;
+	                $pc=`parentConstraint  -weight 1 $sels[$i] $offset`;
+	                $sc=`scaleConstraint  -weight 1 $sels[$i] $offset`;
+	                delete $pc $sc;
+	            } else {
+	                print($offset+" have same name");
+	                break;
+	            }	                
+            parent $sels[$i] $offset;
+            if (`size($father)`>0)
+                    parent $offset $father;
+            $longs=`ls -long -sl`;
+            //$offsets[$i]=$longs[0];
+            $offsets[$i]=$offset;			
+            }
+
+        if ($s==1)
+        	select -r $offsets;
+        else 
+        	select -r $sels;
+        }
+
+	    return $offsets;
+        }
+
+/*取得正確的世界座標值 --lv3--lp2--rc0
+	可複選
+	只取得位移值
+	下層值會freez
+	會殘留歷史 小心服用
+	*/
+global proc getWorldSpaceTranslateion(string $sels[]){
+
+	select -r -hi $sels;
+	$ckList=`ls -sl -type "transform"`;
+	$ck=ckObjs($ckList,"transform"); //--lv2--lp2--rc0
+	if($ck==0){
+		print("");
+	}else{		
+		//--lp1
+	    for ($i=0;$i<`size($sels)`;$i++){
+	    	$lns=`ls -long $sels[$i]`;
+	        $spName= seperateLongNameOfObject($lns[0]); //--lv1--lp0--rc0
+	        $father=$spName[0];
+	        $obj=$spName[1];
+	        $offset=($obj+"_temp");	
+	                
+	        group -em -n $offset;
+	        $pc=`parentConstraint  -weight 1 $sels[$i] $offset`;
+	        $sc=`scaleConstraint  -weight 1 $sels[$i] $offset`;
+	        delete $pc $sc;
+	        
+	        parent $obj $offset;;
+	        makeIdentity -apply true -t 1 -r 1 -s 1 $obj;
+	        
+	        
+	        if (`size($father)`>0){
+	                parent  $obj $father;
+	        }else{
+	                parent -w;
+	                 }
+	        delete $offset;	        
+	        //print(`xform -q -ws -rp $sels[$i]`);
+	        }
+	    }
+	select -r $sels;
+	}
+
+/*一串父子	--lv3--lp2--rc0
+	*/
+global proc stringParent(string $sels[]){ 
+	$ck=ckObjs($sels,"transform");//--lv2--lp2--rc0
+	if($ck==0){
+		print("");
+	}else{
+		if(size($sels)>1) {
+			string $sons[]=$sels;
+			stringArrayRemoveAtIndex(0, $sons);
+			//--lp1
+			for ($i=0; $i<`size($sons)`;$i++){            
+				print($sels[$i]+"----");
+				print($sons[$i]+"\n");
+				parent -a $sons[$i] $sels[$i] ;
+				};    
+		}else{
+			print("請對兩個或以上的東西執行");
+			}
+		}
+    }
+
+//new
+/*X軸排隊		--lv1--lp1--rc0
+	1.$sels 要位移的一序列物件
+	2.間距n
+	*/
+global proc queue(string $sels[],float $n){
+	//--lv1
+    for ($a=0; $a<`size($sels)`;$a++){
+        setAttr ($sels[$a]+".tx") ($a*$n);
+        };
+    }
+
+/*快速命名子層	--lv1--lp1--rc0
+	n=0是數字序
+	n=1是小寫字母
+	n=2是大寫字母
+	*/
+proc string[] renameChild(string $sel,int $n){
+
+        $let="a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1u1s1t1u1v1w1x1y1z";
+        $letter = stringToStringArray($let, "1");
+        $LET=`toupper $let`;
+        $LETTER = stringToStringArray($LET, "1");
+        
+        $nm = `match "[^|]*$" $sel`;
+        $childs = `listRelatives -f -c $sel`;
+        //--lp1
+        for ($i=0;$i<`size($childs)`;$i++){
+                switch ($n){
+                        case 0:
+                                rename $childs[$i] ($nm+($i+1));
+                                break;
+                        case 1:
+                                rename $childs[$i] ($nm+$letter[$i]);        
+                                break;                                        
+                        case 2:
+                                rename $childs[$i] ($nm+$LETTER[$i]);
+                                break;
+                        }                
+                }
+        return `listRelatives -c $sel`;
+        }
+
+/*批次快速命名子層 --lv2--lp2--rc0
+	n=0是數字序
+	n=1是小寫字母
+	n=2是大寫字母
+	*/ 
+global proc string[] renameChildsMuti(string $sels[],int $n){
+        string $temp[];
+        string $selsCh[];
+        
+        //--lp2
+        for ($i=0;$i<`size($sels)`;$i++){
+                $childs=`listRelatives -c $sels[$i]`;
+                        if (`size($childs)`<26||$n<1){
+                                $temp=renameChild($sels[$i],$n);//--lv1--lp1--rc0
+                        }else{
+                                print("子物件超過26個喔");
+                                }
+                $selsCh=stringArrayCatenate($selsCh, $temp);
+                }
+        select -r $selsCh;
+        return $selsCh;
+        }
+
+/*放權 --lv2--lp0--rc0
+	//有遇到一個bug 上層的上層不能有scale值
+	//目前只能先做到位移跟旋轉的轉移
+	*/
+proc transUp (string $obj){
+	$longs=`ls -long $obj`;	
+    $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0
+    $father=$spName[0];
+    if(`size($father)`==0){
+    	print("沒爸爸");
+	}else{
+	    float $wsT[]=`xform -q -ws -t $obj`;
+		move -ws -pcp $wsT[0] $wsT[1] $wsT[2] $father;
+		float $wsR[]=`xform -q -ws -ro $obj`;
+		rotate -ws -pcp $wsR[0] $wsR[1] $wsR[2] $father;
+		}
+	}
+	
+/*集權 --lv2--lp0--rc0
+	//有遇到一個bug 上層的上層不能有scale值
+	//目前只能先做到位移跟旋轉的轉移
+	*/
+proc transDown (string $obj){
+	$longs=`ls -long $obj`;	
+    $spName= seperateLongNameOfObject($longs[0]);//--lv1--lp0--rc0
+    $father=$spName[0];
+    if(`size($father)`==0){
+    	print("沒爸爸");
+	}else{
+		move -ls -pcp 0 0 0 $father;
+		rotate -os -pcp 0 0 0 $father;
+		scale -ls -pcp 1 1 1 $father;
+		}
+	}
+
+/*批次轉移Translation --lv3--lp2--rc0
+	$mode: 0(放權);1(集權)
+	//有遇到一個bug 上層的上層不能有scale值
+	//目前只能先做到位移跟旋轉的轉移
+	*/
+global proc batchTransfer (string $sels[],int $mode){
+	
+	$temp=`listRelatives -p $sels`;
+	$temp=stringArrayCatenate($temp,$sels); 
+	$ckList= stringArrayRemoveDuplicates($temp); //所選物與所選物父層
+	$ck=ckObjs($ckList,"transform"); //--lv2--lp2--rc0
+	
+	if($ck==0){
+		print("");
+	}else{	
+		if ($mode==0){
+			//--lp1
+			for ($i=0;$i<`size($sels)`;$i++){	
+				transUp($sels[$i]);
+				}
+		}else{
+			//--lp1
+			for ($i=0;$i<`size($sels)`;$i++){
+				transDown($sels[$i]);
+				}
+			}
+		}
+		
+	}
