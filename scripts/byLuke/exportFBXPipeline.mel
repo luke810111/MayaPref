@@ -1,27 +1,19 @@
-//batchExportFBXHub();
-global proc batchExportFBXHub(){
+
+global proc changeMAtoMB(){
     string $sn = `file -q -sn`;
     string $dir = `match "^.*/" $sn`;
-    batchExportAniFBX($dir);
-    }
-	
-global proc batchExportAniFBX(string $dir){
-    string $stuffInFolder[]= `getFileList -fld $dir`;
+    string $stuffInFolder[]= `getFileList -fld $dir`; 
     string $fileN; 
-    string $mb="*.mb";
-    string $exp="*_export*";    
+    string $ma="*.ma";       
     for($fileN in $stuffInFolder){
-        if(`gmatch $fileN $mb`&&!`gmatch $fileN $exp`){    
+        if(`gmatch $fileN $ma`){    
             //print ($fileN+"\n");
-            file -f -new;          
-            file -open ($dir+$fileN);        
-            exportAniFBXTest(); 
+            file -f -new; 
+            file -open ($dir+$fileN);                             
+            file -save -type "mayaBinary";               
             }
-        }
+        }    
     }
-
-
-
 /*
 $sels=`ls -sl`;
 $b=getChara($sels[0]);
@@ -206,6 +198,9 @@ global proc exportPlayerRig(){
         refresh -suspend 1;         
         string $sn = `file -q -sn`;
         string $dir = `match "^.*/" $sn`;
+
+		//resetPerspCamera
+		resetPerspCamera();
         
         //import all reference and delete namespace
         ImportRefAndDeleteNameSpace();
@@ -296,83 +291,42 @@ global proc updateModel(string $selsA[],string $selsB[]){
     copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
     };
     }
-	
-//Test
-global proc exportPipelineTest(){
-    string $sn = `file -q -sn`;
-    $en=substring($sn, 0, size($sn) - 3);
-    string $fileN = `file -q -sn -shn`;
-    $fileN=substring($fileN, 0, size($fileN) - 3);
-    $exportN=($en+"_export.mb");
-    string $dir = `match "^.*/" $sn`;
-    
-    refresh -suspend 1;  
-    
-     
-    file -rename $exportN; 
-    file -save -type "mayaAscii";
-    
-    
-    $refs=`file -q -r`;
-    for($ref in $refs){
-    file -importReference $ref;
-    }
-    //調整自動找namespace
-    namespace -mergeNamespaceWithRoot -removeNamespace "Player_Armor01_Rigging";
-    namespace -mergeNamespaceWithRoot -removeNamespace "SK_Weapon_Bow_01_rig";
-    
-    //需要sets 要輸出的骨架
-    select -r "DeformationSystem|Cloak" "Root_M" "bow_root";
-    $bakeSets=`ls -sl`;
-    float $minTime = `playbackOptions -q -minTime`;
-    float $maxTime = `playbackOptions -q -maxTime`;
-    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
-    cutKey -cl -t ":" -f ":" -at "tx" -at "ty" -at "tz" -at "rx" -at "ry" -at "rz" "DeformationSystem|Cloak";
-    cutKey -cl -t ":" -f ":" -at "tx" -at "ty" -at "tz" -at "rx" -at "ry" -at "rz" "bow_root";
-    
-    //抽象化語法
-    setAttr "bow_root.translateX" 0;
-    setAttr "bow_root.translateY" 0;
-    setAttr "bow_root.translateZ" 0;
-    setAttr "bow_root.rotateX" 0;
-    setAttr "bow_root.rotateY" 0;
-    setAttr "bow_root.rotateZ" 0;
-    setAttr "DeformationSystem|Cloak.rotateZ" 0;
-    setAttr "DeformationSystem|Cloak.translateX" 0;
-    setAttr "DeformationSystem|Cloak.translateY" 0;
-    setAttr "DeformationSystem|Cloak.translateZ" 0;
-    setAttr "DeformationSystem|Cloak.rotateX" 0;
-    setAttr "DeformationSystem|Cloak.rotateY" 0;
-    
-    
-    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
-    string $buffer[];
-    $numTokens = `tokenize $fileN "_" $buffer`;
-    //print $buffer
-    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
-    $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
-    $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
-    select -r "Root_M";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxChara);
-    select -r "DeformationSystem|Cloak";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxCloak);
-    select -r "bow_root";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"/fbx/"+$fbxWeapon);
-    
-    file -force -save -options "v=0";
-    refresh -suspend 0; 
-    }
 
 //輸出動做FBX
+//batchExportAniFBXHub();
+global proc batchExportAniFBXHub(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    batchExportAniFBX($dir);
+	print "It's feeling good~ Right?";
+    }
+	
+global proc batchExportAniFBX(string $dir){
+    string $stuffInFolder[]= `getFileList -fld $dir`;
+    string $fileN; 
+    string $mb="*.mb";
+    string $exp="*_export*";    
+    for($fileN in $stuffInFolder){
+        if(`gmatch $fileN $mb`&&!`gmatch $fileN $exp`){    
+            //print ($fileN+"\n");
+            file -f -new;          
+            file -open ($dir+$fileN);        
+            exportAniFBXTest(); 
+            }
+        }
+    }
+
+
 global proc exportAniFBXTest(){
     string $sn = `file -q -sn`;
     string $dir = `match "^.*/" $sn`;
     string $fileN = `file -q -sn -shn`;
-    $fileN=substring($fileN, 0, size($fileN) - 3);
+    $fileN=substring($fileN, 0, size($fileN) - 7);
 
     string $buffer[];
     $numTokens = `tokenize $fileN "_" $buffer`;
     //print $buffer;
+    if(`size $buffer[4]`) $buffer[3]=$buffer[3]+"_"+$buffer[4];
     $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
     
     refresh -suspend 1;      
@@ -392,9 +346,10 @@ global proc exportAniFBXTest(){
     bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
     
 
-      
-    select -r "Root_M";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxChara);
+    string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
+    select -r "Root_M";	
+	
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxChara);
 
     
     //抽象化語法
@@ -403,14 +358,14 @@ global proc exportAniFBXTest(){
         toZero("CloakRoot");
         $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
         select -r "CloakRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxCloak);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxCloak);
         } 
                
     if (`objExists "WeaponRoot"`){        
         toZero("WeaponRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
         select -r "WeaponRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxWeapon);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxWeapon);
         }
     
   
