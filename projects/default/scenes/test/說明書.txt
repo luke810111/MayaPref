@@ -1,0 +1,15 @@
+把mel加進自己的shelf 應該就可以執行了
+
+1.查找相同名稱物件 setSameNameObject
+
+    直接執行 它會查找整個場景 選到名字會帶"|"的物件 把他加進"SameNameSet"裡
+
+
+2.改檔名工具 quickAddSeriesTool
+
+    選group(可複選)執行，子層物件會自動改名為group名字+序號 
+
+
+3.批次輸出FBX batchExportFBX
+    先在maya檔的路徑開一個命名為"fbx"的資料夾，選要輸出的物件執行。
+    我後來發現它會依照原本的輸出設定輸出 所以我就沒有寫死輸出設定了。

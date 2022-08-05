@@ -37,8 +37,10 @@ global proc exportAniFBXTest(){
     float $minTime = `playbackOptions -q -minTime`;
     float $maxTime = `playbackOptions -q -maxTime`;
     bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+    cutKey -t ":" -f ":" -at "tx" -at "tz" "Root_M";    
+    setAttr "Root_M.translateX" 0;
+    setAttr "Root_M.translateZ" 0;
     
-
     string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
     select -r "Root_M";	
 	
