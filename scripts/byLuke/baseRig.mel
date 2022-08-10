@@ -1,4 +1,3 @@
-source "mathProcedure";
 
 
 /*取得物件的立方股 --lv1--lp0--rc0
@@ -272,8 +271,15 @@ global proc float[] getMoveShpScaleValue(string $obj){
 /*快拍 --lv1
 	用playblast快速擷取一張jpg
 	*/
-	
-global proc snapshot(string $fileDir){
+global proc snapshot(){
+	string $sn = `file -q -sn`;
+	string $dir = `match "^.*/" $sn`;
+	string $fileN = `file -q -sn -shn`;
+	playblast  -fr 1 -format image -cf ($dir+$fileN+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+	}	
+
+
+global proc OldSnapshot(string $fileDir){
 	$jpgDir=startString($fileDir,`sizeBytes $fileDir`-3);	
 	/*
 	file -f -options "v=0;"  -typ "mayaAscii" -o $fileDir;

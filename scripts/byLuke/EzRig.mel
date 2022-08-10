@@ -52,6 +52,7 @@ global proc string[] batchCreateFolicle(string $geo,string $selsB[]){
     }    
     return $fols; 
     }
+	
 global proc string createFolicle(string $geo,float $u ,float $v,string $n){
     //$fol=`createNode -n $n "follicle"`;
     $fol=`shadingNode -n ($n+"Shape") -asUtility "follicle"` ;
@@ -84,3 +85,33 @@ global proc float[] findClosetUVcoordinate(string $geo,string $obj){
     return $uv;
     }
  
+
+global proc string[] crCtrl(string $selsB[]){
+    string $ctrls[];
+    for ($i=0;$i<`size $selsB`; $i++) {
+        $ctrl=($selsB[$i]+"_ctrl");    
+        circle -n $ctrl -ch on -o on -nr 0 1 0 -r 10 ;
+        matchTransform $ctrl $selsB[$i];  
+        $ctrls=stringArrayCatenate( $ctrls, {$ctrl});        
+        }
+    return $ctrls;
+    }
+
+/*
+產生鏡位記錄用的loc
+*/
+global proc crPerspAnchor(){
+    $loc="persp_anchor";
+    if(`objExists $loc`) delete $loc;
+    spaceLocator -n $loc;
+    if(!`objExists "delete_after_export"`) group -em -n "delete_after_export";
+    parent $loc "delete_after_export";
+    $p=`xform -q -ws -t "persp"`;
+    xform -ws -t $p[0] $p[1] $p[2] $loc;
+    $r=`xform -q -ws -ro "persp"`;
+    xform -ws -ro $r[0] $r[1] $r[2] $loc;
+    setAttr -lock 1 ($loc+".translate");
+    setAttr -lock 1 ($loc+".rotate");
+    }   
+
+	

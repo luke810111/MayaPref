@@ -157,12 +157,13 @@ global proc string exportRig(){
                     
         //file -f -new;    
         //file -open $sn;        
-           
+		return $sn;          
         print "working successful!!";
         }else{
+		return $sn;  			
         print "select geo";
         }
-	return $sn;
+
     }
 	
 global proc exportRigCombo(string $dir,string $fN){
@@ -344,8 +345,10 @@ global proc exportAniFBXTest(){
     float $minTime = `playbackOptions -q -minTime`;
     float $maxTime = `playbackOptions -q -maxTime`;
     bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+    cutKey -t ":" -f ":" -at "tx" -at "tz" "Root_M";    
+    setAttr "Root_M.translateX" 0;
+    setAttr "Root_M.translateZ" 0;
     
-
     string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
     select -r "Root_M";	
 	
@@ -367,9 +370,14 @@ global proc exportAniFBXTest(){
         select -r "WeaponRoot";
         file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxWeapon);
         }
-    
-  
-    
+ 
+    if (`objExists "WeaponBRoot"`){        
+        toZero("WeaponBRoot");
+        $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
+        select -r "WeaponBRoot";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxWeapon);
+        } 
+      
     refresh -suspend 0; 
     print "working successful!!";
     }

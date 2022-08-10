@@ -25,6 +25,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "reOpen" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -59,6 +60,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "RE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -93,6 +95,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "NE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -127,6 +130,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "FPE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -161,6 +165,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "delKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -195,6 +200,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "hdJt" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -229,6 +235,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "delLayer" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -263,6 +270,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "dn" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -297,6 +305,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "dui" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -331,6 +340,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "duj" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -365,6 +375,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "gtbp" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -388,17 +399,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/1_Models/_Legacy/Pre-Demo/Jean/Player/Player_Armor01_Rigging_1.mb\";\n" 
+        -annotation "selPlayer" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary..." 
+        -label "/*\n$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nsel..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selPlayer" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -406,7 +419,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/1_Models/_Legacy/Pre-Demo/Jean/Player/Player_Armor01_Rigging.mb\";\n" 
+        -command "\n$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nselectPlayer($ns);\n\nproc string getNameSpaceFromSelected(string $sel){\n    string $buffer[];\n    $numTokens = `tokenize $sel \":\" $buffer`;\n    return $buffer[0];\n    }\nproc string[] selectPlayer(string $ns){\n    $player={\"IKSpine3_M \",\"IKExtraSpine3_M \",\"PoleExtraLeg_R \",\"PoleLeg_R \",\"PoleArm_L \",\"PoleExtraArm_L \",\"PoleExtraLeg_L \",\"PoleLeg_L \",\"IKArm_R \",\"IKExtraArm_R \",\"IKExtraLeg_R \",\"IKLeg_R \",\"RollToesEnd_R \",\"RollExtraHeel_R \",\"RollHeel_R \",\"RollExtraToesEnd_R \",\"RollExtraToes_R \",\"IKArm_L \",\"IKToes_R \",\"RollToes_R \",\"IKExtraToes_R \",\"IKExtraArm_L \",\"IKExtraLeg_L \",\"IKLeg_L \",\"RollToesEnd_L \",\"RollExtraToesEnd_L \",\"RollExtraHeel_L \",\"RollHeel_L \",\"RollExtraToes_L \",\"IKToes_L \",\"RollToes_L \",\"IKExtraToes_L \",\"IKExtracvSpine1_M \",\"PoleArm_R \",\"PoleExtraArm_R \",\"IKcvSpine1_M \",\"IKExtraSpine2_M \",\"IKSpine2_M \",\"IKSpine1_M \",\"IKExtraSpine1_M \",\"IKhybridSpine2_M \",\"IKhybridExtraSpine1_M \",\"IKhybridSpine1_M \",\"IKhybridExtraSpine2_M \",\"IKhybridSpine3_M \",\"IKhybridExtraSpine3_M \",\"FKExtraAnkle_L \",\"FKToes_L \",\"FKExtraToes_L \",\"FKAnkle_L \",\"FKExtraMiddleFinger1_L \",\"FKExtraMiddleFinger3_L \",\"FKMiddleFinger1_L \",\"FKExtraMiddleFinger2_L \",\"FKMiddleFinger2_L \",\"FKMiddleFinger3_L \",\"FKExtraThumbFinger2_L \",\"FKThumbFinger1_L \",\"FKThumbFinger2_L \",\"FKExtraThumbFinger1_L \",\"FKExtraIndexFinger1_L \",\"FKExtraIndexFinger2_L \",\"FKExtraThumbFinger3_L \",\"FKThumbFinger3_L \",\"FKIndexFinger1_L \",\"FKIndexFinger2_L \",\"FKExtraIndexFinger3_L \",\"FKCup_L \",\"FKExtraCup_L \",\"FKExtraPinkyFinger1_L \",\"FKIndexFinger3_L \",\"FKChest_M \",\"FKExtraSpine1_M \",\"FKSpine1_M \",\"FKExtraChest_M \",\"HipSwinger_M \",\"FKExtraNeck_M \",\"FKExtraHead_M \",\"FKExtraEye_R \",\"FKNeck_M \",\"FKJaw_M \",\"FKHead_M \",\"FKExtraJaw_M \",\"FKEye_L \",\"FKEye_R \",\"FKExtraEye_L \",\"FKScapula_R \",\"FKScapula_L \",\"FKExtraScapula_L \",\"FKExtraScapula_R \",\"FKIKArm_L \",\"FKIKArm_R \",\"FKIKLeg_R \",\"FKIKSpine_M \",\"AimEye_R \",\"AimEye_M \",\"FKIKLeg_L \",\"AimEye_L \",\"RootExtraX_M \",\"RootX_M \",\"FKRingFinger3_R \",\"FKExtraShoulder_R \",\"FKExtraRingFinger3_R \",\"FKShoulder_R \",\"FKWrist_R \",\"FKExtraElbow_R \",\"FKElbow_R \",\"FKExtraWrist_R \",\"FKHip_R \",\"FKExtraHip_R \",\"FKExtraToes_R \",\"FKKnee_R \",\"FKAnkle_R \",\"FKExtraKnee_R \",\"FKExtraAnkle_R \",\"FKToes_R \",\"FKExtraHip_L \",\"FKHip_L \",\"FKExtraKnee_L \",\"FKKnee_L \",\"FKExtraPinkyFinger3_L \",\"FKPinkyFinger1_L \",\"FKExtraPinkyFinger2_L \",\"FKPinkyFinger2_L \",\"FKPinkyFinger3_L \",\"FKRingFinger1_L \",\"FKRingFinger2_L \",\"FKExtraRingFinger1_L \",\"FKExtraRingFinger2_L \",\"FKExtraRingFinger3_L \",\"FKRingFinger3_L \",\"FKExtraShoulder_L \",\"FKExtraElbow_L \",\"FKShoulder_L \",\"FKElbow_L \",\"FKExtraWrist_L \",\"FKWrist_L \",\"FKExtraMiddleFinger2_R \",\"FKExtraMiddleFinger1_R \",\"FKMiddleFinger1_R \",\"FKMiddleFinger2_R \",\"FKExtraMiddleFinger3_R \",\"FKExtraThumbFinger1_R \",\"FKThumbFinger1_R \",\"FKMiddleFinger3_R \",\"FKThumbFinger3_R \",\"FKThumbFinger2_R \",\"FKExtraThumbFinger2_R \",\"FKExtraIndexFinger2_R \",\"FKExtraIndexFinger1_R \",\"FKExtraThumbFinger3_R \",\"FKIndexFinger1_R \",\"FKIndexFinger2_R \",\"FKExtraIndexFinger3_R \",\"FKIndexFinger3_R \",\"FKExtraCup_R \",\"FKCup_R \",\"FKPinkyFinger1_R \",\"FKExtraPinkyFinger2_R \",\"FKPinkyFinger2_R \",\"FKExtraPinkyFinger3_R \",\"FKExtraPinkyFinger1_R \",\"FKPinkyFinger3_R \",\"FKExtraRingFinger2_R \",\"FKExtraRingFinger1_R \",\"FKRingFinger1_R \",\"FKRingFinger2_R \",\"FKExtraRoot_M \",\"FKRoot_M \",\"Fingers_L \",\"Fingers_R \",\"Main\"};\n    if(`size $ns`)    \n        $player=stringArrayAddPrefix($player, ($ns+\":\") );   \n    select -r $player; \n    return $player;      \n    }\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -421,18 +434,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "file -loadReference \"groundRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/ground.mb\";\nfile -loadReference \"cameraRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/camera.mb\";" 
+        -annotation "selCloak" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "file -loadReference \"groundRN\" -type \"mayaBinary\" -options \"v=0;..." 
+        -label "$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nselect..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -imageOverlayLabel "cam" 
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selCloak" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -440,7 +454,42 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "file -loadReference \"groundRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/ground.mb\";\nfile -loadReference \"cameraRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/camera.mb\";" 
+        -command "$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nselectCloak($ns);\n\nproc string getNameSpaceFromSelected(string $sel){\n    string $buffer[];\n    $numTokens = `tokenize $sel \":\" $buffer`;\n    return $buffer[0];\n    }\n\nproc string[] selectCloak(string $ns){\n    $cloak={\"Cloak_Contrl \",\"Cloak_Contrl1 \",\"Cloak_Contrl2 \",\"Cloak_Contrl3 \",\"FKScapula_L1 \",\"FKScapula_R1\"};\n    if(`size $ns`)    \n        $cloak=stringArrayAddPrefix($cloak, ($ns+\":\") );   \n    select -r $cloak;\n    return $cloak;    \n    }    \n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "selBow" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nselec..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selBow" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n$sels=`ls -sl`;\n$ns=`getNameSpaceFromSelected($sels[0])`;\nselectBow($ns);\n\nproc string getNameSpaceFromSelected(string $sel){\n    string $buffer[];\n    $numTokens = `tokenize $sel \":\" $buffer`;\n    return $buffer[0];\n    }\n\nproc string[] selectBow(string $ns){\n    $bow={\"bow_Main \",\"bowLf1_ctrl \",\"bowRt1_ctrl \",\"bow_pull_ctrl \",\"bowLf2_ctrl \",\"bowRt2_ctrl\"};\n    if(`size $ns`)    \n        $bow=stringArrayAddPrefix($bow, ($ns+\":\") );   \n    select -r $bow;  \n    return $bow;    \n    }    \n    " 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -466,6 +515,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "CK" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -500,6 +550,7 @@ global proc shelf_export () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "PK" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -509,6 +560,285 @@ global proc shelf_export () {
         -marginWidth 0
         -marginHeight 1
         -command "doPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary\" -options \"v=0;\" \"C:/Users/luke/Documents/maya/projects/default/scenes/Character/Player/Player_Armor01_Rigging.mb\";\nfile -loadReference \"SK_Weapon_Bow_01_rigRN\" -type \"mayaAscii\" -options \"v=0;\" \"C:/Users/luke/Documents/maya/projects/default/scenes/Prop/SK_Weapon_Bow_01/SK_Weapon_Bow_01_rig.ma\";\nfile -loadReference \"cameraRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/3_Animation/Maya/camera.mb\";\nfile -loadReference \"groundRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/MAYA/ground.mb\";\n\nselect -r \"*:bow_Main\" \"*:IKArm_L\" \"*:IKArm_R\" \"*:bow_pull_ctrl\" \"pCylinder1\";\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "refF" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -loadReference \"Player_Armor01_RiggingRN\" -type \"mayaBinary\" -options \"v=0;\" \"C:/Users/luke/Documents/maya/projects/default/scenes/Character/Player/Player_Armor01_Rigging.mb\";\nfile -loadReference \"SK_Weapon_Bow_01_rigRN\" -type \"mayaAscii\" -options \"v=0;\" \"C:/Users/luke/Documents/maya/projects/default/scenes/Prop/SK_Weapon_Bow_01/SK_Weapon_Bow_01_rig.ma\";\nfile -loadReference \"cameraRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/3_Animation/Maya/camera.mb\";\nfile -loadReference \"groundRN\" -type \"mayaBinary\" -options \"v=0;\" \"Z:/Art/1_Assets/3_Animation/MAYA/ground.mb\";\n\nselect -r \"*:bow_Main\" \"*:IKArm_L\" \"*:IKArm_R\" \"*:bow_pull_ctrl\" \"pCylinder1\";\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\n$players=selectPlayer(\"Player_Armor01_Rigging\");\n$cloaks=selectCloak(\"Player_Armor01_Rigging\");\n$bows=selectBow(\"SK_Weapon_Bow_01_rig\");\nselect -r $players $cloaks $bows;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\n$players=selectPlayer(\"Player_Armor01_Rigging\");\n$cloaks=select..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selCtrl" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n$players=selectPlayer(\"Player_Armor01_Rigging\");\n$cloaks=selectCloak(\"Player_Armor01_Rigging\");\n$bows=selectBow(\"SK_Weapon_Bow_01_rig\");\nselect -r $players $cloaks $bows;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_Cloak_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Weapon_Bow_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n\nparentConstraint \"SK_Player_Armor_001_rig:FKNeck_M\" \"SK_Player_Armor_001_Cloak_rig:FKNeck_M_Hook\";\nparentConstraint \"SK_Player_Armor_001_Cloak_rig:CloakRoot\" \"SK_Player_Armor_001_rig:Cloak_Anchor\";\nparentConstraint \"SK_Player_Weapon_Bow_001_rig:WeaponRoot\" \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\nparentConstraint \"pCylinder1\" \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n\n\n\ncurrentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesO..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "ref" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_Cloak_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Weapon_Bow_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n\nparentConstraint \"SK_Player_Armor_001_rig:FKNeck_M\" \"SK_Player_Armor_001_Cloak_rig:FKNeck_M_Hook\";\nparentConstraint \"SK_Player_Armor_001_Cloak_rig:CloakRoot\" \"SK_Player_Armor_001_rig:Cloak_Anchor\";\nparentConstraint \"SK_Player_Weapon_Bow_001_rig:WeaponRoot\" \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\nparentConstraint \"pCylinder1\" \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n\n\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKey..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "coK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "sel L" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selR" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selC" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -loadReference \"SK_Player_Armor_001_Cloak_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -loadReference \"SK_Player_Weapon_Bow_001_rigRN\" -type \"mayaBinary\"  -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinar..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -loadReference \"SK_Player_Armor_001_Cloak_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -loadReference \"SK_Player_Weapon_Bow_001_rigRN\" -type \"mayaBinary\"  -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1

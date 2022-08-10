@@ -1,22 +1,19 @@
+$fols=batchCreateFolicle($selsA[0],$selsB);
+$ctrls=crCtrl($selsB);
+/*
+$selsC=`ls -sl`;
+for ($i=0;$i<`size $ctrls`; $i++) {
+    $cons=`parentConstraint $selsC[$i] $ctrls[$i]`;
+    delete $cons;
+    }
+*/
+$offsets=crOffset($ctrls,"offset",0);   
+$dvns=crOffset($ctrls,"dvn",0);     
+for ($i=0;$i<`size $offsets`; $i++) {
+    parent $offsets[$i] $fols[$i];    
+    scaleConstraint "Main" $fols[$i];
+    parentConstraint -mo $ctrls[$i] $selsB[$i];
+    scaleConstraint $ctrls[$i] $selsB[$i];  
+    }
+    
 
-file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Player_Armor_001_rig" -options "v=0;" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/Armor_001/SK_Player_Armor_001_rig.mb";
-file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Player_Armor_001_Cloak_rig" -options "v=0;" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb";
-file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Player_Weapon_GreatSword_001_rig" -options "v=0;" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/GreatSword/SK_Player_Weapon_GreatSword_001/SK_Player_Weapon_GreatSword_001_rig.mb";
-
-parentConstraint "*:FKNeck_M" "*:FKNeck_M_Hook";
-parentConstraint "*:CloakRoot" "*:Cloak_Anchor";
-
-select -r "*:Wrist_R";
-$selsA=`ls -sl`;
-select -r "*:DoubleEdgedSwordMain";
-$selsB=`ls -sl`;
-crHelper ($selsA,$selsB); 
-
-setAttr "*:DoubleEdgedSwordMain_loc_offset.translateX" 7.765;
-setAttr "*:DoubleEdgedSwordMain_loc_offset.translateY" -0.343;
-setAttr "*:DoubleEdgedSwordMain_loc_offset.translateZ" -2.823;
-setAttr "*:DoubleEdgedSwordMain_loc_offset.rotateX" -106.939;
-setAttr "*:DoubleEdgedSwordMain_loc_offset.rotateY" -75.054;
-setAttr "*:DoubleEdgedSwordMain_loc_offset.rotateZ" -5.94;
-
-parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";

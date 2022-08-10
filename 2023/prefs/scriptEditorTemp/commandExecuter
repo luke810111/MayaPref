@@ -1,8 +1,10 @@
 /*
-string $sn = `file -q -sn`;
-$en=substring($sn, 0, size($sn) - 3);
-playblast  -fr 1 -format image -cf ($en+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
- 
+//ribobn
+file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/ribbon_temp.mb";
+//base rig
+file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/baseCtrl.mb";
+
+
 asMirrorOptions asSelectorbiped;
 select -r "*:CloakRoot";
 select -r "*:WeaponRoot";
@@ -11,24 +13,38 @@ select -r "*:Wrist_R";
 
 //2-2
 for ($i=0; $i<`size($selsB)`;$i++){ 
-$jts=`skinCluster -q -inf $selsA[$i]`;
-select -r $selsB[$i] $jts;
-SmoothBindSkin;
-copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];
-};
+    $jts=`skinCluster -q -inf $selsA[$i]`;
+    select -r $selsB[$i] $jts;
+    SmoothBindSkin;
+    copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];
+    };
 
 //1-2
 for ($i=0; $i<`size($selsB)`;$i++){ 
-$jts=`skinCluster -q -inf $selsA[0]`;
-select -r $selsB[$i] $jts;
-SmoothBindSkin;
-copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
-};
+    $jts=`skinCluster -q -inf $selsA[0]`;
+    select -r $selsB[$i] $jts;
+    SmoothBindSkin;
+    copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
+    };
 
+changeMAtoMB();
+crPerspAnchor();
+
+$sn=exportRig();
+file -f -new;    
+file -open $sn;
 
 exportPlayerRig();
+
+string $sn = `file -q -sn`;
+exportAniFBXTest();
 exportOnlyPlayerAniFBXTest();
+
+//batchExportAniFBXHub();
 */
+
+
+
 source "byLuke/sortOut";
 source "byLuke/mathProcedure";
 source "byLuke/dingdingTool.mel";
@@ -36,4 +52,6 @@ source "byLuke/setKeyTool.mel";
 source "byLuke/IKFKswitchTool";
 source "byLuke/exportFBXPipeline";
 source "byLuke/selCons";
+
 source "byLuke/EzRig";
+source "byLuke/baseRig";
