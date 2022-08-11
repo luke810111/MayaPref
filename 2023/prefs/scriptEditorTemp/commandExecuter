@@ -6,10 +6,6 @@ file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -r
 
 
 asMirrorOptions asSelectorbiped;
-select -r "*:CloakRoot";
-select -r "*:WeaponRoot";
-select -r "*:Cloak_Anchor";
-select -r "*:Wrist_R";
 
 //2-2
 for ($i=0; $i<`size($selsB)`;$i++){ 
@@ -27,20 +23,16 @@ for ($i=0; $i<`size($selsB)`;$i++){
     copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
     };
 
-changeMAtoMB();
+
 crPerspAnchor();
 
-$sn=exportRig();
-file -f -new;    
-file -open $sn;
-
 exportPlayerRig();
+exportRig();
 
-string $sn = `file -q -sn`;
+changeMAtoMB();
+
+batchExportAniFBXHub();
 exportAniFBXTest();
-exportOnlyPlayerAniFBXTest();
-
-//batchExportAniFBXHub();
 */
 
 

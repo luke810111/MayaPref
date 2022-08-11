@@ -274,7 +274,7 @@ global proc shelf_adv () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "setAttr \"Root.inbetweenJoints\" 0;\nsetAttr \"Spine1.inbetweenJoints\" 0;\nsetAttr \"Neck.inbetweenJoints\" 0;\nsetAttr \"Shoulder.twistJoints\" 1;\nsetAttr \"Elbow.twistJoints\" 1;\nsetAttr \"Hip.twistJoints\" 1;" 
+        -command "setAttr \"Root.inbetweenJoints\" 0;\nsetAttr \"Spine1.inbetweenJoints\" 0;\nsetAttr \"Neck.inbetweenJoints\" 0;\nsetAttr \"Shoulder.twistJoints\" 0;\nsetAttr \"Elbow.twistJoints\" 1;\nsetAttr \"Hip.twistJoints\" 0;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -380,6 +380,41 @@ global proc shelf_adv () {
         -marginWidth 0
         -marginHeight 1
         -command "\nasMirrorOptions asSelectorbiped;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sels=`ls -sl`;\n//string $charas[];\nfor ($i=0; $i<`size($sels)`;$i++){ \n    $temp=`tokenize $sels[$i] \":\" $charas`;\n    if(`objExists $charas[1]`) {\n        coShape($sels[$i],$charas[1]);\n        }    \n    }\n\nproc coShape(string $source,string $target){\n    $shpO=`listRelatives -s $target`;\n    \n    $dup=`duplicate -n \"test\"  -rr $source`;  \n    $shpN=`listRelatives -s $dup[0]`;\n    parent -r -s $shpN $target;\n    delete $dup $shpO;\n    for($N in $shpN){\n        rename $N ($target+\"Shape\");\n        }\n    }\n\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n//string $charas[];\nfor ($i=0; $i<`size($sels)`;..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "coShp" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\nstring $charas[];\nfor ($i=0; $i<`size($sels)`;$i++){ \n    $temp=`tokenize $sels[$i] \":\" $charas`;\n    if(`objExists $charas[1]`) {\n        coShape($sels[$i],$charas[1]);\n        }    \n    }\n\nproc coShape(string $source,string $target){\n    $shpO=`listRelatives -s $target`;\n    \n    $dup=`duplicate -n \"test\"  -rr $source`;  \n    $shpN=`listRelatives -s $dup[0]`;\n    parent -r -s $shpN $target;\n    delete $dup $shpO;\n    for($N in $shpN){\n        rename $N ($target+\"Shape\");\n        }\n    }\n\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1

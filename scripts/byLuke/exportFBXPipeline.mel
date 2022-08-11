@@ -14,6 +14,28 @@ global proc changeMAtoMB(){
             }
         }    
     }
+	
+/*
+$RN="Enemy_GoatlinElite_Hammer_rigging1RN";
+$dir="Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/Enemy_GoatlinElite_Hammer_rigging1.mb";
+replaceRef($RN,$dir)
+*/
+global proc replaceRef(string $RN,string $rfDir){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    string $stuffInFolder[]= `getFileList -fld $dir`; 
+           
+    for($fileN in $stuffInFolder){
+        if(`gmatch $fileN "*.ma"`){    
+            //print ($fileN+"\n");
+            file -f -new; 
+            file -open ($dir+$fileN);    
+            file -loadReference $RN -type "mayaBinary" -options "v=0;" $rfDir;
+            file -save -type "mayaBinary";               
+            }
+        }    
+    }	
+	
 /*
 $sels=`ls -sl`;
 $b=getChara($sels[0]);
@@ -101,7 +123,7 @@ global proc resetPerspCamera(){
     }
 	
 //exportRig();
-global proc string exportRig(){
+global proc exportRig(){
     $expSets=`sets -q "export_sets"`;
 	string $sn = `file -q -sn`;
 	string $dir = `match "^.*/" $sn`;
@@ -118,8 +140,12 @@ global proc string exportRig(){
         if(`objExists "delete_after_export"`) delete "delete_after_export";   
         if(`objExists "delete_set"`)  delete `sets -q "delete_set"`;     
 
+		if(`objExists "Main"`) $s=`xform -q -s "Main"`;
+		
         //clean file
-        advCleanComboForExportRig();             
+        advCleanComboForExportRig();   
+
+		if(`objExists "Main"`) scale -a $s[0] $s[1] $s[2] "Main";
 		
         $en=substring($sn, 0, size($sn) - 3);
         $exportN=($en+"_export.mb");    		
@@ -157,10 +183,10 @@ global proc string exportRig(){
                     
         //file -f -new;    
         //file -open $sn;        
-		return $sn;          
+         
         print "working successful!!";
         }else{
-		return $sn;  			
+			
         print "select geo";
         }
 
@@ -317,7 +343,6 @@ global proc batchExportAniFBX(string $dir){
         }
     }
 
-
 global proc exportAniFBXTest(){
     string $sn = `file -q -sn`;
     string $dir = `match "^.*/" $sn`;
@@ -345,13 +370,26 @@ global proc exportAniFBXTest(){
     float $minTime = `playbackOptions -q -minTime`;
     float $maxTime = `playbackOptions -q -maxTime`;
     bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+	select -hi "DeformationSystem";
+	filterCurve `ls -sl`;
+	selectKey -clear ;
+	
+    setKeyframe -breakdown true "DeformationSystem.sx";
+    setKeyframe -breakdown true "DeformationSystem.sy";
+    setKeyframe -breakdown true "DeformationSystem.sz";
+/*
     cutKey -t ":" -f ":" -at "tx" -at "tz" "Root_M";    
     setAttr "Root_M.translateX" 0;
     setAttr "Root_M.translateZ" 0;
-    
+*/    
     string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
     select -r "Root_M";	
-	
+    if(`objExists "Arrow"`)select -add "Arrow";
+    if(`objExists "Bag"`)select -add "Bag";
+    if(`objExists "Bow"`)select -add "Bow";
+    if(`objExists "DeformationSystem|Weapon01"`)select -add "DeformationSystem|Weapon01";	
+    if(`objExists "Hammer_R"`)select -add "Hammer_R";
+    if(`objExists "Hammer_L"`)select -add "Hammer_L";		
     file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxChara);
 
     
@@ -381,81 +419,34 @@ global proc exportAniFBXTest(){
     refresh -suspend 0; 
     print "working successful!!";
     }
-    
+
+/*
+//換哥布林工具
+//file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/Enemy_GoatlinElite_Hammer_rigging1.mb";
  
-global proc exportOnlyPlayerAniFBXTest(){
-    string $sn = `file -q -sn`;
-    string $dir = `match "^.*/" $sn`;
-    
-    string $fileN = `file -q -sn -shn`;
-    $fileN=substring($fileN, 0, size($fileN) - 3);
-
-    
-    //refresh -suspend 1;      
-    ImportRefAndDeleteNameSpace();
-    
-    $en=substring($sn, 0, size($sn) - 3);
-    $exportN=($en+"_export.mb");    
-    file -rename $exportN; 
-    file -save -type "mayaBinary";
-    
-        
-    //需要sets 要輸出的骨架
-    select -r "*DeformationSystem" ;
-    $bakeSets=`ls -sl`;
-    float $minTime = `playbackOptions -q -minTime`;
-    float $maxTime = `playbackOptions -q -maxTime`;
-    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
-    
-    
-    //抽象化語法
-
-    
-    //$fileN="ANI_Player_Bow_Skill02_anim_v01";
-    string $buffer[];
-    $numTokens = `tokenize $fileN "_" $buffer`;
-    //print $buffer
-    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");
-
-    select -r "Root_M";
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fbxChara);
-
-    
-    //refresh -suspend 0; 
-    print "working successful!!";
-    }
+select -r  "Enemy_GoatlinElite_Weapon_R" "Enemy_GoatlinElite_Weapon_L" "FKWrist_R" "FKWrist_L";;
+crMotionDings(`ls -sl`);
 
 
-//exportEnemyAniFBX();
-global proc exportEnemyAniFBX(){
-    string $sn = `file -q -sn`;
-    string $dir = `match "^.*/" $sn`;    
-    string $fileN = `file -q -sn -shn`;
-    $fileN=substring($fileN, 0, size($fileN) - 3);
-    
-    $en=substring($sn, 0, size($sn) - 3);
-    $exportN=($en+"_export.mb");
-    
-    //refresh -suspend 1; 
-                 
-    ImportRefAndDeleteNameSpace();    
+//file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Enemy_EliteBaafmet_rig" -options "v=0;" "G:/共用雲端硬碟/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
+file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "G:/共用雲端硬碟/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
 
-    select -r "DeformationSystem" ;
-    $bakeSets=`ls -sl`;
-    float $minTime = `playbackOptions -q -minTime`;
-    float $maxTime = `playbackOptions -q -maxTime`;
-    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+duplicate -rr -n "R_ding" "FKWrist_R_ding";
+parent "R_ding" "FKWrist_R_ding";
+setAttr "R_ding.rotateX" -97.16;
+duplicate -rr -n "L_ding" "FKWrist_L_ding";
+parent "L_ding" "FKWrist_L_ding";
+setAttr "L_ding.rotateX" -97.16;
 
-    file -rename $exportN; 
-    file -save -type "mayaBinary";
-
-    $fbx=($dir+"FBX/"+$fileN+".fbx");
- 
-    select -r "DeformationSystem" ;
-    file -force -options "v=0;" -typ "FBX export" -pr -es $fbx;
-
-    file -force -save -options "v=0";
-
-    refresh -suspend 0; 
-    print "working successful!!";
-    }
+parentConstraint "Enemy_GoatlinElite_Weapon_R_ding" "HammerR";
+parentConstraint "Enemy_GoatlinElite_Weapon_L_ding" "HammerL";
+select -r "FKWrist_R" "FKWrist_L";
+deleteConstraint();
+orientConstraint "R_ding" "FKWrist_R";
+orientConstraint "L_ding" "FKWrist_L";
+parentConstraint "Hammer_R" "WeaponR_Anchor";
+parentConstraint "Hammer_L" "WeaponL_Anchor";
+//select -r "HammerR" "HammerL" "FKWrist_R" "FKWrist_L";
+$time=getTimeRange();
+bakeResults -simulation true -t $time -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {"HammerR", "HammerL", "FKWrist_R", "FKWrist_L"};
+delete "DingDingTool_grp";
