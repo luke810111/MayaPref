@@ -115,6 +115,19 @@ global proc toZero(string $obj){
     cutKey $obj;
     }  
 
+global proc crPerspAnchor(){
+    $p=`xform -q -t "persp"`;
+    $r=`xform -q -ro "persp"`;    
+    if(`objExists "persp_anchor"`) delete "persp_anchor";
+    spaceLocator -n "persp_anchor";
+    if(!`objExists "delete_after_export"`) group -em -n "delete_after_export";
+    parent "persp_anchor" "delete_after_export";
+    xform -ws -t $p[0] $p[1] $p[2 ]"persp_anchor";
+    xform -ws -ro $r[0] $r[1] $r[2 ]"persp_anchor";
+    setAttr -lock true "persp_anchor.translate";  
+    setAttr -lock true "persp_anchor.rotate";       
+    }
+	
 global proc resetPerspCamera(){
     if(`objExists "persp_anchor"`){
         select -r  "persp" "persp_anchor";

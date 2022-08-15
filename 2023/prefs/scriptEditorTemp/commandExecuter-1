@@ -16,4 +16,5 @@ for ($i=0;$i<`size $offsets`; $i++) {
     scaleConstraint $ctrls[$i] $selsB[$i];  
     }
     
-
+circle -r 10 -nr 0 1 0 
+circle -r 10 -nr 0 0 1 
