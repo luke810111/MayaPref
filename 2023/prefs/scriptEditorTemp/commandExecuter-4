@@ -1,0 +1,34 @@
+select -r "export_sets";
+$delMembers=`ls -sl`;;
+$members=`sets -q $expSets[0]`;
+$delMembers = stringArrayRemove($members,$delMembers); 
+if(`size $delMembers`) delete $delMembers;
+print $expSets[0]
+global string $fileN;
+//export maya
+for($i=0;$i<`size($expSets)`; $i++) { 
+    select -r "export_sets";
+    $delMembers=`ls -sl`;
+    $members=`sets -q $expSets[$i]`;
+    $delMembers = stringArrayRemove($members,$delMembers); 
+    if(`size $delMembers`) delete $delMembers;
+    
+    eval("$fileN=`substitute \"_set\" \""+$expSets[$i]+"\" \"\"`;");             
+    //$fileN=`substitute "_set" $expSets[$i] ""`; 
+          
+    $dir2=($dir+$fileN+"/"+$fileN+"_rig"); 
+    $dir3=($dir+$fileN+"/FBX/"+$fileN);
+    rename "Group" $fileN;
+    select -r -ne ("|"+$fileN);      
+    file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
+
+    select -cl;
+    playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+
+    select -r -ne "Geometry" "DeformationSystem";            
+    file -force -options "v=0;" -typ "FBX export" -pr -es $dir3;            
+           
+    //file -force -options "v=0;" -typ "FBX export" -pr -es ($cloud+"/FBX/"+$fNs[$i]);   
+    file -f -new;    
+    file -open $exportN;
+    }

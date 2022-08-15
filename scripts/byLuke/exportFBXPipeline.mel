@@ -149,7 +149,39 @@ global proc exportRig(){
         //import all reference and delete namespace
         ImportRefAndDeleteNameSpace();
 
-        //delete temp object;    
+		//parent setting
+		if(`objExists "down_to_Main"`){
+			$childs=`listRelatives -c "down_to_Main"`;
+			for($ch in $childs){
+				parent $ch "Main";
+				}
+			//delete "down_to_Main";
+			}
+			
+		if(`objExists "down_to_DeformationSystem"`){
+			$childs=`listRelatives -c "down_to_DeformationSystem"`;
+			for($ch in $childs){
+				parent $ch "DeformationSystem";
+				}
+			//delete "down_to_DeformationSystem";
+			}  
+			  
+		if(`objExists "down_to_Chest_M"`){
+			$childs=`listRelatives -c "down_to_Chest_M"`;
+			for($ch in $childs){
+				parent $ch "Chest_M";
+				}
+			//delete "down_to_Chest_M";
+			}        
+			
+		if(`objExists "down_to_Head_M"`){
+			$childs=`listRelatives -c "down_to_Head_M"`;
+			for($ch in $childs){
+				parent $ch "Head_M";
+				}
+			//delete "down_to_Head_M";
+			}       
+        //delete temp object;			
         if(`objExists "delete_after_export"`) delete "delete_after_export";   
         if(`objExists "delete_set"`)  delete `sets -q "delete_set"`;     
 
@@ -169,7 +201,8 @@ global proc exportRig(){
         //export maya
         for($i=0;$i<`size($expSets)`; $i++) { 
 
-            $delMembers=`listRelatives -c "Geometry"`;
+			select -r "export_sets";
+			$delMembers=`ls -sl`;
             $members=`sets -q $expSets[$i]`;
             $delMembers = stringArrayRemove($members,$delMembers); 
             if(`size $delMembers`) delete $delMembers;
