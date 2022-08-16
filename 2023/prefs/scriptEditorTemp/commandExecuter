@@ -7,32 +7,20 @@ file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -r
 
 asMirrorOptions asSelectorbiped;
 
-//2-2
-for ($i=0; $i<`size($selsB)`;$i++){ 
-    $jts=`skinCluster -q -inf $selsA[$i]`;
-    select -r $selsB[$i] $jts;
-    SmoothBindSkin;
-    copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];
-    };
 
-//1-2
-for ($i=0; $i<`size($selsB)`;$i++){ 
-    $jts=`skinCluster -q -inf $selsA[0]`;
-    select -r $selsB[$i] $jts;
-    SmoothBindSkin;
-    copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
-    };
 
 
 crPerspAnchor();
 
 exportPlayerRig();
-exportRig();
+exportRig(); 
 
 changeMAtoMB();
 
 batchExportAniFBXHub();
 exportAniFBXTest();
+
+refresh -suspend 0; 
 */
 
 

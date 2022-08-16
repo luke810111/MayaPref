@@ -355,15 +355,7 @@ global proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
         }    
     }  
 
-global proc updateModel(string $selsA[],string $selsB[]){
-    select -r `skinCluster -q -inf $selsA`;
-    select -add $selsB;
-    SmoothBindSkin;
-    
-    for ($i=0; $i<`size($selsB)`;$i++){ 
-    copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
-    };
-    }
+
 
 //輸出動做FBX
 //batchExportAniFBXHub();
@@ -411,19 +403,21 @@ global proc exportAniFBXTest(){
     
         
     //需要sets 要輸出的骨架
-    select -r "*DeformationSystem" ;
+    select -r "*|DeformationSystem" ;
     $bakeSets=`ls -sl`;
     float $minTime = `playbackOptions -q -minTime`;
     float $maxTime = `playbackOptions -q -maxTime`;
     bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
-	select -hi "DeformationSystem";
+	
+	//euler filter
+	select -hi "*DeformationSystem";
 	filterCurve `ls -sl`;
 	selectKey -clear ;
-	
+/*	
     setKeyframe -breakdown true "DeformationSystem.sx";
     setKeyframe -breakdown true "DeformationSystem.sy";
     setKeyframe -breakdown true "DeformationSystem.sz";
-/*
+
     cutKey -t ":" -f ":" -at "tx" -at "tz" "Root_M";    
     setAttr "Root_M.translateX" 0;
     setAttr "Root_M.translateZ" 0;
@@ -445,21 +439,22 @@ global proc exportAniFBXTest(){
         toZero("CloakRoot");
         $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
         select -r "CloakRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxCloak);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Cloak/"+$fbxCloak);
         } 
                
-    if (`objExists "WeaponRoot"`){        
+    //if (`objExists "WeaponRoot"`){   
+    if (`objExists "SK_Player_Weapon_Bow_001"`){ 		
         toZero("WeaponRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
         select -r "WeaponRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxWeapon);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
         }
  
     if (`objExists "WeaponBRoot"`){        
         toZero("WeaponBRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
         select -r "WeaponBRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxWeapon);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
         } 
       
     refresh -suspend 0; 

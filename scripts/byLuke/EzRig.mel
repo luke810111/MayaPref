@@ -87,3 +87,22 @@ global proc float[] findClosetUVcoordinate(string $geo,string $obj){
     return $uv;
     }
  
+global proc updateModel(string $selsA[],string $selsB[],int $mode){
+    //$mode==0: 1-2
+    //$mode==1: 2-2
+    if($mode==0){
+        select -r `skinCluster -q -inf $selsA`;
+        select -add $selsB;
+        SmoothBindSkin;
+        for ($i=0; $i<`size($selsB)`;$i++){ 
+            copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];
+            }
+    }else{
+        for ($i=0; $i<`size($selsB)`;$i++){ 
+            $jts=`skinCluster -q -inf $selsA[$i]`;
+            select -r $selsB[$i] $jts;
+            SmoothBindSkin;
+            copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];
+            }        
+        }
+    }
