@@ -1,0 +1,7 @@
+select -r "*WeaponR_Anchor"
+
+scale -r -ocp 5 5 5;
+move -r -os -wd 40 0 0 ;
+
+crPerspAnchor()
+updateModel($selsA,$selsB,1);

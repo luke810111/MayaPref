@@ -463,14 +463,14 @@ global proc evilExportAniFBX(){
         } 
                
     //if (`objExists "WeaponRoot"`){   
-    if (`objExists "SK_Player_Weapon_Bow_001"`){ 		
+    if (`objExists "WeaponRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){ 		
         toZero("WeaponRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
         select -r "WeaponRoot";
         file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
         }
  
-    if (`objExists "WeaponBRoot"`){        
+    if (`objExists "WeaponBRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){        
         toZero("WeaponBRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
         select -r "WeaponBRoot";
@@ -543,14 +543,15 @@ global proc exportAniFBX(){
         } 
                
     //if (`objExists "WeaponRoot"`){   
-    if (`objExists "SK_Player_Weapon_Bow_001"`){ 		
+    if (`objExists "WeaponRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){ 		
         toZero("WeaponRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
         select -r "WeaponRoot";
         file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+$fbxWeapon);
         }
  
-    if (`objExists "WeaponBRoot"`){        
+    //if (`objExists "WeaponBRoot"`){ 
+    if (`objExists "WeaponBRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){ 	
         toZero("WeaponBRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
         select -r "WeaponBRoot";

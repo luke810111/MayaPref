@@ -4,17 +4,25 @@ file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -r
 //base rig
 file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/baseCtrl.mb";
 
+
 asMirrorOptions asSelectorbiped;
-changeMAtoMB();
+
+
+
+
 crPerspAnchor();
-string $sn=exportPlayerRig(1,1);
-string $sn=exportRig(1,1); 
-print $sn;
-file -f -new;
-file -open $sn;
+
+exportPlayerRig();
+exportRig(); 
+
+changeMAtoMB();
+
 batchExportAniFBXHub();
-exportAniFBX();
+exportAniFBXTest();
+
 refresh -suspend 0; 
+
+exportFBXPipelineTool();
 */
 
 

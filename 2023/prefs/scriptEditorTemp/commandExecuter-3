@@ -1,0 +1,54 @@
+
+global string $fileN;
+//export maya
+for($i=0;$i<`size($expSets)`; $i++) { 
+    select -r "export_sets";
+    $delMembers=`ls -sl`;
+    $members=`sets -q $expSets[$i]`;
+    $delMembers = stringArrayRemove($members,$delMembers); 
+    if(`size $delMembers`) delete $delMembers;
+    
+    eval("$fileN=`substitute \"_set\" \""+$expSets[$i]+"\" \"\"`;");             
+    //$fileN=`substitute "_set" $expSets[$i] ""`; 
+          
+    $dir2=($dir+$fileN+"/"+$fileN+"_rig"); 
+    $dir3=($dir+$fileN+"/FBX/"+$fileN);
+    rename "Group" $fileN;
+    select -r -ne ("|"+$fileN);      
+    file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
+    
+    select -cl;
+    playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+    
+    select -r -ne "Geometry" "DeformationSystem";            
+    file -force -options "v=0;" -typ "FBX export" -pr -es $dir3;            
+           
+    //file -force -options "v=0;" -typ "FBX export" -pr -es ($cloud+"/FBX/"+$fNs[$i]);   
+    file -f -new;    
+    file -open $exportN;
+    }
+                        
+global proc exportRigCombo(string $dir,string $fN){
+    file -force -options "v=0;" -type "mayaBinary" -pr -ea ($dir+$fN+"_rig.mb");
+    select -r "DeformationSystem" "Geometry";
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+"FBX/"+$fN); 
+    playblast  -fr 1 -format image -cf ($dir+$fN+"_rig.jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
+    
+    }
+	
+global proc exportRiggingFBX(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    string $dirF=($dir+"FBX");
+    
+    string $fileN = `file -q -sn -shn`;
+    $fileN=substring($fileN, 0, size($fileN) - 7);    
+    
+    $work=`file -q -ex $dirF`;
+    if($work==1){
+        select -r "DeformationSystem" "Geometry";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dirF+"/"+$fileN);
+    }else{
+        print ("§ä¤£¨ì:"+$dirF);
+    }
+    }
