@@ -8,12 +8,12 @@ file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -r
 asMirrorOptions asSelectorbiped;
 
 
-
+updateModel($selsA,$selsB,1);
 
 crPerspAnchor();
 
 exportPlayerRig();
-exportRig(); 
+exportRig(1,1); 
 
 changeMAtoMB();
 
@@ -26,7 +26,7 @@ exportFBXPipelineTool();
 */
 
 
-
+source "reference/carlaH_skinWeightsEditor";
 source "byLuke/sortOut";
 source "byLuke/mathProcedure";
 source "byLuke/dingdingTool.mel";
@@ -37,3 +37,11 @@ source "byLuke/selCons";
 
 source "byLuke/EzRig";
 source "byLuke/baseRig";
+
+source "byLuke/sortOut";
+source "byLuke/sortOutTool";
+//sortOutTool();
+
+source "byLuke/crCtrl";
+source "byLuke/batchPBbyLuke";
+

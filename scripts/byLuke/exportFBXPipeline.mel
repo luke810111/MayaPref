@@ -42,13 +42,11 @@ global proc exportFBXPipelineTool(){
 global proc judgPlayer(){
     int $swMb=`checkBox -q -v swMb`;
     int $swFbx=`checkBox -q -v swFbx`;    
-	string $sn = `file -q -sn`;    
+	string $sn = `file -q -sn`;	
     if(	`gmatch $sn "*SK_Player_Armor*"`)
-        $sn=exportPlayerRig($swMb,$swFbx);
+        exportPlayerRig($swMb,$swFbx);
     else
-        $sn=exportRig($swMb,$swFbx);    
-    file -f -new;
-    file -open $sn;       
+        exportRig($swMb,$swFbx);          
     }
 
 
@@ -145,6 +143,13 @@ global proc advCleanComboForExportRig(){
 		$childs=`listRelatives -c "down_to_Main"`;
 		for($ch in $childs){
 			parent $ch "Main";
+			}
+		}
+		
+	if(`objExists "down_to_FKSystem"`){
+		$childs=`listRelatives -c "down_to_FKSystem"`;
+		for($ch in $childs){
+			parent $ch "FKSystem";
 			}
 		}
 		
@@ -249,12 +254,14 @@ global proc string exportRig(int $expMB,int $expFBX){
 			global string $fileN;
 			//export maya
 			exportRigMayaFBX($expMB,$expFBX,$expSets,$exportN,$dir);
+			file -f -new;
+			file -open $sn; 			
 			print "working successful!!";
 		}else{		
-			print "select geo";
+			print "no export_set member\n";
 			}
 	}else{
-		print "no export_set";
+		print "no export_set\n";
 		}			
 	return $sn;
     }
@@ -327,13 +334,14 @@ global proc string exportPlayerRig(int $expMB,int $expFBX){
 				
 			refresh -suspend 0;  
 			if ($expMB==1) exportPlayerRigMaya($expSets,$exportN,$dir);
-                  
+			file -f -new;
+			file -open $sn;       
 			print "working successful!!";        
 		}else{
-			print "no export_set member";
+			print "no export_set member\n";
 			}
 	}else{
-		print "no export_set";
+		print "no export_set\n";
 		}
 	return $sn;
     }

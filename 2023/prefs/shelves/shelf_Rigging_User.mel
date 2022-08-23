@@ -111,6 +111,72 @@ global proc shelf_Rigging_User () {
         -flexibleWidthType 3
         -flexibleWidthValue 32
         -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "carlaH_skinWeightsEditor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "carlaH_skinWeightsEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/carlaH_skinWeightsEditor.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/carlaH_skinWeightsEditor.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "global int $carlaH_CESbuildNew; //das fenster zwigen, sich neu aufzubauen\nglobal int $carlaH_CESgrpSize; //minimale Groesse einer Joint-Group\nglobal int $carlaH_CESgrpNameSize; //groesse des Gruppen-Namens\nint $CESgrpValues[]={ 3 , 1 , 6 };\n$carlaH_CESgrpSize = $CESgrpValues[0];\n$carlaH_CESnamePart = $CESgrpValues[1];\n$carlaH_CESgrpNameSize = $CESgrpValues[2];\ncarlaH_skinWeightsEditor() ;\n\n// 124 Âß·F¼Ò¦¡\n// 131 ÀY¾v¼Ò¦¡\n// 1 1 11 \n// 3 1 6 TSM\n// skirtB_La 1 2 2 \n\n/*\n\nmin. count of objects to be sortet in a group :\n\tspecifies the minimum size a sorting group should have\n\tfor example you have two joints with the prefix \"lips_\" but specify the group size to be \" +\n\tthree - than there will be no lips-group - specify it to be two and there will be one\\n\\n\" +\n\t\t\nsort by which part of name (divided by \"_\" ) :\n\tfor example the naming-convention of your joints is something like this: character01_Left_thumb01, \n\tcharacter01_Left_index01,... Then you should specify the name part to three, if you want the \n\tjoints to be sortet by the fingers - specify it to two and the joints will be sorted by the side.\\n\n\t\t\nsize of goup-name :\n\tspecifies the count of letters, a group should have - take the example above, than a group-name size \n\tof 3 would name your groups \"thu\" and \"ind\" - a group-name size of 5 would name it \n\t\"thumb\" and \"index\" \";\n\n*/" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "weightHammerVerts;\r" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "weightHammerVerts;\r" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/Administrator/Documents/maya/Icon_Custom/weightHammerVerts.BMP" 
+        -image1 "C:/Users/Administrator/Documents/maya/Icon_Custom/weightHammerVerts.BMP" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "weightHammerVerts;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
         -width 35
         -height 34
         -manage 1
@@ -403,6 +469,39 @@ global proc shelf_Rigging_User () {
         -marginWidth 0
         -marginHeight 1
         -command "artAttrSkinWeightPaste" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "quickPBbyLuke();" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "quickPBbyLuke();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "quickPBbyLuke();" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1

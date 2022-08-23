@@ -1,7 +1,16 @@
-select -r "*WeaponR_Anchor"
+/*
+for ($i=0; $i<`size($selsB)`;$i++){ 
+    group -em -n ("FKOffset"+$selsB[$i]);
+    $p=`xform -q -ws -t $selsB[$i]`;
+    xform -ws -t $p[0] $p[1] $p[2] ("FKOffset"+$selsB[$i]);
+    $r=`xform -ws -q -ro $selsB[$i]`;
+    xform -ws -ro $r[0] $r[1] $r[2] ("FKOffset"+$selsB[$i]);
+    parent $selsA[$i] ("FKOffset"+$selsB[$i]);
+    rename $selsA[$i] ("FK"+$selsB[$i]);
+    parentConstraint ("FK"+$selsB[$i]) $selsB[$i];
+    scaleConstraint ("FK"+$selsB[$i]) $selsB[$i];    
+    }
 
-scale -r -ocp 5 5 5;
-move -r -os -wd 40 0 0 ;
-
-crPerspAnchor()
-updateModel($selsA,$selsB,1);
+for ($i=0; $i<`size($selsB)`;$i++){ 
+    connectAttr -f ($selsA[$i]+".scale") ($selsB[$i]+".scale");
+    }
