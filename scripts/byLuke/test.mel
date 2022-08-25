@@ -1,0 +1,79 @@
+global proc evilExportAniFBX(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    string $fileN = `file -q -sn -shn`;
+    $fileN=substring($fileN, 0, size($fileN) - 7);
+
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`;
+    //print $buffer;
+    if(`size $buffer[4]`) $buffer[3]=$buffer[3]+"_"+$buffer[4];
+    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
+    
+    refresh -suspend 1;      
+    ImportRefAndDeleteNameSpace();
+    
+    $en=substring($sn, 0, size($sn) - 3);
+    $exportN=($en+"_export.mb");    
+    file -rename $exportN; 
+    file -save -type "mayaBinary";
+    
+        
+    //需要sets 要輸出的骨架
+    select -r "*|DeformationSystem" ;
+    $bakeSets=`ls -sl`;
+    float $minTime = `playbackOptions -q -minTime`;
+    float $maxTime = `playbackOptions -q -maxTime`;
+    bakeResults -simulation true -t ($minTime+":"+$maxTime) -hierarchy below -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true $bakeSets;
+	
+	//euler filter
+	select -hi "*DeformationSystem";
+	filterCurve `ls -sl`;
+	selectKey -clear ;
+/*	
+    setKeyframe -breakdown true "DeformationSystem.sx";
+    setKeyframe -breakdown true "DeformationSystem.sy";
+    setKeyframe -breakdown true "DeformationSystem.sz";
+
+    cutKey -t ":" -f ":" -at "tx" -at "tz" "Root_M";    
+    setAttr "Root_M.translateX" 0;
+    setAttr "Root_M.translateZ" 0;
+*/    
+    string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
+    select -r "Root_M";	
+    if(`objExists "Arrow"`)select -add "Arrow";
+    if(`objExists "Bag"`)select -add "Bag";
+    if(`objExists "Bow"`)select -add "Bow";
+    if(`objExists "DeformationSystem|Weapon01"`)select -add "DeformationSystem|Weapon01";	
+    if(`objExists "Hammer_R"`)select -add "Hammer_R";
+    if(`objExists "Hammer_L"`)select -add "Hammer_L";		
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxChara);
+
+    
+    //抽象化語法
+    //setAttr "WeaponR.blendParent1" 0;
+    if (`objExists "CloakRoot"`){
+        toZero("CloakRoot");
+        $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
+        select -r "CloakRoot";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Cloak/"+$fbxCloak);
+        } 
+               
+    //if (`objExists "WeaponRoot"`){   
+    if (`objExists "WeaponRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){ 		
+        toZero("WeaponRoot");
+        $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
+        select -r "WeaponRoot";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
+        }
+ 
+    if (`objExists "WeaponBRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){        
+        toZero("WeaponBRoot");
+        $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
+        select -r "WeaponBRoot";
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
+        } 
+      
+    refresh -suspend 0; 
+    print "working successful!!";
+    }
