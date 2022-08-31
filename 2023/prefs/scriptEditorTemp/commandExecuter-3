@@ -1,10 +1,48 @@
-select -r "*:WeaponR_Anchor";
+/*
+for ($i=0; $i<`size($selsB)`;$i++){ 
+    group -em -n ("FKOffset"+$selsB[$i]);
+    $p=`xform -q -ws -t $selsB[$i]`;
+    xform -ws -t $p[0] $p[1] $p[2] ("FKOffset"+$selsB[$i]);
+    $r=`xform -ws -q -ro $selsB[$i]`;
+    xform -ws -ro $r[0] $r[1] $r[2] ("FKOffset"+$selsB[$i]);
+    parent $selsA[$i] ("FKOffset"+$selsB[$i]);
+    rename $selsA[$i] ("FK"+$selsB[$i]);
+    parentConstraint ("FK"+$selsB[$i]) $selsB[$i];
+    scaleConstraint ("FK"+$selsB[$i]) $selsB[$i];    
+    }
+
+for ($i=0; $i<`size($selsB)`;$i++){ 
+    connectAttr -f ($selsA[$i]+".scale") ($selsB[$i]+".scale");
+    }
+source "byLuke/sortOut";
+$sels=`ls -sl`;
+
+getWorldSpaceTranslateion($sels);
+move -r -30 0 0 ;
+move -r -os -wd 10 0 0 ;
+rotate -r -ocp -ws -fo 0 90 0 ;
+rotate -r -ocp -ws -fo 90 0 0 ;
+rotate -r -ocp -os -fo 0 -90 0 ;   
 
 
-parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
+$fols=batchCreateFolicle($selsA[0],$selsB);
+$ctrls=crCtrl($selsB);
 
-scale -r -ocp 5 5 5;
-move -r -os -wd 40 0 0 ;
+$selsC=`ls -sl`;
+for ($i=0;$i<`size $ctrls`; $i++) {
+    $cons=`parentConstraint $selsC[$i] $ctrls[$i]`;
+    delete $cons;
+    }
 
-crPerspAnchor()
-updateModel($selsA,$selsB,1);
+$offsets=crOffset($ctrls,"offset",0);   
+$dvns=crOffset($ctrls,"dvn",0);     
+for ($i=0;$i<`size $offsets`; $i++) {
+    parent $offsets[$i] $fols[$i];    
+    scaleConstraint "Main" $fols[$i];
+    parentConstraint -mo $ctrls[$i] $selsB[$i];
+    scaleConstraint $ctrls[$i] $selsB[$i];  
+    }
+    
+circle -r 10 -nr 0 1 0 
+circle -r 10 -nr 0 0 1  
+  

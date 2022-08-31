@@ -1,18 +1,34 @@
-//batchPBbyLukeHub();
-//batchPB4ViewbyLukeHub();
-//quickPBbyLuke();
-//$sn=combine4ViewPBbyLuke();
-//file -f -new;
-//file -open $sn; 
+//PBToolbyLuke();
+global proc PBToolbyLuke(){
 
-//$dir="X:/Art/1_Assets/3_Animation/Maya/camera.mb";
+    string $window;
+    string $pbt;
+    
+	if (`window -exists pbt`)
+		deleteUI -window pbt;
+	$window=`window -title "PBToolbyLuke" -h 30 -w 120 -rtf 1 -s 1 pbt`;
+
+    	frameLayout -label "";   	    
+			button -label "quickPB" -bgc 0.8 0.8 0.7 -c "quickPBbyLuke();";
+			button -label "batch quickPB" -bgc 0.5 0.1 0.5 -c "batchPBbyLukeHub();";			
+			setParent ..; 
+
+    	frameLayout -label "";   	    
+			button -label "quad View PB" -bgc 0.8 0.8 0.7 -c "$sn=combine4ViewPBbyLuke();";
+			button -label "batch quad View PB" -bgc 0.5 0.1 0.1 -c "batchPB4ViewbyLukeHub();";				
+			setParent ..;
+			
+	showWindow pbt;
+	}			
+	
 global proc batchPBbyLukeHub(){
     string $sn = `file -q -sn`;
     string $dir = `match "^.*/" $sn`;
     batchPBbyLuke($dir);
 	print "It's feeling good~ Right?";
     }
-	
+
+//$dir="X:/Art/1_Assets/3_Animation/Maya/camera.mb";	
 global proc batchPBbyLuke(string $dir){
     string $stuffInFolder[]= `getFileList -fld $dir`;
     string $temps[];
@@ -75,6 +91,9 @@ global proc batchPB4ViewbyLuke(string $dir){
     }
     
 global proc string combine4ViewPBbyLuke(){
+    $camRef="X:/Art/1_Assets/3_Animation/Maya/camera.mb";
+    $persps={"persp1","persp2","persp3","persp4"};
+	
     $minTime = `playbackOptions -q -minTime`; 
     $maxTime = `playbackOptions -q -maxTime`; 
     string $sn = `file -q -sn`;
@@ -89,13 +108,16 @@ global proc string combine4ViewPBbyLuke(){
 
     //$mPs=getActiveModelPanels()  
     $mP="modelPanel4";
-    $camRef="X:/Art/1_Assets/3_Animation/Maya/camera.mb";
-    $persps={"persp1","persp2","persp3","persp4"};
+
     quickPB4ViewbyLuke($pbBase,$camRef,$mP,$persps);
     		
-		file -f -new;
-		file -rename $exportN; 
-		        
+	file -f -new;
+	file -rename $exportN; 
+	currentUnit -t "ntsc";		    
+	modelEditor -e -grid false modelPanel4; 
+	modelEditor -e -grid false modelPanel3; 
+	modelEditor -e -grid false modelPanel2;
+	modelEditor -e -grid false modelPanel1;	
     $timeRange=($maxTime-$minTime)+1;
     playbackOptions -e -minTime $minTime;
     playbackOptions -e -maxTime (($timeRange*3)+$minTime-1);
@@ -103,7 +125,7 @@ global proc string combine4ViewPBbyLuke(){
     $cod=reapeatCondtion($file,$outTime,$timeRange,2);  
     //connectAttr -f ($cod+".outColorR") ($ip4+".frameExtension");  		
     for($persp in $persps){	
-        $ip=crMovieImagePlane($dir+"temp/"+$file+"_"+$persp+".mov");
+        $ip=crMovieImagePlane(($dir+"temp/"+$file+"_"+$persp+".mov"),$persps);
         connectAttr -f ($cod+".outColorR") ($ip+".frameExtension");     
         } 
     select -cl  ;               
@@ -112,7 +134,7 @@ global proc string combine4ViewPBbyLuke(){
 			
   		return $sn;	  
     }  
-         
+  
 global proc quickPB4ViewbyLuke(string $base,string $camRef,string $mP,string $persps[]){
     string $cam;
     doSwitchPanes(1, { "single",$mP});    
@@ -126,6 +148,48 @@ global proc quickPB4ViewbyLuke(string $base,string $camRef,string $mP,string $pe
         playblast  -format qt -filename $mov -forceOverwrite  -sequenceTime 0 -clearCache 1 -viewer 0 -showOrnaments 1 -offScreen  -fp 4 -percent 100 -compression "H.264" -quality 100 -widthHeight 960 540;
         }
     }   
+
+global proc string crMovieImagePlane(string $dir,string $persps[]){
+//reference:C:/Program Files/Autodesk/Maya2023/scripts/others/importMovieImagePlane.mel
+    $newImagePlane=createImagePlane("perspShape");
+    setAttr ($newImagePlane[1] + ".type") 2;
+    setAttr ($newImagePlane[1] + ".useFrameExtension") 1;			
+    setAttr ($newImagePlane[1] + ".imageName") -type "string" $dir; 	
+    
+    int $pixmapSize[] = `imagePlane -q -iz $newImagePlane[1]`;
+    float $width = (float)$pixmapSize[0] / 200;
+    imagePlane -e -w $width $newImagePlane[1];	
+
+    $sizeX=`getAttr ($newImagePlane[1] + ".sizeX")`;
+    $sizeY=`getAttr ($newImagePlane[1] + ".sizeY")`;
+    setAttr ($newImagePlane[1] + ".sizeX") ($sizeX/2); 
+    setAttr ($newImagePlane[1] + ".sizeY") ($sizeY/2); 
+    
+    if(`gmatch $dir "*_persp1.mov"`){
+        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/-4);
+        setAttr ($newImagePlane[1]+".offsetY") 0.2;
+    }else if(`gmatch $dir "*_persp2.mov"`){
+        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/4);
+        setAttr ($newImagePlane[1]+".offsetY") 0.2;
+    }else if(`gmatch $dir "*_persp3.mov"`){
+        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/-4);
+        setAttr ($newImagePlane[1]+".offsetY") -0.2;
+    }else if(`gmatch $dir "*_persp4.mov"`){
+        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/4);
+        setAttr ($newImagePlane[1]+".offsetY") -0.2;
+    }   
+    // 
+    // Sync maya time with the Movie Image Plane time.
+    // Without those lines, the movie time is always 1 frame behind
+    // maya time. (SEE MAYA-75400)
+    //
+    int $animationStartTime = `playbackOptions  -q -animationStartTime`;
+    int $frameOffset = (1-$animationStartTime);
+    int $minAnimationStartTime = min(0, $animationStartTime);
+    setAttr ($newImagePlane[1] + ".frameIn") $minAnimationStartTime;                        
+    setAttr ($newImagePlane[1] + ".frameOffset") $frameOffset;
+    return $newImagePlane[1];
+    }
     
 global proc string[] getActiveModelPanels(){
     string $modelPanels[];
@@ -167,53 +231,9 @@ global proc setPanelforPB(string $modelPanel){
     setPolyCountVisibility 0;
     setCameraNamesVisibility 0;
     setCapsLockVisibility 0;    
-    setCurrentFrameVisibility 1;    
+    setCurrentFrameVisibility 1; 
+    setViewAxisVisibility 0;   
     setAttr hardwareRenderingGlobals.multiSampleEnable 1;
-    }
-
-
-
-
-global proc string crMovieImagePlane(string $dir){
-//reference:C:/Program Files/Autodesk/Maya2023/scripts/others/importMovieImagePlane.mel
-    $newImagePlane=createImagePlane("perspShape");
-    setAttr ($newImagePlane[1] + ".type") 2;
-    setAttr ($newImagePlane[1] + ".useFrameExtension") 1;			
-    setAttr ($newImagePlane[1] + ".imageName") -type "string" $dir; 	
-    
-    int $pixmapSize[] = `imagePlane -q -iz $newImagePlane[1]`;
-    float $width = (float)$pixmapSize[0] / 200;
-    imagePlane -e -w $width $newImagePlane[1];	
-
-    $sizeX=`getAttr ($newImagePlane[1] + ".sizeX")`;
-    $sizeY=`getAttr ($newImagePlane[1] + ".sizeY")`;
-    setAttr ($newImagePlane[1] + ".sizeX") ($sizeX/2); 
-    setAttr ($newImagePlane[1] + ".sizeY") ($sizeY/2); 
-    
-    if(`gmatch $dir "*_persp1.mov"`){
-        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/-4);
-        setAttr ($newImagePlane[1]+".offsetY") 0.2;
-    }else if(`gmatch $dir "*_persp2.mov"`){
-        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/4);
-        setAttr ($newImagePlane[1]+".offsetY") 0.2;
-    }else if(`gmatch $dir "*_persp3.mov"`){
-        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/-4);
-        setAttr ($newImagePlane[1]+".offsetY") -0.2;
-    }else if(`gmatch $dir "*_persp4.mov"`){
-        setAttr ($newImagePlane[1]+".offsetX") ($sizeX/4);
-        setAttr ($newImagePlane[1]+".offsetY") -0.2;
-    }   
-    // 
-    // Sync maya time with the Movie Image Plane time.
-    // Without those lines, the movie time is always 1 frame behind
-    // maya time. (SEE MAYA-75400)
-    //
-    int $animationStartTime = `playbackOptions  -q -animationStartTime`;
-    int $frameOffset = (1-$animationStartTime);
-    int $minAnimationStartTime = min(0, $animationStartTime);
-    setAttr ($newImagePlane[1] + ".frameIn") $minAnimationStartTime;                        
-    setAttr ($newImagePlane[1] + ".frameOffset") $frameOffset;
-    return $newImagePlane[1];
     }
 
 global proc string reapeatCondtion(string $file,string $outTime,int $timeRange,int $n){
@@ -224,7 +244,7 @@ global proc string reapeatCondtion(string $file,string $outTime,int $timeRange,i
         setAttr ($minus+".input1D[1]") $timeRange;
         setAttr ($minus+".operation")2;   
         setAttr ($cod+".operation") 2; 
-        setAttr ($cod+".secondTerm") 30; 
+        setAttr ($cod+".secondTerm") $timeRange; 
         connectAttr -f $outTime ($minus+".input1D[0]");         
         connectAttr -f $outTime ($cod+".colorIfFalseR");
         connectAttr -f $outTime ($cod+".firstTerm");    
@@ -236,7 +256,7 @@ global proc string reapeatCondtion(string $file,string $outTime,int $timeRange,i
         setAttr ($minus+".input1D[1]") $timeRange;
         setAttr ($minus+".operation")2;   
         setAttr ($cod+".operation") 2; 
-        setAttr ($cod+".secondTerm") 30; 
+        setAttr ($cod+".secondTerm") $timeRange; 
         connectAttr -f $outTime ($minus+".input1D[0]");         
         connectAttr -f $outTime ($cod+".colorIfFalseR");
         connectAttr -f $outTime ($cod+".firstTerm");    

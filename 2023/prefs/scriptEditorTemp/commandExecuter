@@ -4,10 +4,12 @@ file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -r
 //base rig
 file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/baseCtrl.mb";
 
+batchCreateFolicle($selsA[0],$selsB);
 
 asMirrorOptions asSelectorbiped;
 
 
+updateModel($selsA,$selsB,0);
 updateModel($selsA,$selsB,1);
 
 crPerspAnchor();
@@ -23,6 +25,9 @@ exportAniFBXTest();
 refresh -suspend 0; 
 
 exportFBXPipelineTool();
+PBToolbyLuke();
+file -f -new;
+file -open $sn; 
 */
 
 

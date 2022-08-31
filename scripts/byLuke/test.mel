@@ -39,7 +39,7 @@ global proc evilExportAniFBX(){
     setAttr "Root_M.translateX" 0;
     setAttr "Root_M.translateZ" 0;
 */    
-    string $fbxdir = `substitute "/MAYA/" $dir "/FBX/"`;     
+   
     select -r "Root_M";	
     if(`objExists "Arrow"`)select -add "Arrow";
     if(`objExists "Bag"`)select -add "Bag";
@@ -47,7 +47,7 @@ global proc evilExportAniFBX(){
     if(`objExists "DeformationSystem|Weapon01"`)select -add "DeformationSystem|Weapon01";	
     if(`objExists "Hammer_R"`)select -add "Hammer_R";
     if(`objExists "Hammer_L"`)select -add "Hammer_L";		
-    file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+$fbxChara);
+    file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+$fbxChara);
 
     
     //抽象化語法
@@ -56,7 +56,7 @@ global proc evilExportAniFBX(){
         toZero("CloakRoot");
         $fbxCloak=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Cloak_"+$buffer[3]+".fbx");
         select -r "CloakRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Cloak/"+$fbxCloak);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+$fbxCloak);
         } 
                
     //if (`objExists "WeaponRoot"`){   
@@ -64,14 +64,15 @@ global proc evilExportAniFBX(){
         toZero("WeaponRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_Weapon_"+$buffer[3]+".fbx");
         select -r "WeaponRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+$fbxWeapon);
         }
  
-    if (`objExists "WeaponBRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){        
+    //if (`objExists "WeaponBRoot"`){ 
+    if (`objExists "WeaponBRoot"`&&`objExists "SK_Player_Weapon_Bow_001"`){ 	
         toZero("WeaponBRoot");
         $fbxWeapon=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_WeaponB_"+$buffer[3]+".fbx");
         select -r "WeaponBRoot";
-        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxdir+"Attachments/Weapon/"+$fbxWeapon);
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($dir+$fbxWeapon);
         } 
       
     refresh -suspend 0; 

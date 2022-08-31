@@ -1,20 +1,39 @@
-$fols=batchCreateFolicle($selsA[0],$selsB);
-$ctrls=crCtrl($selsB);
 /*
-$selsC=`ls -sl`;
-for ($i=0;$i<`size $ctrls`; $i++) {
-    $cons=`parentConstraint $selsC[$i] $ctrls[$i]`;
-    delete $cons;
-    }
+$sels=`ls -sl`;
+$ns=`getNameSpaceFromSelected($sels[0])`;
+selectPlayer($ns);
 */
-$offsets=crOffset($ctrls,"offset",0);   
-$dvns=crOffset($ctrls,"dvn",0);     
-for ($i=0;$i<`size $offsets`; $i++) {
-    parent $offsets[$i] $fols[$i];    
-    scaleConstraint "Main" $fols[$i];
-    parentConstraint -mo $ctrls[$i] $selsB[$i];
-    scaleConstraint $ctrls[$i] $selsB[$i];  
+proc string getNameSpaceFromSelected(string $sel){
+    string $buffer[];
+    $numTokens = `tokenize $sel ":" $buffer`;
+    return $buffer[0];
+    }
+proc string[] selectPlayer(string $ns){
+    string $ctrls[];
+    $player={"IKSpine3_M ","IKExtraSpine3_M ","PoleExtraLeg_R ","PoleLeg_R ","PoleArm_L ","PoleExtraArm_L ","PoleExtraLeg_L ","PoleLeg_L ","IKArm_R ","IKExtraArm_R ","IKExtraLeg_R ","IKLeg_R ","RollToesEnd_R ","RollExtraHeel_R ","RollHeel_R ","RollExtraToesEnd_R ","RollExtraToes_R ","IKArm_L ","IKToes_R ","RollToes_R ","IKExtraToes_R ","IKExtraArm_L ","IKExtraLeg_L ","IKLeg_L ","RollToesEnd_L ","RollExtraToesEnd_L ","RollExtraHeel_L ","RollHeel_L ","RollExtraToes_L ","IKToes_L ","RollToes_L ","IKExtraToes_L ","IKExtracvSpine1_M ","PoleArm_R ","PoleExtraArm_R ","IKcvSpine1_M ","IKExtraSpine2_M ","IKSpine2_M ","IKSpine1_M ","IKExtraSpine1_M ","IKhybridSpine2_M ","IKhybridExtraSpine1_M ","IKhybridSpine1_M ","IKhybridExtraSpine2_M ","IKhybridSpine3_M ","IKhybridExtraSpine3_M ","FKExtraAnkle_L ","FKToes_L ","FKExtraToes_L ","FKAnkle_L ","FKExtraMiddleFinger1_L ","FKExtraMiddleFinger3_L ","FKMiddleFinger1_L ","FKExtraMiddleFinger2_L ","FKMiddleFinger2_L ","FKMiddleFinger3_L ","FKExtraThumbFinger2_L ","FKThumbFinger1_L ","FKThumbFinger2_L ","FKExtraThumbFinger1_L ","FKExtraIndexFinger1_L ","FKExtraIndexFinger2_L ","FKExtraThumbFinger3_L ","FKThumbFinger3_L ","FKIndexFinger1_L ","FKIndexFinger2_L ","FKExtraIndexFinger3_L ","FKCup_L ","FKExtraCup_L ","FKExtraPinkyFinger1_L ","FKIndexFinger3_L ","FKChest_M ","FKExtraSpine1_M ","FKSpine1_M ","FKExtraChest_M ","HipSwinger_M ","FKExtraNeck_M ","FKExtraHead_M ","FKExtraEye_R ","FKNeck_M ","FKJaw_M ","FKHead_M ","FKExtraJaw_M ","FKEye_L ","FKEye_R ","FKExtraEye_L ","FKScapula_R ","FKScapula_L ","FKExtraScapula_L ","FKExtraScapula_R ","FKIKArm_L ","FKIKArm_R ","FKIKLeg_R ","FKIKSpine_M ","AimEye_R ","AimEye_M ","FKIKLeg_L ","AimEye_L ","RootExtraX_M ","RootX_M ","FKRingFinger3_R ","FKExtraShoulder_R ","FKExtraRingFinger3_R ","FKShoulder_R ","FKWrist_R ","FKExtraElbow_R ","FKElbow_R ","FKExtraWrist_R ","FKHip_R ","FKExtraHip_R ","FKExtraToes_R ","FKKnee_R ","FKAnkle_R ","FKExtraKnee_R ","FKExtraAnkle_R ","FKToes_R ","FKExtraHip_L ","FKHip_L ","FKExtraKnee_L ","FKKnee_L ","FKExtraPinkyFinger3_L ","FKPinkyFinger1_L ","FKExtraPinkyFinger2_L ","FKPinkyFinger2_L ","FKPinkyFinger3_L ","FKRingFinger1_L ","FKRingFinger2_L ","FKExtraRingFinger1_L ","FKExtraRingFinger2_L ","FKExtraRingFinger3_L ","FKRingFinger3_L ","FKExtraShoulder_L ","FKExtraElbow_L ","FKShoulder_L ","FKElbow_L ","FKExtraWrist_L ","FKWrist_L ","FKExtraMiddleFinger2_R ","FKExtraMiddleFinger1_R ","FKMiddleFinger1_R ","FKMiddleFinger2_R ","FKExtraMiddleFinger3_R ","FKExtraThumbFinger1_R ","FKThumbFinger1_R ","FKMiddleFinger3_R ","FKThumbFinger3_R ","FKThumbFinger2_R ","FKExtraThumbFinger2_R ","FKExtraIndexFinger2_R ","FKExtraIndexFinger1_R ","FKExtraThumbFinger3_R ","FKIndexFinger1_R ","FKIndexFinger2_R ","FKExtraIndexFinger3_R ","FKIndexFinger3_R ","FKExtraCup_R ","FKCup_R ","FKPinkyFinger1_R ","FKExtraPinkyFinger2_R ","FKPinkyFinger2_R ","FKExtraPinkyFinger3_R ","FKExtraPinkyFinger1_R ","FKPinkyFinger3_R ","FKExtraRingFinger2_R ","FKExtraRingFinger1_R ","FKRingFinger1_R ","FKRingFinger2_R ","FKExtraRoot_M ","FKRoot_M ","Fingers_L ","Fingers_R ","Main"};
+    if(`size $ns`)$player=stringArrayAddPrefix($player, ($ns+":") );   
+    for($obj in $player){
+        if(`objExists $obj`){
+            $ctrls=stringArrayCatenate($ctrls,{$obj});
+            }
+        }
+    
+    select -r $ctrls; 
+    return $ctrls;      
     }
     
-circle -r 10 -nr 0 1 0 
-circle -r 10 -nr 0 0 1 
+proc string[] selectCloak(string $ns){
+    $cloak={"Cloak_Contrl ","Cloak_Contrl1 ","Cloak_Contrl2 ","Cloak_Contrl3 ","FKScapula_L1 ","FKScapula_R1"};
+    if(`size $ns`)    
+        $cloak=stringArrayAddPrefix($cloak, ($ns+":") );   
+    select -r $cloak;
+    return $cloak;    
+    }    
+
+proc string[] selectBow(string $ns){
+    $bow={"bow_Main ","bowLf1_ctrl ","bowRt1_ctrl ","bow_pull_ctrl ","bowLf2_ctrl ","bowRt2_ctrl"};
+    if(`size $ns`)    
+        $bow=stringArrayAddPrefix($bow, ($ns+":") );   
+    select -r $bow;  
+    return $bow;    
+    }    
