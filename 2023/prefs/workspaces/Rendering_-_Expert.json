@@ -11,8 +11,8 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 1916,
-                            "controlHeight": 23,
+                            "controlWidth": 1704,
+                            "controlHeight": 28,
                             "collapsed": false,
                             "controls": [
                                 {
@@ -30,7 +30,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 1916,
+                                    "controlWidth": 1704,
                                     "controlHeight": 23
                                 }
                             ]
@@ -57,7 +57,7 @@
                                     "closed": true,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 1916,
+                                    "controlWidth": 1704,
                                     "controlHeight": 64,
                                     "initCallback": "shelfInitCallback"
                                 }
@@ -67,8 +67,8 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 1916,
-                            "controlHeight": 902,
+                            "controlWidth": 1704,
+                            "controlHeight": 792,
                             "collapsed": false,
                             "controls": [
                                 {
@@ -86,8 +86,8 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "free",
-                                    "controlWidth": 1916,
-                                    "controlHeight": 902,
+                                    "controlWidth": 1704,
+                                    "controlHeight": 792,
                                     "initCallback": "mainPaneStateCallback",
                                     "stateString": "global string $gMainPane; paneLayout -edit -configuration single $gMainPane;if(`modelPanel -exists modelPanel4`){ modelPanel -edit -parent $gMainPane modelPanel4; paneLayout -edit -setPane modelPanel4 1 $gMainPane;}"
                                 },
@@ -115,7 +115,7 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 1916,
+                            "controlWidth": 1704,
                             "controlHeight": 32,
                             "collapsed": false,
                             "controls": [
@@ -134,7 +134,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "preferred",
-                                    "controlWidth": 1916,
+                                    "controlWidth": 1704,
                                     "controlHeight": 32
                                 }
                             ]
@@ -144,7 +144,7 @@
                         "tabWidget": {
                             "selectedIndex": 0,
                             "controlWidth": 1916,
-                            "controlHeight": 29,
+                            "controlHeight": 27,
                             "controls": [
                                 {
                                     "objectName": "RangeSlider",
@@ -161,8 +161,8 @@
                                     "closed": true,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 1916,
-                                    "controlHeight": 29
+                                    "controlWidth": 1704,
+                                    "controlHeight": 27
                                 }
                             ]
                         }
@@ -188,7 +188,7 @@
                                     "closed": true,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 1916,
+                                    "controlWidth": 1704,
                                     "controlHeight": 28
                                 }
                             ]
@@ -215,7 +215,7 @@
                                     "closed": true,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 640,
+                                    "controlWidth": 426,
                                     "controlHeight": 20
                                 }
                             ]
@@ -227,21 +227,30 @@
     ],
     "closedControls": [
         {
-            "objectName": "graphEditor1Window",
-            "posX": 2556,
-            "posY": 507,
-            "controlHeight": 504,
-            "controlWidth": 1916,
+            "objectName": "scriptEditorPanel1Window",
+            "posX": 903,
+            "posY": 92,
+            "controlHeight": 477,
+            "controlWidth": 522,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "SSEwindow",
-            "posX": 1572,
-            "posY": 550,
+            "objectName": "outlinerPanel3Window",
+            "posX": 291,
+            "posY": 342,
             "controlHeight": 1395,
-            "controlWidth": 955,
-            "widthProperty": "free",
+            "controlWidth": 520,
+            "widthProperty": "preferred",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "AttributeEditor",
+            "posX": 2852,
+            "posY": 181,
+            "controlHeight": 654,
+            "controlWidth": 938,
+            "widthProperty": "preferred",
             "heightProperty": "free"
         },
         {
@@ -263,51 +272,6 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "AttributeEditor",
-            "posX": 2852,
-            "posY": 181,
-            "controlHeight": 654,
-            "controlWidth": 938,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "Outliner",
-            "posX": 1343,
-            "posY": 205,
-            "controlHeight": 246,
-            "controlWidth": 260,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "scriptEditorPanel1Window",
-            "posX": 903,
-            "posY": 92,
-            "controlHeight": 477,
-            "controlWidth": 522,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "ChannelBoxLayerEditor",
-            "posX": 2728,
-            "posY": 31,
-            "controlHeight": 964,
-            "controlWidth": 290,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "outlinerPanel3Window",
-            "posX": 291,
-            "posY": 342,
-            "controlHeight": 1395,
-            "controlWidth": 520,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
             "objectName": "unifiedRenderGlobalsWindow",
             "posX": 1281,
             "posY": 461,
@@ -317,12 +281,12 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "polyTexturePlacementPanel1Window",
-            "posX": 1412,
-            "posY": 328,
-            "controlHeight": 1111,
-            "controlWidth": 955,
-            "widthProperty": "free",
+            "objectName": "Outliner",
+            "posX": 1343,
+            "posY": 205,
+            "controlHeight": 246,
+            "controlWidth": 260,
+            "widthProperty": "preferred",
             "heightProperty": "free"
         },
         {
@@ -341,6 +305,42 @@
             "controlHeight": 237,
             "controlWidth": 570,
             "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "polyTexturePlacementPanel1Window",
+            "posX": 1412,
+            "posY": 328,
+            "controlHeight": 1111,
+            "controlWidth": 955,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "SSEwindow",
+            "posX": 1572,
+            "posY": 550,
+            "controlHeight": 1395,
+            "controlWidth": 955,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "graphEditor1Window",
+            "posX": 2556,
+            "posY": 507,
+            "controlHeight": 504,
+            "controlWidth": 1916,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "ChannelBoxLayerEditor",
+            "posX": 2728,
+            "posY": 31,
+            "controlHeight": 964,
+            "controlWidth": 290,
+            "widthProperty": "preferred",
             "heightProperty": "free"
         }
     ]

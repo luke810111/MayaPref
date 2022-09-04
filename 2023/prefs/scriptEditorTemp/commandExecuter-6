@@ -1,0 +1,35 @@
+$mode=0;
+$fbxDir=$fbxDirCloak=$fbxDirWeapon=$dir; 
+if($mode==1){
+    $fbxDir = `substitute "/MAYA/" $dir "/FBX/"`;         
+    $fbxDirCloak=($fbxDir+"Attachments/Cloak/");
+    $fbxDirWeapon=$fbxDir+"Attachments/Weapon/";  
+    sysFile -makeDir $fbxDir;                      
+    } 
+
+$set="SK_Player_Armor_001_Cloak_rig_set";
+$Acss={"Cloak","Weapon","WeaponB"};
+for($set in $expSets){      
+    if (`sets -am $set "Root_M"`){
+        select -r $set;
+        file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxDir+$fbxChara);
+        }
+    for($i=0;$i<`size($Acss)`; $i++) {
+        $root=($Acss[$i]+"Root");
+        $fbxDirAcs=$fbxDir;
+        if (`objExists $root`){ 
+            if (`sets -am $set $root`){
+                if($Acss[$i]=="Cloak") $fbxDirAcs=$fbxDirCloak;
+                if($Acss[$i]=="Weapon") $fbxDirAcs=$fbxDirWeapon;  
+                if($Acss[$i]=="WeaponB")$fbxDirAcs= $fbxDirWeapon;
+                if($Acss[$i]=="Cloak"||`objExists "SK_Player_Weapon_Bow_001"`){         
+                    $fbxAcs=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$Acss[$i]+"_"+$buffer[3]+".fbx");            
+                    sysFile -makeDir $fbxDirAcs;        
+                    toZero($root);    
+                    select -r $root;
+                    file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxDirAcs+$fbxAcs);
+                    }
+                }
+            }               
+        }
+    }

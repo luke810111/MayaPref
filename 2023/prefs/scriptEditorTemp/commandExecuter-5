@@ -1,17 +1,20 @@
-$uv=findClosetUVcoordinate($selsA[0],"FKMouth_M_loc");  
-$fol=createFolicle($geo,$uv[0] ,$uv[1],"test");
-
-$geo=$selsA[0];
-$obj="FKMouth_M_loc";
-float $uv[];
-$loc="findClosestPointOnMesh_loc";
-$cPOM=`createNode "closestPointOnMesh"`;
-$geoShape=`listRelatives -s $geo`;    
-connectAttr ($geoShape[0]+".worldMesh") ($cPOM+".inMesh");    
-connectAttr ($geoShape[0]+".worldMatrix") ($cPOM+".inputMatrix");  
-if(!`objExists $loc`) spaceLocator -n $loc;    
-matchTransform $loc $obj;
-connectAttr ($loc+".translate") ($cPOM+".inPosition"); 
-$uv[0]=`getAttr ($cPOM+".parameterU")`;  
-$uv[1]=`getAttr ($cPOM+".parameterV")`;      
-delete $loc $cPOM;
+//file -loadReference "SK_Player_Armor_001_rigRN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/test03_twolayerAnchor.mb";
+//string $sn = `file -q -sn`;
+//string $dir = `match "^.*/" $sn`;
+$dir="Z:/Art/1_Assets/3_Animation/MAYA/Player/Main/Test02/";
+changeRef($dir);
+global proc changeRef(string $dir){
+    string $stuffInFolder[]= `getFileList -fld $dir`; 
+    string $fileN; 
+    string $ma="*.mb";        
+    for($fileN in $stuffInFolder){
+        if(`gmatch $fileN $ma`){    
+            //print ($fileN+"\n");
+            file -f -new; 
+            file -open ($dir+$fileN);   
+            file -loadReference "SK_Player_Armor_001_rigRN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/test02_allJtParentWorld.mb";                                      
+            file -save -type "mayaBinary";  
+            }             
+        }    
+    print "good";
+    }
