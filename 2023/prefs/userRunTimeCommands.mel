@@ -992,3 +992,18 @@ runTimeCommand
 	-command ("source \"byLuke/IKFKswitchTool\";\nIKFKswitchToolbyLuke();")
 	IKFK;
 
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("int $isBreakdown=(1-$isBreakdown);\n\nkeyframe -breakdown $isBreakdown;")
+	setBreakDown;
+
