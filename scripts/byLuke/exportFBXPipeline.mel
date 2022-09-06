@@ -473,6 +473,9 @@ global proc exportAniFBX(int $mode){
     if(`size $buffer[4]`) $buffer[3]=$buffer[3]+"_"+$buffer[4];
     $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
     
+	//60fps
+	//currentUnit -t "ntscf";
+	
     refresh -suspend 1;   
 	$expSets=setAniExportSets();	
     ImportRefAndDeleteNameSpace();
@@ -539,7 +542,10 @@ global proc exportAniFBX(int $mode){
 				}               
 			}
 		}
-      
+		
+	//30fps		
+	//currentUnit -t "ntsc";   
+	
     refresh -suspend 0; 
     print "working successful!!";
     }
