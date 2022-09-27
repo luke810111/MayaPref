@@ -136,7 +136,7 @@ global proc ImportRefAndDeleteNameSpace(){
 	
 global proc advCleanComboForExportRig(){
     source "Advance/AdvancedSkeleton5.mel";
-	
+	if(`objExists "Main"`) crAdvMainSecCtrl();	
 	if(`objExists "ElbowPart1_R"`) parent "Wrist_R" "Elbow_R";
 	if(`objExists "ElbowPart1_L"`) parent "Wrist_L" "Elbow_L";	
 	
@@ -215,6 +215,26 @@ global proc advCleanComboForExportRig(){
     	if(`objExists "Main"`) scale -a $s[0] $s[1] $s[2] "Main";        
     }
 
+global proc crAdvMainSecCtrl(){
+    if(!`objExists "Main1"`){
+        duplicate -n "Main1" "Main";
+        deleteAttr -attribute "fkVis" "Main1";
+        deleteAttr -attribute "ikVis" "Main1";
+        deleteAttr -attribute "fkIkVis" "Main1";
+        deleteAttr -attribute "aimVis" "Main1";
+        deleteAttr -attribute "aimFKVis" "Main1";
+        deleteAttr -attribute "aimLRVis" "Main1";
+        deleteAttr -attribute "fingerVis" "Main1";
+        deleteAttr -attribute "bendVis" "Main1";
+        deleteAttr -attribute "arrowVis" "Main1";
+        deleteAttr -attribute "drvSysVis" "Main1";
+        deleteAttr -attribute "jointVis" "Main1";
+        parent "Main" "Main1";
+        scale -r -ocp 1.618 1.618 1.618 "Main1Shape.cv[*]";
+		if(`objExists "MainScaleMultiplyDivide"`)connectAttr -f Main1.scale MainScaleMultiplyDivide.input2;
+        }
+    }
+	
 global proc string[] setAniExportSets(){ 
     $refs=`file -q -r`;
     $ns=getNameSapceFromReferenceObject();
@@ -283,7 +303,7 @@ global proc string exportRig(int $expMB,int $expFBX){
 			ImportRefAndDeleteNameSpace();
 			//clean file
 			advCleanComboForExportRig();
-			
+
 			$en=substring($sn, 0, size($sn) - 3);
 			$exportN=($en+"_export.mb");    		
 			file -rename $exportN; 

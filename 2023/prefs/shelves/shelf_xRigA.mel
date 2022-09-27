@@ -276,7 +276,7 @@ global proc shelf_xRigA () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"xRig_procedure\";\ngTransObjs(\"loc \" , 1 );" 
+        -command " source \"xRig_procedure\";\ngTransObjs(\"loc \" , 1 );" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
