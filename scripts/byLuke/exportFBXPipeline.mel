@@ -136,7 +136,7 @@ global proc ImportRefAndDeleteNameSpace(){
 	
 global proc advCleanComboForExportRig(){
     source "Advance/AdvancedSkeleton5.mel";
-	if(`objExists "Main"`) crAdvMainSecCtrl();	
+	//if(`objExists "Main"`) crAdvMainSecCtrl();	
 	if(`objExists "ElbowPart1_R"`) parent "Wrist_R" "Elbow_R";
 	if(`objExists "ElbowPart1_L"`) parent "Wrist_L" "Elbow_L";	
 	
@@ -245,15 +245,25 @@ global proc string[] setAniExportSets(){
     for($n in $ns){   
         if ($n!=":"){
             $obj=($n+":DeformationSystem");
-            $set=($n+"_set");      
-            if(`objExists $set`) delete $set;
-     
             if(`objExists $obj`){
-                $ch=`listRelatives -c $obj`; 
+                $set=($n+"_set");      
+                if(`objExists $set`) delete $set;   
+                $ch=`listRelatives -c $obj`;                             
                 sets -n $set $ch;  
                 sets -add "export_sets" $set;
                 $expSets=stringArrayCatenate($expSets,{$set});    
                 }      
+        }else{
+            $obj="DeformationSystem";
+            if(`objExists $obj`){  
+                $pa=`listRelatives -p $obj`; 
+                $set=($pa[0]+"_set");
+                if(`objExists $set`) delete $set; 
+                $ch=`listRelatives -c $obj`;                                               
+                sets -n $set $ch;  
+                sets -add "export_sets" $set;
+                $expSets=stringArrayCatenate($expSets,{$set});              
+                }           
             }
         }
     return $expSets;        
