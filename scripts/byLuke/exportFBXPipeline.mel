@@ -359,7 +359,7 @@ global proc exportRigMayaFBX(int $expMB,int $expFBX,string $expSets[],string $sn
 			}
 			
         if($expMB==1){            
-        select -r -ne ("|"+$fileN);      
+        select -r -ne ("|"+$fileN) "Sets";      
         file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
         select -cl;
         playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;

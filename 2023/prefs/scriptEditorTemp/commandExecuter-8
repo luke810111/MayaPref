@@ -1,4 +1,9 @@
-move -r 50 0 0 ;
-rotate -r -ocp -os -fo 0 0 90;
-
-ls 
+$s=3;
+$sels=`keyframe -q -n`;
+for($i=0;$i<`size($sels)`;$i++){
+    $x=$i*$s;
+    selectKey $sels[$i];     
+    keyframe -e  -r -o over -tc $x $sels[$i];
+    }
+   
+selectKey $sels;
