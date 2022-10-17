@@ -314,7 +314,7 @@ global proc string exportRig(int $expMB,int $expFBX){
 			//clean file
 			advCleanComboForExportRig();
 
-			$en=substring($sn, 0, size($sn) - 3);
+			$en=substring($sn, 1, size($sn) - 3);
 			$exportN=($en+"_export.mb");    		
 			file -rename $exportN; 
 			file -save -type "mayaBinary";
@@ -355,11 +355,12 @@ global proc exportRigMayaFBX(int $expMB,int $expFBX,string $expSets[],string $sn
                 file -force -options "v=0;" -typ "FBX export" -pr -es ($dir3+$fileN);     
                 }       
 		}else{
-			print ("§ä¤£¨ì:"+$dir3+"\n");
+			print ("ï¿½ä¤£ï¿½ï¿½:"+$dir3+"\n");
 			}
 			
         if($expMB==1){            
-        select -r -ne ("|"+$fileN) "Sets";      
+        select -r -ne ("|"+$fileN);
+        if(`objExists "Sets"`) select -add "Sets";    
         file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
         select -cl;
         playblast  -fr 1 -format image -cf ($dir2+".jpg") -sequenceTime 0 -clearCache 1 -viewer 1 -showOrnaments 1 -percent 100 -compression "jpg" -quality 100 -widthHeight 960 540;
@@ -369,7 +370,7 @@ global proc exportRigMayaFBX(int $expMB,int $expFBX,string $expSets[],string $sn
         }
     }
 	
-//player¬O¯S³W ¦]¬°¯È«½«½¨t²Î    
+//playerï¿½Oï¿½Sï¿½W ï¿½]ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½    
 //exportPlayerRig();
 global proc string exportPlayerRig(int $expMB,int $expFBX){
 	string $sn = `file -q -sn`;
@@ -399,7 +400,7 @@ global proc string exportPlayerRig(int $expMB,int $expFBX){
 			if($work==1){			
 				if ($expFBX==1) exportPlayerRigFBX($expSets,$exportN,$dir3);  
 			}else{
-				print ("§ä¤£¨ì:"+$dir3+"\n");
+				print ("ï¿½ä¤£ï¿½ï¿½:"+$dir3+"\n");
 				}				
 				
 			refresh -suspend 0;  
@@ -441,7 +442,8 @@ global proc exportPlayerRigMaya(string $expSets[],string $sn,string $dir){
         $part=`substitute "SK_Player_" $fileN ""`;     
         $dir2=($dir+"Armor/"+$fileN+"/"+$fileN+"_rig");  
         //export
-        select -r -ne "Group" "Sets";      
+        select -r -ne "Group";
+        if(`objExists "Sets"`) select -add "Sets";      
         file -force -options "v=0;" -type "mayaBinary" -pr -es ($dir2+".mb");
     
         //pb
@@ -467,7 +469,7 @@ global proc exportRigFBX(){
     rename $obj "Group";      
 	}
 
-//¿é¥X°Ê°µFBX
+//ï¿½ï¿½Xï¿½Ê°ï¿½FBX
 //batchExportAniFBXHub();
 global proc batchExportAniFBXHub(){
     string $sn = `file -q -sn`;
@@ -516,7 +518,7 @@ global proc exportAniFBX(int $mode){
     file -save -type "mayaBinary";
     
         
-    //»Ý­nsets ­n¿é¥Xªº°©¬[
+    //ï¿½Ý­nsets ï¿½nï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½[
     select -r "export_sets";
     $bakeSets=`ls -sl`;
     float $minTime = `playbackOptions -q -minTime`;
@@ -580,15 +582,15 @@ global proc exportAniFBX(int $mode){
     print "working successful!!";
     }
 /*
-//´«­ô¥¬ªL¤u¨ã
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½uï¿½ï¿½
 //file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/Enemy_GoatlinElite_Hammer_rigging1.mb";
  
 select -r  "Enemy_GoatlinElite_Weapon_R" "Enemy_GoatlinElite_Weapon_L" "FKWrist_R" "FKWrist_L";;
 crMotionDings(`ls -sl`);
 
 
-//file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Enemy_EliteBaafmet_rig" -options "v=0;" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
-file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
+//file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Enemy_EliteBaafmet_rig" -options "v=0;" "G:/ï¿½@ï¿½Î¶ï¿½ï¿½Ýµwï¿½ï¿½/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
+file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "G:/ï¿½@ï¿½Î¶ï¿½ï¿½Ýµwï¿½ï¿½/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
 
 duplicate -rr -n "R_ding" "FKWrist_R_ding";
 parent "R_ding" "FKWrist_R_ding";
