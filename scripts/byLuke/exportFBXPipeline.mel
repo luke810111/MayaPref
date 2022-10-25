@@ -67,11 +67,7 @@ global proc changeMAtoMB(){
         }    
     }
 	
-/*
-$RN="Enemy_GoatlinElite_Hammer_rigging1RN";
-$dir="Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/Enemy_GoatlinElite_Hammer_rigging1.mb";
-replaceRef($RN,$dir)
-*/
+
 global proc replaceRef(string $RN,string $rfDir){
     string $sn = `file -q -sn`;
     string $dir = `match "^.*/" $sn`;
@@ -88,11 +84,7 @@ global proc replaceRef(string $RN,string $rfDir){
         }    
     }	
 	
-/*
-$sels=`ls -sl`;
-$b=getChara($sels[0]);
-print $b;
-	*/
+
 global proc string getChara(string $sel){
     string $charas[];
 	
@@ -136,7 +128,7 @@ global proc ImportRefAndDeleteNameSpace(){
 	
 global proc advCleanComboForExportRig(){
     source "Advance/AdvancedSkeleton5.mel";
-	//if(`objExists "Main"`) crAdvMainSecCtrl();	
+	if(`objExists "Main"`) crAdvMainSecCtrl();	
 	if(`objExists "ElbowPart1_R"`) parent "Wrist_R" "Elbow_R";
 	if(`objExists "ElbowPart1_L"`) parent "Wrist_L" "Elbow_L";	
 	
@@ -370,7 +362,7 @@ global proc exportRigMayaFBX(int $expMB,int $expFBX,string $expSets[],string $sn
         }
     }
 	
-//player�O�S�W �]���ȫ����t��    
+//player
 //exportPlayerRig();
 global proc string exportPlayerRig(int $expMB,int $expFBX){
 	string $sn = `file -q -sn`;
@@ -469,7 +461,7 @@ global proc exportRigFBX(){
     rename $obj "Group";      
 	}
 
-//��X�ʰ�FBX
+//
 //batchExportAniFBXHub();
 global proc batchExportAniFBXHub(){
     string $sn = `file -q -sn`;
@@ -502,8 +494,8 @@ global proc exportAniFBX(int $mode){
     string $buffer[];
     $numTokens = `tokenize $fileN "_" $buffer`;
     //print $buffer;
-    if(`size $buffer[4]`) $buffer[3]=$buffer[3]+"_"+$buffer[4];
-    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+".fbx");
+    if(`size $buffer[5]`) $buffer[4]=$buffer[4]+"_"+$buffer[5];
+    $fbxChara=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");
     
 	//60fps
 	//currentUnit -t "ntscf";
@@ -558,13 +550,13 @@ global proc exportAniFBX(int $mode){
 		for($i=0;$i<`size($Acss)`; $i++) {
 			$root=($Acss[$i]+"Root");
 			$fbxDirAcs=$fbxDir;
-			if (`objExists $root`){ 
+			if(`objExists $root`){ 
 				if (`sets -am $set $root`){
 					if($Acss[$i]=="Cloak") $fbxDirAcs=$fbxDirCloak;
 					if($Acss[$i]=="Weapon") $fbxDirAcs=$fbxDirWeapon;  
 					if($Acss[$i]=="WeaponB")$fbxDirAcs= $fbxDirWeapon;
 					if($Acss[$i]=="Cloak"||`objExists "SK_Player_Weapon_Bow_001"`){         
-						$fbxAcs=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$Acss[$i]+"_"+$buffer[3]+".fbx");            
+						$fbxAcs=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$Acss[$i]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");            
 						sysFile -makeDir $fbxDirAcs;        
 						toZero($root);    
 						select -r $root;
@@ -581,33 +573,3 @@ global proc exportAniFBX(int $mode){
     refresh -suspend 0; 
     print "working successful!!";
     }
-/*
-//�������L�u��
-//file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/Enemy_GoatlinElite_Hammer_rigging1.mb";
- 
-select -r  "Enemy_GoatlinElite_Weapon_R" "Enemy_GoatlinElite_Weapon_L" "FKWrist_R" "FKWrist_L";;
-crMotionDings(`ls -sl`);
-
-
-//file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "SK_Enemy_EliteBaafmet_rig" -options "v=0;" "G:/�@�ζ��ݵw��/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
-file -loadReference "Enemy_GoatlinElite_Hammer_rigging1RN" -type "mayaBinary" -options "v=0;" "G:/�@�ζ��ݵw��/Endless Clouds Shared/Art/1_Assets/2_Rig/SkinnedMeshes/Enemies/Baafhmet/SK_Enemy_EliteBaafmet/SK_Enemy_EliteBaafmet_rig.mb";
-
-duplicate -rr -n "R_ding" "FKWrist_R_ding";
-parent "R_ding" "FKWrist_R_ding";
-setAttr "R_ding.rotateX" -97.16;
-duplicate -rr -n "L_ding" "FKWrist_L_ding";
-parent "L_ding" "FKWrist_L_ding";
-setAttr "L_ding.rotateX" -97.16;
-
-parentConstraint "Enemy_GoatlinElite_Weapon_R_ding" "HammerR";
-parentConstraint "Enemy_GoatlinElite_Weapon_L_ding" "HammerL";
-select -r "FKWrist_R" "FKWrist_L";
-deleteConstraint();
-orientConstraint "R_ding" "FKWrist_R";
-orientConstraint "L_ding" "FKWrist_L";
-parentConstraint "Hammer_R" "WeaponR_Anchor";
-parentConstraint "Hammer_L" "WeaponL_Anchor";
-//select -r "HammerR" "HammerL" "FKWrist_R" "FKWrist_L";
-$time=getTimeRange();
-bakeResults -simulation true -t $time -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {"HammerR", "HammerL", "FKWrist_R", "FKWrist_L"};
-delete "DingDingTool_grp";
