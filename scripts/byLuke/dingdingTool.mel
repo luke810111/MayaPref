@@ -59,7 +59,7 @@ global proc queryAttributeForSpace(string $gChannelBoxName){
 		print $attr;
 		textFieldButtonGrp -e -tx $attr[0] spaceTFG;
 	}else{
-		print "½Ð¿ï¤@­Ó°Ñ¼Æ!!!";
+		print "ï¿½Ð¿ï¿½@ï¿½Ó°Ñ¼ï¿½!!!";
 		}
 	}
 	
@@ -135,23 +135,23 @@ global proc alignDing(string $obj,string $ding,int $swP, int $swR){
 	
 	
     if(!`objExists($ding)`){
-        print "anchor¤£¨£¤F?";
+        print "anchorï¿½ï¿½ï¿½ï¿½ï¿½F?";
     }else{
 
     	setKeyframe $obj;
         $constraint =`listRelatives -typ "constraint" $obj`;
         if (`size($constraint)`>0){
-            print($obj + "¦³¬ù§ô³á\n");
+            print($obj + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
         }else{
             if(`getAttr -l ($obj+".rx")`||`getAttr -l ($obj+".ry")`||`getAttr -l ($obj+".rz")`){
-                print ($obj+"ªº±ÛÂà¦³lock\n");
+                print ($obj+"ï¿½ï¿½ï¿½ï¿½ï¿½à¦³lock\n");
 			}else{
 				if($swR==1)		
 					xform -ws -ro $r[0] $r[1] $r[2] $obj;
 				}	
 				
 			if(`getAttr -l ($obj+".tx")`||`getAttr -l ($obj+".ty")`||`getAttr -l ($obj+".tz")`){         
-				print ($obj+"ªº¦ì²¾¦³lock\n");
+				print ($obj+"ï¿½ï¿½ï¿½ì²¾ï¿½ï¿½lock\n");
 			}else{
 				if($swP==1)		
 					xform -ws -t $p[0] $p[1] $p[2] $obj;
@@ -210,9 +210,9 @@ global proc string getNameSpace(string $obj){
 	string $buffer[];
 	$numTokens=`tokenize $obj ":" $buffer`;
 	if(`size $buffer`>1){
-		$namespace=$buffer[0];
+		$nameSpace=$buffer[0];
 		}
-		return $nameSpace;
+	return $nameSpace;
 	}
 	
 global proc collapseHandAttrForJUR(string $side){

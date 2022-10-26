@@ -59,7 +59,8 @@ global proc quickPBbyLuke(){
     $cam=setPBcamera("X:/Art/1_Assets/3_Animation/Maya/camera.mb","persp2");
     modelEditor -e -camera $cam $mP;    
     camera -e -displayResolution off -displayFilmGate off -overscan 1.3 $cam; 
-    $mov=`substitute ".mb" $sn ".mov"`;
+    $sn=$sn+"ChangeFormat";
+    $mov=`substitute ".mbChangeFormat" $sn ".mov"`;
     playblast  -format qt -filename $mov -forceOverwrite  -sequenceTime 0 -clearCache 1 -viewer 0 -showOrnaments 0 -offScreen  -fp 4 -percent 100 -compression "H.264" -quality 100 -widthHeight 960 540;
     //refresh -suspend 0;
     }   
@@ -97,8 +98,9 @@ global proc string combine4ViewPBbyLuke(){
     $minTime = `playbackOptions -q -minTime`; 
     $maxTime = `playbackOptions -q -maxTime`; 
     string $sn = `file -q -sn`;
-    $base=`substitute ".mb" $sn ""`;    
-    $mov=`substitute ".mb" $sn ".mov"`;    
+    $sn=$sn+"ChangeFormat";
+    $base=`substitute ".mbChangeFormat" $sn ""`;    
+    $mov=`substitute ".mbChangeFormat" $sn ".mov"`;    
 	  $dir = `match "^.*/" $sn`;
     $file = `match "[^/\\]*$" $base`;	  
     $exportN=($dir+"temp/"+$file+"_pb.mb");
