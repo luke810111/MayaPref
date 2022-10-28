@@ -9,7 +9,7 @@ global proc exportFBXPipelineTool(){
 	$window=`window -title "exportFBXPipelineTool" -h 30 -w 120 -rtf 1 -s 1 efpt`;
 
     	frameLayout -label "exportAniFBX";   	    
-			button -label "export Ani fbx" -bgc 0.3 0.5 0.2 -c "exportAniFBX(0);";
+			button -label "export Ani fbx" -bgc 0.3 0.5 0.2 -c "$sn=`file -q -sn`;exportAniFBX(0);file -f -new;file -open $sn; ";
 			setParent ..; 
 			
 	frameLayout -label "" -cll 1 -cl 1;

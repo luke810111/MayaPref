@@ -1,9 +1,74 @@
-$s=3;
-$sels=`keyframe -q -n`;
-for($i=0;$i<`size($sels)`;$i++){
-    $x=$i*$s;
-    selectKey $sels[$i];     
-    keyframe -e  -r -o over -tc $x $sels[$i];
+copyPastePosebyLuke();
+global proc copyPastePosebyLuke(){
+        if (`window -exists copyPastePosebyLuke`)
+                deleteUI -window copyPastePosebyLuke;
+                        
+        $window = `window -title "copyPastePosebyLuke" -h 320 -w 30 -rtf 1  -s 1  copyPastePosebyLuke`;
+            frameLayout -bgc 0.3 0.3 0.0 -label "" -cll 0 -cl 0;
+            	button -label "copy" -c "MainProcedure()" ;	
+            	button -label "paste" -c "eval `TestReadTxt`;";	
+                setParent ..;
+            setParent ..;	                  
+        showWindow copyPastePosebyLuke;
+        }
+global proc MainProcedure(){
+    $sels=`ls -sl`;
+    string $cmd="";
+    $now=`currentTime -q`;
+    $times=getKeyPoseTime();
+    if(!`size($times)`) $times[0]=$now;
+    for($t in $times){
+        $cmd=($cmd+"currentTime "+ $t +";\n");
+        currentTime $t;          
+        for($i=0;$i<`size($sels)`;$i++){                   
+            $cmd=$cmd+getSelectTransformAttrValue($sels[$i]);
+            }
+        }
+    currentTime $now;   
+    //print $cmd;
+    TestWriteTxt($cmd);
+    //namespace matcher
+    //eval `TestReadTxt`;
     }
-   
-selectKey $sels;
+
+global proc string getSelectTransformAttrValue(string $obj){
+    string $cmd;
+    float $v;
+    $attrs=`listAttr -u -k $obj`;
+    print ("if(`objExists \""+$obj+"\"`)"); 
+    for($i=0;$i<`size($attrs)`;$i++){
+        $v=`getAttr ($obj+"."+$attrs[$i])`;
+        print ("if(`objExists \""+$obj+"\"`) setAttr \""+$obj+"."+$attrs[$i]+"\" "+$v+";\n");
+        $cmd=($cmd+"if(`objExists \""+$obj+"\"`) setAttr \""+$obj+"."+$attrs[$i]+"\" "+$v+";\n");
+        }
+    return $cmd;
+    }
+//setAttr "SK_Player_Armor_001_rig:RootX_M.CenterBtwFeet" 0;
+
+global proc TestWriteTxt(string $cmd){
+    $cpFileName = ( `internalVar -userTmpDir` + "copyPasteToolbyLuke.txt" );
+    $fileId=`fopen $cpFileName "w"`;
+    fprint $fileId $cmd;
+    fclose $fileId;
+    }
+
+global proc string TestReadTxt() {  
+    string $cmd;  
+    // Open Your File  
+    $cpFileName = ( `internalVar -userTmpDir` + "copyPasteToolbyLuke.txt" );
+    $fileId=`fopen $cpFileName "r"`;       
+    // Get The First Line  
+    string $nextLine = `fgetline $fileId` ;  
+      
+    // Loop Until The String Size Is Zero (No Data)  
+    while (size($nextLine) > 0) {        
+        // Strip Whitespace From The Beginning And End Of The Line  
+        string $cleanLine = strip($nextLine) ;            
+        // Print Line  
+        $cmd=($cmd+$cleanLine) ;
+        print ($cleanLine+"\n") ;            
+        // Get Next Line And Continue  
+        $nextLine = `fgetline $fileId` ;            
+        }  
+    return $cmd;    
+    }  

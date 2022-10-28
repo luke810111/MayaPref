@@ -1,2 +1,16 @@
-source "byLuke/exportFBXPipeline";
-exportFBXPipelineTool();
+global proc getTZ(){
+    string $sn = `file -q -sn`;
+    string $dir = `match "^.*/" $sn`;
+    string $array;
+    $selKeys=`keyframe -q -n "*:Main.tz"`;
+    select -r $selKeys; 
+    $t=`keyframe -q -tc "*:Main.tz"`;
+    $v=`keyframe -q -vc "*:Main.tz"`;
+    
+    
+    $exampleFileName = ($dir + "exampleA.txt" );
+    $fileId=`fopen $exampleFileName "w"`;
+    fprint $fileId ($testss[0]+"\n");
+    fprint $fileId $testss[1];
+    fclose $fileId;
+    }

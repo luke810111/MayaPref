@@ -14,10 +14,18 @@ global proc copyPastePosebyLuke(){
 global proc MainProcedure(){
     $sels=`ls -sl`;
     string $cmd="";
-    for($i=0;$i<`size($sels)`;$i++){
-        $cmd=$cmd+getSelectTransformAttrValue($sels[$i]);
+    $now=`currentTime -q`;
+    $times=getKeyPoseTime();
+    if(!`size($times)`) $times[0]=$now;
+    for($t in $times){
+        $cmd=($cmd+"currentTime "+ $t +";\n");
+        currentTime $t;          
+        for($i=0;$i<`size($sels)`;$i++){                   
+            $cmd=$cmd+getSelectTransformAttrValue($sels[$i]);
+            }
         }
-    print $cmd;
+    currentTime $now;   
+    //print $cmd;
     TestWriteTxt($cmd);
     //namespace matcher
     //eval `TestReadTxt`;

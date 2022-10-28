@@ -1,20 +1,43 @@
-//file -loadReference "SK_Player_Armor_001_rigRN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/test03_twolayerAnchor.mb";
+
 //string $sn = `file -q -sn`;
 //string $dir = `match "^.*/" $sn`;
-$dir="Z:/Art/1_Assets/3_Animation/MAYA/Player/Main/Test02/";
-changeRef($dir);
-global proc changeRef(string $dir){
-    string $stuffInFolder[]= `getFileList -fld $dir`; 
-    string $fileN; 
-    string $ma="*.mb";        
-    for($fileN in $stuffInFolder){
-        if(`gmatch $fileN $ma`){    
-            //print ($fileN+"\n");
-            file -f -new; 
-            file -open ($dir+$fileN);   
-            file -loadReference "SK_Player_Armor_001_rigRN" -type "mayaBinary" -options "v=0;" "Z:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/test02_allJtParentWorld.mb";                                      
-            file -save -type "mayaBinary";  
-            }             
+//string $fileN = `file -q -sn -shn`;
+//$fileN=substring($fileN, 0, size($fileN) - 7);
+
+//$fileN="ANI_Player_Hatchet_Attack_001_v03.mb";
+//$fileN="Ani_Player_Hatchet_Attack_001_v03.mb";
+//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.mb";
+//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.ma";
+//$fileN="ANI_Player_Hatchet_Attack_001_03.mb";
+
+global proc int ckAniFileName(string $fileN){
+    //check animation file name
+    //if wrong ,return 0
+    int $sw=0;
+    string $y;    
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`; 
+    //print $buffer;
+    $n=(`size($buffer)`-1);
+    for($i=0;$i<1000;$i++){
+        $y=`python ("'%03d' % "+$i)`;
+        if(`gmatch $buffer[4] $y`) $sw=1;   
+        }
+    if(!`gmatch $buffer[0] "ANI"`&&!`gmatch $buffer[0] "OH"`) {
+        print "Wrong name of part1\n";
+        $sw=0;
+        }
+    if(!`gmatch $buffer[1] "Player"`&&!`gmatch $buffer[1] "Enemy"`) {
+        print "Wrong name of part2\n";        
+        $sw=0;
+        }
+
+    if(!`gmatch $buffer[$n] "v*.mb"`) {
+        print "Wrong name of last part\n";        
+        $sw=0;        
         }    
-    print "good";
+    return $sw;
     }
+
+$sw=ckAniFileName($fileN);
+print $sw;
