@@ -1,46 +1,8 @@
 {
     "linkedMenu": "animationMenuSet",
     "autoSave": true,
-    "selectedShelf": "export",
+    "selectedShelf": "EzRig",
     "panels": [
-        {
-            "mainWindowPanel": false,
-            "posX": 2806,
-            "posY": 481,
-            "splitter": {
-                "orientation": "horizontal",
-                "children": [
-                    {
-                        "tabWidget": {
-                            "selectedIndex": 0,
-                            "controlWidth": 1048,
-                            "controlHeight": 728,
-                            "collapsed": false,
-                            "controls": [
-                                {
-                                    "objectName": "referenceEditorPanel1Window",
-                                    "title": "Reference Editor",
-                                    "uiScript": "if(!`panel -q -exists referenceEditorPanel1`) {\n\tint $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\n\tstring $panelName = \"referenceEditorPanel1\";\n\tscriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  referenceEditorPanel1;\n} else {\n\tscriptedPanel -e -unParent referenceEditorPanel1;\n}\nscriptedPanel -e -parent referenceEditorPanel1Window referenceEditorPanel1;\n",
-                                    "retain": false,
-                                    "deleteLater": true,
-                                    "loadImmediately": false,
-                                    "checkPlugins": false,
-                                    "actLikeMayaUIElement": false,
-                                    "layoutDirectionCallback": "",
-                                    "layoutDirection": "vertical",
-                                    "tabDirection": 0,
-                                    "closed": false,
-                                    "widthProperty": "free",
-                                    "heightProperty": "free",
-                                    "controlWidth": 1048,
-                                    "controlHeight": 728
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        },
         {
             "mainWindowPanel": true,
             "splitter": {
@@ -49,8 +11,8 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
-                            "controlHeight": 27,
+                            "controlWidth": 1916,
+                            "controlHeight": 23,
                             "collapsed": false,
                             "controls": [
                                 {
@@ -68,7 +30,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 2556,
+                                    "controlWidth": 1916,
                                     "controlHeight": 23
                                 }
                             ]
@@ -77,7 +39,7 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
+                            "controlWidth": 1916,
                             "controlHeight": 64,
                             "collapsed": false,
                             "controls": [
@@ -96,7 +58,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 2556,
+                                    "controlWidth": 1916,
                                     "controlHeight": 64,
                                     "initCallback": "shelfInitCallback"
                                 }
@@ -111,7 +73,7 @@
                                     "tabWidget": {
                                         "selectedIndex": 0,
                                         "controlWidth": 40,
-                                        "controlHeight": 654,
+                                        "controlHeight": 451,
                                         "collapsed": false,
                                         "controls": [
                                             {
@@ -130,7 +92,7 @@
                                                 "widthProperty": "fixed",
                                                 "heightProperty": "free",
                                                 "controlWidth": 40,
-                                                "controlHeight": 654
+                                                "controlHeight": 451
                                             }
                                         ]
                                     }
@@ -139,7 +101,7 @@
                                     "tabWidget": {
                                         "selectedIndex": 0,
                                         "controlWidth": 260,
-                                        "controlHeight": 637,
+                                        "controlHeight": 434,
                                         "collapsed": false,
                                         "controls": [
                                             {
@@ -158,7 +120,7 @@
                                                 "widthProperty": "preferred",
                                                 "heightProperty": "free",
                                                 "controlWidth": 260,
-                                                "controlHeight": 637,
+                                                "controlHeight": 434,
                                                 "initCallback": "outlinerStateCallback",
                                                 "stateString": "outlinerEditor -e -docTag \"isolOutln_fromSeln\" -showShapes 0 -showAssignedMaterials 0 -showTimeEditor 1 -showReferenceNodes 1 -showReferenceMembers 1 -showAttributes 0 -showConnected 0 -showAnimCurvesOnly 0 -showMuteInfo 0 -organizeByLayer 1 -organizeByClip 1 -showAnimLayerWeight 1 -autoExpandLayers 1 -autoExpand 0 -showDagOnly 1 -showAssets 1 -showContainedOnly 1 -showPublishedAsConnected 0 -showParentContainers 0 -showContainerContents 1 -ignoreDagHierarchy 0 -expandConnections 0 -showUpstreamCurves 1 -showUnitlessCurves 1 -showCompounds 1 -showLeafs 1 -showNumericAttrsOnly 0 -highlightActive 1 -autoSelectNewObjects 0 -doNotSelectNewObjects 0 -dropIsParent 1 -transmitFilters 0 -setFilter \"defaultSetFilter\" -showSetMembers 1 -allowMultiSelection 1 -alwaysToggleSelect 0 -directSelect 0 -isSet 0 -isSetMember 0 -displayMode \"DAG\" -expandObjects 0 -setsIgnoreFilters 1 -containersIgnoreFilters 0 -editAttrName 0 -showAttrValues 0 -highlightSecondary 0 -showUVAttrsOnly 0 -showTextureNodesOnly 0 -attrAlphaOrder \"default\" -animLayerFilterOptions \"allAffecting\" -sortOrder \"none\" -longNames 0 -niceNames 1 -selectCommand \"print(\\\"\\\")\" -showNamespace 1 -showPinIcons 0 -mapMotionTrails 0 -ignoreHiddenAttribute 0 -ignoreOutlinerColor 0 -renderFilterVisible 0 -renderFilterIndex 0 -selectionOrder \"chronological\" -expandAttribute 0 $editorName"
                                             }
@@ -168,8 +130,8 @@
                                 {
                                     "tabWidget": {
                                         "selectedIndex": 0,
-                                        "controlWidth": 1819,
-                                        "controlHeight": 654,
+                                        "controlWidth": 1179,
+                                        "controlHeight": 451,
                                         "collapsed": false,
                                         "controls": [
                                             {
@@ -187,8 +149,8 @@
                                                 "closed": false,
                                                 "widthProperty": "free",
                                                 "heightProperty": "free",
-                                                "controlWidth": 1819,
-                                                "controlHeight": 654,
+                                                "controlWidth": 1179,
+                                                "controlHeight": 451,
                                                 "initCallback": "mainPaneStateCallback",
                                                 "stateString": "global string $gMainPane; paneLayout -edit -configuration single $gMainPane;if(`modelPanel -exists modelPanel4`){ modelPanel -edit -parent $gMainPane modelPanel4; paneLayout -edit -setPane modelPanel4 1 $gMainPane;}"
                                             }
@@ -199,7 +161,7 @@
                                     "tabWidget": {
                                         "selectedIndex": 0,
                                         "controlWidth": 404,
-                                        "controlHeight": 654,
+                                        "controlHeight": 451,
                                         "collapsed": false,
                                         "controls": [
                                             {
@@ -218,7 +180,7 @@
                                                 "widthProperty": "preferred",
                                                 "heightProperty": "free",
                                                 "controlWidth": 404,
-                                                "controlHeight": 654
+                                                "controlHeight": 451
                                             },
                                             {
                                                 "objectName": "AttributeEditor",
@@ -247,8 +209,8 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
-                            "controlHeight": 447,
+                            "controlWidth": 1916,
+                            "controlHeight": 302,
                             "collapsed": false,
                             "controls": [
                                 {
@@ -266,8 +228,8 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "free",
-                                    "controlWidth": 2556,
-                                    "controlHeight": 447
+                                    "controlWidth": 1916,
+                                    "controlHeight": 302
                                 }
                             ]
                         }
@@ -275,7 +237,7 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
+                            "controlWidth": 1916,
                             "controlHeight": 34,
                             "collapsed": false,
                             "controls": [
@@ -294,7 +256,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "preferred",
-                                    "controlWidth": 2556,
+                                    "controlWidth": 1916,
                                     "controlHeight": 34
                                 }
                             ]
@@ -303,7 +265,7 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
+                            "controlWidth": 1916,
                             "controlHeight": 31,
                             "collapsed": false,
                             "controls": [
@@ -322,7 +284,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 2556,
+                                    "controlWidth": 1916,
                                     "controlHeight": 29
                                 }
                             ]
@@ -358,7 +320,7 @@
                     {
                         "tabWidget": {
                             "selectedIndex": 0,
-                            "controlWidth": 2556,
+                            "controlWidth": 1916,
                             "controlHeight": 28,
                             "collapsed": false,
                             "controls": [
@@ -377,7 +339,7 @@
                                     "closed": false,
                                     "widthProperty": "free",
                                     "heightProperty": "fixed",
-                                    "controlWidth": 2556,
+                                    "controlWidth": 1916,
                                     "controlHeight": 28
                                 }
                             ]
@@ -389,12 +351,150 @@
     ],
     "closedControls": [
         {
-            "objectName": "NEXDockControl",
-            "posX": 1129,
-            "posY": 218,
-            "controlHeight": 1395,
-            "controlWidth": 790,
+            "objectName": "studiolibrary_e24d4af3-0ee8-4816-a4b7-9941b5df08c8WorkspaceControl",
+            "posX": 640,
+            "posY": 279,
+            "controlHeight": 1231,
+            "controlWidth": 1278,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_a05c81d8-97e1-4a27-9457-b1413e607f83WorkspaceControl",
+            "posX": 2668,
+            "posY": 207,
+            "controlHeight": 612,
+            "controlWidth": 844,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "componentEditorPanel1Window",
+            "posX": 376,
+            "posY": 300,
+            "controlHeight": 352,
+            "controlWidth": 1664,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "hyperShadePanel1Window",
+            "posX": 2918,
+            "posY": 191,
+            "controlHeight": 893,
+            "controlWidth": 1106,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "UVToolkitDockControl",
+            "posX": 1629,
+            "posY": 72,
+            "controlHeight": 1270,
+            "controlWidth": 929,
             "widthProperty": "preferred",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_05883359-0e62-4a3a-bc76-2b297260666bWorkspaceControl",
+            "posX": 0,
+            "posY": 29,
+            "controlHeight": 991,
+            "controlWidth": 1920,
+            "widthProperty": "free",
+            "heightProperty": "free",
+            "maximized": 1
+        },
+        {
+            "objectName": "outlinerPanel2Window",
+            "posX": 0,
+            "posY": 332,
+            "controlHeight": 1008,
+            "controlWidth": 611,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "polyTexturePlacementPanel1Window",
+            "posX": 0,
+            "posY": 45,
+            "controlHeight": 1270,
+            "controlWidth": 1619,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_00169f17-3288-4767-8b5c-b6ec7c9191f8WorkspaceControl",
+            "posX": 967,
+            "posY": 146,
+            "controlHeight": 616,
+            "controlWidth": 887,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "timeEditorPanel1Window",
+            "posX": 2986,
+            "posY": 767,
+            "controlHeight": 346,
+            "controlWidth": 1856,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_85c32747-5f6b-4c75-abba-e0091e3f5bcbWorkspaceControl",
+            "posX": 2560,
+            "posY": 23,
+            "controlHeight": 1369,
+            "controlWidth": 2560,
+            "widthProperty": "free",
+            "heightProperty": "free",
+            "maximized": 1
+        },
+        {
+            "objectName": "studiolibrary_7128ab6c-8321-49dc-ae64-40ebf8f51f7bWorkspaceControl",
+            "posX": 2722,
+            "posY": 318,
+            "controlHeight": 646,
+            "controlWidth": 1277,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "renderViewWindow",
+            "posX": 250,
+            "posY": 200,
+            "controlHeight": 656,
+            "controlWidth": 996,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_8ceb3e4d-f581-4934-8f1b-15e5fe185119WorkspaceControl",
+            "posX": 1122,
+            "posY": 284,
+            "controlHeight": 612,
+            "controlWidth": 554,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_f99cd2d8-8cd5-4323-a327-fb7b8e2652f1WorkspaceControl",
+            "posX": 0,
+            "posY": 29,
+            "controlHeight": 991,
+            "controlWidth": 1920,
+            "widthProperty": "free",
+            "heightProperty": "free",
+            "maximized": 1
+        },
+        {
+            "objectName": "studiolibrary_1a4664fc-f0e0-4431-952c-fd49cbd4f669WorkspaceControl",
+            "posX": 2455,
+            "posY": 374,
+            "controlHeight": 612,
+            "controlWidth": 754,
+            "widthProperty": "free",
             "heightProperty": "free"
         },
         {
@@ -407,39 +507,93 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "nodeEditorPanel1Window",
-            "posX": 3407,
-            "posY": 402,
-            "controlHeight": 349,
-            "controlWidth": 757,
+            "objectName": "studiolibrary_a6b1deb2-2009-45ca-b8fe-3584075f0081WorkspaceControl",
+            "posX": 994,
+            "posY": 270,
+            "controlHeight": 616,
+            "controlWidth": 684,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_fedb3e66-d487-4a96-9fc8-16bdf6c44296WorkspaceControl",
+            "objectName": "ToolSettings",
+            "posX": 716,
+            "posY": 113,
+            "controlHeight": 1120,
+            "controlWidth": 796,
+            "widthProperty": "preferred",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_9e3d1509-9bf8-496c-ae56-2035aa9c9ea9WorkspaceControl",
+            "posX": 2199,
+            "posY": 324,
+            "controlHeight": 612,
+            "controlWidth": 979,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_ad678758-3f8a-4b38-beae-aaa578d40e07WorkspaceControl",
+            "posX": 669,
+            "posY": 215,
+            "controlHeight": 616,
+            "controlWidth": 994,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_eedde2e0-5ba4-4b90-b7c8-fe11ce24bd76WorkspaceControl",
+            "posX": 3866,
+            "posY": 273,
+            "controlHeight": 909,
+            "controlWidth": 1122,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_0450b3e2-7caf-47a5-b889-682fdcb2f0a1WorkspaceControl",
             "posX": 0,
-            "posY": 45,
-            "controlHeight": 1299,
-            "controlWidth": 2560,
+            "posY": 29,
+            "controlHeight": 991,
+            "controlWidth": 1920,
             "widthProperty": "free",
             "heightProperty": "free",
             "maximized": 1
         },
         {
-            "objectName": "studiolibrary_a05c81d8-97e1-4a27-9457-b1413e607f83WorkspaceControl",
-            "posX": 2668,
-            "posY": 207,
-            "controlHeight": 612,
-            "controlWidth": 844,
+            "objectName": "studiolibrary_b31891b4-5c5a-4c9f-a5c8-63d9ad829471WorkspaceControl",
+            "posX": 548,
+            "posY": 662,
+            "controlHeight": 751,
+            "controlWidth": 1324,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_b87dde3c-80a0-40f8-9436-f33cc3264bf2WorkspaceControl",
-            "posX": 887,
-            "posY": 429,
-            "controlHeight": 616,
-            "controlWidth": 673,
+            "objectName": "studiolibrary_41c60382-80ef-4fca-b702-1dde912ac181WorkspaceControl",
+            "posX": 2200,
+            "posY": -328,
+            "controlHeight": 773,
+            "controlWidth": 1085,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "NEXDockControl",
+            "posX": 1129,
+            "posY": 218,
+            "controlHeight": 1395,
+            "controlWidth": 790,
+            "widthProperty": "preferred",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_eb772b3a-4f46-4a3c-8aa9-6ad5c9224938WorkspaceControl",
+            "posX": 2433,
+            "posY": -179,
+            "controlHeight": 808,
+            "controlWidth": 1058,
             "widthProperty": "free",
             "heightProperty": "free"
         },
@@ -462,56 +616,75 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_e24d4af3-0ee8-4816-a4b7-9941b5df08c8WorkspaceControl",
-            "posX": 640,
-            "posY": 279,
-            "controlHeight": 1231,
-            "controlWidth": 1278,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "ToolSettings",
-            "posX": 716,
-            "posY": 113,
-            "controlHeight": 1120,
-            "controlWidth": 796,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "renderViewWindow",
+            "objectName": "MayaRenderSetupWindowWorkspaceControl",
             "posX": 250,
             "posY": 200,
-            "controlHeight": 656,
-            "controlWidth": 996,
+            "controlHeight": 600,
+            "controlWidth": 344,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_41c60382-80ef-4fca-b702-1dde912ac181WorkspaceControl",
-            "posX": 2200,
-            "posY": -328,
-            "controlHeight": 773,
-            "controlWidth": 1085,
+            "objectName": "asPickerWorkspaceControl",
+            "posX": 250,
+            "posY": 200,
+            "controlHeight": 360,
+            "controlWidth": 360,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_00169f17-3288-4767-8b5c-b6ec7c9191f8WorkspaceControl",
-            "posX": 967,
-            "posY": 146,
+            "objectName": "studiolibrary_fedb3e66-d487-4a96-9fc8-16bdf6c44296WorkspaceControl",
+            "posX": 0,
+            "posY": 45,
+            "controlHeight": 1299,
+            "controlWidth": 2560,
+            "widthProperty": "free",
+            "heightProperty": "free",
+            "maximized": 1
+        },
+        {
+            "objectName": "studiolibrary_283c845f-c600-4afe-8cac-bf540685f499WorkspaceControl",
+            "posX": 1133,
+            "posY": 278,
             "controlHeight": 616,
-            "controlWidth": 887,
+            "controlWidth": 615,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_a6b1deb2-2009-45ca-b8fe-3584075f0081WorkspaceControl",
-            "posX": 994,
-            "posY": 270,
+            "objectName": "studiolibrary_b87dde3c-80a0-40f8-9436-f33cc3264bf2WorkspaceControl",
+            "posX": 887,
+            "posY": 429,
             "controlHeight": 616,
-            "controlWidth": 684,
+            "controlWidth": 673,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "modelPanel4Window",
+            "posX": 2560,
+            "posY": 23,
+            "controlHeight": 1004,
+            "controlWidth": 1916,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "studiolibrary_1a0ad9c8-4f8a-41f0-b213-75c196d5ba95WorkspaceControl",
+            "posX": 61,
+            "posY": 75,
+            "controlHeight": 896,
+            "controlWidth": 1782,
+            "widthProperty": "free",
+            "heightProperty": "free"
+        },
+        {
+            "objectName": "nodeEditorPanel1Window",
+            "posX": 3407,
+            "posY": 402,
+            "controlHeight": 349,
+            "controlWidth": 757,
             "widthProperty": "free",
             "heightProperty": "free"
         },
@@ -534,167 +707,11 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_1a4664fc-f0e0-4431-952c-fd49cbd4f669WorkspaceControl",
-            "posX": 2455,
-            "posY": 374,
-            "controlHeight": 612,
-            "controlWidth": 754,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_f99cd2d8-8cd5-4323-a327-fb7b8e2652f1WorkspaceControl",
-            "posX": 0,
-            "posY": 29,
-            "controlHeight": 991,
-            "controlWidth": 1920,
-            "widthProperty": "free",
-            "heightProperty": "free",
-            "maximized": 1
-        },
-        {
-            "objectName": "studiolibrary_7128ab6c-8321-49dc-ae64-40ebf8f51f7bWorkspaceControl",
-            "posX": 2722,
-            "posY": 318,
-            "controlHeight": 646,
-            "controlWidth": 1277,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "MayaRenderSetupWindowWorkspaceControl",
-            "posX": 250,
-            "posY": 200,
-            "controlHeight": 600,
-            "controlWidth": 344,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_283c845f-c600-4afe-8cac-bf540685f499WorkspaceControl",
-            "posX": 1133,
-            "posY": 278,
-            "controlHeight": 616,
-            "controlWidth": 615,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_0450b3e2-7caf-47a5-b889-682fdcb2f0a1WorkspaceControl",
-            "posX": 0,
-            "posY": 29,
-            "controlHeight": 991,
-            "controlWidth": 1920,
-            "widthProperty": "free",
-            "heightProperty": "free",
-            "maximized": 1
-        },
-        {
-            "objectName": "studiolibrary_1a0ad9c8-4f8a-41f0-b213-75c196d5ba95WorkspaceControl",
-            "posX": 61,
-            "posY": 75,
-            "controlHeight": 896,
-            "controlWidth": 1782,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_8ceb3e4d-f581-4934-8f1b-15e5fe185119WorkspaceControl",
-            "posX": 1122,
-            "posY": 284,
-            "controlHeight": 612,
-            "controlWidth": 554,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "modelPanel4Window",
-            "posX": 2560,
-            "posY": 23,
-            "controlHeight": 1004,
-            "controlWidth": 1916,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_eb772b3a-4f46-4a3c-8aa9-6ad5c9224938WorkspaceControl",
-            "posX": 2433,
-            "posY": -179,
-            "controlHeight": 808,
-            "controlWidth": 1058,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "polyTexturePlacementPanel1Window",
-            "posX": 0,
-            "posY": 45,
-            "controlHeight": 1270,
-            "controlWidth": 1619,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
             "objectName": "studiolibrary_aef2bce4-bc36-46bc-9b40-7d20ec9832fdWorkspaceControl",
             "posX": 391,
             "posY": 38,
             "controlHeight": 1138,
             "controlWidth": 1358,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "outlinerPanel2Window",
-            "posX": 0,
-            "posY": 332,
-            "controlHeight": 1008,
-            "controlWidth": 611,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "scriptEditorPanel1Window",
-            "posX": 111,
-            "posY": 136,
-            "controlHeight": 872,
-            "controlWidth": 1363,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_ad678758-3f8a-4b38-beae-aaa578d40e07WorkspaceControl",
-            "posX": 669,
-            "posY": 215,
-            "controlHeight": 616,
-            "controlWidth": 994,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "asPickerWorkspaceControl",
-            "posX": 250,
-            "posY": 200,
-            "controlHeight": 360,
-            "controlWidth": 360,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_05883359-0e62-4a3a-bc76-2b297260666bWorkspaceControl",
-            "posX": 0,
-            "posY": 29,
-            "controlHeight": 991,
-            "controlWidth": 1920,
-            "widthProperty": "free",
-            "heightProperty": "free",
-            "maximized": 1
-        },
-        {
-            "objectName": "studiolibrary_9e3d1509-9bf8-496c-ae56-2035aa9c9ea9WorkspaceControl",
-            "posX": 2199,
-            "posY": 324,
-            "controlHeight": 612,
-            "controlWidth": 979,
             "widthProperty": "free",
             "heightProperty": "free"
         },
@@ -708,68 +725,31 @@
             "heightProperty": "free"
         },
         {
-            "objectName": "studiolibrary_b31891b4-5c5a-4c9f-a5c8-63d9ad829471WorkspaceControl",
-            "posX": 548,
-            "posY": 662,
-            "controlHeight": 751,
-            "controlWidth": 1324,
+            "objectName": "scriptEditorPanel1Window",
+            "posX": 212,
+            "posY": 123,
+            "controlHeight": 872,
+            "controlWidth": 1363,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "timeEditorPanel1Window",
-            "posX": 2986,
-            "posY": 767,
-            "controlHeight": 346,
-            "controlWidth": 1856,
+            "objectName": "relationshipPanel1Window",
+            "posX": 250,
+            "posY": 200,
+            "controlHeight": 325,
+            "controlWidth": 475,
             "widthProperty": "free",
             "heightProperty": "free"
         },
         {
-            "objectName": "componentEditorPanel1Window",
-            "posX": 376,
-            "posY": 300,
-            "controlHeight": 352,
-            "controlWidth": 1664,
+            "objectName": "referenceEditorPanel1Window",
+            "posX": 345,
+            "posY": 304,
+            "controlHeight": 728,
+            "controlWidth": 1048,
             "widthProperty": "free",
             "heightProperty": "free"
-        },
-        {
-            "objectName": "UVToolkitDockControl",
-            "posX": 1629,
-            "posY": 72,
-            "controlHeight": 1270,
-            "controlWidth": 929,
-            "widthProperty": "preferred",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "hyperShadePanel1Window",
-            "posX": 2918,
-            "posY": 191,
-            "controlHeight": 893,
-            "controlWidth": 1106,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_eedde2e0-5ba4-4b90-b7c8-fe11ce24bd76WorkspaceControl",
-            "posX": 3866,
-            "posY": 273,
-            "controlHeight": 909,
-            "controlWidth": 1122,
-            "widthProperty": "free",
-            "heightProperty": "free"
-        },
-        {
-            "objectName": "studiolibrary_85c32747-5f6b-4c75-abba-e0091e3f5bcbWorkspaceControl",
-            "posX": 2560,
-            "posY": 23,
-            "controlHeight": 1369,
-            "controlWidth": 2560,
-            "widthProperty": "free",
-            "heightProperty": "free",
-            "maximized": 1
         }
     ],
     "contentBrowserContexts": [

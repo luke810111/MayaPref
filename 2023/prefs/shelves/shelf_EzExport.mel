@@ -1,4 +1,4 @@
-global proc shelf_Arnold () {
+global proc shelf_EzExport () {
     global string $gBuffStr;
     global string $gBuffStr0;
     global string $gBuffStr1;
@@ -14,27 +14,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Area Light" 
+        -annotation "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Area Light" 
+        -label "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "reOpen" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "AreaLightShelf.png" 
-        -image1 "AreaLightShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.utils as mutils;mutils.createLocator(\"aiAreaLight\", asLight=True)" 
-        -sourceType "python" 
+        -command "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -48,27 +49,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Mesh Light" 
+        -annotation "\nexportFBXPipelineTool();" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Mesh Light" 
+        -label "\nexportFBXPipelineTool();" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "\nexportFBX" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "MeshLightShelf.png" 
-        -image1 "MeshLightShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.utils as mutils; mutils.createMeshLight()" 
-        -sourceType "python" 
+        -command "source \"byLuke/exportFBXPipeline\";\nexportFBXPipelineTool();" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -82,27 +84,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Photometric Light" 
+        -annotation "PBToolbyLuke();" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Photometric Light" 
+        -label "PBToolbyLuke();" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "PBTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "PhotometricLightShelf.png" 
-        -image1 "PhotometricLightShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.utils as mutils; mutils.createLocator(\"aiPhotometricLight\", asLight=True)" 
-        -sourceType "python" 
+        -command "source \"byLuke/batchPBbyLuke\";\nPBToolbyLuke();" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -116,27 +119,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create SkyDome Light" 
+        -annotation "Edit the references for the current scene" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create SkyDome Light" 
+        -label "Reference Editor" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "RE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "SkydomeLightShelf.png" 
-        -image1 "SkydomeLightShelf.png" 
+        -image "menuIconFile.png" 
+        -image1 "menuIconFile.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.utils as mutils; mutils.createLocator(\"aiSkyDomeLight\", asLight=True)" 
-        -sourceType "python" 
+        -command "ReferenceEditor" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -150,27 +154,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Light Portal" 
+        -annotation "File Path Editor" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Light Portal" 
+        -label "File Path Editor" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "FPE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "LightPortalShelf.png" 
-        -image1 "LightPortalShelf.png" 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.doCreateLightPortal()" 
-        -sourceType "python" 
+        -command "FilePathEditor" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -184,74 +189,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Physical Sky" 
+        -annotation "Namespace Editor" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Physical Sky" 
+        -label "Namespace Editor" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "NE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "PhysicalSkyShelf.png" 
-        -image1 "PhysicalSkyShelf.png" 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.doCreatePhysicalSky()" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    separator
-        -enable 1
-        -width 12
-        -height 35
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -style "shelf" 
-        -horizontal 0
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "Create StandIn" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "Create StandIn" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "StandinShelf.png" 
-        -image1 "StandinShelf.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.createStandIn()" 
-        -sourceType "python" 
+        -command "NamespaceEditor" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -265,27 +224,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Export StandIn" 
+        -annotation "asAnimationTesterRemoveBody;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Export StandIn" 
+        -label "asAnimationTesterRemoveBody;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "delKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "ExportStandinShelf.png" 
-        -image1 "ExportStandinShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.doExportStandIn()" 
-        -sourceType "python" 
+        -command "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -299,27 +259,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Curve Collector" 
+        -annotation "hide joint" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Curve Collector" 
+        -label "\nasJointsVisibility 0;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "hdJt" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "CurveCollectorShelf.png" 
-        -image1 "CurveCollectorShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.doCreateCurveCollector()" 
-        -sourceType "python" 
+        -command "\nasJointsVisibility 0;" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -333,74 +294,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Volume" 
+        -annotation "delLayer" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Volume" 
+        -label "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displ..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "delLayer" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "VolumeShelf.png" 
-        -image1 "VolumeShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.createVolume()" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    separator
-        -enable 1
-        -width 12
-        -height 35
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -style "shelf" 
-        -horizontal 0
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "TX Manager" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "TX Manager" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "TXManagerShelf.png" 
-        -image1 "TXManagerShelf.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldTxManager()" 
-        -sourceType "python" 
+        -command "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displayLayersRemoves[]={\"defaultLayer\"};\nstring $displayLayers[] = stringArrayRemove($displayLayersRemoves, $displayLayers);\ndelete $displayLayers;\nprint \"delete displayLayers\";" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -414,27 +329,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Update TX files" 
+        -annotation "deleteunusde nodes" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Update TX files" 
+        -label "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unuse..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "dn" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "UpdateTxShelf.png" 
-        -image1 "UpdateTxShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldUpdateTx()" 
-        -sourceType "python" 
+        -command "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unused nodes deleted.\\n\";" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -448,74 +364,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Flush Texture Cache" 
+        -annotation "delete unused influnces" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Flush Texture Cache" 
+        -label "asRemoveAllUnusedInfluences;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "dui" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "FlushTextureShelf.png" 
-        -image1 "FlushTextureShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import maya.cmds as cmds; cmds.arnoldFlushCache(textures=True)" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    separator
-        -enable 1
-        -width 12
-        -height 35
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -style "shelf" 
-        -horizontal 0
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "Bake Selected Geometry" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "Bake Selected Geometry" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "BakeGeometryShelf.png" 
-        -image1 "BakeGeometryShelf.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldBakeGeo()" 
-        -sourceType "python" 
+        -command "asRemoveAllUnusedInfluences;" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -529,74 +399,28 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Render Selection to Texture" 
+        -annotation "asDeleteUnusedJoints;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Render Selection to Texture" 
+        -label "asDeleteUnusedJoints;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "duj" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "RenderToTextureShelf.png" 
-        -image1 "RenderToTextureShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldRenderToTexture()" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    separator
-        -enable 1
-        -width 12
-        -height 35
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -style "shelf" 
-        -horizontal 0
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "Arnold RenderView" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "Arnold RenderView" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "RenderViewShelf.png" 
-        -image1 "RenderViewShelf.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldOpenMtoARenderView()" 
-        -sourceType "python" 
+        -command "asDeleteUnusedJoints;" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -610,27 +434,63 @@ global proc shelf_Arnold () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Render" 
+        -annotation "GoToBuildPose " 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Render" 
+        -label "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    a..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
+        -imageOverlayLabel "gtbp" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "RenderShelf.png" 
-        -image1 "RenderShelf.png" 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import mtoa.ui.arnoldmenu as arnoldmenu; arnoldmenu.arnoldMtoARenderView()" 
-        -sourceType "python" 
+        -command "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    asGoToBuildPose faceSetup;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "setPlaybackRangeToMinMax;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "setPlaybackRangeToMinMax;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "PRMinMax;" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "setPlaybackRangeToMinMax;" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;

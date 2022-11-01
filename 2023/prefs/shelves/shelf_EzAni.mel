@@ -1,0 +1,703 @@
+global proc shelf_EzAni () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source IKFKswitchTool;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source IKFKswitchTool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/IKFKSwitchTool.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/IKFKSwitchTool.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/IKFKswitchTool\";\nIKFKswitchToolbyLuke();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"byLuke/dingdingTool.mel\";\ndingdingTool;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/dingdingTool.mel\";\ndingdingTool;\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.156757 0.156757 0.156757 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/dingdingTool.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/dingdingTool.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/dingdingTool.mel\";\ndingdingTool;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"byLuke/setKeyTool.mel\";\nsetKeyTool;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/setKeyTool.mel\";\nsetKeyTool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/setKeyTool.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/setKeyTool.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/setKeyTool.mel\";\nsetKeyTool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Studio Library" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\\studiolibrary\\resource\\icons\\icon.png" 
+        -image1 "C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\\studiolibrary\\resource\\icons\\icon.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "copyPastePosebyLuke();\nglobal proc copyPastePosebyLuke(){\n        if (`window -exists copyPastePosebyLuke`)\n                deleteUI -window copyPastePosebyLuke;\n                        \n        $window = `window -title \"copyPastePosebyLuke\" -h 320 -w 30 -rtf 1  -s 1  copyPastePosebyLuke`;\n            frameLayout -bgc 0.3 0.3 0.0 -label \"\" -cll 0 -cl 0;\n            \tbutton -label \"copy\" -c \"MainProcedure()\" ;\t\n            \tbutton -label \"paste\" -c \"eval `TestReadTxt`;\";\t\n                setParent ..;\n            setParent ..;\t                  \n        showWindow copyPastePosebyLuke;\n        }\nglobal proc MainProcedure(){\n    $sels=`ls -sl`;\n    string $cmd=\"\";\n    for($i=0;$i<`size($sels)`;$i++){\n        $cmd=$cmd+getSelectTransformAttrValue($sels[$i]);\n        }\n    print $cmd;\n    TestWriteTxt($cmd);\n    //namespace matcher\n    //eval `TestReadTxt`;\n    }\n\nglobal proc string getSelectTransformAttrValue(string $obj){\n    string $cmd;\n    float $v;\n    $attrs=`listAttr -u -k $obj`;\n    print (\"if(`objExists \\\"\"+$obj+\"\\\"`)\"); \n    for($i=0;$i<`size($attrs)`;$i++){\n        $v=`getAttr ($obj+\".\"+$attrs[$i])`;\n        print (\"if(`objExists \\\"\"+$obj+\"\\\"`) setAttr \\\"\"+$obj+\".\"+$attrs[$i]+\"\\\" \"+$v+\";\\n\");\n        $cmd=($cmd+\"if(`objExists \\\"\"+$obj+\"\\\"`) setAttr \\\"\"+$obj+\".\"+$attrs[$i]+\"\\\" \"+$v+\";\\n\");\n        }\n    return $cmd;\n    }\n//setAttr \"SK_Player_Armor_001_rig:RootX_M.CenterBtwFeet\" 0;\n\nglobal proc TestWriteTxt(string $cmd){\n    $cpFileName = ( `internalVar -userTmpDir` + \"copyPasteToolbyLuke.txt\" );\n    $fileId=`fopen $cpFileName \"w\"`;\n    fprint $fileId $cmd;\n    fclose $fileId;\n    }\n\nglobal proc string TestReadTxt() {  \n    string $cmd;  \n    // Open Your File  \n    $cpFileName = ( `internalVar -userTmpDir` + \"copyPasteToolbyLuke.txt\" );\n    $fileId=`fopen $cpFileName \"r\"`;       \n    // Get The First Line  \n    string $nextLine = `fgetline $fileId` ;  \n      \n    // Loop Until The String Size Is Zero (No Data)  \n    while (size($nextLine) > 0) {        \n        // Strip Whitespace From The Beginning And End Of The Line  \n        string $cleanLine = strip($nextLine) ;            \n        // Print Line  \n        $cmd=($cmd+$cleanLine) ;\n        print ($cleanLine+\"\\n\") ;            \n        // Get Next Line And Continue  \n        $nextLine = `fgetline $fileId` ;            \n        }  \n    return $cmd;    \n    }  " 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "copyPastePosebyLuke();\nglobal proc copyPastePosebyLuke(){\n      ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "copyPaste" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "copyPastePosebyLuke();\nglobal proc copyPastePosebyLuke(){\n        if (`window -exists copyPastePosebyLuke`)\n                deleteUI -window copyPastePosebyLuke;\n                        \n        $window = `window -title \"copyPastePosebyLuke\" -h 320 -w 30 -rtf 1  -s 1  copyPastePosebyLuke`;\n            frameLayout -bgc 0.3 0.3 0.0 -label \"\" -cll 0 -cl 0;\n            \tbutton -label \"copy\" -c \"MainProcedure()\" ;\t\n            \tbutton -label \"paste\" -c \"eval `TestReadTxt`;\";\t\n                setParent ..;\n            setParent ..;\t                  \n        showWindow copyPastePosebyLuke;\n        }\nglobal proc MainProcedure(){\n    $sels=`ls -sl`;\n    string $cmd=\"\";\n    for($i=0;$i<`size($sels)`;$i++){\n        $cmd=$cmd+getSelectTransformAttrValue($sels[$i]);\n        }\n    print $cmd;\n    TestWriteTxt($cmd);\n    //namespace matcher\n    //eval `TestReadTxt`;\n    }\n\nglobal proc string getSelectTransformAttrValue(string $obj){\n    string $cmd;\n    float $v;\n    $attrs=`listAttr -u -k $obj`;\n    print (\"if(`objExists \\\"\"+$obj+\"\\\"`)\"); \n    for($i=0;$i<`size($attrs)`;$i++){\n        $v=`getAttr ($obj+\".\"+$attrs[$i])`;\n        print (\"if(`objExists \\\"\"+$obj+\"\\\"`) setAttr \\\"\"+$obj+\".\"+$attrs[$i]+\"\\\" \"+$v+\";\\n\");\n        $cmd=($cmd+\"if(`objExists \\\"\"+$obj+\"\\\"`) setAttr \\\"\"+$obj+\".\"+$attrs[$i]+\"\\\" \"+$v+\";\\n\");\n        }\n    return $cmd;\n    }\n//setAttr \"SK_Player_Armor_001_rig:RootX_M.CenterBtwFeet\" 0;\n\nglobal proc TestWriteTxt(string $cmd){\n    $cpFileName = ( `internalVar -userTmpDir` + \"copyPasteToolbyLuke.txt\" );\n    $fileId=`fopen $cpFileName \"w\"`;\n    fprint $fileId $cmd;\n    fclose $fileId;\n    }\n\nglobal proc string TestReadTxt() {  \n    string $cmd;  \n    // Open Your File  \n    $cpFileName = ( `internalVar -userTmpDir` + \"copyPasteToolbyLuke.txt\" );\n    $fileId=`fopen $cpFileName \"r\"`;       \n    // Get The First Line  \n    string $nextLine = `fgetline $fileId` ;  \n      \n    // Loop Until The String Size Is Zero (No Data)  \n    while (size($nextLine) > 0) {        \n        // Strip Whitespace From The Beginning And End Of The Line  \n        string $cleanLine = strip($nextLine) ;            \n        // Print Line  \n        $cmd=($cmd+$cleanLine) ;\n        print ($cleanLine+\"\\n\") ;            \n        // Get Next Line And Continue  \n        $nextLine = `fgetline $fileId` ;            \n        }  \n    return $cmd;    \n    }  " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sels=`ls -sl`;\nif(`size $sels`)\n    getTop($sels[0]);\nproc getT..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\nif(`size $sels`)\n    getTop($sels[0]);\nproc getT..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "getTop" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\nif(`size $sels`)\n    getTop($sels[0]);\nproc getTop(string $child){\n    $papa=`listRelatives -p $child`;\n    if(`size $papa`)\n        getTop($papa[0]);\n    else\n        select -r $child;\n    }\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "pointOnPoly helper" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n\n$locs=`spaceLocator -n ($sels[0]+\"_pt\") -p 0 0 ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "pptsl" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n\n$locs=`spaceLocator -n ($sels[0]+\"_pt\") -p 0 0 0`;\nselect -r $sels $locs;\ndoCreatePointOnPolyConstraintArgList 2 { \"0\" , \"0\" , \"0\" , \"1\" , \"\" , \"1\" , \"0\" , \"0\" , \"0\" , \"0\"};\npointOnPolyConstraint -offset 0 0 0 -weight 1;\n\nif(!`objExists \"dont_delete\"`)\n    group -em -n \"dont_delete\";\nparent $locs \"dont_delete\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$selsA=`ls -sl`;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$selsA=`ls -sl`;\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "A" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/A組.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/A組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$selsA=`ls -sl`;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$selsB=`ls -sl`;\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$selsB=`ls -sl`;\n" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "B" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/B組.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/B組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$selsB=`ls -sl`;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "crHelper($selsA,$selsB);" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "crHelper($selsA,$selsB);" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "helper" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "crHelper ($selsA, $selsB); \nglobal proc crHelper (string $selsA[], string $selsB[]) { \n    if (`size $selsA`!=`size $selsB`) { \n        print \"A B數量不一 \"; \n    }else if(!`size $selsA`||!`size $selsB`) {\n        print \"A B is empty\"; \n    }else{ \n        for ($i=0;$i<`size $selsA`; $i++) {\n            $dvn=`spaceLocator -n ($selsB[$i]+\"_loc\")`; \n            $ro=`xform -q -roo $selsB[$i]`; \n            xform -roo $ro $dvn; \n            $dvnOffset=`duplicate -n ($dvn[0]+\"_offset\") $dvn`; \n            parent $dvn[0] $dvnOffset[0]; \n            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con; \n            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con;\n            if(!`objExists ($selsA[$i]+\"_loc\")`) {\n                $drv=`spaceLocator -n ($selsA[$i]+\"_loc\")` ; \n                $ro=`xform -q -roo $selsA[$i]`; \n                xform -roo $ro $drv; \n                $drvOffset=`duplicate -n ($drv[0] +\"_offset\") $drv`; \n                parent $drv[0] $drvOffset[0]; \n                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con; \n                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con;\n                if(!`objExists \"dont delete\"`)\n                    group -em -n \"dont_delete\"; \n                parent $drvOffset \"dont_delete\";\n                parentConstraint $selsA[$i] $drvOffset ; \n                //scaleConstraint $selsA[$i] Sdrvoffset \n                }\n            parent $dvnOffset[0] ($selsA[$i]+\"_loc\"); \n            if(`getAttr -l ($selsB[$i]+\".tx\")`||`getAttr -l ($selsB[$i]+\".ty\") `||`getAttr -l ($selsB[$i]+\".tz\")`)\n                orientConstraint $dvn $selsB[$i]; \n            else if(`getAttr -l ($selsB[$i]+\".rx\")`||`getAttr -l ($selsB[$i]+\".ry\")`||`getAttr -l ($selsB[$i]+\".rz\")`)\n                pointConstraint $dvn $selsB[$i];\n            else\n                parentConstraint $dvn $selsB[$i]; \n            //scaleConstraint sdyn $selsB[$i];\n            }\n        }\n    }\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$source=getParentConstraintSource();\nselect -r $source;\nproc str..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$source=getParentConstraintSource();\nselect -r $source;\nproc str..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "gCSource" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/selCons\";\nselectConDrv();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$target=getParentConstraintTarget();\nselect -r $target;\nproc str..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$target=getParentConstraintTarget();\nselect -r $target;\nproc str..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "gCTarget" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/selCons\";\nselectConDvn();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "deleteConstraint();\nproc deleteConstraint(){\n\n    string $cons[]..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "deleteConstraint();\nproc deleteConstraint(){\n\n    string $cons[]..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "dCons" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/selCons\";\ndeleteConstraint();\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "setAdd" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    sets -add $sels[($n-1)] $sels[$i];\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "setRemove" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n$n=`size($sels)`;\nfor ($i=0; $i<$n-1;$i++){\n    sets -remove $sels[($n-1)] $sels[$i];\n    }\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Copy Keys" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Copy Keys" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconKeys.png" 
+        -image1 "menuIconKeys.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "doCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Paste Keys" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Paste Keys" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "PK" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconKeys.png" 
+        -image1 "menuIconKeys.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "doPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentUnit -t \"ntsc\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentUnit -t \"ntsc\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "30fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentUnit -t \"ntsc\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentUnit -t \"ntscf\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentUnit -t \"ntscf\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "60fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentUnit -t \"ntscf\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "selAllAni" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;\nselect -r $crvs;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

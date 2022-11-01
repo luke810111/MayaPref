@@ -1,4 +1,4 @@
-source "xRigD";
+source "byLuke/xRigD";
 xRigDTool();
 
 global proc xRigDTool(){
@@ -8,9 +8,9 @@ global proc xRigDTool(){
 	frameLayout -bgc 0.1 0.1 0.2 -label "groupArray";
     columnLayout;  
     rowColumnLayout -numberOfColumns 3 -columnWidth 1 50 -columnWidth 2 50 -columnWidth 3 200;                                                
-            button -l "A²Õ" -bgc 50 50 0 -c "$selsA=grpArray($selsA);print $selsA;";
-            button -l "B²Õ" -bgc 50 0 50 -c "$selsB=grpArray($selsB);print $selsB;"; 
-            text -label "¶È¦³2-2(¦h¹ï¦h)»Ý­n¨Ï¥ÎAB²Õ" -align "center";
+            button -l "A group" -bgc 50 50 0 -c "$selsA=grpArray($selsA);print $selsA;";
+            button -l "B group" -bgc 50 0 50 -c "$selsB=grpArray($selsB);print $selsB;"; 
+            text -label "" -align "center";
     setParent..;                          
     
     rowColumnLayout -numberOfColumns 1 -columnWidth 1 300 ;         
@@ -106,7 +106,7 @@ global proc unCheck(string $checkBoxes){
         }
     }
 
-/*¥þ³¡¥´¤Ä
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 $t:0(translation);1(rotate);2(scale);
 */
 global proc checkAll(int $t){
@@ -128,7 +128,7 @@ global proc checkAll(int $t){
 		}
 	}
 
-/*¨útranzCB --lv1--lp0--rc0
+/*ï¿½ï¿½tranzCB --lv1--lp0--rc0
 	return:$tranzCB
 	*/
 global proc int[] getSnapCB(){
@@ -150,24 +150,24 @@ global proc int[] getSnapCB(){
     }
  
 
-/*¤¤¼Ï --lv3--lp1--rc0
-$c:¨M©w¥Î­þ¤@ºØ¬ù§ô(0=parent/1=point/2=orient/3=scale/4=geometry/5=normal)
+/*ï¿½ï¿½ï¿½ï¿½ --lv3--lp1--rc0
+$c:ï¿½Mï¿½wï¿½Î­ï¿½ï¿½@ï¿½Ø¬ï¿½ï¿½ï¿½(0=parent/1=point/2=orient/3=scale/4=geometry/5=normal)
 $j: job 0(constrain);1(snap);
-$constrains:¬ù§ô©R¥O¦C(¦Û©w¸q¥þ°ì°Ñ¼Æ)
+$constrains:ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½Oï¿½C(ï¿½Û©wï¿½qï¿½ï¿½ï¿½ï¿½Ñ¼ï¿½)
 */
 global proc advMixJobCtx(int $c,int $j,string $selsA[],string $selsB[],string $constrains[]){
 	int $tranzCB[]=getSnapCB();	//--lv1--lp0--rc0
 	string $one[];
 	string $multi[];
-    string $sels[]=`ls -sl`;//2-1©Î1-2®É¥Î
-    int $n=`size($sels)`; //$selsªº¼Æ¶q
+    string $sels[]=`ls -sl`;//2-1ï¿½ï¿½1-2ï¿½É¥ï¿½
+    int $n=`size($sels)`; //$selsï¿½ï¿½ï¿½Æ¶q
     $mode=`radioButtonGrp -q -sl constrainMode`; 
     $m=`checkBox -q  -v mt`; //	$m : maintinOffset(on/off)
 	
-	//§@2-2	
+	//ï¿½@2-2	
     if ($mode==1){
         if (`size($selsA)`!=`size($selsB)`){ 
-			print "A²ÕB²Õ¼Æ¶q¤£¬Ûµ¥";
+			print "Aï¿½ï¿½Bï¿½Õ¼Æ¶qï¿½ï¿½ï¿½Ûµï¿½";
         }else {
 			if($j==0){
 				advMixConstrain($c,$m,$mode,$selsA,$selsB,$constrains);//--lv2--lp1--rc0				
@@ -176,10 +176,10 @@ global proc advMixJobCtx(int $c,int $j,string $selsA[],string $selsB[],string $c
 				}				
 			}
 			
-	 //§@1-2     
+	 //ï¿½@1-2     
     }else if($mode==2){
         if ($n<=1){
-			print "¦Ü¤Ö¿ï¨ì¨â­ÓªF¦è";
+			print "ï¿½Ü¤Ö¿ï¿½ï¿½ï¿½ÓªFï¿½ï¿½";
         }else{		
 			$one[0]=$sels[0];
 			$multi=$sels;
@@ -187,14 +187,14 @@ global proc advMixJobCtx(int $c,int $j,string $selsA[],string $selsB[],string $c
 			if($j==0){
 				advMixConstrain($c,$m,$mode,$one,$multi,$constrains);//--lv2--lp1--rc0				
 			}else if ($j==1){
-				print "snap¤£°µ1-2";  
+				print "snapï¿½ï¿½ï¿½ï¿½1-2";  
 				}	
 			}     
 	 
-	 //§@2-1  
+	 //ï¿½@2-1  
     }else if($mode==3){
         if ($n<=1){
-			print "¦Ü¤Ö¿ï¨ì¨â­ÓªF¦è";
+			print "ï¿½Ü¤Ö¿ï¿½ï¿½ï¿½ÓªFï¿½ï¿½";
         }else{
 			$one[0]=$sels[($n-1)];
 			$multi=$sels;
@@ -208,27 +208,27 @@ global proc advMixJobCtx(int $c,int $j,string $selsA[],string $selsB[],string $c
         }   
     }
 
-/* ÂÂª«°Ï
+/* ï¿½Âªï¿½ï¿½ï¿½
 global proc advMixConstrainCtx(int $c,string $selsA[],string $selsB[],string $constrains[]){
 	string $one[];
 	string $multi[];
-    string $sels[]=`ls -sl`;//2-1©Î1-2®É¥Î
-    int $n=`size($sels)`; //$selsªº¼Æ¶q
+    string $sels[]=`ls -sl`;//2-1ï¿½ï¿½1-2ï¿½É¥ï¿½
+    int $n=`size($sels)`; //$selsï¿½ï¿½ï¿½Æ¶q
     $mode=`radioButtonGrp -q -sl constrainMode`; 
     $m=`checkBox -q  -v mt`; //	$m : maintinOffset(on/off)
 	
-	//§@2-2	
+	//ï¿½@2-2	
     if ($mode==1){
         if (`size($selsA)`==`size($selsB)`){ 
 			advMixConstrain($c,$m,$mode,$selsA,$selsB,$constrains);//--lv2--lp1--rc0		
         }else {
-			print "A²ÕB²Õ¼Æ¶q¤£¬Ûµ¥";
+			print "Aï¿½ï¿½Bï¿½Õ¼Æ¶qï¿½ï¿½ï¿½Ûµï¿½";
 			}
 			
-	 //§@1-2     
+	 //ï¿½@1-2     
     }else if($mode==2){
         if ($n<=1){
-			print "¦Ü¤Ö¿ï¨ì¨â­ÓªF¦è";
+			print "ï¿½Ü¤Ö¿ï¿½ï¿½ï¿½ÓªFï¿½ï¿½";
         }else{		
 			$one[0]=$sels[0];
 			$multi=$sels;
@@ -236,10 +236,10 @@ global proc advMixConstrainCtx(int $c,string $selsA[],string $selsB[],string $co
 			advMixConstrain($c,$m,$mode,$one,$multi,$constrains);//--lv2--lp1--rc0	
 			}     
 	 
-	 //§@2-1  
+	 //ï¿½@2-1  
     }else if($mode==3){
         if ($n<=1){
-			print "¦Ü¤Ö¿ï¨ì¨â­ÓªF¦è";
+			print "ï¿½Ü¤Ö¿ï¿½ï¿½ï¿½ÓªFï¿½ï¿½";
         }else{
 			$one[0]=$sels[($n-1)];
 			$multi=$sels;

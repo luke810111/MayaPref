@@ -1,4 +1,4 @@
-global proc shelf_export () {
+global proc shelf_EzRig () {
     global string $gBuffStr;
     global string $gBuffStr0;
     global string $gBuffStr1;
@@ -49,19 +49,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "\nexportFBXPipelineTool();" 
+        -annotation "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;\nsetAttr \"FKIKSplineNeck_M.FKIKBlend\" 0;\nsetAttr \"FKIKLegFront_R.FKIKBlend\" 0;\nsetAttr \"FKIKLegBack_R.FKIKBlend\" 0;\nsetAttr \"FKIKSplineTail_M.FKIKBlend\" 0;\nsetAttr \"FKIKLegFront_L.FKIKBlend\" 0;\nsetAttr \"FKIKLegBack_L.FKIKBlend\" 0;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "\nexportFBXPipelineTool();" 
+        -label "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\nsetAttr \"FKIKSpin..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "\nexportFBX" 
+        -imageOverlayLabel "cutKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -69,7 +69,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/exportFBXPipeline\";\nexportFBXPipelineTool();" 
+        -command "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\n\nsetAttr \"FKIKSplineNeck_M.FKIKBlend\" 0;\nsetAttr \"FKIKSplineTail_M.FKIKBlend\" 0;\n\nsetAttr \"FKIKSpine_M.FKIKBlend\" 10;\nsetAttr \"FKIKLegFront_L.FKIKBlend\" 10;\nsetAttr \"FKIKLegBack_L.FKIKBlend\" 10;\nsetAttr \"FKIKLegFront_R.FKIKBlend\" 10;\nsetAttr \"FKIKLegBack_R.FKIKBlend\" 10;\n\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -84,19 +84,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "PBToolbyLuke();" 
+        -annotation "lock weight" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "PBToolbyLuke();" 
+        -label "string $infs[]=`skinCluster -q -inf`;\nint $n=`size($infs)`;\n\nif ..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "PBTool" 
+        -imageOverlayLabel "lw" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -104,7 +104,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/batchPBbyLuke\";\nPBToolbyLuke();" 
+        -command "string $infs[]=`skinCluster -q -inf`;\nint $n=`size($infs)`;\n\nif ($n==0){\n        print(\"aaa找不到skin\");\n}else{\n        int $sw= 1-$sw;\n        for ($i=0; $i<$n;$i++){ \n                setAttr ($infs[$i]+\".liw\") $sw;\n                }\n        }\nArtPaintSkinWeightsToolOptions;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -119,7 +119,771 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Edit the references for the current scene" 
+        -annotation "carlaH_skinWeightsEditor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "carlaH_skinWeightsEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "carlaH_skinWeightsEditor" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/carlaH_skinWeightsEditor.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/carlaH_skinWeightsEditor.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "global int $carlaH_CESbuildNew; //das fenster zwigen, sich neu aufzubauen\nglobal int $carlaH_CESgrpSize; //minimale Groesse einer Joint-Group\nglobal int $carlaH_CESgrpNameSize; //groesse des Gruppen-Namens\nint $CESgrpValues[]={ 3 , 1 , 6 };\n$carlaH_CESgrpSize = $CESgrpValues[0];\n$carlaH_CESnamePart = $CESgrpValues[1];\n$carlaH_CESgrpNameSize = $CESgrpValues[2];\ncarlaH_skinWeightsEditor() ;\n\n// 124 軀幹模式\n// 131 頭髮模式\n// 1 1 11 \n// 3 1 6 TSM\n// skirtB_La 1 2 2 \n\n/*\n\nmin. count of objects to be sortet in a group :\n\tspecifies the minimum size a sorting group should have\n\tfor example you have two joints with the prefix \"lips_\" but specify the group size to be \" +\n\tthree - than there will be no lips-group - specify it to be two and there will be one\\n\\n\" +\n\t\t\nsort by which part of name (divided by \"_\" ) :\n\tfor example the naming-convention of your joints is something like this: character01_Left_thumb01, \n\tcharacter01_Left_index01,... Then you should specify the name part to three, if you want the \n\tjoints to be sortet by the fingers - specify it to two and the joints will be sorted by the side.\\n\n\t\t\nsize of goup-name :\n\tspecifies the count of letters, a group should have - take the example above, than a group-name size \n\tof 3 would name your groups \"thu\" and \"ind\" - a group-name size of 5 would name it \n\t\"thumb\" and \"index\" \";\n\n*/" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 38
+        -enable 1
+        -width 41
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "weightHammerVerts;\r" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "weightHammerVerts;\r" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "weightHammerVerts;\r" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/weightHammerVerts.BMP" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/weightHammerVerts.BMP" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "weightHammerVerts;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Paint Skin Weights Tool Option Box" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Paint Skin Weights Tool Option Box" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "paintSkinWeights.xpm" 
+        -image1 "paintSkinWeights.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ArtPaintSkinWeightsToolOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse -surfaceAssociation closestPoint -influenceAssociation closestJoint\" } );\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "mirrorSkinWeight.png" 
+        -image1 "mirrorSkinWeight.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse -surfaceAssociation closestPoint -influenceAssociation closestJoint\" } );\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "carlaH_skinWeightsEditor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "carlaH_skinWeightsEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "carlaH_skinWeightsEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit deformer set membership" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Deformer Sets" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "DS" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "DeformerSetEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Transfer vertex ID ordering from one surface to another" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Transfer Vertex Order" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "transferIDs.png" 
+        -image1 "transferIDs.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "TransferVertexOrder" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Set driven key options" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Set..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Set." 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconKeys.png" 
+        -image1 "menuIconKeys.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "SetDrivenKeyOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Copy skin weights options" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "copySkinWeightsDialog" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "copySkinWeight.png" 
+        -image1 "copySkinWeight.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "CopySkinWeightsOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Copy Vertex Weights" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Copy Vertex Weights" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CVW" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconSkinning.png" 
+        -image1 "menuIconSkinning.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "artAttrSkinWeightCopy" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Paste Vertex Weights" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Paste Vertex Weights" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "PVW" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconSkinning.png" 
+        -image1 "menuIconSkinning.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "artAttrSkinWeightPaste" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "A組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "A組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "A" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/A組.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/A組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selsA[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsA=`ls -sl`;\nelse select -r $selsA ;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "B組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "B組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "B" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/B組.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/B組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selsB[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsB=`ls -sl`;\nelse select -r $selsB ;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "FCm2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "FCm2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "FCm2-2組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -mo -weight 1 $selsA[$i] $selsB[$i] ;\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "SCm2-2組" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "SCm2-2組" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "SCm2-2組" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.xpm" 
+        -image1 "commandButton.xpm" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nscaleConstraint -mo -weight 1 $selsA[$i] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[..." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "SCnm2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[$i]+\".scale\") ($selsB[$i]+\".scale\");\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "cpSW2-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cpSW2-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "cpSW2-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "cpSW1-2" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cpSW1-2" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "cpSW1-2" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];\n};\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "disconnect inverseScale of Joint" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$sels=`ls -sl`;\n//$obj=\"ScarfB1_M\";\nfor($obj in $sels){\n    $tem..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "delISJt" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$sels=`ls -sl`;\n//$obj=\"ScarfB1_M\";\nfor($obj in $sels){\n    $temps=`listConnections ($obj+\".inverseScale\")`;\n    if(`size($temps)`) disconnectAttr ($temps[0]+\".scale\") ($obj+\".inverseScale\");\n    }" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "sortOutTool;" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "sortOutTool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "sortOutTool" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/sortOut\";\nsortOutTool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Deformer Sets" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Deformer Sets" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "DS" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "DeformerSetEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Copy skin weights options" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "$nm=getNm();\nglobal proc string  getNm(){ \n    string $ns = \"\";\n..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "copySkinWeight.png" 
+        -image1 "copySkinWeight.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "CopySkinWeightsOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Reference Editor" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -154,89 +918,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Namespace Editor" 
+        -annotation "getCenterofselection" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Namespace Editor" 
+        -label "getCenterofselection" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "NE" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconWindow.png" 
-        -image1 "menuIconWindow.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "NamespaceEditor" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "File Path Editor" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "File Path Editor" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "FPE" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconWindow.png" 
-        -image1 "menuIconWindow.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "FilePathEditor" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "asAnimationTesterRemoveBody;" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "asAnimationTesterRemoveBody;" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "delKey" 
+        -imageOverlayLabel "gcos" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -244,7 +938,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";" 
+        -command "setToolTo moveSuperContext;\nvector $v = `manipMoveContext -q -p Move`;\nspaceLocator -a -p ($v.x) ($v.y) ($v.z);\nxform -cp;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -259,19 +953,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "hide joint" 
+        -annotation "source Quick_rename_tool;\nQuick_rename_tool ();" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "\nasJointsVisibility 0;" 
+        -label "source Quick_rename_tool;\nQuick_rename_tool ();" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "hdJt" 
+        -imageOverlayLabel "qrn" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -279,7 +973,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "\nasJointsVisibility 0;" 
+        -command "source \"reference/Quick_rename_tool\";\nQuick_rename_tool ();\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -294,19 +988,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "delLayer" 
+        -annotation "source sortOutTool;\nsortOutTool;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displ..." 
+        -label "source sortOutTool;\nsortOutTool;" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "delLayer" 
+        -imageOverlayLabel "sortOutTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -314,7 +1008,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "string $displayLayers[]=`ls -type \"displayLayer\"`;\nstring $displayLayersRemoves[]={\"defaultLayer\"};\nstring $displayLayers[] = stringArrayRemove($displayLayersRemoves, $displayLayers);\ndelete $displayLayers;\nprint \"delete displayLayers\";" 
+        -command "source \"byLuke/sortOut\";\nsource \"byLuke/sortOutTool\";\nsortOutTool;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -329,19 +1023,19 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "deleteunusde nodes" 
+        -annotation "source \"xRigD_Tool\";" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unuse..." 
+        -label "source \"xRigD_Tool\";" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "dn" 
+        -imageOverlayLabel "xRigD" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -349,7 +1043,7 @@ global proc shelf_export () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "hyperShadePanelMenuCommand(\"\", \"deleteUnusedNodes\");print \"Unused nodes deleted.\\n\";" 
+        -command "source \"byLuke/xRigD_Tool\";" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -364,516 +1058,27 @@ global proc shelf_export () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "delete unused influnces" 
+        -annotation "czDisplayColorOverrideUI" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "asRemoveAllUnusedInfluences;" 
+        -label "czDisplayColorOverrideUI" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "dui" 
+        -imageOverlayLabel "color" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Users/luke/Documents/maya/scripts/byLuke/CM.bmp" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/byLuke/CM.bmp" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "asRemoveAllUnusedInfluences;" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "asDeleteUnusedJoints;" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "asDeleteUnusedJoints;" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "duj" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "asDeleteUnusedJoints;" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "GoToBuildPose " 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    a..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "gtbp" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "asGoToBuildPose bodySetup;\nif (`objExists FaceControlSet`)\n    asGoToBuildPose faceSetup;\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "Copy keys and place on animation clipboard" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "Copy Keys" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "CK" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconKeys.png" 
-        -image1 "menuIconKeys.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "doCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "Paste keys from animation clipboard" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "Paste Keys" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "PK" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconKeys.png" 
-        -image1 "menuIconKeys.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "doPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_Cloak_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Weapon_Bow_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n\nparentConstraint \"SK_Player_Armor_001_rig:FKNeck_M\" \"SK_Player_Armor_001_Cloak_rig:FKNeck_M_Hook\";\nparentConstraint \"SK_Player_Armor_001_Cloak_rig:CloakRoot\" \"SK_Player_Armor_001_rig:Cloak_Anchor\";\nparentConstraint \"SK_Player_Weapon_Bow_001_rig:WeaponRoot\" \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\nparentConstraint \"pCylinder1\" \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n\n\n\ncurrentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\n" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesO..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "ref" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "file -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Armor_001_Cloak_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -r -type \"mayaBinary\"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace \"SK_Player_Weapon_Bow_001_rig\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n\nparentConstraint \"SK_Player_Armor_001_rig:FKNeck_M\" \"SK_Player_Armor_001_Cloak_rig:FKNeck_M_Hook\";\nparentConstraint \"SK_Player_Armor_001_Cloak_rig:CloakRoot\" \"SK_Player_Armor_001_rig:Cloak_Anchor\";\nparentConstraint \"SK_Player_Weapon_Bow_001_rig:WeaponRoot\" \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\nparentConstraint \"pCylinder1\" \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n\n\n\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKey..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "coK" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "currentTime 1;\nselectPlayer(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectPlayer(\"SK_Player_Armor_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectCloak(\"Player_Armor01_Rigging\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectCloak(\"SK_Player_Armor_001_Cloak_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n\nselectBow(\"SK_Weapon_Bow_01_rig\");\ndoCopyKeyArgList 3 { \"1\",\"0:10\",\"keys\",\"none\",\"0\",\"1\",\"0\",\"animationList\",\"noOptions\",\"0\",\"0\" };\nselectBow(\"SK_Player_Weapon_Bow_001_rig\");\ndoPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "sel L" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "select -r \"SK_Player_Armor_001_rig:WeaponL_Anchor\";\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "selR" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "select -r \"SK_Player_Armor_001_rig:WeaponR_Anchor\";\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "selC" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "select -r \"SK_Player_Armor_001_rig:Cloak_Anchor\";" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -loadReference \"SK_Player_Armor_001_Cloak_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -loadReference \"SK_Player_Weapon_Bow_001_rigRN\" -type \"mayaBinary\"  -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinar..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "file -loadReference \"SK_Player_Armor_001_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Bip/Armor/SK_Player_Armor_001/SK_Player_Armor_001_rig.mb\";\nfile -loadReference \"SK_Player_Armor_001_Cloak_rigRN\" -type \"mayaBinary\" -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Cloak/SK_Player_Armor_001_Cloak/SK_Player_Armor_001_Cloak_rig.mb\";\nfile -loadReference \"SK_Player_Weapon_Bow_001_rigRN\" -type \"mayaBinary\"  -options \"v=0;\" \"X:/Art/1_Assets/2_Rig/SkinnedMeshes/Player/Acs/Bow/SK_Player_Weapon_Bow_001/SK_Player_Weapon_Bow_001_rig.mb\";\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "currentUnit -t \"ntsc\";" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "currentUnit -t \"ntsc\";" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "30fps" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "currentUnit -t \"ntsc\";" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "currentUnit -t \"ntscf\";" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "currentUnit -t \"ntscf\";" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "60fps" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "currentUnit -t \"ntscf\";" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "setPlaybackRangeToMinMax;" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "setPlaybackRangeToMinMax;" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "PRMinMax;" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "setPlaybackRangeToMinMax;" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "selAllAni" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "$crvs=`ls -typ \"animCurve\"`;\nselectKey $crvs;\nselect -r $crvs;" 
+        -command "source \"reference/czDisplayColorOverrideUI\";\nczDisplayColorOverrideUI();" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
