@@ -1,5 +1,5 @@
-copyPastePosebyLuke();
-global proc copyPastePosebyLuke(){
+
+global proc copyPastebyLuke(){
         if (`window -exists copyPastePosebyLuke`)
                 deleteUI -window copyPastePosebyLuke;
                         

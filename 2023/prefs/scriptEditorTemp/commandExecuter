@@ -29,8 +29,19 @@ PBToolbyLuke();
 file -f -new;
 file -open $sn; 
 
+crPerspAnchor()
+updateModel($selsA,$selsB,1);
+
+source "byLuke/copyPasteByLuke";
+copyPastebyLuke();
 
 sortOutTool;
+
+source "byLuke/exportRigTool";
+exportRigTool();
+
+
+source "byLuke/swRefToolbyLuke";
 */
 
 

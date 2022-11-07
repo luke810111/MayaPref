@@ -1,12 +1,43 @@
-select -r "*:WeaponR_Anchor";
-select -r "*:WeaponL_Anchor";
-select -r "*:Cloak_Anchor";
 
-parentConstraint "*:WeaponRoot" "*:WeaponR_Anchor";
-select -r "*:WeaponR_Anchor";
+//string $sn = `file -q -sn`;
+//string $dir = `match "^.*/" $sn`;
+//string $fileN = `file -q -sn -shn`;
+//$fileN=substring($fileN, 0, size($fileN) - 7);
 
-scale -r -ocp 5 5 5;
-move -r -os -wd 40 0 0 ;
+//$fileN="ANI_Player_Hatchet_Attack_001_v03.mb";
+//$fileN="Ani_Player_Hatchet_Attack_001_v03.mb";
+//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.mb";
+//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.ma";
+//$fileN="ANI_Player_Hatchet_Attack_001_03.mb";
 
-crPerspAnchor()
-updateModel($selsA,$selsB,1);
+global proc int ckAniFileName(string $fileN){
+    //check animation file name
+    //if wrong ,return 0
+    int $sw=0;
+    string $y;    
+    string $buffer[];
+    $numTokens = `tokenize $fileN "_" $buffer`; 
+    //print $buffer;
+    $n=(`size($buffer)`-1);
+    for($i=0;$i<1000;$i++){
+        $y=`python ("'%03d' % "+$i)`;
+        if(`gmatch $buffer[4] $y`) $sw=1;   
+        }
+    if(!`gmatch $buffer[0] "ANI"`&&!`gmatch $buffer[0] "OH"`) {
+        print "Wrong name of part1\n";
+        $sw=0;
+        }
+    if(!`gmatch $buffer[1] "Player"`&&!`gmatch $buffer[1] "Enemy"`) {
+        print "Wrong name of part2\n";        
+        $sw=0;
+        }
+
+    if(!`gmatch $buffer[$n] "v*.mb"`) {
+        print "Wrong name of last part\n";        
+        $sw=0;        
+        }    
+    return $sw;
+    }
+
+$sw=ckAniFileName($fileN);
+print $sw;

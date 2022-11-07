@@ -1,43 +1,20 @@
+setAniExportSets();
+global proc string[] setAniExportSets(string $fileN){ 
 
-//string $sn = `file -q -sn`;
-//string $dir = `match "^.*/" $sn`;
-//string $fileN = `file -q -sn -shn`;
-//$fileN=substring($fileN, 0, size($fileN) - 7);
+    string $expSets[];
+    if(!`objExists "export_sets"`) sets -em -n "export_sets";
 
-//$fileN="ANI_Player_Hatchet_Attack_001_v03.mb";
-//$fileN="Ani_Player_Hatchet_Attack_001_v03.mb";
-//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.mb";
-//$fileN="ANI_Plyer_Hatchet_Attack_001_v03.ma";
-//$fileN="ANI_Player_Hatchet_Attack_001_03.mb";
-
-global proc int ckAniFileName(string $fileN){
-    //check animation file name
-    //if wrong ,return 0
-    int $sw=0;
-    string $y;    
-    string $buffer[];
-    $numTokens = `tokenize $fileN "_" $buffer`; 
-    //print $buffer;
-    $n=(`size($buffer)`-1);
-    for($i=0;$i<1000;$i++){
-        $y=`python ("'%03d' % "+$i)`;
-        if(`gmatch $buffer[4] $y`) $sw=1;   
-        }
-    if(!`gmatch $buffer[0] "ANI"`&&!`gmatch $buffer[0] "OH"`) {
-        print "Wrong name of part1\n";
-        $sw=0;
-        }
-    if(!`gmatch $buffer[1] "Player"`&&!`gmatch $buffer[1] "Enemy"`) {
-        print "Wrong name of part2\n";        
-        $sw=0;
-        }
-
-    if(!`gmatch $buffer[$n] "v*.mb"`) {
-        print "Wrong name of last part\n";        
-        $sw=0;        
+    //$n=$ns[3];
+    select -r "*DeformationSystem";
+    $objs=`ls -sl`;
+    for($obj in $objs){  
+        $pa=`listRelatives -p $obj`; 
+        $set=($pa[0]+"_set");
+        if(`objExists $set`) delete $set; 
+        $ch=`listRelatives -c $obj`;                                               
+        sets -n $set $ch;  
+        sets -add "export_sets" $set;
+        $expSets=stringArrayCatenate($expSets,{$set});              
         }    
-    return $sw;
+    return $expSets;        
     }
-
-$sw=ckAniFileName($fileN);
-print $sw;

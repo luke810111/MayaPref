@@ -1,48 +1,203 @@
 /*
-for ($i=0; $i<`size($selsB)`;$i++){ 
-    group -em -n ("FKOffset"+$selsB[$i]);
-    $p=`xform -q -ws -t $selsB[$i]`;
-    xform -ws -t $p[0] $p[1] $p[2] ("FKOffset"+$selsB[$i]);
-    $r=`xform -ws -q -ro $selsB[$i]`;
-    xform -ws -ro $r[0] $r[1] $r[2] ("FKOffset"+$selsB[$i]);
-    parent $selsA[$i] ("FKOffset"+$selsB[$i]);
-    rename $selsA[$i] ("FK"+$selsB[$i]);
-    parentConstraint ("FK"+$selsB[$i]) $selsB[$i];
-    scaleConstraint ("FK"+$selsB[$i]) $selsB[$i];    
-    }
-
-for ($i=0; $i<`size($selsB)`;$i++){ 
-    connectAttr -f ($selsA[$i]+".scale") ($selsB[$i]+".scale");
-    }
-source "byLuke/sortOut";
 $sels=`ls -sl`;
+overlapperA($sels,1);
 
-getWorldSpaceTranslateion($sels);
-move -r -30 0 0 ;
-move -r -os -wd 10 0 0 ;
-rotate -r -ocp -ws -fo 0 90 0 ;
-rotate -r -ocp -ws -fo 90 0 0 ;
-rotate -r -ocp -os -fo 0 -90 0 ;   
+$sels=`ls -sl`;
+aimOverlapperB($sels,2);
 
+//batch sim
+$sels=`ls -sl`;
+for($x in $sels){
+overlapperA({$x},0.618);
+}
 
-$fols=batchCreateFolicle($selsA[0],$selsB);
-$ctrls=crCtrl($selsB);
+$sels=`ls -sl`;
+for($x in $sels){
+aimOverlapperB({$x},0.618);
+}
 
-$selsC=`ls -sl`;
-for ($i=0;$i<`size $ctrls`; $i++) {
-    $cons=`parentConstraint $selsC[$i] $ctrls[$i]`;
-    delete $cons;
-    }
+select -r $sels;
 
-$offsets=crOffset($ctrls,"offset",0);   
-$dvns=crOffset($ctrls,"dvn",0);     
-for ($i=0;$i<`size $offsets`; $i++) {
-    parent $offsets[$i] $fols[$i];    
-    scaleConstraint "Main" $fols[$i];
-    parentConstraint -mo $ctrls[$i] $selsB[$i];
-    scaleConstraint $ctrls[$i] $selsB[$i];  
+$sels=`ls -sl`;
+cleanKey($sels);
+*/
+proc overlapperA(string $objs[],float $v){
+    $startTime = `timerX`; 
+    refresh -suspend 1;     
+       
+    string $rps[]=crRps($objs); 
+    bakeRPs($objs,$rps);        
+    offsetRpsKey($rps,$v); 
+
+    fastbakeKey $objs; 
+    delete "rp_grp";
+
+    refresh -suspend 0;     
+
+    // code that is being timed
+    $totalTime = `timerX -startTime $startTime`;
+    print ("Total Time: "+$totalTime+"\n");     
     }
     
-circle -r 10 -nr 0 1 0 
-circle -r 10 -nr 0 0 1  
+proc aimOverlapperB(string $objs[],float $v){
+    $startTime = `timerX`; 
+    refresh -suspend 1;     
+       
+    string $rps[]=crRps($objs);
+    $aim2=bakeAimRPs($objs,$rps);
+    offsetAimRpsKey($rps,$aim2,1); 
+    
+    fastbakeKey $objs; 
+    delete "rp_grp";
+
+    refresh -suspend 0;     
+
+    // code that is being timed
+    $totalTime = `timerX -startTime $startTime`;
+    print ("Total Time: "+$totalTime+"\n");     
+    }    
+
+proc string getTimeRange() {
+    $minTime = `playbackOptions -q -minTime`; 
+    $maxTime = `playbackOptions -q -maxTime`; 
+    string $tg=($minTime+":"+$maxTime); 
+    return $tg;
+    }
+    
+proc string[] crRps(string $objs[]) { 
+    string $rps[];
+    if(!`objExists ("rp_grp")`)
+        group -em -n "rp_grp"; 
+   
+    for($i=0;$i<`size($objs)`; $i++) {  
+        $rps[$i]=($objs[$i]+"_rp");          
+        if(`objExists ($rps[$i])`)
+            delete $rps[$i];
+        spaceLocator -n $rps[$i];         
+
+        $roo=`xform -q -roo $objs[$i]`;
+        xform -roo $roo $rps[$i];
+        
+        $t=`xform -q -ws -t $objs[$i]`;
+        xform -ws -t $t[0] $t[1] $t[2] $rps[$i];
+        $r=`xform -q -ws -ro $objs[$i]`;
+        xform -ws -ro $r[0] $r[1] $r[2] $rps[$i];        
+        }
+    parent $rps "rp_grp";        
+    return $rps;
+    }    
+    
+proc bakeRPs(string $objs[],string $rps[]){
+
+
+    $cons=`listConnections -type "constraint" $objs`;
+    if (`size $cons`) delete $cons;    
+
+    $cons=conKit($objs,$rps);
+    fastbakeKey($rps);           
+    delete $cons;    
+    conKit($rps,$objs);
+    }
+
+proc string[] bakeAimRPs(string $objs[],string $rps[]){
+
+    $cons=`listConnections -type "constraint" $objs`;
+    if (`size $cons`) delete $cons;  
+
+    $dup=`duplicate -rr`;
+    string $cons2[];
+    move -r -os -wd 0 0 20 $rps;
+    move -r -os -wd 0 20 0 $dup;    
   
+
+    for($i=0;$i<`size($rps)`; $i++) { 
+        $temp=`parentConstraint -mo $objs[$i] $rps[$i]`;
+        $cons[$i]=$temp[0];
+        $temp=`parentConstraint -mo $objs[$i] $dup[$i]`;
+        $cons2[$i]=$temp[0];        
+        }   
+    $temp=stringArrayCatenate($rps, $dup);         
+    fastbakeKey($temp);           
+    delete $cons;
+    delete $cons2; 
+
+    for($i=0;$i<`size($rps)`; $i++) {       
+        aimConstraint -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "object" -worldUpObject $dup[$i] $rps[$i] $objs[$i];
+        }
+    return $dup;
+    }
+
+
+proc fastbakeKey(string $objs[]){
+    $tg=getTimeRange(); 
+    //refresh -suspend 1; 
+    bakeResults 
+    -t $tg 
+    -simulation 1 
+    -sampleBy 1 
+    -disableImplicitControl 1 
+    -preserveOutsideKeys 1 
+    -sparseAnimCurveBake 0 
+    -removeBakedAttributeFromLayer 0 
+    -removeBakedAnimFromLayer 0 
+    -bakeOnOverrideLayer 0   
+    -minimizeRotation 1 
+    -controlPoints 0
+    -shape 0
+    -at "tx" 
+    -at "ty" 
+    -at "tz" 
+    -at "rx" 
+    -at "ry" 
+    -at "rz" 
+    $objs;
+    filterCurve;    
+    //refresh -suspend 0;     
+    }
+    
+proc string[] conKit(string $drvs[],string $dvns[])   {
+ 
+    string $cons[];
+    //setKeyframe -at "tx" -at "ty" -at "tz" -at "rx" -at "ry" -at "rz" $dvns; 
+
+    for($i=0;$i<`size($drvs)`; $i++) { 
+        $temp=`parentConstraint $drvs[$i] $dvns[$i]`;
+        $cons[$i]=$temp[0];
+        }    
+         
+    return $cons;
+    }
+
+proc offsetRpsKey(string $rps[],float $v){
+    string $temp[];
+    string $acs[];     
+    for($i=0;$i<`size($rps)`; $i++) {       
+        $acs=`keyframe -q -n $rps[$i]`; 
+        keyframe -e -iub true -r -o over -tc ($v*($i+1)) $acs;            
+        }    
+
+    }
+
+proc offsetAimRpsKey(string $rps[],string $aim2[],float $v){
+    string $temp[];
+    string $acs[];     
+    for($i=0;$i<`size($rps)`; $i++) {
+        $temp={$rps[$i], $aim2[$i]};         
+        $acs=`keyframe -q -n $temp`; 
+        keyframe -e -iub true -r -o over -tc ($v*($i+1)) $acs;            
+        }    
+
+    }
+
+proc cleanKey (string $objs[]) { 
+ 
+    cutKey -cl -t ":" -f ":" -at "tx" -at "ty" -at "tz" -at "rx"  -at "ry" -at "rz" $objs; 
+    for ($i=0; $i<`size($objs)`; $i++) { 
+        setAttr ($objs[$i]+".tx") 0; 
+        setAttr ($objs[$i]+".ty") 0; 
+        setAttr ($objs[$i]+".tz") 0;    
+        setAttr ($objs[$i]+". rotateX") 0; 
+        setAttr ($objs[$i]+". rotateY") 0; 
+        setAttr ($objs[$i]+". rotateZ") 0;
+        }
+    }    
