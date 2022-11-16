@@ -1,0 +1,7 @@
+waitCursor -state on;										 
+$gIgnoreUpdateCallback = true;
+unloadPluginWithCheck( "C:/Program Files/Autodesk/Maya2023/bin/plug-ins/autoLoader.mll", false );
+updatePluginUI( "7" );waitCursor -state off;									   
+$gIgnoreUpdateCallback = false;
+updatePluginCallback();
+// Result: 0
