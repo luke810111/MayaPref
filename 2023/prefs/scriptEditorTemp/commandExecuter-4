@@ -1,5 +1,27 @@
-select -r "M_Player_Armor_000";
-sets -n "M_Player_Armor_000_set";
+/*
+//set fbx dir
+$fbxDir=$fbxDirCloak=$fbxDirWeapon=$dir; 
+if($mode==1){
+    $fbxDir = `substitute "/MAYA/" $dir "/FBX/"`;         
+    $fbxDirCloak=($fbxDir+"Attachments/Cloak/");
+    $fbxDirWeapon=$fbxDir+"Attachments/Weapon/";  
+    sysFile -makeDir $fbxDir;                      
+    } 
 
-hyperShade -objects "*:M_Player_Armor_000";
-hyperShade -assign "SK_Player_Armor_000:M_Player_Armor_000";
+for($root in $roots){
+    if(`objExists $root`){ 
+        if (`sets -am $set $root`){
+            if($Acss[$i]=="Cloak") $fbxDirAcs=$fbxDirCloak;
+            if($Acss[$i]=="Weapon") $fbxDirAcs=$fbxDirWeapon;  
+            if($Acss[$i]=="WeaponB")$fbxDirAcs= $fbxDirWeapon;
+            if($Acss[$i]=="Cloak"||`objExists "SK_Player_Weapon_Bow_001"`){         
+                $fbxAcs=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$Acss[$i]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");            
+                sysFile -makeDir $fbxDirAcs;        
+                toZero($root);    
+                select -r $root;
+                file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxDirAcs+$fbxAcs);
+                }
+            }
+        } 
+    }
+            */         
