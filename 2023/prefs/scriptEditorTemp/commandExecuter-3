@@ -1,10 +1,4 @@
-proc string getSurfaceShader (string $objName) {
-    // This assumes you want ONLY the shape node at the selected level of the
-    // hierarchy, for the object whose transform name is passed in as the argument.
-    string $myShapeNode[] = `listRelatives -children -shapes $objName`;
-    string $mySGs[] = `listConnections -type shadingEngine $myShapeNode[0]`;
-    string $surfaceShader[] = `listConnections ($mySGs[0] + ".surfaceShader")`;
-    return $surfaceShader[0];
+if(`objExists "DeformationSystem"`){
+    addAttr -ln "Attachments"  -at "enum" -en "None:Weapon:Cloak:Helmet:Hair"  "DeformationSystem";
+    setAttr -cb true "DeformationSystem.Attachments";
     }
-$mySGs=`listConnections -type shadingEngine "SK_Player_Armor_009:M_Player_Armor_000"`
-listConnections -type "mesh" $mySGs[0]

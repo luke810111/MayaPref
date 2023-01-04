@@ -17,8 +17,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("CreateSetOptions;")
-	sets_creatSet;
+	-command ("////////140122更新可列印出目前選擇的角色，並消除之前潛在的bug//////////\n//////////////////////////////\n////////選取全身與臉部控制器////////\n//////////////////////////////\n\n\n////////壹a、篩選分辨前置檔名，定義出有哪些*:TSM2Controls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:TSM2Controls\" 的set\nstring $sels[]=`ls -sl`;\nstring $TSM2CtrlSets[] ;\nclear $TSM2CtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:TSM2Controls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":TSM2Controls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":TSM2Controls\");\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$TSM2CtrlSets[$i]=$nowSels[0];}\n\n\n//如果某些特殊情況 沒有全身控制set，上列就會沒選到東西，該怎麼辦??\n//位址內會有空物件-->要把空的位址移除\n\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $itemsToRemove[] = { \"\" };\nstring $TSM2CtrlSetsNew[] = stringArrayRemove($itemsToRemove, $TSM2CtrlSets );\nif(`size $TSM2CtrlSetsNew`>0){select -r -ne $TSM2CtrlSetsNew;}\n//print (\"0\"+$TSM2CtrlSetsNew[0]+\"1\"+$TSM2CtrlSetsNew[1]+\"2\"+$TSM2CtrlSetsNew[2]);\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $TSM2CtrlSets[]=`ls -sl`;\n\n\n\n\n////////壹b、篩選分辨前置檔名，定義出有哪些*:faceControls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:faceControls\" 的set，若無，則自動建立\n\nstring $faceCtrlSets[] ;\nclear $faceCtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:faceControls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":faceControls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":faceControls\");\n}else{\n//----------------------------------------------------------else開始\n//否則就選擇可能的表情控制器，有選到東西的話就產生\"*:faceControls\"這個set\nstring $search[]=`ls ($cache[0] +\":face_control\")`;\nif (`size $search `>0){select -add ($cache[0] +\":face_control\");}\n\nstring $search[]=`ls ($cache[0] +\":eyebrowCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyebrowCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":eyes\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyes\");}\nstring $search[]=`ls ($cache[0] +\":L_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":L_eye\");}\nstring $search[]=`ls ($cache[0] +\":R_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":R_eye\");}\nstring $search[]=`ls ($cache[0] +\":M_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":M_eye\");}\nstring $search[]=`ls ($cache[0] +\":U_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":U_eye\");}\nstring $search[]=`ls ($cache[0] +\":LeyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":LeyeCtrl\");}\nstring $search[]=`ls ($cache[0] +\":ReyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":ReyeCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":mouth\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth\");}\nstring $search[]=`ls ($cache[0] +\":mouth48\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth48\");}\nstring $search[]=`ls ($cache[0] +\":mouthCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouthCtrl\");}\n\n//如果有選到東西才產生set\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){\n$createSetResult = `sets -name ($cache[0]+\":faceControls\") `;\nselect -r -ne ($cache[0]+\":faceControls\");\n}\n\n//----------------------------------------------------------else結束\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$faceCtrlSets[$i]=$nowSels[0];}\n\n//如果是像道具 沒有臉部控制set，上列就會沒選到東西，該怎麼辦??位址內會有空物件\n//-->要把空的位址移除\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $faceRemove[] = { \"\" };\nstring $faceCtrlSetsNew[] = stringArrayRemove($faceRemove, $faceCtrlSets );\nif(`size $faceCtrlSetsNew`>0){select -r -ne $faceCtrlSetsNew;}\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $faceCtrlSets[]=`ls -sl`;\n\n\n\n\n\n////////貳a、依目前選擇到的\"*:TSM2Controls\" 的set ,選擇其內容，並加選*:*addCtrlSet，計算選到的控制器數量並儲存到變數 。\n\nselect -r -ne $TSM2CtrlSets ;\nstring $sels[]=`ls -sl`;\nselect -cl;\nfor($sel in $sels){\n//---------------------------------------------------------------for2開始\nstring $cache[];\ntokenize $sel \":\" $cache;\nstring $search[]=`ls ($cache[0]+\":TSM2Controls\")`;\nif (`size $search `==1){select -add  ($cache[0]+\":TSM2Controls\");}\n\nstring $AddLocCtrl=($cache[0] +\":*AddLocCtrl\");\nstring $search[]=`ls $AddLocCtrl`;\nif (`size $search `>0){select -add $AddLocCtrl ;}\n//---------------------------------------------------------------for2結束\n}\n\nstring $sels[]=`ls -sl`;\nint $TSM2CtrlsAmount=`size $sels`;\n\n\n////////貳b、依目前選擇到的\"*:faceControls\" 的set ,選擇其內容。\nselect -add $faceCtrlSets ;\n\nstring $sels[]=`ls -sl`;\nint $faceCtrlsAmount=`size $sels`-$TSM2CtrlsAmount;\n\n\n\n////////參、列印出來目前選擇的角色的\"身+臉\"控制器訊息\n\n//字串轉換\nstring $TSM2CtrlSet = stringArrayToString($TSM2CtrlSets, \"\"); //排列轉成字串\nstring $TSM2CtrlSet = substituteAllString($TSM2CtrlSet, \":TSM2Controls\", \" \");//去掉後面不要的訊息\n\nstring $faceCtrlSet = stringArrayToString($faceCtrlSets, \"\"); //排列轉成字串\nstring $faceCtrlSet = substituteAllString($faceCtrlSet, \":faceControls\", \" \");//去掉後面不要的訊息\n\nprint ($TSM2CtrlsAmount+\"身:\"+$TSM2CtrlSet +\"   ;   \"+$faceCtrlsAmount+\"臉:\"+$faceCtrlSet) ;\n//應該印出 身+臉 ; 僅身 ; 僅臉\n\n\n////////肆、如果什麼都沒選到就偵測沒有前置檔名的狀況\n\nstring $sels[]=`ls -sl`;\nif(`size $sels`==0){\n//-----------------------------if開始\nstring $search[]=`ls \"TSM2Controls\"`;\nif (`size $search `==1){select -add TSM2Controls ;}\n\nstring $search[]=`ls \"faceControls\"`;\nif (`size $search `==1){select -add faceControls ;}\n//-----------------------------if結束\n}\n")
+	QselSetKeysGRP_bodyAndFace;
 
 runTimeCommand
 	-label ""
@@ -32,14 +32,14 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("modelEditor -e -deformers 0 modelPanel1;\nmodelEditor -e -deformers 0 modelPanel2;\nmodelEditor -e -deformers 0 modelPanel3;\nmodelEditor -e -deformers 0 modelPanel4;")
-	display_deformer_0;
+	-command ("timeSliderPasteKey false;\nprint \"pasetKey !!\";")
+	keyPaste;
 
 runTimeCommand
 	-label ""
-	-annotation ""
+	-annotation "select vertex mode"
 	-longAnnotation ""
-	-category "Akai"
+	-category "Custom Scripts.paint_weight"
 	-image ""
 	-tags ""
 	-keywords ""
@@ -47,14 +47,14 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("////////140122更新可列印出目前選擇的角色，並消除之前潛在的bug//////////\n//////////////////////////////\n////////選取表情控制器////////\n//////////////////////////////\n\n\n////////壹b、篩選分辨前置檔名，定義出有哪些*:faceControls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:faceControls\" 的set，若無，則自動建立\nstring $sels[]=`ls -sl`;\nstring $faceCtrlSets[] ;\nclear $faceCtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:faceControls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":faceControls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":faceControls\");\n}else{\n//----------------------------------------------------------else開始\n//否則就選擇可能的表情控制器，有選到東西的話就產生\"*:faceControls\"這個set\nstring $search[]=`ls ($cache[0] +\":face_control\")`;\nif (`size $search `>0){select -add ($cache[0] +\":face_control\");}\n\nstring $search[]=`ls ($cache[0] +\":eyebrowCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyebrowCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":eyes\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyes\");}\nstring $search[]=`ls ($cache[0] +\":L_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":L_eye\");}\nstring $search[]=`ls ($cache[0] +\":R_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":R_eye\");}\nstring $search[]=`ls ($cache[0] +\":M_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":M_eye\");}\nstring $search[]=`ls ($cache[0] +\":U_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":U_eye\");}\nstring $search[]=`ls ($cache[0] +\":LeyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":LeyeCtrl\");}\nstring $search[]=`ls ($cache[0] +\":ReyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":ReyeCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":mouth\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth\");}\nstring $search[]=`ls ($cache[0] +\":mouth48\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth48\");}\nstring $search[]=`ls ($cache[0] +\":mouthCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouthCtrl\");}\n\n//如果有選到東西才產生set\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){\n$createSetResult = `sets -name ($cache[0]+\":faceControls\") `;\nselect -r -ne ($cache[0]+\":faceControls\");\n}\n\n//----------------------------------------------------------else結束\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$faceCtrlSets[$i]=$nowSels[0];}\n\n//如果是像道具 沒有臉部控制set，上列就會沒選到東西，該怎麼辦??位址內會有空物件\n//-->要把空的位址移除\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $faceRemove[] = { \"\" };\nstring $faceCtrlSetsNew[] = stringArrayRemove($faceRemove, $faceCtrlSets );\nif(`size $faceCtrlSetsNew`>0){select -r -ne $faceCtrlSetsNew;}\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $faceCtrlSets[]=`ls -sl`;\n\n\n\n\n////////貳b、依目前選擇到的\"*:faceControls\" 的set ,選擇其內容。\nselect -r $faceCtrlSets ;\n\nstring $sels[]=`ls -sl`;\nint $faceCtrlsAmount=`size $sels`;\n\n\n\n////////參、列印出來目前選擇的角色的\"臉\"控制器訊息\n\n//字串轉換\nstring $faceCtrlSet = stringArrayToString($faceCtrlSets, \"\"); //排列轉成字串\nstring $faceCtrlSet = substituteAllString($faceCtrlSet, \":faceControls\", \" \");//去掉後面不要的訊息\n\nprint ($faceCtrlsAmount+\"臉:\"+$faceCtrlSet) ;\n\n\n\n////////肆、如果什麼都沒選到就偵測沒有前置檔名的狀況\n\nstring $sels[]=`ls -sl`;\nif(`size $sels`==0){\n//-----------------------------if開始\nstring $search[]=`ls \"faceControls\"`;\nif (`size $search `==1){select -add faceControls ;}\n//-----------------------------if結束\n}\n")
-	QselSetKeysGRP_face;
+	-command ("artAttrSkinPaintModePaintSelect 0 artAttrSkinPaintCtx;\n")
+	svm;
 
 runTimeCommand
 	-label ""
 	-annotation ""
 	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
+	-category ""
 	-image ""
 	-tags ""
 	-keywords ""
@@ -62,82 +62,7 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("ackMoveKeys \"right\";")
-	key_right;
-
-runTimeCommand
-	-label ""
-	-annotation "把TRS鍵入預設值(0n1)"
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "python"
-	-command ("import maya.cmds as cmds\nsels=cmds.ls( sl=1 )\nfor sel in sels:\n  attrs=['tx','ty','tz','rx','ry','rz']\n  for attr in attrs:\n    if cmds.getAttr( sel+'.'+attr , se=1):\n      cmds.setAttr( sel+'.'+attr , 0 )\n  attrs=['sx','sy','sz']\n  for attr in attrs:\n    if cmds.getAttr( sel+'.'+attr , se=1):\n      cmds.setAttr( sel+'.'+attr , 1 )\n\n\n\n'''\n{\nstring $sel[]=`ls -sl`;\nstring $resetAttrs[]={\"translateX\",\"translateY\",\"translateZ\",\"rotateX\",\"rotateY\",\"rotateZ\"};\nfor($each in $sel)\n{\n  for($attr in $resetAttrs)\n      if (`getAttr -k ($each+\".\"+$attr)`)\n      {\n          catch(`setAttr ($each+\".\"+$attr) 0`);\n      }\n}\n\n$resetAttrs2 = {\"scaleX\",\"scaleY\",\"scaleZ\"};\nfor($each in $sel)\n{\n  for($attr in $resetAttrs2)\n      if (`getAttr -k ($each+\".\"+$attr)`)\n      {\n          catch(`setAttr ($each+\".\"+$attr) 1`);\n      }\n}\n\n}\n'''\n")
-	channel_setZero;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("filterUISelectAttributesCheckbox rotateY 1 graphEditor1OutlineEd;")
-	selectAttributesSwitchRY;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("modelEditor -e -nurbsCurves 0 modelPanel1;\nmodelEditor -e -nurbsCurves 0 modelPanel2;\nmodelEditor -e -nurbsCurves 0 modelPanel3;\nmodelEditor -e -nurbsCurves 0 modelPanel4;\n\nmodelEditor -e -locators 0 modelPanel1;\nmodelEditor -e -locators 0 modelPanel2;\nmodelEditor -e -locators 0 modelPanel3;\nmodelEditor -e -locators 0 modelPanel4;\n\nmodelEditor -e -ikHandles 0 modelPanel1;\nmodelEditor -e -ikHandles 0 modelPanel2;\nmodelEditor -e -ikHandles 0 modelPanel3;\nmodelEditor -e -ikHandles 0 modelPanel4;\n")
-	display_curveAndLocAndIKhandle_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("modelEditor -e -deformers 1 modelPanel1;\nmodelEditor -e -deformers 1 modelPanel2;\nmodelEditor -e -deformers 1 modelPanel3;\nmodelEditor -e -deformers 1 modelPanel4;")
-	display_deformer_1;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("source \"C:/Users/Administrator/Documents/maya/scripts/Quick_rename_tool.mel\";\nQuick_rename_tool ();")
+	-command ("source \"reference/Quick_rename_tool.mel\";\n")
 	searchNreplaceNames;
 
 runTimeCommand
@@ -152,23 +77,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("modelEditor -e -wos 0 modelPanel1;\nmodelEditor -e -wos 0 modelPanel2;\nmodelEditor -e -wos 0 modelPanel3;\nmodelEditor -e -wos 0 modelPanel4;")
-	display_wireframe_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("filterUISelectAttributesCheckbox translateZ 1 graphEditor1OutlineEd;")
-	selectAttributesSwitchTZ;
+	-command ("channelBoxCommand -unmute;")
+	channel_selMute_0;
 
 runTimeCommand
 	-label ""
@@ -182,8 +92,23 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("//")
-	stopCtrlV;
+	-command ("FreezeTransformationsOptions ;")
+	channel_FT;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("setObjectPickMask \"Joint\" false;\nsetObjectPickMask \"Surface\" false;")
+	selMask_jointAndSurface_0;
 
 runTimeCommand
 	-label ""
@@ -212,8 +137,158 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("modelEditor -e -joints 1 modelPanel1;\nmodelEditor -e -joints 1 modelPanel2;\nmodelEditor -e -joints 1 modelPanel3;\nmodelEditor -e -joints 1 modelPanel4;")
-	display_joint_1;
+	-command ("modelEditor -e -nurbsCurves 0 modelPanel1;\nmodelEditor -e -nurbsCurves 0 modelPanel2;\nmodelEditor -e -nurbsCurves 0 modelPanel3;\nmodelEditor -e -nurbsCurves 0 modelPanel4;\n\nmodelEditor -e -locators 0 modelPanel1;\nmodelEditor -e -locators 0 modelPanel2;\nmodelEditor -e -locators 0 modelPanel3;\nmodelEditor -e -locators 0 modelPanel4;\n\nmodelEditor -e -ikHandles 0 modelPanel1;\nmodelEditor -e -ikHandles 0 modelPanel2;\nmodelEditor -e -ikHandles 0 modelPanel3;\nmodelEditor -e -ikHandles 0 modelPanel4;\n")
+	display_curveAndLocAndIKhandle_0;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"down\";")
+	key_down;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -nurbsSurfaces 1 modelPanel1;\nmodelEditor -e -nurbsSurfaces 1 modelPanel2;\nmodelEditor -e -nurbsSurfaces 1 modelPanel3;\nmodelEditor -e -nurbsSurfaces 1 modelPanel4;\n")
+	display_surface_1;
+
+runTimeCommand
+	-label ""
+	-annotation "test"
+	-longAnnotation ""
+	-category "Custom Scripts.Luke_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"byLuke/dingdingTool.mel\";\ndingdingTool;\n\n")
+	ding;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("channelBoxCommand -lock;")
+	channel_selLock_1;
+
+runTimeCommand
+	-label ""
+	-annotation "reOpen scens"
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;")
+	reOpenSn;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("channelBoxCommand -mute;")
+	channel_selMute_1;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -deformers 0 modelPanel1;\nmodelEditor -e -deformers 0 modelPanel2;\nmodelEditor -e -deformers 0 modelPanel3;\nmodelEditor -e -deformers 0 modelPanel4;")
+	display_deformer_0;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("\nAnimSchoolPicker ;\n")
+	Picker;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -joints 0 modelPanel1;\nmodelEditor -e -joints 0 modelPanel2;\nmodelEditor -e -joints 0 modelPanel3;\nmodelEditor -e -joints 0 modelPanel4;")
+	display_joint_0;
+
+runTimeCommand
+	-label ""
+	-annotation "把TRS鍵入預設值(0n1)"
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "python"
+	-command ("import maya.cmds as cmds\nsels=cmds.ls( sl=1 )\nfor sel in sels:\n  attrs=['tx','ty','tz','rx','ry','rz']\n  for attr in attrs:\n    if cmds.getAttr( sel+'.'+attr , se=1):\n      cmds.setAttr( sel+'.'+attr , 0 )\n  attrs=['sx','sy','sz']\n  for attr in attrs:\n    if cmds.getAttr( sel+'.'+attr , se=1):\n      cmds.setAttr( sel+'.'+attr , 1 )\n\n\n\n'''\n{\nstring $sel[]=`ls -sl`;\nstring $resetAttrs[]={\"translateX\",\"translateY\",\"translateZ\",\"rotateX\",\"rotateY\",\"rotateZ\"};\nfor($each in $sel)\n{\n  for($attr in $resetAttrs)\n      if (`getAttr -k ($each+\".\"+$attr)`)\n      {\n          catch(`setAttr ($each+\".\"+$attr) 0`);\n      }\n}\n\n$resetAttrs2 = {\"scaleX\",\"scaleY\",\"scaleZ\"};\nfor($each in $sel)\n{\n  for($attr in $resetAttrs2)\n      if (`getAttr -k ($each+\".\"+$attr)`)\n      {\n          catch(`setAttr ($each+\".\"+$attr) 1`);\n      }\n}\n\n}\n'''\n")
+	channel_setZero;
 
 runTimeCommand
 	-label ""
@@ -242,38 +317,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("setObjectPickMask \"Joint\" false;\nsetObjectPickMask \"Surface\" false;")
-	selMask_jointAndSurface_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("source \"setKeyTool.mel\";\nsetKeyTool;")
-	setKeyTool;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("\nAnimSchoolPicker ;\n")
-	Picker;
+	-command ("pickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\n\nfor ($i=0; $i<5;$i++) if(`modelPanel -ex (\"modelPanel\"+$i)`)isolateSelect -state 1 (\"modelPanel\"+$i);\n\n\n")
+	display_iso_1;
 
 runTimeCommand
 	-label ""
@@ -287,14 +332,14 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("keyTangent -e -global -itt auto;\nkeyTangent -e -global -ott auto;")
-	Animation_Polish_Mode;
+	-command ("\n$searches=`ls -sl`;\nif(`size $searches ` >0 ) $selsA=`ls -sl`;\nelse select -r $selsA ;\n")
+	Grp_A;
 
 runTimeCommand
 	-label ""
 	-annotation ""
 	-longAnnotation ""
-	-category "Custom Scripts.Luke_tool"
+	-category "Akai"
 	-image ""
 	-tags ""
 	-keywords ""
@@ -302,8 +347,53 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("source IKFKswitchTool;\nIKFKswitchToolbyLuke();")
-	IKFK;
+	-command ("channelBoxCommand -unlock;")
+	channel_selLock_0;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"right\";")
+	key_right;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"convergeLeft\";")
+	key_convergeL;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -wos 0 modelPanel1;\nmodelEditor -e -wos 0 modelPanel2;\nmodelEditor -e -wos 0 modelPanel3;\nmodelEditor -e -wos 0 modelPanel4;")
+	display_wireframe_0;
 
 runTimeCommand
 	-label ""
@@ -332,6 +422,51 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
+	-command ("filterUISelectAttributesCheckbox rotateX 1 graphEditor1OutlineEd;")
+	selectAttributesSwitchRX;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -nurbsSurfaces 0 modelPanel1;\nmodelEditor -e -nurbsSurfaces 0 modelPanel2;\nmodelEditor -e -nurbsSurfaces 0 modelPanel3;\nmodelEditor -e -nurbsSurfaces 0 modelPanel4;\n")
+	display_surface_0;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("keyTangent -e -global -itt auto;\nkeyTangent -e -global -ott auto;")
+	Animation_Polish_Mode;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
 	-command ("filterUISelectAttributesCheckbox rotateX 0 graphEditor1OutlineEd;\nfilterUISelectAttributesCheckbox translateX 0 graphEditor1OutlineEd;\nfilterUISelectAttributesCheckbox rotateY 0 graphEditor1OutlineEd;\nfilterUISelectAttributesCheckbox translateY 0 graphEditor1OutlineEd;\nfilterUISelectAttributesCheckbox rotateZ 0 graphEditor1OutlineEd;\nfilterUISelectAttributesCheckbox translateZ 0 graphEditor1OutlineEd;")
 	selectAttributesOff;
 
@@ -347,23 +482,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("ackMoveKeys \"up\";")
-	key_up;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackDeleteRedundant;")
-	clean_key;
+	-command ("ackSpreadSqueezeTiming \"spread\";")
+	spreed_key;
 
 runTimeCommand
 	-label ""
@@ -377,8 +497,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("if( `window -q -exists windowQuickRename`==1 ){\ndeleteUI  windowQuickRename ;\n}else if( `window -q -exists windowQuickRename`==0 ){\nsource \"xRig_quickRename\";\n}")
-	window_reName;
+	-command ("hyperShadePanelGraphCommand(\"hyperShadePanel1\", \"removeSelected\");")
+	hyperShade_removeSel;
 
 runTimeCommand
 	-label ""
@@ -392,12 +512,42 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("FreezeTransformationsOptions ;")
-	channel_FT;
+	-command ("parentConstraint -mo -weight 1;")
+	parentConstraint_matainOffset_;
 
 runTimeCommand
 	-label ""
-	-annotation "select vertex mode"
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("source \"byLuke/setKeyTool.mel\";\nsetKeyTool;")
+	setKeyTool;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("filterUISelectAttributesCheckbox translateX 1 graphEditor1OutlineEd;")
+	selectAttributesSwitchTX;
+
+runTimeCommand
+	-label ""
+	-annotation "paint weight mode"
 	-longAnnotation ""
 	-category "Custom Scripts.paint_weight"
 	-image ""
@@ -407,8 +557,38 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("artAttrSkinPaintModePaintSelect 0 artAttrSkinPaintCtx;\n")
-	svm;
+	-command ("artAttrSkinPaintModePaintSelect 1 artAttrSkinPaintCtx;\n")
+	pwm;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("hyperShadePanelGraphCommand(\"hyperShadePanel1\", \"addSelected\");\n")
+	hyperShade_addSel;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("modelEditor -e -joints 1 modelPanel1;\nmodelEditor -e -joints 1 modelPanel2;\nmodelEditor -e -joints 1 modelPanel3;\nmodelEditor -e -joints 1 modelPanel4;")
+	display_joint_1;
 
 runTimeCommand
 	-label ""
@@ -452,12 +632,12 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("channelBoxCommand -lock;")
-	channel_selLock_1;
+	-command ("modelEditor -e -nurbsCurves 1 modelPanel1;\nmodelEditor -e -nurbsCurves 1 modelPanel2;\nmodelEditor -e -nurbsCurves 1 modelPanel3;\nmodelEditor -e -nurbsCurves 1 modelPanel4;\n\nmodelEditor -e -locators 1 modelPanel1;\nmodelEditor -e -locators 1 modelPanel2;\nmodelEditor -e -locators 1 modelPanel3;\nmodelEditor -e -locators 1 modelPanel4;\n\nmodelEditor -e -ikHandles 1 modelPanel1;\nmodelEditor -e -ikHandles 1 modelPanel2;\nmodelEditor -e -ikHandles 1 modelPanel3;\nmodelEditor -e -ikHandles 1 modelPanel4;")
+	display_curveAndLocAndIKhandle_1;
 
 runTimeCommand
 	-label ""
-	-annotation "test"
+	-annotation ""
 	-longAnnotation ""
 	-category "Custom Scripts.Luke_tool"
 	-image ""
@@ -467,23 +647,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("source \"dingdingTool.mel\";\ndingdingTool;\n\n")
-	ding;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("//\ntimeSliderCopyKey;\nprint \"copyKey !!\";")
-	keyCopy;
+	-command ("source \"byLuke/IKFKswitchTool\";\nIKFKswitchToolbyLuke();")
+	IKFK;
 
 runTimeCommand
 	-label ""
@@ -504,7 +669,7 @@ runTimeCommand
 	-label ""
 	-annotation ""
 	-longAnnotation ""
-	-category "Akai"
+	-category "Custom Scripts.Luke"
 	-image ""
 	-tags ""
 	-keywords ""
@@ -512,8 +677,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("hyperShadePanelGraphCommand(\"hyperShadePanel1\", \"addSelected\");\n")
-	hyperShade_addSel;
+	-command ("filterUISelectAttributesCheckbox rotateY 1 graphEditor1OutlineEd;")
+	selectAttributesSwitchRY;
 
 runTimeCommand
 	-label ""
@@ -527,8 +692,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("setObjectPickMask \"Joint\" true;\nsetObjectPickMask \"Surface\" true;")
-	selMask_jointAndSurface_1;
+	-command ("//")
+	stopCtrlV;
 
 runTimeCommand
 	-label ""
@@ -542,113 +707,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("modelEditor -e -nurbsSurfaces 0 modelPanel1;\nmodelEditor -e -nurbsSurfaces 0 modelPanel2;\nmodelEditor -e -nurbsSurfaces 0 modelPanel3;\nmodelEditor -e -nurbsSurfaces 0 modelPanel4;\n")
-	display_surface_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("parentConstraint -mo -weight 1;")
-	parentConstraint_matainOffset_;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("modelEditor -e -nurbsCurves 1 modelPanel1;\nmodelEditor -e -nurbsCurves 1 modelPanel2;\nmodelEditor -e -nurbsCurves 1 modelPanel3;\nmodelEditor -e -nurbsCurves 1 modelPanel4;\n\nmodelEditor -e -locators 1 modelPanel1;\nmodelEditor -e -locators 1 modelPanel2;\nmodelEditor -e -locators 1 modelPanel3;\nmodelEditor -e -locators 1 modelPanel4;\n\nmodelEditor -e -ikHandles 1 modelPanel1;\nmodelEditor -e -ikHandles 1 modelPanel2;\nmodelEditor -e -ikHandles 1 modelPanel3;\nmodelEditor -e -ikHandles 1 modelPanel4;")
-	display_curveAndLocAndIKhandle_1;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("modelEditor -e -nurbsSurfaces 1 modelPanel1;\nmodelEditor -e -nurbsSurfaces 1 modelPanel2;\nmodelEditor -e -nurbsSurfaces 1 modelPanel3;\nmodelEditor -e -nurbsSurfaces 1 modelPanel4;\n")
-	display_surface_1;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("channelBoxCommand -mute;")
-	channel_selMute_1;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("channelBoxCommand -unmute;")
-	channel_selMute_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackSpreadSqueezeTiming \"spread\";")
-	spreed_key;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackMoveKeys \"convergeRight\";")
-	key_convergeR;
+	-command ("////////140122更新可列印出目前選擇的角色，並消除之前潛在的bug//////////\n//////////////////////////////\n////////選取表情控制器////////\n//////////////////////////////\n\n\n////////壹b、篩選分辨前置檔名，定義出有哪些*:faceControls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:faceControls\" 的set，若無，則自動建立\nstring $sels[]=`ls -sl`;\nstring $faceCtrlSets[] ;\nclear $faceCtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:faceControls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":faceControls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":faceControls\");\n}else{\n//----------------------------------------------------------else開始\n//否則就選擇可能的表情控制器，有選到東西的話就產生\"*:faceControls\"這個set\nstring $search[]=`ls ($cache[0] +\":face_control\")`;\nif (`size $search `>0){select -add ($cache[0] +\":face_control\");}\n\nstring $search[]=`ls ($cache[0] +\":eyebrowCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyebrowCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":eyes\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyes\");}\nstring $search[]=`ls ($cache[0] +\":L_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":L_eye\");}\nstring $search[]=`ls ($cache[0] +\":R_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":R_eye\");}\nstring $search[]=`ls ($cache[0] +\":M_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":M_eye\");}\nstring $search[]=`ls ($cache[0] +\":U_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":U_eye\");}\nstring $search[]=`ls ($cache[0] +\":LeyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":LeyeCtrl\");}\nstring $search[]=`ls ($cache[0] +\":ReyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":ReyeCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":mouth\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth\");}\nstring $search[]=`ls ($cache[0] +\":mouth48\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth48\");}\nstring $search[]=`ls ($cache[0] +\":mouthCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouthCtrl\");}\n\n//如果有選到東西才產生set\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){\n$createSetResult = `sets -name ($cache[0]+\":faceControls\") `;\nselect -r -ne ($cache[0]+\":faceControls\");\n}\n\n//----------------------------------------------------------else結束\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$faceCtrlSets[$i]=$nowSels[0];}\n\n//如果是像道具 沒有臉部控制set，上列就會沒選到東西，該怎麼辦??位址內會有空物件\n//-->要把空的位址移除\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $faceRemove[] = { \"\" };\nstring $faceCtrlSetsNew[] = stringArrayRemove($faceRemove, $faceCtrlSets );\nif(`size $faceCtrlSetsNew`>0){select -r -ne $faceCtrlSetsNew;}\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $faceCtrlSets[]=`ls -sl`;\n\n\n\n\n////////貳b、依目前選擇到的\"*:faceControls\" 的set ,選擇其內容。\nselect -r $faceCtrlSets ;\n\nstring $sels[]=`ls -sl`;\nint $faceCtrlsAmount=`size $sels`;\n\n\n\n////////參、列印出來目前選擇的角色的\"臉\"控制器訊息\n\n//字串轉換\nstring $faceCtrlSet = stringArrayToString($faceCtrlSets, \"\"); //排列轉成字串\nstring $faceCtrlSet = substituteAllString($faceCtrlSet, \":faceControls\", \" \");//去掉後面不要的訊息\n\nprint ($faceCtrlsAmount+\"臉:\"+$faceCtrlSet) ;\n\n\n\n////////肆、如果什麼都沒選到就偵測沒有前置檔名的狀況\n\nstring $sels[]=`ls -sl`;\nif(`size $sels`==0){\n//-----------------------------if開始\nstring $search[]=`ls \"faceControls\"`;\nif (`size $search `==1){select -add faceControls ;}\n//-----------------------------if結束\n}\n")
+	QselSetKeysGRP_face;
 
 runTimeCommand
 	-label ""
@@ -662,188 +722,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("keyTangent -e -global -itt linear;\nkeyTangent -e -global -ott step;")
-	Animation_blocking_mode;
-
-runTimeCommand
-	-label ""
-	-annotation "paint weight mode"
-	-longAnnotation ""
-	-category "Custom Scripts.paint_weight"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("artAttrSkinPaintModePaintSelect 1 artAttrSkinPaintCtx;\n")
-	pwm;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("CenterPivot ;")
-	centerPivot;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackMoveKeys \"left\";")
-	keyleft;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("hyperShadePanelGraphCommand(\"hyperShadePanel1\", \"removeSelected\");")
-	hyperShade_removeSel;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("////////140122更新可列印出目前選擇的角色，並消除之前潛在的bug//////////\n//////////////////////////////\n////////選取全身與臉部控制器////////\n//////////////////////////////\n\n\n////////壹a、篩選分辨前置檔名，定義出有哪些*:TSM2Controls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:TSM2Controls\" 的set\nstring $sels[]=`ls -sl`;\nstring $TSM2CtrlSets[] ;\nclear $TSM2CtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:TSM2Controls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":TSM2Controls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":TSM2Controls\");\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$TSM2CtrlSets[$i]=$nowSels[0];}\n\n\n//如果某些特殊情況 沒有全身控制set，上列就會沒選到東西，該怎麼辦??\n//位址內會有空物件-->要把空的位址移除\n\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $itemsToRemove[] = { \"\" };\nstring $TSM2CtrlSetsNew[] = stringArrayRemove($itemsToRemove, $TSM2CtrlSets );\nif(`size $TSM2CtrlSetsNew`>0){select -r -ne $TSM2CtrlSetsNew;}\n//print (\"0\"+$TSM2CtrlSetsNew[0]+\"1\"+$TSM2CtrlSetsNew[1]+\"2\"+$TSM2CtrlSetsNew[2]);\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $TSM2CtrlSets[]=`ls -sl`;\n\n\n\n\n////////壹b、篩選分辨前置檔名，定義出有哪些*:faceControls要用\n////一、要先偵測選到的角色(前置檔名)有無\"*:faceControls\" 的set，若無，則自動建立\n\nstring $faceCtrlSets[] ;\nclear $faceCtrlSets;\nfor($i=0;$i<`size $sels`;$i++){\n//----------------------------------------------------------------------------------for1開始\nif (`gmatch $sels[$i] \"*:*\"`==1){\n//--------------------------------------------------------------------if1開始\nstring $cache[];\ntokenize $sels[$i] \":\" $cache;\nselect -cl;\n//偵測,若有\"*:faceControls\"這個set就選擇；\nstring $search[]=`ls ($cache[0]+\":faceControls\")`;\nif (`size $search `==1){\nselect -r -ne ($cache[0]+\":faceControls\");\n}else{\n//----------------------------------------------------------else開始\n//否則就選擇可能的表情控制器，有選到東西的話就產生\"*:faceControls\"這個set\nstring $search[]=`ls ($cache[0] +\":face_control\")`;\nif (`size $search `>0){select -add ($cache[0] +\":face_control\");}\n\nstring $search[]=`ls ($cache[0] +\":eyebrowCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyebrowCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":eyes\")`;\nif (`size $search `>0){select -add ($cache[0] +\":eyes\");}\nstring $search[]=`ls ($cache[0] +\":L_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":L_eye\");}\nstring $search[]=`ls ($cache[0] +\":R_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":R_eye\");}\nstring $search[]=`ls ($cache[0] +\":M_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":M_eye\");}\nstring $search[]=`ls ($cache[0] +\":U_eye\")`;\nif (`size $search `>0){select -add ($cache[0] +\":U_eye\");}\nstring $search[]=`ls ($cache[0] +\":LeyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":LeyeCtrl\");}\nstring $search[]=`ls ($cache[0] +\":ReyeCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":ReyeCtrl\");}\n\nstring $search[]=`ls ($cache[0] +\":mouth\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth\");}\nstring $search[]=`ls ($cache[0] +\":mouth48\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouth48\");}\nstring $search[]=`ls ($cache[0] +\":mouthCtrl\")`;\nif (`size $search `>0){select -add ($cache[0] +\":mouthCtrl\");}\n\n//如果有選到東西才產生set\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){\n$createSetResult = `sets -name ($cache[0]+\":faceControls\") `;\nselect -r -ne ($cache[0]+\":faceControls\");\n}\n\n//----------------------------------------------------------else結束\n}\n//--------------------------------------------------------------------if1結束\n}\n\n//把目前選擇變數存入一個變數的各個位址中\nstring $nowSels[]=`ls -sl`;\nif(`size $nowSels`>0){$faceCtrlSets[$i]=$nowSels[0];}\n\n//如果是像道具 沒有臉部控制set，上列就會沒選到東西，該怎麼辦??位址內會有空物件\n//-->要把空的位址移除\n\n////執行到最後一次時把set選起來\nif($i<`size $sels`-1) continue;\n//要把空的位址移除\nstring $faceRemove[] = { \"\" };\nstring $faceCtrlSetsNew[] = stringArrayRemove($faceRemove, $faceCtrlSets );\nif(`size $faceCtrlSetsNew`>0){select -r -ne $faceCtrlSetsNew;}\n\n//----------------------------------------------------------------------------------for1結束\n}\n\nstring  $faceCtrlSets[]=`ls -sl`;\n\n\n\n\n\n////////貳a、依目前選擇到的\"*:TSM2Controls\" 的set ,選擇其內容，並加選*:*addCtrlSet，計算選到的控制器數量並儲存到變數 。\n\nselect -r -ne $TSM2CtrlSets ;\nstring $sels[]=`ls -sl`;\nselect -cl;\nfor($sel in $sels){\n//---------------------------------------------------------------for2開始\nstring $cache[];\ntokenize $sel \":\" $cache;\nstring $search[]=`ls ($cache[0]+\":TSM2Controls\")`;\nif (`size $search `==1){select -add  ($cache[0]+\":TSM2Controls\");}\n\nstring $AddLocCtrl=($cache[0] +\":*AddLocCtrl\");\nstring $search[]=`ls $AddLocCtrl`;\nif (`size $search `>0){select -add $AddLocCtrl ;}\n//---------------------------------------------------------------for2結束\n}\n\nstring $sels[]=`ls -sl`;\nint $TSM2CtrlsAmount=`size $sels`;\n\n\n////////貳b、依目前選擇到的\"*:faceControls\" 的set ,選擇其內容。\nselect -add $faceCtrlSets ;\n\nstring $sels[]=`ls -sl`;\nint $faceCtrlsAmount=`size $sels`-$TSM2CtrlsAmount;\n\n\n\n////////參、列印出來目前選擇的角色的\"身+臉\"控制器訊息\n\n//字串轉換\nstring $TSM2CtrlSet = stringArrayToString($TSM2CtrlSets, \"\"); //排列轉成字串\nstring $TSM2CtrlSet = substituteAllString($TSM2CtrlSet, \":TSM2Controls\", \" \");//去掉後面不要的訊息\n\nstring $faceCtrlSet = stringArrayToString($faceCtrlSets, \"\"); //排列轉成字串\nstring $faceCtrlSet = substituteAllString($faceCtrlSet, \":faceControls\", \" \");//去掉後面不要的訊息\n\nprint ($TSM2CtrlsAmount+\"身:\"+$TSM2CtrlSet +\"   ;   \"+$faceCtrlsAmount+\"臉:\"+$faceCtrlSet) ;\n//應該印出 身+臉 ; 僅身 ; 僅臉\n\n\n////////肆、如果什麼都沒選到就偵測沒有前置檔名的狀況\n\nstring $sels[]=`ls -sl`;\nif(`size $sels`==0){\n//-----------------------------if開始\nstring $search[]=`ls \"TSM2Controls\"`;\nif (`size $search `==1){select -add TSM2Controls ;}\n\nstring $search[]=`ls \"faceControls\"`;\nif (`size $search `==1){select -add faceControls ;}\n//-----------------------------if結束\n}\n")
-	QselSetKeysGRP_bodyAndFace;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("timeSliderPasteKey false;\nprint \"pasetKey !!\";")
-	keyPaste;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("pickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\npickWalk -d up;  pickWalk -d up;  pickWalk -d up;\n\nfor ($i=0; $i<5;$i++) if(`modelPanel -ex (\"modelPanel\"+$i)`)isolateSelect -state 1 (\"modelPanel\"+$i);\n\n\n")
-	display_iso_1;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("channelBoxCommand -break;")
-	channel_breakSelConnection;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("\n$searches=`ls -sl`;\nif(`size $searches ` >0 ) $selsA=`ls -sl`;\nelse select -r $selsA ;\n")
-	Grp_A;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackSpreadSqueezeTiming \"squeeze\";")
-	squeeze_key;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Akai"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("channelBoxCommand -unlock;")
-	channel_selLock_0;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Ack_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("ackMoveKeys \"down\";")
-	key_down;
+	-command ("$searches=`ls -sl`;\nif(`size $searches ` >0 ) $selsB=`ls -sl`;\nelse select -r $selsB ;\n")
+	Grp_B;
 
 runTimeCommand
 	-label ""
@@ -872,8 +752,83 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("parentConstraint -weight 1;")
-	parentConstraint_;
+	-command ("modelEditor -e -deformers 1 modelPanel1;\nmodelEditor -e -deformers 1 modelPanel2;\nmodelEditor -e -deformers 1 modelPanel3;\nmodelEditor -e -deformers 1 modelPanel4;")
+	display_deformer_1;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"up\";")
+	key_up;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"convergeRight\";")
+	key_convergeR;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("if( `window -q -exists windowQuickRename`==1 ){\ndeleteUI  windowQuickRename ;\n}else if( `window -q -exists windowQuickRename`==0 ){\nsource \"xRig_quickRename\";\n}")
+	window_reName;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("//\ntimeSliderCopyKey;\nprint \"copyKey !!\";")
+	keyCopy;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackSpreadSqueezeTiming \"squeeze\";")
+	squeeze_key;
 
 runTimeCommand
 	-label ""
@@ -902,8 +857,53 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("modelEditor -e -joints 0 modelPanel1;\nmodelEditor -e -joints 0 modelPanel2;\nmodelEditor -e -joints 0 modelPanel3;\nmodelEditor -e -joints 0 modelPanel4;")
-	display_joint_0;
+	-command ("CreateSetOptions;")
+	sets_creatSet;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("parentConstraint -weight 1;")
+	parentConstraint_;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("setObjectPickMask \"Joint\" true;\nsetObjectPickMask \"Surface\" true;")
+	selMask_jointAndSurface_1;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "python"
+	-command ("\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()")
+	Studio_Lib;
 
 runTimeCommand
 	-label ""
@@ -917,8 +917,8 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("filterUISelectAttributesCheckbox rotateX 1 graphEditor1OutlineEd;")
-	selectAttributesSwitchRX;
+	-command ("int $isBreakdown=(1-$isBreakdown);\n\nkeyframe -breakdown $isBreakdown;")
+	setBreakDown;
 
 runTimeCommand
 	-label ""
@@ -932,8 +932,83 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("ackMoveKeys \"convergeLeft\";")
-	key_convergeL;
+	-command ("ackDeleteRedundant;")
+	clean_key;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("filterUISelectAttributesCheckbox translateZ 1 graphEditor1OutlineEd;")
+	selectAttributesSwitchTZ;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("channelBoxCommand -break;")
+	channel_breakSelConnection;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("keyTangent -e -global -itt linear;\nkeyTangent -e -global -ott step;")
+	Animation_blocking_mode;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Ack_tool"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("ackMoveKeys \"left\";")
+	keyleft;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Akai"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("CenterPivot ;")
+	centerPivot;
 
 runTimeCommand
 	-label ""
@@ -949,51 +1024,6 @@ runTimeCommand
 	-commandLanguage "mel"
 	-command ("timeSliderClearKey;")
 	keyDel;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke_tool"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "python"
-	-command ("\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()\n")
-	Studio_Lib;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("filterUISelectAttributesCheckbox translateX 1 graphEditor1OutlineEd;")
-	selectAttributesSwitchTX;
-
-runTimeCommand
-	-label ""
-	-annotation ""
-	-longAnnotation ""
-	-category "Custom Scripts.Luke"
-	-image ""
-	-tags ""
-	-keywords ""
-	-plugin ""
-	-helpUrl ""
-	-hotkeyCtx ""
-	-commandLanguage "mel"
-	-command ("$searches=`ls -sl`;\nif(`size $searches ` >0 ) $selsB=`ls -sl`;\nelse select -r $selsB ;\n")
-	Grp_B;
 
 //
 // The name commands referenced by the hotkeys
@@ -1418,6 +1448,18 @@ nameCommand
 	-command ("selectAttributesSwitchTX")
 	selectAttributesSwitchTXNameCommand;
 
+nameCommand
+	-annotation "setBreakDownNameCommand"
+	-sourceType "mel"
+	-command ("setBreakDown")
+	setBreakDownNameCommand;
+
+nameCommand
+	-annotation "reOpenSnNameCommand"
+	-sourceType "mel"
+	-command ("reOpenSn")
+	reOpenSnNameCommand;
+
 //
 // The user hotkeys
 //
@@ -1428,110 +1470,113 @@ hotkeySet -source "Maya_Default" -current hotKey;
 //
 // The hotkey contexts and hotkeys
 //
-hotkey -keyShortcut "j" -name ("display_joint_0NameCommand");
-hotkey -keyShortcut "j" -releaseName ("");
-hotkey -keyShortcut "Up" -sht -name ("key_upNameCommand");
-hotkey -keyShortcut "j" -ctl -name ("Select_AttributeNameCommand");
-hotkey -keyShortcut "i" -name ("display_wireframe_0NameCommand");
-hotkey -keyShortcut "r" -alt -name ("window_reNameNameCommand");
+hotkey -keyShortcut "+" -alt -name ("spreed_keyNameCommand");
+hotkey -keyShortcut "l" -ctl -name ("dingNameCommand");
 hotkey -keyShortcut "@" -name ("Grp_BNameCommand");
-hotkey -keyShortcut "(" -name ("display_surface_1NameCommand");
-hotkey -keyShortcut "i" -releaseName ("");
-hotkey -keyShortcut "w" -alt -name ("display_iso_1NameCommand");
-hotkey -keyShortcut "Right" -ctl -sht -name ("key_convergeRNameCommand");
+hotkey -keyShortcut "9" -name ("display_surface_0NameCommand");
+hotkey -keyShortcut "6" -ctl -name ("selectAttributesSwitchRZNameCommand");
+hotkey -keyShortcut "l" -ctl -alt -name ("");
+hotkey -keyShortcut "l" -name ("channel_selLock_1NameCommand");
+hotkey -keyShortcut "p" -ctl -sht -name ("PickerNameCommand");
+hotkey -keyShortcut "9" -ctl -name ("selectAttributesSwitchTZNameCommand");
+hotkey -keyShortcut "l" -releaseName ("");
+hotkey -keyShortcut "j" -ctl -name ("Select_AttributeNameCommand");
+hotkey -keyShortcut "j" -name ("display_joint_0NameCommand");
+hotkey -keyShortcut "End" -alt -name ("");
+hotkey -keyShortcut "j" -releaseName ("");
+hotkey -keyShortcut "Left" -ctl -sht -name ("key_convergeLNameCommand");
+hotkey -keyShortcut "e" -alt -name ("QselSetKeysGRP_faceNameCommand");
+hotkey -keyShortcut "8" -name ("");
+hotkey -keyShortcut "d" -sht -name ("display_deformer_1NameCommand");
+hotkey -keyShortcut "n" -sht -name ("display_curveAndLocAndIKhandle_1NameCommand");
+hotkey -keyShortcut "Right" -sht -name ("key_rightNameCommand");
+hotkey -keyShortcut "r" -ctl -alt -name ("");
+hotkey -keyShortcut "b" -ctl -name ("channel_breakSelConnectionNameCommand");
+hotkey -keyShortcut "c" -alt -name ("sets_creatSetNameCommand");
 hotkey -keyShortcut "d" -ctl -alt -name ("keyDelNameCommand");
-hotkey -keyShortcut "q" -alt -sht -name ("pwmNameCommand");
+hotkey -keyShortcut "(" -name ("display_surface_1NameCommand");
+hotkey -keyShortcut "e" -ctl -name ("QselSetKeysGRP_bodyNameCommand");
+hotkey -keyShortcut "b" -ctl -alt -name ("Animation_blocking_modeNameCommand");
+hotkey -keyShortcut "w" -ctl -name ("display_iso_0NameCommand");
+hotkey -keyShortcut "e" -ctl -alt -name ("");
+hotkey -keyShortcut "w" -ctl -alt -name ("display_iso_0NameCommand");
+hotkey -keyShortcut "p" -ctl -alt -name ("Animation_Polish_ModeNameCommand");
+hotkey -keyShortcut "s" -ctl -alt -name ("channel_keySelAttrNameCommand");
+hotkey -keyShortcut "c" -ctl -name ("");
+hotkey -keyShortcut "q" -ctl -alt -name ("");
+hotkey -keyShortcut "Down" -sht -name ("key_downNameCommand");
+hotkey -keyShortcut "Left" -sht -name ("keyleftNameCommand");
+hotkey -keyShortcut "8" -ctl -name ("selectAttributesSwitchTYNameCommand");
+hotkey -keyShortcut "q" -ctl -name ("selMask_jointAndSurface_1NameCommand");
+hotkey -keyShortcut "c" -ctl -alt -name ("keyCopyNameCommand");
+hotkey -keyShortcut "p" -alt -sht -name ("parentConstraint_matainOffset_NameCommand");
+hotkey -keyShortcut "Up" -sht -name ("key_upNameCommand");
+hotkey -keyShortcut "x" -ctl -alt -name ("setBreakDownNameCommand");
+hotkey -keyShortcut "o" -ctl -alt -name ("reOpenSnNameCommand");
+hotkey -keyShortcut "5" -ctl -name ("selectAttributesSwitchRYNameCommand");
+hotkey -keyShortcut "i" -name ("display_wireframe_0NameCommand");
+hotkey -keyShortcut "i" -releaseName ("");
 hotkey -keyShortcut "o" -name ("display_polygon_0NameCommand");
 hotkey -keyShortcut "o" -releaseName ("");
-hotkey -keyShortcut "c" -ctl -name ("");
-hotkey -keyShortcut "e" -ctl -name ("QselSetKeysGRP_bodyNameCommand");
-hotkey -keyShortcut "d" -releaseName ("");
-hotkey -keyShortcut "d" -name ("display_deformer_0NameCommand");
-hotkey -keyShortcut "4" -alt -name ("");
-hotkey -keyShortcut "5" -ctl -name ("selectAttributesSwitchRYNameCommand");
+hotkey -keyShortcut "-" -alt -name ("squeeze_keyNameCommand");
 hotkey -keyShortcut "c" -alt -sht -name ("centerPivotNameCommand");
-hotkey -keyShortcut "p" -alt -name ("parentConstraint_NameCommand");
-hotkey -keyShortcut "b" -ctl -alt -name ("Animation_blocking_modeNameCommand");
+hotkey -keyShortcut "l" -sht -name ("channel_selLock_0NameCommand");
+hotkey -keyShortcut "j" -sht -name ("display_joint_1NameCommand");
+hotkey -keyShortcut "j" -sht -releaseName ("");
 hotkey -keyShortcut "7" -ctl -name ("selectAttributesSwitchTXNameCommand");
+hotkey -keyShortcut "0" -ctl -name ("selectAttributesOffNameCommand");
+hotkey -keyShortcut "k" -ctl -alt -name ("");
+hotkey -keyShortcut "n" -name ("display_curveAndLocAndIKhandle_0NameCommand");
+hotkey -keyShortcut "k" -ctl -name ("setKeyToolNameCommand");
+hotkey -keyShortcut "n" -releaseName ("");
+hotkey -keyShortcut "l" -alt -name ("LassoToolNameCommand");
+hotkey -keyShortcut "e" -alt -sht -name ("svmNameCommand");
+hotkey -keyShortcut "f" -alt -name ("channel_FTNameCommand");
+hotkey -keyShortcut "a" -alt -name ("hyperShade_addSelNameCommand");
+hotkey -keyShortcut "End" -ctl -name ("clean_keyNameCommand");
+hotkey -keyShortcut "z" -alt -name ("channel_setZeroNameCommand");
+hotkey -keyShortcut "r" -alt -name ("window_reNameNameCommand");
+hotkey -keyShortcut "l" -ctl -sht -name ("Studio_LibNameCommand");
+hotkey -keyShortcut "4" -alt -name ("");
+hotkey -keyShortcut "m" -sht -name ("channel_selMute_0NameCommand");
+hotkey -keyShortcut "a" -alt -sht -name ("hyperShade_removeSelNameCommand");
+hotkey -keyShortcut "m" -name ("channel_selMute_1NameCommand");
+hotkey -keyShortcut "a" -ctl -alt -name ("ToolSettingsWindowNameCommand");
+hotkey -keyShortcut "q" -alt -sht -name ("pwmNameCommand");
+hotkey -keyShortcut "m" -releaseName ("");
+hotkey -keyShortcut "w" -alt -name ("display_iso_1NameCommand");
+hotkey -keyShortcut "i" -sht -name ("display_wireframe_1NameCommand");
+hotkey -keyShortcut "4" -ctl -name ("selectAttributesSwitchRXNameCommand");
+hotkey -keyShortcut "p" -alt -name ("parentConstraint_NameCommand");
+hotkey -keyShortcut "s" -alt -name ("searchNreplaceNamesNameCommand");
+hotkey -keyShortcut "Right" -ctl -sht -name ("key_convergeRNameCommand");
 hotkey -keyShortcut "q" -alt -name ("selMask_jointAndSurface_0NameCommand");
 hotkey -keyShortcut "q" -alt -releaseName ("");
-hotkey -keyShortcut "n" -sht -name ("display_curveAndLocAndIKhandle_1NameCommand");
-hotkey -keyShortcut "p" -ctl -alt -name ("Animation_Polish_ModeNameCommand");
-hotkey -keyShortcut "e" -alt -sht -name ("svmNameCommand");
-hotkey -keyShortcut "-" -alt -name ("squeeze_keyNameCommand");
-hotkey -keyShortcut "x" -ctl -alt -name ("");
-hotkey -keyShortcut "l" -ctl -sht -name ("Studio_LibNameCommand");
-hotkey -keyShortcut "m" -name ("channel_selMute_1NameCommand");
-hotkey -keyShortcut "m" -releaseName ("");
-hotkey -keyShortcut "p" -ctl -sht -name ("PickerNameCommand");
-hotkey -keyShortcut "c" -alt -name ("sets_creatSetNameCommand");
-hotkey -keyShortcut "l" -alt -name ("LassoToolNameCommand");
-hotkey -keyShortcut "l" -name ("channel_selLock_1NameCommand");
-hotkey -keyShortcut "l" -releaseName ("");
-hotkey -keyShortcut "i" -sht -name ("display_wireframe_1NameCommand");
-hotkey -keyShortcut "l" -ctl -name ("dingNameCommand");
-hotkey -keyShortcut "z" -alt -name ("channel_setZeroNameCommand");
-hotkey -keyShortcut "c" -ctl -alt -name ("keyCopyNameCommand");
 hotkey -keyShortcut "o" -sht -name ("display_polygon_1NameCommand");
+hotkey -keyShortcut "d" -releaseName ("");
 hotkey -keyShortcut "e" -ctl -sht -name ("QselSetKeysGRP_bodyAndFaceNameCommand");
-hotkey -keyShortcut "9" -ctl -name ("selectAttributesSwitchTZNameCommand");
-hotkey -keyShortcut "+" -alt -name ("spreed_keyNameCommand");
-hotkey -keyShortcut "p" -alt -sht -name ("parentConstraint_matainOffset_NameCommand");
-hotkey -keyShortcut "w" -ctl -alt -name ("display_iso_0NameCommand");
-hotkey -keyShortcut "e" -ctl -alt -name ("");
-hotkey -keyShortcut "l" -sht -name ("channel_selLock_0NameCommand");
-hotkey -keyShortcut "a" -alt -sht -name ("hyperShade_removeSelNameCommand");
-hotkey -keyShortcut "End" -alt -name ("");
-hotkey -keyShortcut "6" -ctl -name ("selectAttributesSwitchRZNameCommand");
-hotkey -keyShortcut "w" -ctl -name ("display_iso_0NameCommand");
-hotkey -keyShortcut "r" -ctl -alt -name ("");
-hotkey -keyShortcut "Right" -sht -name ("key_rightNameCommand");
-hotkey -keyShortcut "End" -ctl -name ("clean_keyNameCommand");
-hotkey -keyShortcut "s" -alt -name ("searchNreplaceNamesNameCommand");
-hotkey -keyShortcut "8" -ctl -name ("selectAttributesSwitchTYNameCommand");
-hotkey -keyShortcut "8" -name ("");
-hotkey -keyShortcut "Left" -ctl -sht -name ("key_convergeLNameCommand");
-hotkey -keyShortcut "a" -alt -name ("hyperShade_addSelNameCommand");
-hotkey -keyShortcut "Left" -sht -name ("keyleftNameCommand");
-hotkey -keyShortcut "s" -ctl -alt -name ("channel_keySelAttrNameCommand");
-hotkey -keyShortcut "a" -ctl -alt -name ("ToolSettingsWindowNameCommand");
-hotkey -keyShortcut "m" -sht -name ("channel_selMute_0NameCommand");
-hotkey -keyShortcut "d" -sht -name ("display_deformer_1NameCommand");
-hotkey -keyShortcut "v" -ctl -alt -name ("keyPasteNameCommand");
-hotkey -keyShortcut "Down" -sht -name ("key_downNameCommand");
-hotkey -keyShortcut "k" -ctl -name ("setKeyToolNameCommand");
-hotkey -keyShortcut "f" -alt -name ("channel_FTNameCommand");
-hotkey -keyShortcut "q" -ctl -name ("selMask_jointAndSurface_1NameCommand");
-hotkey -keyShortcut "j" -sht -name ("display_joint_1NameCommand");
+hotkey -keyShortcut "d" -name ("display_deformer_0NameCommand");
 hotkey -keyShortcut "!" -name ("Grp_ANameCommand");
-hotkey -keyShortcut "j" -sht -releaseName ("");
+hotkey -keyShortcut "v" -ctl -alt -name ("keyPasteNameCommand");
 hotkey -keyShortcut "v" -ctl -name ("stopCtrlVNameCommand");
-hotkey -keyShortcut "q" -ctl -alt -name ("");
-hotkey -keyShortcut "9" -name ("display_surface_0NameCommand");
-hotkey -keyShortcut "0" -ctl -name ("selectAttributesOffNameCommand");
-hotkey -keyShortcut "n" -name ("display_curveAndLocAndIKhandle_0NameCommand");
-hotkey -keyShortcut "n" -releaseName ("");
-hotkey -keyShortcut "4" -ctl -name ("selectAttributesSwitchRXNameCommand");
-hotkey -keyShortcut "e" -alt -name ("QselSetKeysGRP_faceNameCommand");
-hotkey -keyShortcut "b" -ctl -name ("channel_breakSelConnectionNameCommand");
-hotkeyCtx -type "Editor" -addClient "nodeEditorPanel";
-hotkeyCtx -type "Editor" -addClient "polyTexturePlacementPanel";
-hotkeyCtx -type "Editor" -addClient "outlinerPanel";
-hotkeyCtx -type "Editor" -addClient "hyperShadePanel";
-hotkeyCtx -type "Editor" -addClient "timeEditorPanel";
 hotkeyCtx -type "Editor" -addClient "shapePanel";
+hotkeyCtx -type "Editor" -addClient "outlinerPanel";
+hotkeyCtx -type "Editor" -addClient "cteEditor";
+hotkeyCtx -type "Editor" -addClient "hyperShadePanel";
+hotkeyCtx -type "Editor" -addClient "posePanel";
+hotkeyCtx -type "Editor" -addClient "nodeEditorPanel";
 hotkeyCtx -type "Editor" -addClient "graphEditor";
 hotkey -keyShortcut "v" -ctl -name ("GraphPasteNameCommand");
 hotkey -keyShortcut "c" -ctl -name ("GraphCopyNameCommand");
+hotkeyCtx -type "Editor" -addClient "polyTexturePlacementPanel";
 hotkeyCtx -type "Editor" -addClient "hyperGraphPanel";
-hotkeyCtx -type "Editor" -addClient "cteEditor";
-hotkeyCtx -type "Editor" -addClient "posePanel";
+hotkeyCtx -type "Editor" -addClient "timeEditorPanel";
 hotkeyCtx -type "Editor" -addClient "profilerPanel";
-hotkeyCtx -type "Tool" -addClient "sculptMeshCache";
 hotkeyCtx -type "Tool" -addClient "texCutContext";
 hotkeyCtx -type "Tool" -addClient "polyCutUV";
-hotkeyCtx -type "Tool" -addClient "texSculptCacheContext";
+hotkeyCtx -type "Tool" -addClient "sculptMeshCache";
 hotkeyCtx -type "Tool" -addClient "SymmetrizeUVBrush";
+hotkeyCtx -type "Tool" -addClient "xgmIGBrush";
 hotkeyCtx -type "Tool" -addClient "Unfold3DBrush";
 hotkeyCtx -type "Tool" -addClient "bpDraw";
-hotkeyCtx -type "Tool" -addClient "xgmIGBrush";
+hotkeyCtx -type "Tool" -addClient "texSculptCacheContext";

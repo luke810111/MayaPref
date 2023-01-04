@@ -1,27 +1,20 @@
-/*
-//set fbx dir
-$fbxDir=$fbxDirCloak=$fbxDirWeapon=$dir; 
-if($mode==1){
-    $fbxDir = `substitute "/MAYA/" $dir "/FBX/"`;         
-    $fbxDirCloak=($fbxDir+"Attachments/Cloak/");
-    $fbxDirWeapon=$fbxDir+"Attachments/Weapon/";  
-    sysFile -makeDir $fbxDir;                      
-    } 
-
-for($root in $roots){
-    if(`objExists $root`){ 
-        if (`sets -am $set $root`){
-            if($Acss[$i]=="Cloak") $fbxDirAcs=$fbxDirCloak;
-            if($Acss[$i]=="Weapon") $fbxDirAcs=$fbxDirWeapon;  
-            if($Acss[$i]=="WeaponB")$fbxDirAcs= $fbxDirWeapon;
-            if($Acss[$i]=="Cloak"||`objExists "SK_Player_Weapon_Bow_001"`){         
-                $fbxAcs=($buffer[0]+"_"+$buffer[1]+"_"+$buffer[2]+"_"+$Acss[$i]+"_"+$buffer[3]+"_"+$buffer[4]+".fbx");            
-                sysFile -makeDir $fbxDirAcs;        
-                toZero($root);    
-                select -r $root;
-                file -force -options "v=0;" -typ "FBX export" -pr -es ($fbxDirAcs+$fbxAcs);
-                }
-            }
-        } 
+exportBeLaunchedAniByMuteFile("BeLaunched_001");
+proc exportBeLaunchedAniByMuteFile(string $Motion){
+    string $sn=`file -q -sn`;
+    string $sn2= `substitute "Mute_" $sn "ANI_"`;  
+    $BeLaunched = `substitute ("_"+$Motion+"_") $sn2 "_BeLaunched_001_"`;
+    $Fly = `substitute ("_"+$Motion+"_") $sn2 "_Fly_001_"`; 
+    $Land = `substitute ("_"+$Motion+"_") $sn2 "_Land_001_"`;  
+    $GetUp = `substitute ("_"+$Motion+"_") $sn2 "_GetUp_001_"`;  
+    exportAniByTimeRange(1,6,$BeLaunched);
+    exportAniByTimeRange(6,24,$Fly);
+    exportAniByTimeRange(24,45,$Land);
+    exportAniByTimeRange(45,75,$GetUp);
     }
-            */         
+proc exportAniByTimeRange(int $startFrame,int $endFrame,string $fileName){
+    playbackOptions -minTime $startFrame; 
+    playbackOptions -maxTime $endFrame;  
+    file -rename $fileName;
+    print ($fileName+"\n");
+    file -force -save -options "v=0" -type "mayaBinary";
+    }

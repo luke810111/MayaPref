@@ -40,30 +40,23 @@ sortOutTool;
 source "byLuke/exportRigTool";
 exportRigTool();
 
-
 source "byLuke/swRefToolbyLuke";
 */
 
 
-source "reference/carlaH_skinWeightsEditor";
-source "byLuke/sortOut";
-source "byLuke/mathProcedure";
-source "byLuke/dingdingTool.mel";
-source "byLuke/setKeyTool.mel";
-source "byLuke/IKFKswitchTool";
-source "byLuke/exportFBXPipeline";
-source "byLuke/selCons";
-source "byLuke/copyPasteByLuke.mel";
-source "byLuke/EzRig";
-source "byLuke/baseRig";
+source "ackTool/ackCycleTangents.mel";
+source "ackTool/ackSpreadSqueezeTiming.mel";
+source "ackTool/ackDeleteRedundant.mel";
+source "ackTool/ackMoveKeys.mel";
+source "ackTool/ackSetup.mel";
+source "ackTool/ackSnapEndKeyValues.mel";
+source "ackTool/ackSwapKeys.mel";
 
-source "byLuke/sortOut";
+source "byLuke/procedureMath.mel";
+source "byLuke/procedureTimeFrame.mel";
+source "byLuke/procedureBase.mel";
+source "byLuke/procedureXRigD.mel";
+
+
 source "byLuke/sortOutTool";
-//sortOutTool();
-
-source "byLuke/crCtrl";
-source "byLuke/batchPBbyLuke";
-
-
-source "byLuke/setFollowKey";
-source "byLuke/setKeyTool.mel";
+sortOutTool;

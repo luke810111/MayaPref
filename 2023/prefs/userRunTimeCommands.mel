@@ -1007,3 +1007,18 @@ runTimeCommand
 	-command ("int $isBreakdown=(1-$isBreakdown);\n\nkeyframe -breakdown $isBreakdown;")
 	setBreakDown;
 
+runTimeCommand
+	-label ""
+	-annotation "reOpen scens"
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;")
+	reOpenSn;
+
