@@ -1019,6 +1019,21 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;")
+	-command ("$sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;\nfile -f -new;\nfile -open $sn;")
 	reOpenSn;
+
+runTimeCommand
+	-label ""
+	-annotation "Print the word \"Hello\""
+	-longAnnotation ""
+	-category ""
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("print \"Hello\\n\"")
+	MyHelloCommand;
 

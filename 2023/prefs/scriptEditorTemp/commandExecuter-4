@@ -1,20 +1,27 @@
-exportBeLaunchedAniByMuteFile("BeLaunched_001");
-proc exportBeLaunchedAniByMuteFile(string $Motion){
-    string $sn=`file -q -sn`;
-    string $sn2= `substitute "Mute_" $sn "ANI_"`;  
-    $BeLaunched = `substitute ("_"+$Motion+"_") $sn2 "_BeLaunched_001_"`;
-    $Fly = `substitute ("_"+$Motion+"_") $sn2 "_Fly_001_"`; 
-    $Land = `substitute ("_"+$Motion+"_") $sn2 "_Land_001_"`;  
-    $GetUp = `substitute ("_"+$Motion+"_") $sn2 "_GetUp_001_"`;  
-    exportAniByTimeRange(1,6,$BeLaunched);
-    exportAniByTimeRange(6,24,$Fly);
-    exportAniByTimeRange(24,45,$Land);
-    exportAniByTimeRange(45,75,$GetUp);
+global int $moveJobNum, $rotateJobNum;
+global proc dingdingTool(){
+
+    global string $window;
+    
+    if (`window -exists ddt`)
+        deleteUI -window ddt;
+    $window=`window -title "dingdingTool" -h 30 -w 120 -rtf 1 -s 1 ddt`;
+
+    frameLayout -label "reParentDings" ;
+        button -label "dings" -bgc 0.5 0.2 0.3 -c "$sels=`ls -sl`;$dings=crReParentDings($sels);";
+        button -label "dings" -bgc 0.3 0.5 0.2 -c "alignReParentDings($sels);select -r $sels;"; 
+        setParent ..;     	
+  	
+	showWindow ddt;
+}
+global proc alignXform() {
+    $r=`xform -q -ws -m "locator1"`;
+    xform -ws -m $r[0] $r[1] $r[2] $r[3] $r[4] $r[5] $r[6] $r[7] $r[8] $r[9] $r[10] $r[11] $r[12] $r[13] $r[14] $r[15] "pCube1";
     }
-proc exportAniByTimeRange(int $startFrame,int $endFrame,string $fileName){
-    playbackOptions -minTime $startFrame; 
-    playbackOptions -maxTime $endFrame;  
-    file -rename $fileName;
-    print ($fileName+"\n");
-    file -force -save -options "v=0" -type "mayaBinary";
-    }
+
+
+$moveJobNum = `scriptJob -ac "tempPivort.translate" "alignXform()"`;
+$rotateJobNum = `scriptJob -ac "tempPivort.rotate" "alignXform()"`;
+
+scriptJob -kill $moveJobNum -force;
+scriptJob -kill $rotateJobNum -force;
