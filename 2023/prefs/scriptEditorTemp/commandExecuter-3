@@ -1,69 +1,123 @@
-$sels=`ls -sl`;
-$i=0;
-$tempPivot=crTempPivotDing($sels);
-proc string crTempPivotDing(string $sels[]){
+TempPivotTool();
+global int $moveJobNum, $rotateJobNum,$selNum;
+global string $sels[],$dings[];
+global string $tempPivot,$tempPivotGrp;
+
+
+proc TempPivotTool(){
+    string $window = `window`;
+
+    frameLayout -w 240 -label "temp pivot ding" ;
+	rowColumnLayout -nc 4 -cw 1 60 -cw 2 60 -cw 3 60 -cw 4 60;
+    iconTextButton -style "iconOnly" -label "disable"
+        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/test.png" -c "switchIcon();" testIcon;
+
+	radioCollection RCTempPivot;
+		
+		radioButton -label "Local" TempPivotLocalRB;
+		radioButton -label "Center" TempPivotCenterRB;
+		radioButton -label "World" TempPivotWorldRB;		
+    radioCollection -e -select TempPivotLocalRB RCTempPivot;
+    setParent ..;setParent ..;
+    showWindow $window;
+    }
+//radioCollection RCTempPivot;    
+proc switchIcon(){
+    $label=`iconTextButton -q  -label testIcon`;
+    $temps=`ls -sl`;
+    if(`size $temps`){
+        if($label=="disable"){
+            iconTextButton -e -label "enable" -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/test2.png" testIcon;
+            onTempPivotDing();
+        }else if($label=="enable"){
+            select -cl;
+            }
+        }
+}
+proc onTempPivotDing(){
+    global int $moveJobNum, $rotateJobNum,$timeChangeNum,$selNum;
+    global string $tempPivot;
+    global string $sels[];    
+    $sels=`ls -sl`;
+    crTempPivotDing($sels);        
+
+    $moveJobNum = `scriptJob -ac ($tempPivot+".translate") "alignXform($sels,$dings)"`;
+    $rotateJobNum = `scriptJob -ac ($tempPivot+".rotate") "alignXform($sels,$dings)"`;
+    $timeChangeNum = `scriptJob -tc "alignTempPivotByTimeChange();"`;      
+    $selNum = `scriptJob -ro on -e "SelectionChanged" "offTempPivot();"`;    
+}
+
+
+proc crTempPivotDing(string $sels[]){
+
     $n=`size $sels`;
     $obj=$sels[($n-1)];
+    global string $tempPivot,$tempPivotGrp;
     $tempPivot=($obj+"_tempPivotDing");
-    $ding=crDing($obj);
-    $p=`xform -q -ws -piv $obj`;
-    xform -ws -t $p[0] $p[1] $p[2] $ding;
-    if (!`attributeExists "tempPivot" $obj`) {
-        addAttr -ln "tempPivot" -nn "tempPivot" -at double3 $obj;
-        addAttr -ln "tempPivotX"  -at double -p "tempPivot" $obj;
-        addAttr -ln "tempPivotY"  -at double -p "tempPivot" $obj; 
-        addAttr -ln "tempPivotZ"  -at double -p "tempPivot" $obj;
-        setAttr ($obj+".tempPivotX") $p[0];
-        setAttr ($obj+".tempPivotY") $p[1];
-        setAttr ($obj+".tempPivotZ") $p[2];         
+    global string $dings[];
+    $dings=crDings();
+    $m=`xform -q -ws -m $obj`;
+    $lp=`xform -q -piv $obj`;    
+    if (!`attributeExists "tempPivotLocal" $obj`) {
+        addAttr -ln "tempPivotLocal" -nn "tempPivotLocal" -at double3 $obj;
+        addAttr -ln "tempPivotLocalX"  -at double -p "tempPivotLocal" $obj;
+        addAttr -ln "tempPivotLocalY"  -at double -p "tempPivotLocal" $obj; 
+        addAttr -ln "tempPivotLocalZ"  -at double -p "tempPivotLocal" $obj;
+        setAttr ($obj+".tempPivotLocalX") $lp[0];
+        setAttr ($obj+".tempPivotLocalY") $lp[1];
+        setAttr ($obj+".tempPivotLocalZ") $lp[2];         
     }else{
-        $p[0]=getAttr ($obj+".tempPivotX");
-        $p[1]=getAttr ($obj+".tempPivotY");
-        $p[2]=getAttr ($obj+".tempPivotZ");                
+        $lp[0]=getAttr ($obj+".tempPivotLocalX");
+        $lp[1]=getAttr ($obj+".tempPivotLocalY");
+        $lp[2]=getAttr ($obj+".tempPivotLocalZ");                
     }       
-    duplicate -rr -n $tempPivot $ding;
-    xform -ws -t $p[0] $p[1] $p[2] $tempPivot;    
-    $offset=crOffset({$tempPivot},"offset",0);
+    duplicate -rr -n $tempPivot $dings[($n-1)];        
+    $tempPivotGrp=($tempPivot+"_offset");
+    group -p "DingDingTool_grp" -em -n $tempPivotGrp;
     $pa=`listRelatives -p $obj`;
-    if(`size $pa`)parentConstraint -mo $pa[0] $offset;    
-    parent $ding $tempPivot;
-    for($i=0;$i<$n;$i++){
-        parentConstraint -mo $ding $sels[$i];
-        }
+    if(`size $pa`){parentConstraint $pa[0] $tempPivotGrp;scaleConstraint $pa[0] $tempPivotGrp;} 
+    xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $tempPivot;     
+    xform -piv $lp[0] $lp[1] $lp[2] $tempPivot;      
+    parent $dings $tempPivot;
+
     select -r $tempPivot;
-    return $tempPivot;
 }
 
-proc string alignTempPivotDing(string $sels[],string $tempPivot){
-
+proc alignTempPivotByTimeChange(){
+    global string $sels[];    
+    global string $tempPivot,$tempPivotGrp;       
     $n=`size $sels`;
     $obj=$sels[($n-1)];
-    $tempPivot=($obj+"tempPivotDing");
-	string $trzs[]={"tx","ty","tz","rx","ry","rz","sx","sy","sz"};
-    $ding=crDing($obj);
-    $p=`xform -q -ws -piv $obj`;
-    xform -ws -t $p[0] $p[1] $p[2] $ding;
-    if (!`attributeExists "tempPivot" $obj`) {
-        addAttr -ln "tempPivot" -nn "tempPivot" -at double3 $obj;
-        addAttr -ln "tempPivotX"  -at double -p "tempPivot" $obj;
-        addAttr -ln "tempPivotY"  -at double -p "tempPivot" $obj; 
-        addAttr -ln "tempPivotZ"  -at double -p "tempPivot" $obj;
-        setAttr ($obj+".tempPivotX") $p[0];
-        setAttr ($obj+".tempPivotY") $p[1];
-        setAttr ($obj+".tempPivotZ") $p[2];         
-    }else{
-        $p[0]=getAttr ($obj+".tempPivotX");
-        $p[1]=getAttr ($obj+".tempPivotY");
-        $p[2]=getAttr ($obj+".tempPivotZ");                
-    }       
-    duplicate -rr -n $tempPivot $ding;
-    xform -ws -t $p[0] $p[1] $p[2] $tempPivot;    
-    $offset=crOffset({$tempPivot},"offset",0);
-    parent $ding $tempPivot;
-    for($i=0;$i<$n;$i++){
-        parentConstraint -mo $ding $sels[$i];
-        }
-    select -r $tempPivot;
-    return $tempPivot;
-}
+    $m=`xform -q -ws -m $obj`;
+    xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $tempPivot;   
+    }
 
+global proc alignXform(string $sels[],string $dings[]){    
+	int $swP,$swR;
+    if(`size($sels)`>0){
+		$swP= `checkBox -q -value swP`;
+		$swR= `checkBox -q -value swR`;
+		
+		for($i=0;$i<`size($dings)`;$i++){
+			alignDing($sels[$i],$dings[$i],$swP,$swR);
+			}
+        }
+}      
+
+proc offTempPivot(){
+    global int $moveJobNum,$rotateJobNum,$timeChangeNum;
+    global string $sels[];
+    global string $tempPivot,$tempPivotGrp;       
+
+    iconTextButton -e -label "disable" -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/test.png" testIcon;
+    scriptJob -kill $moveJobNum -force;
+    scriptJob -kill $rotateJobNum -force;
+    scriptJob -kill $timeChangeNum -force;    
+    $n=`size $sels`;    
+    $lp=`xform -q -piv $tempPivot`; 
+    setAttr ($sels[($n-1)]+".tempPivotLocalX") $lp[0];
+    setAttr ($sels[($n-1)]+".tempPivotLocalY") $lp[1];
+    setAttr ($sels[($n-1)]+".tempPivotLocalZ") $lp[2];    
+    delete $tempPivotGrp;
+    select -r $sels;
+    }
