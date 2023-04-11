@@ -9,7 +9,7 @@ global proc shelf_EzAni () {
         -flexibleWidthType 3
         -flexibleWidthValue 32
         -enable 1
-        -width 35
+        -width 39
         -height 34
         -manage 1
         -visible 1
@@ -146,7 +146,7 @@ global proc shelf_EzAni () {
         -flexibleWidthType 3
         -flexibleWidthValue 32
         -enable 1
-        -width 35
+        -width 39
         -height 34
         -manage 1
         -visible 1
@@ -169,7 +169,7 @@ global proc shelf_EzAni () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\luke\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()" 
+        -command "\n# -----------------------------------\n# Studio Library\n# www.studiolibrary.com\n# -----------------------------------\n\nimport os\nimport sys\n    \nif not os.path.exists(r'C:\\Users\\joyce\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src'):\n    raise IOError(r'The source path \"C:\\Users\\joyce\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src\" does not exist!')\n    \nif r'C:\\Users\\joyce\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src' not in sys.path:\n    sys.path.insert(0, r'C:\\Users\\joyce\\Documents\\maya\\scripts\\studiolibrary-2.9.6.b3\\src')\n    \nimport studiolibrary\nstudiolibrary.main()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
@@ -774,7 +774,7 @@ global proc shelf_EzAni () {
         -flexibleWidthType 3
         -flexibleWidthValue 32
         -enable 1
-        -width 35
+        -width 39
         -height 34
         -manage 1
         -visible 1

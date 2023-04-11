@@ -7,11 +7,11 @@
 import os
 import sys
     
-if not os.path.exists(r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src'):
-    raise IOError(r'The source path "C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src" does not exist!')
+if not os.path.exists(r'C:\Users\joyce\Documents\maya\scripts\studiolibrary-2.9.6.b3\src'):
+    raise IOError(r'The source path "C:\Users\joyce\Documents\maya\scripts\studiolibrary-2.9.6.b3\src" does not exist!')
     
-if r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src' not in sys.path:
-    sys.path.insert(0, r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src')
+if r'C:\Users\joyce\Documents\maya\scripts\studiolibrary-2.9.6.b3\src' not in sys.path:
+    sys.path.insert(0, r'C:\Users\joyce\Documents\maya\scripts\studiolibrary-2.9.6.b3\src')
     
 import studiolibrary
 studiolibrary.main()
