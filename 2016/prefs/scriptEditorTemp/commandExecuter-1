@@ -1,0 +1,432 @@
+/*
+$prefix="something";
+$numJoints=5;
+$width=10.0;
+
+main("testB",5,20);
+*/
+global proc main(string $prefix,int $numJoints,float $width){
+    //Gather information
+    $prefix=($prefix+"_");
+
+    string $fols[],$ctrls2[];    
+    float $topPoint  = ($width/2);
+    float $endPoint  = ($width/2*-1);
+    float $sP[];
+    float $eP[];
+
+    //Create the main groups
+    if(`objExists($prefix + "noTransform_grp")`)delete ($prefix + "noTransform_grp");
+    if(`objExists($prefix + "transform_grp")`)delete ($prefix + "transform_grp");
+    
+    $grpTransform   = `group -em -n ($prefix + "transform_grp")`;
+    $grpCtrl        = `group -em -p $grpTransform -n ($prefix + "ctrl_grp")`;     
+    $grpSurface     = `group -em -p $grpTransform -n ($prefix + "surface_grp")`; 
+
+    $grpNoTransform = `group -em -n ($prefix + "noTransform_grp")`;    
+    $grpSurfaces    = `group -em -p $grpNoTransform -n ($prefix + "surfaces_grp")`; 
+    $grpDeformers   = `group -em -p $grpNoTransform -n ($prefix + "deformer_grp")`; 
+    $grpFollMain    = `group -em -p $grpNoTransform -n ($prefix + "follicles_skin_grp")`; 
+    $grpFollVolume  = `group -em -p $grpNoTransform -n ($prefix + "follicles_volume_grp")`; 
+
+    //Create the controllers
+    string $ctrls[]={($prefix + "top_ctrl"),($prefix + "mid_ctrl"),($prefix + "end_ctrl")};
+    float $topPosition[]={0.0,$topPoint,0.0};
+    float $midPosition[]={0.0,0.0,0.0};
+    float $endPosition[]={0.0,$endPoint,0.0};  
+          
+    createCurveCtrl($ctrls[0],1,9,2,$topPosition);
+    createCurveCtrl($ctrls[1],1,9,2,$midPosition);
+    createCurveCtrl($ctrls[2],1,9,2,$endPosition);         
+    $grpCtrls = grpObject($ctrls,1,1,1,0,0,"","_offset");      
+    $midConst = `pointConstraint $ctrls[0] $ctrls[2] $grpCtrls[1]`;
+    parent $grpCtrls $grpCtrl;
+      
+    //Create the NURBS-planes to use in the setup
+    $tmpPlane = `nurbsPlane -p 0 0 0 -ax 0 0 1 -w 1 -lr $width -d 3 -u 1 -v ($numJoints-1) -ch 1 -n "tempNurbsPlane"`;
+    $geoPlane=`duplicate -name ($prefix + "NurbsPlane") $tmpPlane[0]`;
+
+    //Create deformers: Twist deformer, Sine deformer, Squash deformer, Wire deformer
+    string $geoPlaneWire[]=setRibbonWireDeform($ctrls,$grpCtrls,$tmpPlane,$prefix,$topPoint,$endPoint,$topPosition,$midPosition,$endPosition);    
+    string $geoPlaneTwist[]=setRibbonTwistDeform($ctrls,$grpCtrls,$tmpPlane,$prefix,$topPoint,$endPoint,$topPosition,$midPosition,$endPosition);    
+    string $geoPlaneVolume[]=setRibbonVolumeDeform($ctrls,$grpCtrls,$tmpPlane,$prefix,$topPoint,$endPoint,$topPosition,$midPosition,$endPosition);            
+    string $geoPlaneSine[]=setRibbonSineDeform($ctrls,$grpCtrls,$tmpPlane,$prefix,$topPoint,$endPoint,$topPosition,$midPosition,$endPosition);            
+    addRibbonCtrlExtraAttribute($ctrls,$topPoint);
+    //Create deformers: Blendshape
+    $blndDef =`blendShape -name ($prefix + "blendShape")-w 0 1 -w 1 1 -w 2 1 $geoPlaneWire[0] $geoPlaneTwist[0] $geoPlaneSine[0] $geoPlane[0]`;
+    
+    //Create follicles: The main-surface and the volume-surface
+    float $y=1.00/($numJoints-1);
+    for($i=0;$i<$numJoints;$i++){
+        $fols[$i]=($prefix+"follicle_"+($i+1));
+        $ctrls2[$i]=($prefix+"ctrl_"+($i+1));
+        createFolicle($geoPlane[0],0.5 ,($y*$i),$fols[$i]);
+        circle -nr 0 1 0 -n $ctrls2[$i];
+        parent $ctrls2[$i] $fols[$i];
+        group -n ($ctrls2[$i]+"_grp") $ctrls2[$i];
+        connectAttr ($ctrls[1] + ".showExtraCtrl") ($fols[$i] + ".visibility");
+        connectAttr ($grpTransform + ".scale") ($fols[$i] + ".scale");
+        
+        //Create a follicle for the bind-plane and the volume-plane    
+        $folsV[$i] =($prefix + "_volume_follicle"+($i+1));
+        createFolicle($geoPlaneVolume[0],1 ,($y*$i),$folsV[$i]);   
+        parent $folsV[$i] $grpFollVolume;  
+        //Make the connections for the volume
+        $multMpd=`createNode -n ($prefix +($i+1)+ "_multiplier_mpd") "multiplyDivide"`;
+        connectAttr($ctrls[1] + ".volumeMultiplier") ($multMpd + ".input1X");
+        connectAttr($folsV[$i] + ".translate") ($multMpd + ".input2");
+        
+        $sumPma =`createNode -n ($prefix +($i+1)+ "_volume_sum_pma") "plusMinusAverage"`;
+        connectAttr($multMpd + ".outputX") ($sumPma + ".input1D[0]");
+        setAttr($sumPma + ".input1D[1]") 1;
+        connectAttr($sumPma + ".output1D") ($ctrls2[$i]+"_grp.scaleX");
+        connectAttr($sumPma + ".output1D") ($ctrls2[$i]+"_grp.scaleZ");      
+        }
+    makeIdentity -apply false -t 1 -r 1 -s 1 $ctrls2;
+
+    if(`objExists $grpFollMain`)parent $fols $grpFollMain;
+    if(`objExists $grpSurface`)parent $geoPlane[0] $grpSurface;
+    //Delete the base surface
+    delete $tmpPlane;    
+    //Cleanup: Visibility
+    setAttr ($grpSurfaces+".visibility") 0;
+    setAttr ($grpDeformers+".visibility") 0;
+    setAttr ($grpFollVolume+".visibility") 0;        
+    setAttr ($prefix+"cluster_grp.visibility") 0;
+    setAttr ($prefix+"misc_grp.visibility") 0;    
+}
+global proc string createFolicle(string $geo,float $u ,float $v,string $n){
+    //$fol=`createNode -n $n "follicle"`;
+    $fol=`shadingNode -n ($n+"Shape") -asUtility "follicle"` ;
+    setAttr ($fol+".parameterU") $u;
+    setAttr ($fol+".parameterV") $v;
+    $folTrans=`listRelatives -p $fol`;
+    $geoShape=`listRelatives -s $geo`;
+    if(`objectType -isType "nurbsSurface" $geoShape[0]`){
+        print "nurbsSurface";
+        connectAttr ($geoShape[0]+".local") ($fol+".inputSurface");
+        connectAttr ($geoShape[0]+".worldMatrix") ($fol+".inputWorldMatrix");
+        connectAttr  ($fol+".outRotate") ($folTrans[0]+".rotate");
+        connectAttr  ($fol+".outTranslate") ($folTrans[0]+".translate");
+        }
+    if(`objectType -isType "mesh" $geoShape[0]`){
+        print "mesh";
+        connectAttr ($geoShape[0]+".outMesh") ($fol+".inputMesh");
+        connectAttr ($geoShape[0]+".worldMatrix") ($fol+".inputWorldMatrix");
+        connectAttr  ($fol+".outRotate") ($folTrans[0]+".rotate");
+        connectAttr  ($fol+".outTranslate") ($folTrans[0]+".translate");
+        }
+    //print  $geoShape[0];
+    return $folTrans[0];
+}
+global proc createCurveCtrl(string $prefix,int $freezeTransforms,int $color,float $scale,float $pos[]){
+    //Create the controller
+    if(`objExists $prefix`)delete $prefix;
+    curve -n $prefix -d 1 -p 0 1 0 -p 0 -1 0 -p 0 0 0 -p 0 0 1 -p 0 0 -1 -p 0 0 0 -p 1 0 0 -p -1 0 0;
+
+    //Set the scale
+    setAttr ($prefix+".scale") $scale $scale $scale;
+    makeIdentity -apply 1 -translate 0 -rotate 0 -scale 1 $prefix;
+    //Set the color for the curve
+    $shape=`listRelatives -s $prefix`;
+    setAttr ($shape[0] + ".overrideEnabled") 1;
+    setAttr ($shape[0] + ".overrideColor")  $color;
+    //If a position was defined
+    if (`size($pos)` == 3){
+        //Position the locator
+        setAttr ($prefix + ".translate") $pos[0] $pos[1] $pos[2];
+        //If freeze transforms was set to true
+        if ($freezeTransforms) makeIdentity -apply 1 -translate 1 $prefix;
+        }
+}
+global proc string[] grpObject(string $objects[],int $snapTrans,int $snapRot,int $keepHi,int $keepTransforms,int $empty,string $prefix,string $suffix){
+    //Create a variable to store the groups in
+    string $groups[];
+    //For each object passed in
+    for ($obj in $objects){
+        //Create an empty group for the current object
+        string $newGrp =`group -empty -name ($obj + $suffix)`;
+        //If a name was specified, rename the group
+        if (`size $prefix`)rename $newGrp $prefix;
+        //Set the rotateOrder of the current group to the same order as the current object
+        setAttr ($newGrp + ".rotateOrder"); 
+        getAttr ($obj + ".rotateOrder");
+        //If snapTrans was set to true, PointConstraint the group to the current object
+        if ($snapTrans)delete `pointConstraint $obj $newGrp`;
+        //If snapRot was set to true, OrientConstraint the group to the current object
+        if ($snapRot)delete `orientConstraint $obj $newGrp`;
+        //If keepHi was set to true
+        if ($keepHi){
+            //Get the first parent of the current object
+            string $currParent[] =`listRelatives -p $obj`;
+            //If a parent was found, parent the group in the first parent of the current object
+            if(`objExists $currParent[0]`)parent $newGrp $currParent[0];
+            }
+        //If keepTransforms was set to false, Freeze the transformations of the group
+        if (!$keepTransforms)makeIdentity -apply 1 -translate 1 -rotate 1 $newGrp;
+        //If empty was set to false, parent the current object into the group
+        if (!$empty)parent $obj $newGrp;
+        //Append the current group into the result
+        $groups=stringArrayCatenate($groups,{$newGrp});
+        }
+    //Return the groups
+    return $groups;
+}
+global proc addRibbonCtrlExtraAttribute(string $ctrls[],float $topPoint){
+    //Add attributes: Extra attributes
+    addAttr -ln "extraSep" -nn "_______________" -at "enum" -en "Extra"  $ctrls[1];
+    setAttr -e -k 1 -l 1  ( $ctrls[1]+".extraSep");   
+    addAttr -ln "showExtraCtrl"  -at "long"  -min 0 -max 1 -dv 1  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".showExtraCtrl");
+}
+global proc string[] setRibbonTwistDeform(string $ctrls[],string $grpCtrls[],string $tmpPlane[],string $prefix,float $topPoint,float $endPoint,float $topPosition[],float $midPosition[],float $endPosition[]){
+    $grpNoTransform=($prefix + "noTransform_grp");
+    if(!`objExists $grpNoTransform`) group -em -n ($prefix + "noTransform_grp");
+    $grpSurfaces=($prefix + "surfaces_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+    $grpDeformers=($prefix + "deformer_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+    
+    //Add attributes: Twist/Roll attributes
+    $ctrlSide={ $ctrls[0], $ctrls[2]};
+
+    for($obj in $ctrlSide){
+        addAttr -ln "twistSep" -nn "_______________" -at "enum" -en "Twist" $obj;
+        setAttr -e -k 1 -l 1  ($obj+".twistSep");    
+        addAttr -ln "twist" -at double  -dv 0 $obj;
+        setAttr -e-keyable true ($obj+".twist");    
+        addAttr -ln "twistOffset" -at double  -dv 0 $obj;
+        setAttr -e-keyable true ($obj+".twistOffset");    
+        addAttr -ln "affectToMid" -at double  -min 0 -max 10 -dv 0 $obj;
+        setAttr -e-keyable true ($obj+".affectToMid");    
+        }
+    addAttr -ln "twistSep" -nn "_______________" -at "enum" -en "Twist"  $ctrls[1];
+    setAttr -e -k 1 -l 1  ( $ctrls[1]+".twistSep");      
+    addAttr -ln "roll" -at double  -dv 0  $ctrls[1];
+    setAttr -e-keyable true ( $ctrls[1]+".roll");    
+    addAttr -ln "rollOffset" -at double  -dv 0  $ctrls[1];
+    setAttr -e-keyable true ( $ctrls[1]+".rollOffset");        
+    
+    string $geoPlaneTwist[]  = `duplicate -name ($prefix + "twist_blnd_NurbsPlane") $tmpPlane[0]`;
+    $twistDef = `nonLinear -type "twist" -n ($geoPlaneTwist[0] + "_twist") $geoPlaneTwist[0]`;
+    setAttr ($twistDef[0]+".lowBound") -1;
+    setAttr ($twistDef[0]+".highBound") 1; 
+    rotate -a -fo 0 0 -180 $twistDef;
+    
+    //Cleanup: Hierarchy
+    parent $geoPlaneTwist[0] $grpSurfaces;
+    parent $twistDef[1] $grpDeformers;
+    
+    //Twist deformer: Sum the twist and the roll
+    $sumTopPma=`createNode -n ($prefix + "twist_top_sum_pma") "plusMinusAverage"`;    
+    connectAttr ($ctrls[0] + ".twist") ($sumTopPma + ".input1D[0]");
+    connectAttr ($ctrls[0] + ".twistOffset") ($sumTopPma + ".input1D[1]");
+    connectAttr ($ctrls[1] + ".roll") ($sumTopPma + ".input1D[2]");
+    connectAttr ($ctrls[1] + ".rollOffset") ($sumTopPma + ".input1D[3]");
+    connectAttr ($sumTopPma + ".output1D") ($twistDef[0] + ".startAngle");
+
+    $sumEndPma=`createNode -n ($prefix + "twist_low_sum_pma") "plusMinusAverage"`;        
+    connectAttr ($ctrls[2] + ".twist") ($sumEndPma + ".input1D[0]");
+    connectAttr ($ctrls[2] + ".twistOffset") ($sumEndPma + ".input1D[1]");
+    connectAttr ($ctrls[1] + ".roll") ($sumEndPma + ".input1D[2]");
+    connectAttr ($ctrls[1] + ".rollOffset") ($sumEndPma + ".input1D[3]");
+    connectAttr ($sumEndPma + ".output1D") ($twistDef[0] + ".endAngle");
+    //Twist deformer: Set up the affect of the deformer
+    $topAffMdl=`createNode -n ($prefix + "twist_top_affect_mdl") "multDoubleLinear"`;        
+    setAttr ($topAffMdl + ".input1") -0.1;
+    connectAttr ($ctrls[0] + ".affectToMid") ($topAffMdl + ".input2");
+    connectAttr ($topAffMdl + ".output") ($twistDef[0] + ".lowBound");
+    $endAffMdl=`createNode -n ($prefix + "twist_end_affect_mdl") "multDoubleLinear"`;        
+    setAttr ($endAffMdl + ".input1") 0.1;
+    connectAttr ($ctrls[2] + ".affectToMid") ($endAffMdl + ".input2");
+    connectAttr ($endAffMdl + ".output") ($twistDef[0] + ".highBound");    
+    
+    
+    return $geoPlaneTwist;     
+} 
+global proc string[] setRibbonSineDeform(string $ctrls[],string $grpCtrls[],string $tmpPlane[],string $prefix,float $topPoint,float $endPoint,float $topPosition[],float $midPosition[],float $endPosition[]){
+    $grpNoTransform=($prefix + "noTransform_grp");
+    if(!`objExists $grpNoTransform`) group -em -n ($prefix + "noTransform_grp");
+    $grpSurfaces=($prefix + "surfaces_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+    $grpDeformers=($prefix + "deformer_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+    
+    //Add attributes: Sine attributes
+    addAttr -ln "sineSep" -nn "_______________" -at "enum" -en "Sine"  $ctrls[1];
+    setAttr -e -k 1 -l 1  ( $ctrls[1]+".sineSep");         
+    addAttr -ln "amplitude" -at double  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".amplitude");   
+    addAttr -ln "offset" -at double  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".offset");   
+    addAttr -ln "twist" -at double  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".twist");           
+    addAttr -ln "sineLength" -at double -min 0.1 -dv 2  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".sineLength"); 
+    
+    string $geoPlaneSine[]   = `duplicate -name ($prefix + "sine_blnd_NurbsPlane") $tmpPlane[0]`;
+        
+    $sineDef = `nonLinear -type "sine" -n ($geoPlaneSine[0] + "_sine") $geoPlaneSine[0]`;
+    setAttr ($sineDef[0]+".lowBound") -1;
+    setAttr ($sineDef[0]+".highBound") 1; 
+    setAttr ($sineDef[0] +".dropoff") 1;
+    
+    //Cleanup: Hierarchy
+    parent $geoPlaneSine[0] $grpSurfaces;
+    parent $sineDef[1] $grpDeformers;
+
+    //Sine deformer: Set up the connections for the sine
+    connectAttr($ctrls[1] + ".amplitude") ($sineDef[0] + ".amplitude");
+    connectAttr($ctrls[1] + ".offset") ($sineDef[0] + ".offset");
+    connectAttr($ctrls[1] + ".twist") ($sineDef[1] + ".rotateY");
+    connectAttr($ctrls[1] + ".sineLength") ($sineDef[0] + ".wavelength");
+        
+    return $geoPlaneSine;     
+}         
+global proc string[] setRibbonWireDeform(string $ctrls[],string $grpCtrls[],string $tmpPlane[],string $prefix,float $topPoint,float $endPoint,float $topPosition[],float $midPosition[],float $endPosition[]){
+
+    $grpNoTransform=($prefix + "noTransform_grp");
+    if(!`objExists $grpNoTransform`) group -em -n ($prefix + "noTransform_grp");
+    $grpSurfaces=($prefix + "surfaces_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;    
+    $grpMisc= `group -em  -p $grpNoTransform -n ($prefix + "misc_grp")`;
+    $grpCluster= `group -em -p $grpNoTransform -n ($prefix + "cluster_grp")`; 
+    
+    string $geoPlaneWire[]   = `duplicate -name ($prefix + "wire_blnd_NurbsPlane") $tmpPlane[0]`;    
+    
+    $deformCrv=($prefix + "ribbon_wire_crv");
+    curve -n $deformCrv -d 2 -p $topPosition[0] $topPosition[1] $topPosition[2] -p $midPosition[0] $midPosition[1] $midPosition[2] -p $endPosition[0] $endPosition[1] $endPosition[2];
+    $wireDef=`wire -n ($geoPlaneWire[0] + "_wire") -dds 0 15 -wire $deformCrv $geoPlaneWire`;
+    
+    //Create deformers: Clusters
+    $clsTop =`cluster -n ("clusteTop"+$deformCrv) -rel ($deformCrv + ".cv[0:1]")`;
+    $shape=`listRelatives  -typ "shape" $clsTop[1]`;
+    setAttr ($shape[0]  + ".origin") $topPosition[0] $topPosition[1] $topPosition[2];
+    xform -ws -piv $topPosition[0] $topPosition[1] $topPosition[2] $clsTop[1];
+    $clsMid =`cluster -n ("clusteMid"+$deformCrv)-rel ($deformCrv + ".cv[1]")`;
+    $clsEnd =`cluster -n ("clusteEnd"+$deformCrv)-rel ($deformCrv + ".cv[1:2]")`;
+    $shape=`listRelatives  -typ "shape" $clsEnd[1]`;
+    setAttr ($shape[0]  + ".origin") $endPosition[0] $endPosition[1] $endPosition[2];
+    xform -ws -piv $endPosition[0] $endPosition[1] $endPosition[2] $clsEnd[1];
+    percent -v 0.5  $clsTop[0] ($deformCrv + ".cv[1]");
+    percent -v 0.5  $clsEnd[0] ($deformCrv + ".cv[1]");
+    
+    $posTopPma=`createNode -n ($prefix + "top_ctrl_pos_pma") "plusMinusAverage"`;
+    connectAttr ($ctrls[0] + ".translate") ($posTopPma + ".input3D[0]");
+    connectAttr ($grpCtrls[0] + ".translate") ($posTopPma + ".input3D[1]");
+    
+    $posEndPma=`createNode -n ($prefix + "end_ctrl_pos_pma") "plusMinusAverage"`;
+    connectAttr ($ctrls[2] + ".translate") ($posEndPma + ".input3D[0]");
+    connectAttr ($grpCtrls[2] + ".translate") ($posEndPma + ".input3D[1]");
+    
+    connectAttr ($posTopPma + ".output3D") ($clsTop[1] + ".translate");
+    connectAttr ($ctrls[1] + ".translate") ($clsMid[1] + ".translate");
+    connectAttr ($posEndPma + ".output3D") ($clsEnd[1] + ".translate");
+    
+    //Cleanup: Hierarchy
+    parent $geoPlaneWire[0] $grpSurfaces;
+    parent $clsTop[1] $clsMid[1] $clsEnd[1] $grpCluster;
+    parent $deformCrv `listConnections ($wireDef[0] + ".baseWire[0]")` $grpMisc;
+    return $geoPlaneWire;
+}  
+global proc string[] setRibbonVolumeDeform(string $ctrls[],string $grpCtrls[],string $tmpPlane[],string $prefix,float $topPoint,float $endPoint,float $topPosition[],float $midPosition[],float $endPosition[]){
+    $grpNoTransform=($prefix + "noTransform_grp");
+
+    if(!`objExists $grpNoTransform`) group -em -n ($prefix + "noTransform_grp");
+    $grpSurfaces=($prefix + "surfaces_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+    $grpDeformers=($prefix + "deformer_grp");  
+    if(!`objExists $grpSurfaces`) group -p $grpNoTransform -n $grpSurfaces;   
+
+    $grpTransform=($prefix + "transform_grp");  
+    $deformCrv=($prefix + "ribbon_wire_crv"); 
+    $curveInfoNode = `arclen -ch on $deformCrv`;
+    $len=`getAttr ($curveInfoNode+".arcLength")`;
+    
+    //Add attributes: Volume attributes
+    addAttr -ln "volumeSep" -nn "_______________" -at "enum" -en "Volume"  $ctrls[1];
+    setAttr -e -k 1 -l 1  ( $ctrls[1]+".volumeSep");         
+    addAttr -ln "volume" -at double -min -1 -max 1 -dv 0  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".volume");    
+    addAttr -ln "volumeMultiplier" -at double -min 1 -dv ($len/2)  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".volumeMultiplier"); 
+    addAttr -ln "startDropoff" -at double -min 0 -max 1 -dv 1  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".startDropoff");    
+    addAttr -ln "endDropoff" -at double -min 0 -max 1 -dv 1  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".endDropoff"); 
+    //$topPoint=5.0;$endPoint=-5.0;
+    addAttr -ln "volumeScale" -at double -min ($endPoint*0.9) -max ($topPoint*2)  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".volumeScale"); 
+    addAttr -ln "volumePosition" -at double -min $endPoint -max $topPoint  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".volumePosition"); 
+    addAttr -ln "autoVolume"  -at "long"  -min 0 -max 1 -dv 1  $ctrls[1];
+    setAttr -e -k 1 ( $ctrls[1]+".autoVolume");      
+    string $geoPlaneVolume[] = `duplicate -name ($prefix + "volume_NurbsPlane") $tmpPlane[0]`;
+    //Offset the volume-plane
+    setAttr ($geoPlaneVolume[0] + ".translateX") -0.5;
+        
+    $squashDef = `nonLinear -type "squash" -n ($geoPlaneVolume[0] + "_squash") $geoPlaneVolume[0]`;
+    setAttr ($squashDef[0]+".lowBound") -1;
+    setAttr ($squashDef[0]+".highBound") 1;
+    
+    //Cleanup: Hierarchy
+    parent $geoPlaneVolume[0] $grpSurfaces;
+    parent $squashDef[1] $grpDeformers;
+    
+    //Squash deformer: Set up the connections for the volume control
+    $sc=`createNode -n ($prefix + "ScaleVolume_mdl") "multiplyDivide"`;  
+    setAttr ($sc+".operation") 2;
+    connectAttr -f ($curveInfoNode+".arcLength") ($sc+".input1X");
+    //connectAttr -f ($grpTransform+".scale") ($sc+".input2");     
+    
+    $lenRate=`createNode -n ($prefix + "autoVolume_mdl") "multiplyDivide"`;
+    connectAttr -f ($sc+".output") ($lenRate+".input1"); 
+    setAttr ($lenRate+".input2X") (-1*$len);
+    setAttr ($lenRate+".operation") 2;
+
+    $mn=`createNode -n ($prefix + "autoVolume_pma") "plusMinusAverage"`; 
+    connectAttr -f ($lenRate+".outputX") ($mn+".input1D[2]");     
+    connectAttr -f ($ctrls[1]+".volume") ($mn+".input1D[1]");
+    setAttr ($mn+".input1D[0]") 1;
+    setAttr ($mn+".operation") 1;
+          
+    $volumeRevfMdl=`createNode -n ($prefix + "volume_reverse_mdl") "multDoubleLinear"`;       
+    setAttr ($volumeRevfMdl + ".input1") -1;
+     
+    connectAttr -f ($mn+".output1D") ($volumeRevfMdl + ".input2"); 
+    connectAttr ($volumeRevfMdl + ".output") ($squashDef[0] + ".factor");
+    connectAttr ($ctrls[1] + ".startDropoff") ($squashDef[0] + ".startSmoothness");
+    connectAttr ($ctrls[1] + ".endDropoff") ($squashDef[0] + ".endSmoothness");
+    connectAttr ($ctrls[1] + ".volumePosition") ($squashDef[1] + ".translateY");
+    //Squash deformer: Set up the volume scaling
+    $sumScalePma=`createNode -n ($prefix + "volume_scale_sum_pma") "plusMinusAverage"`;       
+    setAttr ($sumScalePma + ".input1D[0]") $topPoint;
+    connectAttr ($ctrls[1] + ".volumeScale") ($sumScalePma + ".input1D[1]");
+    connectAttr ($sumScalePma + ".output1D") ($squashDef[1] + ".scaleY");
+        
+    return $geoPlaneVolume;    
+}                  
+global proc string setVolumeFollicle(string $ctrls[],string $ctrls2[],string $geoPlaneVolume[],string $prefix,int $i,float $y){
+    $grpNoTransform=($prefix + "noTransform_grp");
+    if(!`objExists $grpNoTransform`) group -em -n ($prefix + "noTransform_grp");
+    $grpFollVolume=($prefix + "follicles_volume_grp");  
+    if(!`objExists $grpFollVolume`) group -p $grpNoTransform -n $grpFollVolume;   
+ 
+
+    //Create a follicle for the bind-plane and the volume-plane    
+    string $folV;
+    $folV =($prefix + "_volume_follicle"+($i+1));
+    createFollicle($geoPlaneVolume[0],1 ,($y*$i),$folV);   
+    parent $folV $grpFollVolume;  
+    //Make the connections for the volume
+    $multMpd=`createNode -n ($prefix +($i+1)+ "_multiplier_mpd") "multiplyDivide"`;
+    connectAttr($ctrls[1] + ".volumeMultiplier") ($multMpd + ".input1X");
+    connectAttr($folV + ".translate") ($multMpd + ".input2");
+    
+    $sumPma =`createNode -n ($prefix +($i+1)+ "_volume_sum_pma") "plusMinusAverage"`;
+    connectAttr($multMpd + ".outputX") ($sumPma + ".input1D[0]");
+    setAttr($sumPma + ".input1D[1]") 1;
+    connectAttr($sumPma + ".output1D") ($ctrls2[$i]+"_grp.scaleX");
+    connectAttr($sumPma + ".output1D") ($ctrls2[$i]+"_grp.scaleZ");
+    return $folV;
+}

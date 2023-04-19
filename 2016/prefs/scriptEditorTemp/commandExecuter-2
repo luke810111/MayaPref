@@ -1,0 +1,5 @@
+for($i=0;$i<`size $selsA`;$i++){
+    $cubes=`polyCube`;
+    parentConstraint $selsA[$i] $cube[0];
+    scaleConstraint $selsA[$i] $cube[0];
+    }
