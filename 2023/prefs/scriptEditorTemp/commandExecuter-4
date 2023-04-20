@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+$s="";
+$r="";
+$test=`ls -type "file"`;
+$texture_path = getAttr($test[0] + ".fileTextureName");
+
+string $s1 = `substitute $s $texture_path $r`;
+G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/1_Models/SkinnedMeshes/Enemies/Slime/SK_Enemy_EmeraldSlime/texture/T_Enemy_EmeraldSlime_body_Albedo_RGB.tga
+=======
 
 
 # -----------------------------------
@@ -16,3 +25,4 @@ if r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src' not in sys
     
 import studiolibrary
 studiolibrary.main()
+>>>>>>> 2a0b386b41a6fd2cfa8f4d4e3774511a2b7b9151
