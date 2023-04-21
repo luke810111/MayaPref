@@ -1,28 +1,17 @@
-<<<<<<< HEAD
-$s="";
-$r="";
-$test=`ls -type "file"`;
-$texture_path = getAttr($test[0] + ".fileTextureName");
-
-string $s1 = `substitute $s $texture_path $r`;
-G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/Art/1_Assets/1_Models/SkinnedMeshes/Enemies/Slime/SK_Enemy_EmeraldSlime/texture/T_Enemy_EmeraldSlime_body_Albedo_RGB.tga
-=======
-
-
-# -----------------------------------
-# Studio Library
-# www.studiolibrary.com
-# -----------------------------------
-
-import os
-import sys
-    
-if not os.path.exists(r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src'):
-    raise IOError(r'The source path "C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src" does not exist!')
-    
-if r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src' not in sys.path:
-    sys.path.insert(0, r'C:\Users\luke\Documents\maya\scripts\studiolibrary-2.9.6.b3\src')
-    
-import studiolibrary
-studiolibrary.main()
->>>>>>> 2a0b386b41a6fd2cfa8f4d4e3774511a2b7b9151
+window -width 150;
+columnLayout -adjustableColumn true;
+    button -label "get Next File" -command "AA()";
+    button -label "run" -command "BB()";
+showWindow;
+proc AA(){
+        $sw=getNextFile();
+        if($sw) print ("ready\n");
+        else print ("At the latest file \n");
+}
+proc BB(){
+        quickSwitchOffPlugin();
+        cleanUnkownNode();
+        cleanUnkownPlugin();
+        file -force -save -type "mayaBinary";
+        print ("done\n");
+}

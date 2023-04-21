@@ -1,59 +1,8 @@
-<<<<<<< HEAD
-G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/01_Treeverse/Art/1_Assets/1_Models/SkinnedMeshes/Enemies/Slime/SK_Enemy_EmeraldSlime/texture
-X:/Art/1_Assets/1_Models/SkinnedMeshes/Enemies/Slime/SK_Enemy_EmeraldSlime/texture
-
-// Result: scriptEditorPanel1Window|scriptEditorPanel1|formLayout97|formLayout99|paneLayout4|cmdScrollFieldReporter1
-FPERepathRepathBtnCB 0 1;
-EEactiveListChanged;
-CBselectionChanged;
-import maya.internal.ufeSupport.utils as ufeUtils; ufeUtils.hasNonMayaSelectedItems()
-# Result: False
-autoUpdateAttrEd;
-import maya.internal.ufeSupport.utils as ufeUtils; ufeUtils.isPathStringValidObject('')
-# Result: False
-updateAnimLayerEditor("AnimLayerTab");
-statusLineUpdateInputField;
-if (!`exists polyNormalSizeMenuUpdate`) {eval "source buildDisplayMenu";} polyNormalSizeMenuUpdate;
-dR_updateCounter;
-dR_updateCommandPanel;
-
-whatIs FPERepathRepathBtnCB
-filePathEditorWin()
-
-filePathRepathWin;
-=======
-
-$om=getOffsetMatrix("pSphere1","pCube1");
-setOffsetMatrix("pSphere1","pCube1",$om);
-global proc float[] getXformRelationDing(string $drvObj,string $dvnObj){
-	$mm="getParentMatrix";
-	createNode -ss -n $mm  "multMatrix";
-	
-	connectAttr -f ($drvObj+".worldInverseMatrix") ($mm+".matrixIn[0]");
-	connectAttr -f ($dvnObj+".worldMatrix[0]") ($mm+".matrixIn[1]");
-	
-	
-	$m=`getAttr ($mm+".matrixSum")`;
-	delete $mm;
-	return $m;
-	}
-	
-
-global proc setXformRelationDing(string $drvObj,string $dvnObj,float $om[]){
-	$temp="temp";
-	$mm="setParentMatrix";
-	
-	createNode -ss -n $mm  "multMatrix";
-	group -em -n $temp;
-
-	xform -m $om[0] $om[1] $om[2] $om[3] $om[4] $om[5] $om[6] $om[7] $om[8] $om[9] $om[10] $om[11] $om[12] $om[13] $om[14] $om[15] $temp;
-
-	connectAttr -f ($temp+".worldMatrix") ($mm+".matrixIn[0]");	
-	connectAttr -f ($drvObj+".worldMatrix") ($mm+".matrixIn[1]");
-
-	
-	$m=`getAttr ($mm+".matrixSum")`;	
-	xform -ws -m $m[0] $m[1] $m[2] $m[3] $m[4] $m[5] $m[6] $m[7] $m[8] $m[9] $m[10] $m[11] $m[12] $m[13] $m[14] $m[15] $dvnObj;
-	delete $mm $temp;
-	}	
->>>>>>> 2a0b386b41a6fd2cfa8f4d4e3774511a2b7b9151
+sn=cmds.file(q=1,sn=1)
+import time
+start_time = time.time()
+cmds.file(sn, open=True)
+print("--- %s seconds ---" % (time.time() - start_time))
+#--- 11.070033550262451 seconds ---
+#--- 0.6648600101470947 seconds ---
+#--- 0.6501486301422119 seconds ---

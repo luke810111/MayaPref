@@ -1,4 +1,4 @@
-global proc shelf_EzRig () {
+global proc shelf_XGen () {
     global string $gBuffStr;
     global string $gBuffStr0;
     global string $gBuffStr1;
@@ -14,27 +14,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -annotation "Open the XGen Window" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -label "Open Description Editor" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "reOpen" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgDEditor.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgDEditor.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -version "2015" 
+        -command "if (!`pluginInfo -q -loaded xgenToolkit`) loadPlugin xgenToolkit.mll;XgCreateDescriptionEditor" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -49,27 +49,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\nsetAttr \"FKIKSpine_M.FKIKBlend\" 0;\nsetAttr \"FKIKSplineNeck_M.FKIKBlend\" 0;\nsetAttr \"FKIKLegFront_R.FKIKBlend\" 0;\nsetAttr \"FKIKLegBack_R.FKIKBlend\" 0;\nsetAttr \"FKIKSplineTail_M.FKIKBlend\" 0;\nsetAttr \"FKIKLegFront_L.FKIKBlend\" 0;\nsetAttr \"FKIKLegBack_L.FKIKBlend\" 0;" 
+        -annotation "Update the XGen Preview" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\nsetAttr \"FKIKSpin..." 
+        -label "Update Preview" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "cutKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPreview.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPreview.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "//asAnimationTesterRemove;\nasMCLRemoveBody \"\";\n\nsetAttr \"FKIKSplineNeck_M.FKIKBlend\" 0;\nsetAttr \"FKIKSplineTail_M.FKIKBlend\" 0;\n\nsetAttr \"FKIKSpine_M.FKIKBlend\" 10;\nsetAttr \"FKIKLegFront_L.FKIKBlend\" 10;\nsetAttr \"FKIKLegBack_L.FKIKBlend\" 10;\nsetAttr \"FKIKLegFront_R.FKIKBlend\" 10;\nsetAttr \"FKIKLegBack_R.FKIKBlend\" 10;\n\n" 
+        -version "2015" 
+        -command "XgPreview" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -84,97 +84,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "lock weight" 
+        -annotation "Clear the XGen Preview" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "string $infs[]=`skinCluster -q -inf`;\nint $n=`size($infs)`;\n\nif ..." 
+        -label "Clear Preview" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "lw" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPreviewClear.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPreviewClear.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "string $infs[]=`skinCluster -q -inf`;\nint $n=`size($infs)`;\n\nif ($n==0){\n        print(\"aaa找不到skin\");\n}else{\n        int $sw= 1-$sw;\n        for ($i=0; $i<$n;$i++){ \n                setAttr ($infs[$i]+\".liw\") $sw;\n                }\n        }\nArtPaintSkinWeightsToolOptions;" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "carlaH_skinWeightsEditor" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "carlaH_skinWeightsEditor" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "carlaH_skinWeightsEditor" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/carlaH_skinWeightsEditor.bmp" 
-        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/carlaH_skinWeightsEditor.bmp" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "global int $carlaH_CESbuildNew; //das fenster zwigen, sich neu aufzubauen\nglobal int $carlaH_CESgrpSize; //minimale Groesse einer Joint-Group\nglobal int $carlaH_CESgrpNameSize; //groesse des Gruppen-Namens\nint $CESgrpValues[]={ 3 , 1 , 6 };\n$carlaH_CESgrpSize = $CESgrpValues[0];\n$carlaH_CESnamePart = $CESgrpValues[1];\n$carlaH_CESgrpNameSize = $CESgrpValues[2];\ncarlaH_skinWeightsEditor() ;\n\n// 124 軀幹模式\n// 131 頭髮模式\n// 1 1 11 \n// 3 1 6 TSM\n// skirtB_La 1 2 2 \n\n/*\n\nmin. count of objects to be sortet in a group :\n\tspecifies the minimum size a sorting group should have\n\tfor example you have two joints with the prefix \"lips_\" but specify the group size to be \" +\n\tthree - than there will be no lips-group - specify it to be two and there will be one\\n\\n\" +\n\t\t\nsort by which part of name (divided by \"_\" ) :\n\tfor example the naming-convention of your joints is something like this: character01_Left_thumb01, \n\tcharacter01_Left_index01,... Then you should specify the name part to three, if you want the \n\tjoints to be sortet by the fingers - specify it to two and the joints will be sorted by the side.\\n\n\t\t\nsize of goup-name :\n\tspecifies the count of letters, a group should have - take the example above, than a group-name size \n\tof 3 would name your groups \"thu\" and \"ind\" - a group-name size of 5 would name it \n\t\"thumb\" and \"index\" \";\n\n*/" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "weightHammerVerts;\r" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "weightHammerVerts;\r" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "weightHammerVerts;\r" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/weightHammerVerts.BMP" 
-        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/weightHammerVerts.BMP" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "weightHammerVerts;\n" 
+        -version "2015" 
+        -command "python(\"xgui.createDescriptionEditor(False).preview(True)\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -189,12 +119,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Paint Skin Weights Tool Option Box" 
+        -annotation "Create a new XGen Description" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Paint Skin Weights Tool Option Box" 
+        -label "Create Description" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -203,12 +133,13 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "paintSkinWeights.xpm" 
-        -image1 "paintSkinWeights.xpm" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgCreateDescription.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgCreateDescription.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "ArtPaintSkinWeightsToolOptions" 
+        -version "2015" 
+        -command "if (!`pluginInfo -q -loaded xgenToolkit`) loadPlugin xgenToolkit.mll;XgCreateDescription" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -223,12 +154,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse -surfaceAssociation closestPoint -influenceAssociation closestJoint\" } );\n" 
+        -annotation "Patches bindings menu." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse..." 
+        -label "Bind Patches" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -237,12 +168,13 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "mirrorSkinWeight.png" 
-        -image1 "mirrorSkinWeight.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgBindFaces.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgBindFaces.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "doMirrorSkinWeightsArgList( 2, { \" -mirrorMode YZ -mirrorInverse -surfaceAssociation closestPoint -influenceAssociation closestJoint\" } );\n" 
+        -version "2015" 
+        -command "python(\"from PySide2 import QtGui, QtCore, QtWidgets\\nfrom PySide2.QtGui import *\\nfrom PySide2.QtCore import *\\nfrom PySide2.QtWidgets import *\\nm = QMenu()\\nm.addAction(u\\\"Add Selected Faces\\\",  lambda: xgui.createDescriptionEditor(False).modifyBinding(\\\"Append\\\") )\\nm.addAction(u\\\"Replace with Selected Faces\\\", lambda: xgui.createDescriptionEditor(False).modifyBinding(\\\"Replace\\\") )\\nm.addAction(u\\\"Remove Selected Faces\\\",  lambda: xgui.createDescriptionEditor(False).modifyBinding(\\\"Remove\\\") )\\nm.addAction(u\\\"Bind Faces Based on Map...\\\",     lambda: xgui.createDescriptionEditor(False).modifyBinding(\\\"Map\\\") )\\nm.addSeparator()\\nm.addAction(u\\\"Select Bound Faces\\\",  lambda: xgui.createDescriptionEditor(False).selectBinding() )\\nm.popup(QCursor.pos())\\n\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -257,12 +189,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "carlaH_skinWeightsEditor" 
+        -annotation "Add or Move Guides" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "carlaH_skinWeightsEditor" 
+        -label "Add/Move Guides" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -271,12 +203,13 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgGuideContext.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgGuideContext.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "carlaH_skinWeightsEditor" 
+        -version "2015" 
+        -command "XgGuideTool" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -291,27 +224,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Edit deformer set membership" 
+        -annotation "Hide/Show the Guides of the current XGen Description" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Deformer Sets" 
+        -label "Toggle Guides Visibility" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "DS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconWindow.png" 
-        -image1 "menuIconWindow.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgToggleGuide.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgToggleGuide.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "DeformerSetEditor" 
+        -version "2015" 
+        -command "python(\"xgen.toggleGuideDisplay(xgui.createDescriptionEditor(False).currentDescription())\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -326,12 +259,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Transfer vertex ID ordering from one surface to another" 
+        -annotation "Turn the Selectability of Guides on and off" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Transfer Vertex Order" 
+        -label "Toggle Guides Selectability" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -340,12 +273,13 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "transferIDs.png" 
-        -image1 "transferIDs.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgToggleGuideReference.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgToggleGuideReference.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "TransferVertexOrder" 
+        -version "2015" 
+        -command "python(\"xgen.toggleGuideReference(xgui.createDescriptionEditor(False).currentDescription())\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -360,27 +294,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Set driven key options" 
+        -annotation "Mirror selected Guides across the X-axis" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Set..." 
+        -label "Mirror Guides X-axis" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "Set." 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconKeys.png" 
-        -image1 "menuIconKeys.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgFlipGuides.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgFlipGuides.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "SetDrivenKeyOptions" 
+        -version "2015" 
+        -command "xgmFlipGuides( python(\"xgui.createDescriptionEditor(False).currentDescription()\") )" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -395,12 +329,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Copy skin weights options" 
+        -annotation "Match XGen patch visibility to geometry visibility." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "copySkinWeightsDialog" 
+        -label "Sync Patch Visibility" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -409,12 +343,13 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "copySkinWeight.png" 
-        -image1 "copySkinWeight.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgSyncPatchVisibility.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgSyncPatchVisibility.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "CopySkinWeightsOptions" 
+        -version "2015" 
+        -command "xgmSyncPatchVisibility" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -429,27 +364,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Copy Vertex Weights" 
+        -annotation "Flip selected between patches and their associated geometry" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Copy Vertex Weights" 
+        -label "Flip Selected" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "CVW" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconSkinning.png" 
-        -image1 "menuIconSkinning.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgSelectionToggle.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgSelectionToggle.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "artAttrSkinWeightCopy" 
+        -version "2015" 
+        -command "python(\"xgen.selectionToggle(xgui.createDescriptionEditor(False).currentDescription())\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -464,132 +399,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Paste Vertex Weights" 
+        -annotation "Select Primitives\nMMB to Isolate Primitves" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Paste Vertex Weights" 
+        -label "Select Primitives" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "PVW" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconSkinning.png" 
-        -image1 "menuIconSkinning.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPrimSelection.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgPrimSelection.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "artAttrSkinWeightPaste" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "A組" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "A組" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "A" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/A組.bmp" 
-        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/A組.bmp" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "string $selsA[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsA=`ls -sl`;\nelse select -r $selsA ;\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "B組" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "B組" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "B" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/B組.bmp" 
-        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/B組.bmp" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "string $selsB[];\nstring $searches[]=`ls -sl`;\nif(`size $searches ` >0 ) $selsB=`ls -sl`;\nelse select -r $selsB ;\n" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "FCm2-2組" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "FCm2-2組" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "FCm2-2組" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
-        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2組.bmp" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "for ($i=0; $i<`size($selsB)`;$i++){ \nparentConstraint -mo -weight 1 $selsA[$i] $selsB[$i] ;\n};\n" 
+        -version "2015" 
+        -command "python(\"xgui.createDescriptionEditor(False).primSelectionContext()\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -604,27 +434,27 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "SCm2-2組" 
+        -annotation "Cull selected Primitves\nMore culling options can be found in the Generator Tab" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "SCm2-2組" 
+        -label "Cull Primitives" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "SCm2-2組" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.xpm" 
-        -image1 "commandButton.xpm" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgCullPrimContextSelect.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgCullPrimContextSelect.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "for ($i=0; $i<`size($selsA)`;$i++){ \nscaleConstraint -mo -weight 1 $selsA[$i] $selsB[$i];\n};\n" 
+        -version "2015" 
+        -command "python(\"xgui.createDescriptionEditor(False).cullSelectedPrimitives()\")" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -639,27 +469,113 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[..." 
+        -annotation "Sculpt guides" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[..." 
+        -label "Sculpt Guides" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "SCnm2-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgGuideSculptTool.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgGuideSculptTool.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "for ($i=0; $i<`size($selsB)`;$i++){ \n    connectAttr -f ($selsA[$i]+\".scale\") ($selsB[$i]+\".scale\");\n    }" 
+        -version "2016" 
+        -command "python(\"xgui.createDescriptionEditor(False).guideSculptContext(False)\")" 
+        -sourceType "mel" 
+        -doubleClickCommand "python(\"xgui.createDescriptionEditor(False).guideSculptContext(True)\")" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Convert primitives to polygons" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Convert Primitives to Polygons" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgConvertToPoly.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgConvertToPoly.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -version "2017" 
+        -command "python(\"import xgenm.xmaya.xgmConvertPrimToPolygon as cpp;cpp.convertPrimToPolygon(False)\")" 
+        -sourceType "mel" 
+        -doubleClickCommand "python(\"import xgenm.xmaya.xgmConvertPrimToPolygon as cpp;cpp.convertPrimToPolygon(True)\")" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "XGenSeparator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open the Interactive Groom Editor to create, edit, and manage grooms." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Interactive Groom Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_editor.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_editor.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -version "2017" 
+        -command "XgCreateIgSplineEditor" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -674,28 +590,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "cpSW2-2" 
+        -annotation "Create Interactive Groom Splines" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "cpSW2-2" 
+        -label "Create Interactive Groom Splines" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "cpSW2-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_creation.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_creation.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[$i] $selsB[$i];\n};\n" 
+        -version "2017" 
+        -command "XgmCreateInteractiveGroomSplinesOption" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmCreateInteractiveGroomSplinesOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -709,28 +626,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "cpSW1-2" 
+        -annotation "Add or reduce the number of hairs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "cpSW1-2" 
+        -label "Density Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "cpSW1-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_density.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_density.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "for ($i=0; $i<`size($selsB)`;$i++){ \ncopySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint -influenceAssociation closestJoint -influenceAssociation closestJoint $selsA[0] $selsB[$i];\n};\n" 
+        -version "2017" 
+        -command "XgmSetDensityBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetDensityBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -744,28 +662,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "disconnect inverseScale of Joint" 
+        -annotation "Adds a single hair." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "$sels=`ls -sl`;\n//$obj=\"ScarfB1_M\";\nfor($obj in $sels){\n    $tem..." 
+        -label "Place Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "delISJt" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_place.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_place.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "$sels=`ls -sl`;\n//$obj=\"ScarfB1_M\";\nfor($obj in $sels){\n    $temps=`listConnections ($obj+\".inverseScale\")`;\n    if(`size($temps)`) disconnectAttr ($temps[0]+\".scale\") ($obj+\".inverseScale\");\n    }" 
+        -version "2017" 
+        -command "XgmSetPlaceBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetPlaceBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -779,28 +698,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "sortOutTool;" 
+        -annotation "Lengthen or shorten hairs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "sortOutTool;" 
+        -label "Length Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "sortOutTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_length.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_length.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/sortOut\";\nsortOutTool;" 
+        -version "2017" 
+        -command "XgmSetLengthBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetLengthBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -814,28 +734,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Deformer Sets" 
+        -annotation "Trim hairs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Deformer Sets" 
+        -label "Cut Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "DS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconWindow.png" 
-        -image1 "menuIconWindow.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_cut.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_cut.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "DeformerSetEditor" 
+        -version "2017" 
+        -command "XgmSetCutBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetCutBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -849,12 +770,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Copy skin weights options" 
+        -annotation "Scales the width of hairs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "$nm=getNm();\nglobal proc string  getNm(){ \n    string $ns = \"\";\n..." 
+        -label "Width Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -863,13 +784,15 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "copySkinWeight.png" 
-        -image1 "copySkinWeight.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_width.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_width.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "CopySkinWeightsOptions" 
+        -version "2017" 
+        -command "XgmSetWidthBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetWidthBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -883,28 +806,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Reference Editor" 
+        -annotation "Rotates the primitive faces of hairs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Reference Editor" 
+        -label "Twist Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "RE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "menuIconFile.png" 
-        -image1 "menuIconFile.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_twist.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_twist.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "ReferenceEditor" 
+        -version "2017" 
+        -command "XgmSetDirectionBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetDirectionBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -918,28 +842,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "getCenterofselection" 
+        -annotation "Change the orientation and bend of hairs in the direction of the brush stroke." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "getCenterofselection" 
+        -label "Comb Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "gcos" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_comb.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_comb.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "setToolTo moveSuperContext;\nvector $v = `manipMoveContext -q -p Move`;\nspaceLocator -a -p ($v.x) ($v.y) ($v.z);\nxform -cp;" 
+        -version "2017" 
+        -command "XgmSetCombBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetCombBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -953,28 +878,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source Quick_rename_tool;\nQuick_rename_tool ();" 
+        -annotation "Pulls a selection of hairs in any direction." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "source Quick_rename_tool;\nQuick_rename_tool ();" 
+        -label "Grab Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "qrn" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_grab.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_grab.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"reference/Quick_rename_tool\";\nQuick_rename_tool ();\n" 
+        -version "2017" 
+        -command "XgmSetGrabBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetGrabBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -988,28 +914,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source sortOutTool;\nsortOutTool;" 
+        -annotation "Straightens hairs or smooth transitions between hairs of different size and shape." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "source sortOutTool;\nsortOutTool;" 
+        -label "Smooth Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "sortOutTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_smooth.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_smooth.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "\nsource \"byLuke/sortOutTool\";\nsortOutTool;" 
+        -version "2017" 
+        -command "XgmSetSmoothBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetSmoothBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1023,28 +950,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source \"xRigD_Tool\";" 
+        -annotation "Noise Tool: Paint 3D noise to vary hair orientation making hair appear more natural." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "source \"xRigD_Tool\";" 
+        -label "Noise Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "xRigD" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_noise.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_noise.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/xRigD_Tool\";\nxRigDTool();" 
+        -version "2017" 
+        -command "XgmSetNoiseBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetNoiseBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1058,63 +986,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source \"byLuke/exportRigTool\";\nexportRigTool();" 
+        -annotation "Pull hairs together to form clumps." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "source \"byLuke/exportRigTool\";\nexportRigTool();" 
+        -label "Clump Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "expRig" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_clump.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_clump.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/exportFBXPipeline\";\nexportRigTool();" 
+        -version "2017" 
+        -command "XgmSetClumpBrushTool" 
         -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 39
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "czDisplayColorOverrideUI" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "czDisplayColorOverrideUI" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "color" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/CM.bmp" 
-        -image1 "X:/Art/1_Assets/3_Animation/MAYA/scripts/byLuke/CM.bmp" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "source \"reference/czDisplayColorOverrideUI\";\nczDisplayColorOverrideUI();" 
-        -sourceType "mel" 
+        -doubleClickCommand "XgmSetClumpBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1128,28 +1022,29 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source \"byLuke/EzRig\";" 
+        -annotation "Push hairs away from each other." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "source \"byLuke/EzRig\";" 
+        -label "Part Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "2-2updateModel" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_part.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_part.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/EzRig\";\nupdateModel($selsA,$selsB,1);" 
+        -version "2017" 
+        -command "XgmSetPartBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetPartBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1163,12 +1058,12 @@ global proc shelf_EzRig () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "string $vtx[] = `polyListComponentConversion -toVertexFace`;\nselect -r $vtx;\nPolygonNormalEditTool;" 
+        -annotation "Lock hairs so they cannot be modified." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "string $vtx[] = `polyListComponentConversion -toVertexFace`;\nsel..." 
+        -label "Freeze Brush" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -1177,13 +1072,51 @@ global proc shelf_EzRig () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_freeze.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_freeze.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "string $vtx[] = `polyListComponentConversion -toVertexFace`;\nselect -r $vtx;\nPolygonNormalEditTool;" 
+        -version "2017" 
+        -command "XgmSetFreezeBrushTool" 
         -sourceType "mel" 
+        -doubleClickCommand "XgmSetFreezeBrushToolOption" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select hairs by painting." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Select Brush" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_select.png" 
+        -image1 "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen//icons/xgIG_select.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -version "2017" 
+        -command "XgmSetSelectBrushTool" 
+        -sourceType "mel" 
+        -doubleClickCommand "XgmSetSelectBrushToolOption" 
         -commandRepeatable 1
         -flat 1
     ;
