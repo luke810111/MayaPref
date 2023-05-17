@@ -6,50 +6,10 @@ optionVar -version 3;
 
 // Animation
 optionVar -cat "Animation"
- -iv "autoKeyframeState" 1
- -iv "emManipulation" 0
- -iv "evaluationMode" 1
- -fv "playbackMax" 58
- -fv "playbackMaxDefault" 22
- -fv "playbackMaxRange" 59
- -fv "playbackMaxRangeDefault" 22
- -fv "playbackMinDefault" 0
- -fv "playbackMinRangeDefault" 0
- -fv "timeSliderMaxPlaySpeed" 1
- -sv "timeSliderPlayView" "all"
- -sv "timeSliderShowKeys" "mainChannelBox"
- -iv "timeSliderShowKeysCombined" 1
- ;
-
-// Animation.Constrain.Aim
-optionVar -cat "Animation.Constrain.Aim"
- -fv3 "aimConstraintAimVector" 0 0 1
- -sv "aimConstraintWorldUpObject" "RootX_M"
- -sv "aimConstraintWorldUpType" "object"
- -fv3 "aimConstraintWorldUpVector" 1 0 0
- ;
-
-// Animation.Constrain.Parent
-optionVar -cat "Animation.Constrain.Parent"
- -iv "parConstMaintainOffset" 0
- ;
-
-// Animation.Constrain.Scale
-optionVar -cat "Animation.Constrain.Scale"
- -iv "scaleConstMaintainOffset" 1
- ;
-
-// Animation.Playback.Playblast
-optionVar -cat "Animation.Playback.Playblast"
- -sv "playblastCompression" "H.264"
- -iv "playblastDisplaySizeSource" 3
- -sv "playblastFile" "test"
- -sv "playblastFormat" "qt"
- -iv "playblastHeight" 540
- -iv "playblastQuality" 100
- -iv "playblastSaveToFile" 1
- -fv "playblastScale" 1
- -iv "playblastWidth" 960
+ -fv "playbackMaxDefault" 120
+ -fv "playbackMaxRangeDefault" 200
+ -fv "playbackMinDefault" 1
+ -fv "playbackMinRangeDefault" 1
  ;
 
 // Attribute Editor
@@ -60,112 +20,27 @@ optionVar -cat "Attribute Editor"
  -sva "activeAEShowFilterTypes" "typeAdjust"
  ;
 
-// Bake Simulation
-optionVar -cat "Bake Simulation"
- -sv "bakeSimulationHierarchy" "below"
- -iv "bakeSimulationWhichRange" 2
- ;
-
 // Color Management
 optionVar -cat "Color Management"
  -sv "colorManagementColorPickerColorSpaceSelection" "Rendering Space"
  -sv "colorManagementColorPickerViewSelection" "ACES 1.0 SDR-video"
  -iv "colorManagementEnabledByDefault" 1
- -iv "colorManagementOCIORulesEnabled" 0
- ;
-
-// Component Editor
-optionVar -cat "Component Editor"
- -iv "CEoperationType" 6
- ;
-
-// Content Browser
-optionVar -cat "Content Browser"
- -iv "ThumbnailSize" 1
- -sa "WindowsMenuContentBrowserContext"
- -sva "WindowsMenuContentBrowserContext" "projects"
- -sva "WindowsMenuContentBrowserContext" "default"
- -sva "WindowsMenuContentBrowserContext" "C:/Users/luke/Documents/maya/projects/default"
- -sva "WindowsMenuContentBrowserContext" "1"
- -ia "WindowsMenuContentBrowserContextPanelsStatus"
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
- -iv "WindowsMenuContentBrowserContextThumbnailSize" 1
- ;
-
-// Deform.Wrap
-optionVar -cat "Deform.Wrap"
- -iv "renderInfl" 1
- ;
-
-// File Path Editor
-optionVar -cat "File Path Editor"
- -sv "fpeRepath_path" "X:/Art/1_Assets/1_Models/SkinnedMeshes/Enemies/Slime/SK_Enemy_EmeraldSlime/"
- -iv "fpeReplace_instance" 2
- -sv "fpeReplace_replace" "X:/"
- -sv "fpeReplace_search" "G:/¦@¥Î¶³ºÝµwºÐ/Endless Clouds Shared/01_Treeverse/"
- ;
-
-// File.ATOM.Export Animation
-optionVar -cat "File.ATOM.Export Animation"
- -sv "animExportDirName" "Z:/Art/1_Assets/3_Animation/MAYA/Player/Main"
- -sv "animExportFileName" "wand.atom"
- -iv "animExportTimeRange" 2
- ;
-
-// File.Optimize Scene Size
-optionVar -cat "File.Optimize Scene Size"
- -iv "unknownNodesOption" 1
  ;
 
 // Files/Projects
 optionVar -cat "Files/Projects"
- -sv "" "X:/Art/1_Assets/3_Animation/MAYA"
  -sa "CustomFileDialogSidebarUrls"
  -sva "CustomFileDialogSidebarUrls" "file:"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke/Desktop"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke/Documents"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke"
- -sv "FBX exportOptions" "v=0;"
- -sv "FBXOptions" "v=0;"
- -sv "PROE_ATFOptions" "ts=0;ec=1;cd=0.0015;icl=0.01;mcl=100;s=3;adp=1;smp=8;ant=0;leg=0;en=1;nt=15;st=0;gar=21.5;mel=11.314646;sso=0;stol=0.01;ssps1=0;ssps2=0;sym=1"
- -sv "animExportOptions" "precision=8;intValue=17;nodeNames=1;verboseUnits=0;whichRange=1;range=0:10;options=keys;hierarchy=below;controlPoints=0;shapes=1;helpPictures=0;useChannelBox=0;copyKeyCmd=-animation objects -option keys -hierarchy below -controlPoints 0 -shape 1 "
- -sv "animImportOptions" ";targetTime=4;copies=1;option=replace;pictures=0;connect=0;"
- -iv "animRangeOpt" 1
- -iv "animRangeOptDefault" 1
- -sv "defaultFileExportActiveType" "FBX export"
- -sv "defaultFileImportType" "animImport"
- -sv "defaultFileReferenceType" "mayaBinary"
- -sv "fileOptionsRenamePrefix" "imp_"
- -iv "fileOptionsUseRenamePrefix" 1
- -sv "fileWorkingNamespaceName" ":"
- -iv "isIncrementalSaveEnabled" 1
  -sv "lastLocalWS" "X:/Art/1_Assets/3_Animation/MAYA"
- -sv "mayaAsciiOptions" "v=0;"
- -sv "mayaBinaryOptions" "v=0;"
- -sv "referenceOptionsRenamePrefix" "model"
- -iv "useNamespacesDuringFileIO" 0
  ;
 
 // Graph Editor
 optionVar -cat "Graph Editor"
- -iv "graphEdOutlinerWidth" 257
- -iv "graphEditorDisplayInfinities" 1
- -iv "graphEditorDisplayNormalized" 1
+ -iv "graphEditorDisplayNormalized" 0
  -iv "graphEditorStackedCurves" 0
- ;
-
-// Heads Up Display
-optionVar -cat "Heads Up Display"
- -iv "cameraNamesVisibility" 0
- -iv "capsLockVisibility" 0
- -iv "currentFrameVisibility" 1
- -iv "viewAxisVisibility" 0
  ;
 
 // Hotbox
@@ -193,179 +68,25 @@ optionVar -cat "Hotbox"
 
 // Hotkey Editor
 optionVar -cat "Hotkey Editor"
- -sv "currentHotkeySet" "hotKey"
- -iv "hotkeyEdRunCmdColWidth" 143
- ;
-
-// HumanIK
-optionVar -cat "HumanIK"
- -sv "hikControlRigUIPath" "C:/Program Files/Autodesk/Maya2023/scripts/others/../../resources/CharacterControls/CharacterControlsConfig.xml"
- -sv "hikCustomRigUIPath" "C:/Program Files/Autodesk/Maya2023/scripts/others/../../resources/CharacterControls/CustomRigControlsConfig.xml"
- ;
-
-// Hypershade
-optionVar -cat "Hypershade"
- -iv "LookdevBinsPanelExists" 1
- -iv "LookdevBinsPanelHeight" 400
- -iv "LookdevBinsPanelWidth" 312
- -iv "LookdevBrowserPanelExists" 1
- -iv "LookdevBrowserPanelHeight" 215
- -iv "LookdevBrowserPanelWidth" 750
- -iv "LookdevCreatePanelExists" 1
- -iv "LookdevCreatePanelHeight" 400
- -iv "LookdevCreatePanelWidth" 312
- -iv "LookdevPropertyPanelExists" 1
- -iv "LookdevPropertyPanelHeight" 500
- -iv "LookdevPropertyPanelWidth" 443
- -iv "LookdevShaderballPanelExists" 1
- -iv "LookdevShaderballPanelHeight" 400
- -iv "LookdevShaderballPanelWidth" 700
- -iv "hyperShadeBringCreatePanelToFront" 1
- -sv "hyperShadeDockingLayout" "000000ff00000000fd000000030000000000000109000002d3fc0200000001fc000000f1000002d3000000a501000011fa000000000200000002fb00000024004c006f006f006b00640065007600430072006500610074006500500061006e0065006c0100000000ffffffff0000009300fffffffb00000020004c006f006f006b00640065007600420069006e007300500061006e0065006c0100000000ffffffff0000007e00ffffff00000001000003730000031cfc0200000001fc000000000000031c0000000000fffffffaffffffff0100000002fb0000002c004c006f006f006b00640065007600530068006100640065007200620061006c006c00500061006e0065006c0000000000ffffffff0000004800fffffffb00000028004c006f006f006b00640065007600500072006f0070006500720074007900500061006e0065006c000000031100000373000001bd00ffffff0000000200000778000000ebfc0100000001fb00000026004c006f006f006b00640065007600420072006f007700730065007200500061006e0065006c0100000000000007780000008700ffffff00000669000002d300000004000000020000000800000002fc00000000"
- -sa "hyperShadeFirstPaneTabs"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab1"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab2"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab3"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab4"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab5"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab6"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab7"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab8"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab9"
- -sva "hyperShadeFirstPaneTabs" "hyperShadeTab10"
- -sv "hyperShadePanelTabSectionsShown" "showTopTabsOnly"
- -sv "hyperShadePanelWorkAreaTab" "hyperShadePanel1dockStation|buttonsAndPaneForm|paneArrangement|secondPaneTabs|formLayout136"
- -sa "hyperShadeSecondPaneTabs"
- -sva "hyperShadeSecondPaneTabs" "hyperShadeTab11"
- -sv "hyperShadeShaderballEnvironmentName" "Interior1 Color"
- -sv "hyperShadeShaderballRendererName" "Hardware"
- -iv "hyperShadeTab1" 1
- -iv "hyperShadeTab10" 1
- -sv "hyperShadeTab10Filter" "ContainerNodes"
- -sv "hyperShadeTab10HypershadeName" "collection9HyperShadeEd"
- -sv "hyperShadeTab10Label" "Asset Nodes"
- -sv "hyperShadeTab10Type" "scene"
- -iv "hyperShadeTab11" 1
- -sv "hyperShadeTab11HypershadeName" "graph1HyperShadeEd"
- -sv "hyperShadeTab11Label" "Work Area"
- -sv "hyperShadeTab11Type" "protected graph"
- -sv "hyperShadeTab1Filter" "MaterialsAndShaderGlow"
- -sv "hyperShadeTab1HypershadeName" "collection1HyperShadeEd"
- -sv "hyperShadeTab1IconSize" "largeIcons"
- -sv "hyperShadeTab1Label" "Materials"
- -sv "hyperShadeTab1Type" "scene"
- -iv "hyperShadeTab2" 1
- -sv "hyperShadeTab2Filter" "Textures"
- -sv "hyperShadeTab2HypershadeName" "collection2HyperShadeEd"
- -sv "hyperShadeTab2Label" "Textures"
- -sv "hyperShadeTab2Type" "scene"
- -iv "hyperShadeTab3" 1
- -sv "hyperShadeTab3Filter" "Utilities"
- -sv "hyperShadeTab3HypershadeName" "collection3HyperShadeEd"
- -sv "hyperShadeTab3Label" "Utilities"
- -sv "hyperShadeTab3Type" "scene"
- -iv "hyperShadeTab4" 1
- -sv "hyperShadeTab4Filter" "Rendering"
- -sv "hyperShadeTab4HypershadeName" "collection4HyperShadeEd"
- -sv "hyperShadeTab4Label" "Rendering"
- -sv "hyperShadeTab4Type" "scene"
- -iv "hyperShadeTab5" 1
- -sv "hyperShadeTab5Filter" "LightsAndOpticalFX"
- -sv "hyperShadeTab5HypershadeName" "collection5HyperShadeEd"
- -sv "hyperShadeTab5Label" "Lights"
- -sv "hyperShadeTab5Type" "scene"
- -iv "hyperShadeTab6" 1
- -sv "hyperShadeTab6Filter" "Cameras"
- -sv "hyperShadeTab6HypershadeName" "collection6HyperShadeEd"
- -sv "hyperShadeTab6Label" "Cameras"
- -sv "hyperShadeTab6Type" "scene"
- -iv "hyperShadeTab7" 1
- -sv "hyperShadeTab7Filter" "ShadingGroups"
- -sv "hyperShadeTab7HypershadeName" "collection7HyperShadeEd"
- -sv "hyperShadeTab7Label" "Shading Groups"
- -sv "hyperShadeTab7Type" "scene"
- -iv "hyperShadeTab8" 1
- -sv "hyperShadeTab8Filter" "BakeSets"
- -sv "hyperShadeTab8HypershadeName" "collection8HyperShadeEd"
- -sv "hyperShadeTab8Label" "Bake Sets"
- -sv "hyperShadeTab8Type" "scene"
- -iv "hyperShadeTab9" 1
- -sv "hyperShadeTab9CurrentDirectory" "C:/Users/luke/Documents/maya/projects/"
- -iv "hyperShadeTab9DirectoriesShown" 1
- -sv "hyperShadeTab9DirectoriesVisorName" "directories1VisorEd"
- -iv "hyperShadeTab9FilesShown" 1
- -sv "hyperShadeTab9FilesVisorName" "files1VisorEd"
- -sv "hyperShadeTab9Label" "Projects"
- -sv "hyperShadeTab9RootDirectory" "C:/Users/luke/Documents/maya/projects/"
- -sv "hyperShadeTab9Type" "disk"
- -iv "hyperShadeWorkAreaProportion" 100
- -iv "hypershadeSwatchPauseButtonState" 0
- ;
-
-// In-View Editors
-optionVar -cat "In-View Editors"
- -sa "kpolyEditEdgeFlowCaddyElementNames"
- -sva "kpolyEditEdgeFlowCaddyElementNames" "edgeFlow"
- -sva "kpolyEditEdgeFlowCaddyElementNames" "adjustEdgeFlow"
- -iv "kpolyEditEdgeFlowNumberOfCaddyElements" 2
- -sa "kpolyExtrudeEdgeCaddyElementNames"
- -sva "kpolyExtrudeEdgeCaddyElementNames" "thickness"
- -sva "kpolyExtrudeEdgeCaddyElementNames" "localTranslateZ"
- -sva "kpolyExtrudeEdgeCaddyElementNames" "offset"
- -sva "kpolyExtrudeEdgeCaddyElementNames" "divisions"
- -sva "kpolyExtrudeEdgeCaddyElementNames" "keepFacesTogether"
- -iv "kpolyExtrudeEdgeNumberOfCaddyElements" 5
- -sa "kpolyExtrudeFaceCaddyElementNames"
- -sva "kpolyExtrudeFaceCaddyElementNames" "thickness"
- -sva "kpolyExtrudeFaceCaddyElementNames" "localTranslateZ"
- -sva "kpolyExtrudeFaceCaddyElementNames" "offset"
- -sva "kpolyExtrudeFaceCaddyElementNames" "divisions"
- -sva "kpolyExtrudeFaceCaddyElementNames" "keepFacesTogether"
- -iv "kpolyExtrudeFaceNumberOfCaddyElements" 5
- -sa "kpolyMergeVertCaddyElementNames"
- -sva "kpolyMergeVertCaddyElementNames" "distance"
- -iv "kpolyMergeVertNumberOfCaddyElements" 1
- -sa "kpolyRemeshCaddyElementNames"
- -sva "kpolyRemeshCaddyElementNames" "maxEdgeLength"
- -sva "kpolyRemeshCaddyElementNames" "collapseThreshold"
- -sva "kpolyRemeshCaddyElementNames" "smoothStrength"
- -iv "kpolyRemeshNumberOfCaddyElements" 3
- -sa "kpolySewEdgeCaddyElementNames"
- -sva "kpolySewEdgeCaddyElementNames" "tolerance"
- -iv "kpolySewEdgeNumberOfCaddyElements" 1
- -sa "kpolySmoothFaceCaddyElementNames"
- -sva "kpolySmoothFaceCaddyElementNames" "divisions"
- -iv "kpolySmoothFaceNumberOfCaddyElements" 1
+ -sv "currentHotkeySet" "hotKeyA"
  ;
 
 // Interface
 optionVar -cat "Interface"
  -iv4 "OutputWindowGeometry" -32000 -32000 160 28
- -iv "channelsLayersPaneSize" 66
  -iv "commandLineInputFieldWidth" 40
  -iv "commandLineNumHistoryLines" 50
- -sv "currentMenuBarTab" "animationMenuSet"
+ -sv "currentMenuBarTab" "modelingMenuSet"
  -iv "hasBeenRestored" 0
- -fv "interfaceScalingValue" 2
  -iv "isFirstTimeRunningMaya" 0
- -sv "mayaMode" "animationMenuSet"
+ -sv "mayaMode" "modelingMenuSet"
  -iv "showHomeScreenOnStartup" 0
  -iv "splashScreenNumberOfMessagesOnLastStartup" 51
  ;
 
-// Layer Editor.Animation.Merge Layers
-optionVar -cat "Layer Editor.Animation.Merge Layers"
- -iv "animLayerMergeSmartBake" 1
- ;
-
-// Layer Editor.Display.Create
-optionVar -cat "Layer Editor.Display.Create"
- -iv "displayLayerContents" 0
- ;
-
-// Manipulators
-optionVar -cat "Manipulators"
- -fv "manipGlobalScale" 3
+// Kinematics
+optionVar -cat "Kinematics"
+ -fv "ikJointDisplayScale" 0.2
  ;
 
 // Marking Menus
@@ -408,48 +129,6 @@ optionVar -cat "Marking Menus"
  -iva "markingMenuEditorIsNamedCommandFlags" 0
  ;
 
-// Modeling.Mesh.Cleanup
-optionVar -cat "Modeling.Mesh.Cleanup"
- -iv "polyCleanupConcave" 1
- -iv "polyCleanupHoles" 1
- -iv "polyCleanupLaminaFace" 1
- -iv "polyCleanupNSided" 1
- -iv "polyCleanupNonManifold" 1
- -iv "polyCleanupOperation" 2
- ;
-
-// Modeling.Mesh.Retopologize
-optionVar -cat "Modeling.Mesh.Retopologize"
- -iv "polyRetopoKeepOriginal" 1
- -iv "polyRetopoPreserveHardEdges" 1
- ;
-
-// Modify.Freeze Transformations
-optionVar -cat "Modify.Freeze Transformations"
- -iv "freezeTransformationsWhen" 0
- ;
-
-// Modify.Search and Replace Names
-optionVar -cat "Modify.Search and Replace Names"
- -sv "psrReplace" "Ctrl"
- -sv "psrSearch" "ctrl"
- ;
-
-// Move Tool
-optionVar -cat "Move Tool"
- -iv "mode_Move" 0
- -fv3 "orientAxes_Move" -1.158304 1.404781 0.382716
- -iv "pinPivot_Move" 1
- ;
-
-// Node Editor
-optionVar -cat "Node Editor"
- -fv "nodeEdConnectionMinSegment" 0.03
- -fv "nodeEdConnectionOffset" 0.03
- -fv "nodeEdConnectionRoundness" 0.8
- -iv "nodeEdConnectionTension" -100
- ;
-
 // Plugins
 optionVar -cat "Plugins"
  -iv "oneTimeDefaultPluginLoad2008Ext2" 1
@@ -476,16 +155,6 @@ optionVar -cat "Plugins"
  -iv "oneTimeUnlimitedPluginLoad30" 1
  ;
 
-// Relationship Editor
-optionVar -cat "Relationship Editor"
- -sv "relationshipEditorTask" "animLayers"
- ;
-
-// Render View
-optionVar -cat "Render View"
- -sv "renderedImageName" ""
- ;
-
 // Rendering
 optionVar -cat "Rendering"
  -sv "preferredRenderer" "arnold"
@@ -496,58 +165,6 @@ optionVar -cat "Rendering"
 // Rendering.Layers
 optionVar -cat "Rendering.Layers"
  -iv "autoAdjustmentActive" 0
- ;
-
-// Rigging.Skeleton.Connect Joint
-optionVar -cat "Rigging.Skeleton.Connect Joint"
- -iv "connectJointMode" 2
- ;
-
-// Rigging.Skeleton.Mirror Joints
-optionVar -cat "Rigging.Skeleton.Mirror Joints"
- -iv "mirrorJointMode" 2
- -sv "mirrorJointReplace" "L"
- -sv "mirrorJointSearch" "R"
- ;
-
-// Rigging.Skin.Add Influence
-optionVar -cat "Rigging.Skin.Add Influence"
- -iv "lockWeights" 1
- ;
-
-// Rigging.Skin.Bind Skin
-optionVar -cat "Rigging.Skin.Bind Skin"
- -iv "bindTo" 2
- -iv "colorizeSkeleton" 0
- -iv "maxInfl" 3
- -iv "obeyMaxInfl" 0
- -iv "removeUnusedInfluences" 0
- ;
-
-// Rigging.Skin.Copy Skin Weights
-optionVar -cat "Rigging.Skin.Copy Skin Weights"
- -iv "copySkinWeightsInfluenceAssociationOption1" 3
- -iv "copySkinWeightsInfluenceAssociationOption2" 4
- ;
-
-// Rigging.Skin.Mirror Skin Weights
-optionVar -cat "Rigging.Skin.Mirror Skin Weights"
- -iv "mirrorInverse" 0
- ;
-
-// Rotate Tool
-optionVar -cat "Rotate Tool"
- -iv "mode_Rotate" 1
- ;
-
-// Scale Tool
-optionVar -cat "Scale Tool"
- -fv3 "orientAxes_Scale" -0.597235 0 1.67573
- ;
-
-// Script Editor
-optionVar -cat "Script Editor"
- -iv "commandExecuterTabsForIndent" 1
  ;
 
 // Security
@@ -573,25 +190,13 @@ optionVar -cat "Security"
  -sva "SafeModeBuiltInsSuspFunct" "print"
  -sa "SafeModeUserSetupHash"
  -sva "SafeModeUserSetupHash" "C:/Program Files/Autodesk/Maya2023/plug-ins/MASH/scripts/userSetup.py=12416930421892500452"
- -sva "SafeModeUserSetupHash" "C:/Users/luke/Documents/maya/scripts/userSetup.py=12862237103796116594"
- -sva "SafeModeUserSetupHash" "C:/Users/luke/Documents/maya/2023/scripts/userSetup.mel=6109342445789605369"
- -sva "SafeModeUserSetupHash" "C:/Users/luke/Documents/maya//scripts/userSetup.py=12862237103796116594"
- -sva "SafeModeUserSetupHash" "C:/Users/asus6000/Documents/maya/scripts/userSetup.mel=13030720476386907890"
- -sva "SafeModeUserSetupHash" "Z:/Art/1_Assets/3_Animation/scripts/userSetup.mel=13030720476386907890"
- -sva "SafeModeUserSetupHash" "C:/Users/luke/Documents/maya/scripts/userSetup.mel=6937017916889137406"
- -sva "SafeModeUserSetupHash" "X:/Art/1_Assets/3_Animation/MAYA/scripts/userSetup.mel=13810728621477180803"
- ;
-
-// Settings
-optionVar -cat "Settings"
- -sv "workingUnitTime" "ntscf"
- -sv "workingUnitTimeDefault" "pal"
+ -sva "SafeModeUserSetupHash" "C:/Users/luke/Documents/maya/scripts/userSetup.mel=13810728621477180803"
  ;
 
 // Shelves
 optionVar -cat "Shelves"
- -iv "numShelves" 21
- -iv "selectedShelf" 15
+ -iv "numShelves" 19
+ -iv "selectedShelf" 14
  -sv "shelfAlign1" "left"
  -sv "shelfAlign10" "left"
  -sv "shelfAlign11" "left"
@@ -604,8 +209,6 @@ optionVar -cat "Shelves"
  -sv "shelfAlign18" "left"
  -sv "shelfAlign19" "left"
  -sv "shelfAlign2" "left"
- -sv "shelfAlign20" "left"
- -sv "shelfAlign21" "left"
  -sv "shelfAlign3" "left"
  -sv "shelfAlign4" "left"
  -sv "shelfAlign5" "left"
@@ -613,28 +216,25 @@ optionVar -cat "Shelves"
  -sv "shelfAlign7" "left"
  -sv "shelfAlign8" "left"
  -sv "shelfAlign9" "left"
- -sv "shelfFile1" "shelf_Rendering"
- -sv "shelfFile10" "shelf_Polygons"
- -sv "shelfFile11" "shelf_Rigging"
- -sv "shelfFile12" "shelf_Animation"
- -sv "shelfFile13" "shelf_adv"
+ -sv "shelfFile1" "shelf_CurvesSurfaces"
+ -sv "shelfFile10" "shelf_Arnold"
+ -sv "shelfFile11" "shelf_MotionGraphics"
+ -sv "shelfFile12" "shelf_MASH"
+ -sv "shelfFile13" "shelf_XGen"
  -sv "shelfFile14" "shelf_CGCG"
- -sv "shelfFile15" "shelf_EzAni"
- -sv "shelfFile16" "shelf_EzRig"
- -sv "shelfFile17" "shelf_EzExport"
+ -sv "shelfFile15" "shelf_adv"
+ -sv "shelfFile16" "shelf_EzAni"
+ -sv "shelfFile17" "shelf_EzRig"
  -sv "shelfFile18" "shelf_xRigA"
- -sv "shelfFile19" "shelf_XGen"
- -sv "shelfFile2" "shelf_FX"
- -sv "shelfFile20" "shelf_Bifrost"
- -sv "shelfFile21" "shelf_xRigD"
- -sv "shelfFile3" "shelf_FXCaching"
- -sv "shelfFile4" "shelf_MotionGraphics"
- -sv "shelfFile5" "shelf_MASH"
- -sv "shelfFile6" "shelf_TURTLE_User"
- -sv "shelfFile7" "shelf_Arnold"
- -sv "shelfFile8" "shelf_Sculpting"
- -sv "shelfFile9" "shelf_CurvesSurfaces"
- -iv "shelfLoad1" 1
+ -sv "shelfFile19" "shelf_xRigD"
+ -sv "shelfFile2" "shelf_Polygons"
+ -sv "shelfFile3" "shelf_Sculpting"
+ -sv "shelfFile4" "shelf_Rigging"
+ -sv "shelfFile5" "shelf_Animation"
+ -sv "shelfFile6" "shelf_Rendering"
+ -sv "shelfFile7" "shelf_FX"
+ -sv "shelfFile8" "shelf_FXCaching"
+ -sv "shelfFile9" "shelf_Custom"
  -iv "shelfLoad10" 1
  -iv "shelfLoad11" 1
  -iv "shelfLoad12" 1
@@ -646,36 +246,32 @@ optionVar -cat "Shelves"
  -iv "shelfLoad18" 1
  -iv "shelfLoad19" 1
  -iv "shelfLoad2" 1
- -iv "shelfLoad20" 1
- -iv "shelfLoad21" 1
- -iv "shelfLoad3" 1
- -iv "shelfLoad4" 1
- -iv "shelfLoad5" 1
- -iv "shelfLoad6" 1
- -iv "shelfLoad7" 1
- -iv "shelfLoad8" 1
- -iv "shelfLoad9" 1
- -sv "shelfName1" "Rendering"
- -sv "shelfName10" "Polygons"
- -sv "shelfName11" "Rigging"
- -sv "shelfName12" "Animation"
- -sv "shelfName13" "adv"
+ -iv "shelfLoad3" 0
+ -iv "shelfLoad4" 0
+ -iv "shelfLoad5" 0
+ -iv "shelfLoad6" 0
+ -iv "shelfLoad7" 0
+ -iv "shelfLoad8" 0
+ -iv "shelfLoad9" 0
+ -sv "shelfName1" "CurvesSurfaces"
+ -sv "shelfName10" "Arnold"
+ -sv "shelfName11" "MotionGraphics"
+ -sv "shelfName12" "MASH"
+ -sv "shelfName13" "XGen"
  -sv "shelfName14" "CGCG"
- -sv "shelfName15" "EzAni"
- -sv "shelfName16" "EzRig"
- -sv "shelfName17" "EzExport"
+ -sv "shelfName15" "adv"
+ -sv "shelfName16" "EzAni"
+ -sv "shelfName17" "EzRig"
  -sv "shelfName18" "xRigA"
- -sv "shelfName19" "XGen"
- -sv "shelfName2" "FX"
- -sv "shelfName20" "Bifrost"
- -sv "shelfName21" "xRigD"
- -sv "shelfName3" "FXCaching"
- -sv "shelfName4" "MotionGraphics"
- -sv "shelfName5" "MASH"
- -sv "shelfName6" "TURTLE_User"
- -sv "shelfName7" "Arnold"
- -sv "shelfName8" "Sculpting"
- -sv "shelfName9" "CurvesSurfaces"
+ -sv "shelfName19" "xRigD"
+ -sv "shelfName2" "Polygons"
+ -sv "shelfName3" "Sculpting"
+ -sv "shelfName4" "Rigging"
+ -sv "shelfName5" "Animation"
+ -sv "shelfName6" "Rendering"
+ -sv "shelfName7" "FX"
+ -sv "shelfName8" "FXCaching"
+ -sv "shelfName9" "Custom"
  -sv "shelfVersion1" "2010"
  -sv "shelfVersion2" "2010"
  -sv "shelfVersion3" "2016"
@@ -688,156 +284,37 @@ optionVar -cat "Shelves"
  -sv "shelvesLastUpdated" "2023"
  ;
 
-// SoftSelectOptionsContext Tool
-optionVar -cat "SoftSelectOptionsContext Tool"
- -iv "falloffMode_SoftSelectOptionsContext" 1
- -fv "size_SoftSelectOptionsContext" 0.418882
- ;
-
-// Status Line
-optionVar -cat "Status Line"
- -sv "quickFieldMode" "Select"
- -iv "showStatusInputField" 1
- -iv "showStatusSelectMasks" 1
- -iv "showStatusSnap" 0
- -iv "showStatusSymmetry" 0
- ;
-
 // Stereo Camera
 optionVar -cat "Stereo Camera"
  -sa "CameraSetToolNamingTemplate"
  -sva "CameraSetToolNamingTemplate" "['Multi Stereo Rig', 'shot', [['Near', 'StereoCamera', 1], ['Mid', 'StereoCamera', 1], ['Far', 'StereoCamera', 1]], 'cameraSet']"
  ;
 
-// Time Editor
-optionVar -cat "Time Editor"
- -sv "teClipExportsPath" "C:/Users/luke/Documents/maya/projects/default/Time Editor/Clip Exports/"
- ;
-
-// Transform Tools
-optionVar -cat "Transform Tools"
- -iv "trsManipsPinPivot" 1
- ;
-
 // UI Elements
 optionVar -cat "UI Elements"
- -iv "LastStateHelpLineVisibility" 0
  -iv "LastStateOutlinerVisibility" 1
- -iv "helpLineVisible" 0
  -iv "isAttributeEditorVisible" 1
- -iv2 "optionBoxDimensionsAim" 546 392
- -iv2 "optionBoxDimensionsCopySkinWeights" 424 244
- -iv2 "optionBoxDimensionsCreateSet" 588 172
- -iv2 "optionBoxDimensionsExportSelectionOptions" 728 252
- -iv2 "optionBoxDimensionsKeysBakeSimulation" 546 304
- -iv2 "optionBoxDimensionsMirrorSkinWeights" 990 313
- -iv2 "optionBoxDimensionsParentConstraint" 656 627
- -iv2 "optionBoxDimensionsPlayblast" 684 575
- -iv2 "optionBoxDimensionsPolyRetopo" 467 688
- -iv2 "optionBoxDimensionsSkinCluster" 506 437
- -iv2 "optionBoxDimensionsjoint" 441 207
- ;
-
-// UV Editor
-optionVar -cat "UV Editor"
- -iv "textureWindowSolidMapState" 1
  ;
 
 // Viewports
 optionVar -cat "Viewports"
- -sv "modelPanel1" "modelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels modelPanel1;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|top\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
- -sv "modelPanel2" "modelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels modelPanel2;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|side\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"wireframe\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
- -sv "modelPanel3" "modelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels modelPanel3;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|front\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
- -sv "modelPanel4" "modelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels modelPanel4;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|persp\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 896\n-height 386\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel1" "modelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels modelPanel1;\n$editorName = $panelName;\nmodelEditor -e -camera \"|top\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel2" "modelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels modelPanel2;\n$editorName = $panelName;\nmodelEditor -e -camera \"|side\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel3" "modelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels modelPanel3;\n$editorName = $panelName;\nmodelEditor -e -camera \"|front\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel4" "modelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels modelPanel4;\n$editorName = $panelName;\nmodelEditor -e -camera \"|persp\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1319\n-height 732\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
  ;
 
 // Workspaces
 optionVar -cat "Workspaces"
- -sv "workspaceLayoutToLoadOnStartup" "Animation"
+ -sv "workspaceLayoutToLoadOnStartup" "General"
  -iv "workspaceLinkHotKeySetEnabled" 0
- -sv "workspaceLinkHotKeySetValue" "hotKey"
- -iv "workspaceLinkMenuSetEnabled" 1
- -sv "workspaceLinkMenuSetValue" "animationMenuSet"
+ -sv "workspaceLinkHotKeySetValue" "hotKeyA"
+ -iv "workspaceLinkMenuSetEnabled" 0
  -iv "workspaceLinkVP2PresetEnabled" 0
  -iv "workspacesAutoSave" 1
  ;
 
-// artAttrSkinContext Tool
-optionVar -cat "artAttrSkinContext Tool"
- -sv "attrSelected_artAttrSkinContext" "skinCluster.skinCluster261.paintWeights"
- -sv "influence_artAttrSkinContext" "Body3"
- -sv "objattrArray_artAttrSkinContext" "skinCluster.skinCluster261.paintWeights.1"
- -sv "paintNodeArray_artAttrSkinContext" "skinCluster261"
- -fv "radius_artAttrSkinContext" 29.221298
- -sv "selectedattroper_artAttrSkinContext" "additive"
- -iv "useMaxMinColor_artAttrSkinContext" 1
- -fv "worldRadius_artAttrSkinContext" 29.221298
- ;
-
-// texSculptCacheContextObj Tool
-optionVar -cat "texSculptCacheContextObj Tool"
- -sv "mode_texSculptCacheContextObj" "Freeze"
- -fv "strength_texSculptCacheContextObj" 100
- ;
-
-// texUnfoldUVContext Tool
-optionVar -cat "texUnfoldUVContext Tool"
- -sv "image1_texUnfoldUVContext" "UV_Unfold_BrushLarge.png"
- ;
-
 // Uncategorized
-optionVar
- -sv "AddAttrWinState" "01d9d0cb0003000000000130000002400000043000000402000001310000025f0000042f0000040100000000000000000a00000001310000025f0000042f00000401"
- -sv "AdvancedSkeletonWindowState" "01d9d0cb0003000000000434000000af0000055d000003a500000435000000ce0000055c000003a40000000000000000078000000435000000ce0000055c000003a4"
- -sv "AttributeEditorState" "01d9d0cb0003000000000084000000f5000008f9000006a7000000860000012f000008f7000006a500000000000000000a00000000860000012f000008f7000006a5"
- -sv "ChannelBoxLayerEditorState" "01d9d0cb0003000000000c360000001700000e15000004dc00000c370000003600000e14000004db00000001000000000a0000000c370000003600000e14000004db"
- -sv "FbxWarningWindowState" "01d9d0cb00030000fffffffffffffff800000a00000005700000000000000017000009ff0000056f00000000020000000a000000000000000017000009ff0000056f"
- -sv "FilePathEditorState" "01d9d0cb00030000000008b80000016000000ec90000038a000008c00000017f00000ec100000382ffffffff000000000780000008c00000017f00000ec100000382"
- -sv "HotkeyEditorState" "01d9d0cb0003000000000a5e000001c600000fa10000048400000a66000001e500000f990000047cffffffff00000000078000000a66000001e500000f990000047c"
- -sv "IKFKswitchToolWinState" "01d9d0cb00030000ffffffff000001e1000000d1000002d40000000000000200000000d0000002d3000000000000000007800000000000000200000000d0000002d3"
- -sv "OptionBoxWindowState" "01d9d0cb0003000000000354000001b1000005770000032e00000355000001d0000005760000032d00000000000000000a0000000355000001d0000005760000032d"
- -sv "OutlinerState" "01d9d0cb0003000000000049000000c6000001bf000003570000004a000000e5000001be00000356000000000000000007800000004a000000e5000001be00000356"
- ;
-
-optionVar
- -sv "OverLapperTestState" "01d9d0cb00030000000004cb000000dd0000061c00000248000004cc000001030000061b0000024700000000000000000780000004cc000001030000061b00000247"
- -sv "OverLappingEmulatorByLukeState" "01d9d0cb0003000000000944000001f200000a5d0000038c000009450000021100000a5c0000038b00000001000000000a00000009450000021100000a5c0000038b"
- -sv "OverlapperPanelState" "01d9d0cb00030000000002800000015a0000032400000265000002810000017900000323000002640000000000000000078000000281000001790000032300000264"
- -sa "PluginManagerState"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/bin/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/ATF/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Bifrost/Maya2023/2.4.0.0/bifrost/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/MASH/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/MayaUSD/Maya2023/0.18.0/mayausd/MayaUSD/lib/maya"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/MayaUSD/Maya2023/0.18.0/mayausd/MayaUSD/plugin/adsk/plugin"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/fbx/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/camd/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Arnold/maya2023/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Allegorithmic/Adobe Substance 3D for Maya/2023/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/sweep/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Bifrost/Maya2023/2.4.0.0/vnn/plug-ins"
- -sva "PluginManagerState" "0"
- -sva "PluginManagerState" "C:/Program Files/Autodesk/Maya2023/plug-ins/xgen/plug-ins"
- -sva "PluginManagerState" "0"
- -sv "PreferencesWindowState" "01d9d0cb00030000000004fa000000530000078700000219000004fb00000072000007860000021800000000000000000a00000004fb000000720000078600000218"
- -sv "Quick_rename_toolWindowState" "01d9d0cb00030000000003ab00000198000004e5000002e5000003ac000001b7000004e4000002e400000000000000000780000003ac000001b7000004e4000002e4"
- -sv "RenameAttrWinState" "01d9d0cb000300000000028000000158000003ff0000036b0000028100000177000003fe0000036a000000000000000007800000028100000177000003fe0000036a"
- -iv "SDKclearOnLoad" 1
- -iv "SDKselectListItems" 1
- -iv "SDKshowShapes" 0
- ;
-
 optionVar
  -sa "SSEitem1"
  -sva "SSEitem1" "Arnold"
@@ -845,273 +322,15 @@ optionVar
  -sva "SSEitem2" "{\"aiOpaque\", \"aiMatte\", \"aiVisibleInDiffuseReflection\", \"aiVisibleInSpecularReflection\", \"aiVisibleInSpecularTransmission\", \"aiVisibleInDiffuseTransmission\", \"aiVisibleInVolume\", \"aiSelfShadows\", \"aiExportTangents\", \"aiExportColors\", \"aiExportRefPoints\", \"aiExportRefNormals\", \"aiExportRefTangents\", \"aiMotionVectorScale\", \"aiSubdivType\", \"aiSubdivIterations\", \"aiSubdivAdaptiveMetric\", \"aiSubdivPixelError\", \"aiSubdivAdaptiveSpace\", \"aiSubdivUvSmoothing\", \"aiSubdivSmoothDerivs\", \"aiDispHeight\", \"aiDispPadding\", \"aiDispZeroValue\", \"aiDispAutobump\", \"aiStepSize\", \"aiVolumePadding\", \"aiSampleRate\", \"aiCurveWidth\", \"aiCurveShader\", \"aiExportRefPoints\", \"aiMinPixelWidth\", \"aiMode\", \"standInDrawOverride\", \"overrideNodes\", \"overrideLightLinking\", \"overrideShaders\", \"overrideReceiveShadows\", \"overrideSelfShadows\", \"overrideOpaque\", \"overrideMatte\", \"aiColorTemperature\", \"aiExposure\", \"aiAngle\", \"aiSamples\", \"aiNormalize\", \"aiCastShadows\", \"aiShadowDensity\", \"aiCastVolumetricShadows\", \"aiVolumeSamples\", \"aiDiffuse\", \"aiSpecular\", \"aiSss\", \"aiIndirect\", \"aiVolume\", \"colorR\", \"colorG\", \"colorB\", \"intensity\", \"aiExposure\", \"aiSpread\", \"aiResolution\", \"aiSoftEdge\", \"aiSamples\", \"aiNormalize\", \"aiFormat\", \"aiPortalMode\"}"
  -ia "SSEitem3"
  -iva "SSEitem3" 1
- -sv "ShelfState" "01d9d0cb00030000000009fcffffffe50000117300000084000009f900000004000011760000008700000000000000000a00000009f9000000040000117600000087"
- -sv "ToolSettingsState" "01d9d0cb00030000000003e20000006d0000073800000407000003e30000008c000007370000040600000000000000000780000003e30000008c0000073700000406"
- -sv "UVToolkitDockControlState" "01d9d0cb0003000000000b3600000099000010320000036700000b37000000b800001031000003660000000100000000078000000b37000000b80000103100000366"
- -iv "animExportAnimationFile" 1
- -sa "artAttrSkinInflClusters"
- -sva "artAttrSkinInflClusters" "skinCluster261"
- -sa "artAttrSkinInflCollapsed"
- -iv "asATBodyFrameLayout" 0
- ;
-
-optionVar
- -iv "asATFaceFrameLayout" 1
- -iv "asATSkinningTestFrameLayout" 1
- -iv "asAboutFrameLayout" 0
- -iv "asBodyBuildFrameLayout" 0
- -iv "asBodyControlCurvesFrameLayout" 1
- -iv "asBodyControlMeshFrameLayout" 1
- -iv "asBodyCorrectiveAdvancedFrameLayout" 1
- -iv "asBodyCorrectiveBakeFrameLayout" 1
- -iv "asBodyCorrectiveCBDFrameLayout" 1
- -iv "asBodyCorrectiveFrameLayout" 1
- ;
-
-optionVar
- -iv "asBodyCustomControlsFrameLayout" 1
- -iv "asBodyDeform1FrameLayout" 0
- -iv "asBodyDeform2FrameLayout" 1
- -iv "asBodyDeform3FrameLayout" 1
- -iv "asBodyDeform4FrameLayout" 1
- -iv "asBodyDeformDeltaMushFrameLayout" 1
- -iv "asBodyDrivingSystemsFrameLayout" 1
- -iv "asBodyEditFrameLayout" 0
- -iv "asBodyFitFrameLayout" 0
- -iv "asBodyFrameLayout" 0
- ;
-
-optionVar
- -iv "asBodyGameEngineFrameLayout" 1
- -iv "asBodyGeometryMannequinFrameLayout" 1
- -iv "asBodyGeometryMuscularFrameLayout" 1
- -iv "asBodyGeometryPolyBoxesFrameLayout" 1
- -iv "asBodyGeometryRetopologyFrameLayout" 1
- -iv "asBodyGeometrySkeletonFrameLayout" 1
- -iv "asBodyMotionSystemFrameLayout" 1
- -iv "asBodyPartialJointsFrameLayout" 1
- -iv "asBodyUnrealJointsFrameLayout" 1
- -iv "asDemoFrameLayout" 1
- ;
-
-optionVar
- -iv "asDisplayFrameLayout" 1
- -iv "asDock" 0
- -iv "asExportFrameLayout" 1
- -iv "asFaceBlendShapesFrameLayout" 1
- -iv "asFaceBuildFrameLayout" 1
- -iv "asFaceCustomControlsFrameLayout" 1
- -iv "asFaceDeltaMushFrameLayout" 1
- -iv "asFaceEditBlendShapesFrameLayout" 1
- -iv "asFaceFitExtraEyeBrowFrameLayout" 1
- -iv "asFaceFitExtraNoseFrameLayout" 1
- ;
-
-optionVar
- -iv "asFaceFitExtraSmileLineFrameLayout" 1
- -iv "asFaceFitFrameLayout" 1
- -iv "asFaceFitPupilFrameLayout" 1
- -iv "asFaceFitTongueTeethFrameLayout" 1
- -iv "asFaceFitUpMidLoFrameLayout" 1
- -iv "asFaceFrameLayout" 1
- -iv "asFaceNewBlendShapesFrameLayout" 1
- -iv "asFacePrepFrameLayout" 1
- -iv "asFaceSkinLayersFrameLayout" 1
- -iv "asFaceSquashFrameLayout" 1
- ;
-
-optionVar
- -iv "asFaceStepBuildFrameLayout" 1
- -iv "asFaceTweaksFrameLayout" 1
- -iv "asFaceWrinkleMapFrameLayout" 1
  -iv "asHaveRanThisVersion" 1
- -sv "asMOAxis" "asMOAxisX"
- -sv "asMOSelOnly" "asMOSelOnlySel"
- -sv "asMOSide" "asMOSideFlip"
- -sv "asMOSpace" "asMOSpaceCenter"
- -sv "asMirrorOptionsState" "01d9d0cb00030000000009d2000001fa00000b7a000002bb000009da0000021900000b72000002b3ffffffff000000000780000009da0000021900000b72000002b3"
- -iv "asModelFrameLayout" 0
- ;
-
-optionVar
- -iv "asOptimizeFrameLayout" 1
- -fv "asPickerBrightness" 1
- -fv "asPickerTransparency" 0
- -iv "asPoseFrameLayout" 1
- -iv "asPreparationFrameLayout" 0
- -iv "asPublishFrameLayout" 1
- -iv "asRigFrameLayout" 0
- -sv "asSelectorbipedState" "01d9d0cb0003000000000a870000016400000c12000002ab00000a8f0000018300000c0a000002a3ffffffff00000000078000000a8f0000018300000c0a000002a3"
- -iv "asToolsFrameLayout" 1
- -iv "asUpdatesFrameLayout" 1
- ;
-
-optionVar
- -sv "assignNewMaterialWindowState" "01d9d0cb0003000000000355000001c0000005b00000077200000357000001fa000005ae0000077000000000000000000a0000000357000001fa000005ae00000770"
- -iv "autoWeightThreshold" 1
- -iv "bakeSimulationRemoveBakedAnimFromLayer" 0
- -iv "bifrostBackgroundProcessingVar" 0
- -iv "bifrostScratchCacheVar" 0
- -iv "bifrostVerbosityVar" 0
- -iv "commandExecuterCommandCompletion" 0
- -iv "commandExecuterPathCompletion" 1
- -iv "commandExecuterToolTipHelp" 1
- -sv "commandSearchAndReplaceWndState" "01d9d0cb0003000000000291000002120000044a000002d1000002920000023100000449000002d000000000000000000a00000002920000023100000449000002d0"
- ;
-
-optionVar
- -iv "connectWindowActive" 1
- -sv "connectWindowAttrAlphaOrder" "default"
- -iv "connectWindowAutoConnect" 1
- -iv "connectWindowDisplayNamesCW" 2
- -iv "connectWindowLeftCNO" 0
- -iv "connectWindowLeftSHD" 0
- -iv "connectWindowLeftSNK" 1
- -iv "connectWindowLeftSP" 0
- -iv "connectWindowLeftToRight" 1
- -iv "connectWindowRightCNO" 0
- ;
-
-optionVar
- -iv "connectWindowRightSHD" 0
- -iv "connectWindowRightSNK" 1
- -iv "connectWindowRightSP" 0
- -sv "connectWindowState" "01d9d0cb0003000000000ce3000000f60000121d0000057900000ce40000011c0000121c000005780000000100000000078000000ce40000011c0000121c00000578"
- -sv "copyPastePosebyLukeState" "01d9d0cb00030000000006910000013900000824000003b0000006920000015800000823000003af00000000000000000a00000006920000015800000823000003af"
- -sv "createRenderNodeWindowState" "01d9d0cb000300000000028000000154000003fd00000454000002810000017a000003fc0000045300000000000000000780000002810000017a000003fc00000453"
- -iv "cteKeepTransitionsModeEnabled" 0
- -sv "ddtState" "01d9d0cb00030000fffffeff000001e4fffffff0000003d8ffffff0000000203ffffffef000003d700000002000000000438ffffff0000000203ffffffef000003d7"
- -sv "dwPickerWindowWorkspaceControlState" "01d9d0cb000300000000014e000000d400000335000002fd0000014f000000f300000334000002fc000000000000000007800000014f000000f300000334000002fc"
- -sv "dwpicker_auto_focus_behavior" "pickertomaya"
- ;
-
-optionVar
- -iv "dwpicker_auto_switch_tab" 0
- -iv "dwpicker_check_for_update" 1
- -iv "dwpicker_check_images_paths" 1
- -sv "dwpicker_default_background_color" "#777777"
- -iv "dwpicker_default_height" 20
- -sv "dwpicker_default_label_color" ""
- -sv "dwpicker_default_text_color" "#000000"
- -iv "dwpicker_default_width" 30
- -iv "dwpicker_designer_background_items_locked" 0
- -iv "dwpicker_designer_search_field_index" 0
- ;
-
-optionVar
- -iv "dwpicker_designer_shape_filter_index" 0
- -iv "dwpicker_designer_snap_items" 0
- -iv "dwpicker_designer_snap_x" 10
- -iv "dwpicker_designer_snap_y" 10
- -iv "dwpicker_disable_import_callbacks" 1
- -iv "dwpicker_display_dwtoolbar" 0
- -iv "dwpicker_display_quick_options" 1
- -iv "dwpicker_insert_tab_after_current" 0
- -iv "dwpicker_last_command_language_used" 0
- -sv "dwpicker_last_directory_used" "X:/Art/1_Assets/3_Animation/MAYA/picker"
- ;
-
-optionVar
- -sv "dwpicker_last_file_import_directory" "C:\\Users\\luke"
- -sv "dwpicker_last_file_open_directory" "X:/Art/1_Assets/3_Animation/MAYA/picker"
- -sv "dwpicker_last_file_save_directory" "X:/Art/1_Assets/3_Animation/MAYA/picker"
- -sv "dwpicker_opened_files" ""
- -sv "dwpicker_picker_zoom_mouse_button" "right"
- -sv "dwpicker_recent_files" "X:\\Art\\1_Assets\\3_Animation\\MAYA\\picker\\Player.json;X:\\Art\\1_Assets\\2_Rig\\MAYA\\SkinnedMeshes\\Player\\Bip\\Armor\\Player.json;X:\\Art\\1_Assets\\3_Animation\\MAYA\\scripts\\dwpicker\\Pickers\\player.json;"
- -sv "dwpicker_settings_group_to_copy" "bordercolor;text;image;bgcolor;shape;borderwidth;border"
- -sv "dwpicker_settings_to_copy" "bgcolor.clicked;bgcolor.hovered;bgcolor.normal;bgcolor.transparency;border;bordercolor.clicked;bordercolor.hovered;bordercolor.normal;bordercolor.transparency;borderwidth.clicked;borderwidth.hovered;borderwidth.normal;image.fit;image.height;image.width;shape;shape.cornersx;shape.cornersy;shape.height;shape.left;shape.top;shape.width;text.bold;text.color;text.halign;text.italic;text.size;text.valign"
- -iv "dwpicker_synchronize_selection" 1
- -iv "dwpicker_trigger_search_and_replace_on_mirror" 0
- ;
-
-optionVar
- -iv "dwpicker_use_base64_data_encoding" 0
- -iv "dwpicker_use_icon_for_unsaved_tab" 1
- -iv "dwpicker_warn_on_tab_closed" 0
- -iv "dwpicker_zoom_sensitivity" 50
- -sv "efptState" "01d9d0cb0003000000000b8fffffff7e00000cec0000016400000b90ffffff9d00000ceb000001630000000100000000078000000b90ffffff9d00000ceb00000163"
- -sv "ertState" "01d9d0cb000300000000067c000000f3000007e9000002a10000067d00000112000007e8000002a000000000000000000a000000067d00000112000007e8000002a0"
- -iv "exclusiveBind" 0
- -sv "exportAniFBXToolState" "01d9d0cb000300000000073e000000cc00000935000003eb0000073f000000eb00000934000003ea00000000000000000a000000073f000000eb00000934000003ea"
- -sv "faceHelpImageState" "01d9d0cb0003000000000c4c0000024800000fce0000059600000c540000026700000fc60000058effffffff00000000078000000c540000026700000fc60000058e"
- -sv "falloffMode" "volume"
- ;
-
-optionVar
- -sv "filterUISelectAttributesWindowState" "01d9d0cb0003000000000355000001c00000049e0000033100000357000001fa0000049c0000032f00000000000000000a0000000357000001fa0000049c0000032f"
- -sv "fpeRepathWinState" "01d9d0cb00030000000002bc00000178000004570000025f000002bd00000197000004560000025e00000000000000000780000002bd00000197000004560000025e"
- -sv "graphEditor1WindowState" "01d9d0cb0003000000000029000002200000056e000003700000002a0000023f0000056d0000036f000000000000000007800000002a0000023f0000056d0000036f"
- -iv "graphEditorDisplayValues" 0
- -iv "graphEditorValueLinesToggle" 0
- -sv "hyperShadePanel1WindowState" "01d9d0cb00030000000009fffffffff700001180000003fc00000a000000001d0000117f000003fb0000000100000000078000000a000000001d0000117f000003fb"
- -iv "ikFKSwitchState" 0
- -iv "mayaUsd_SerializedUsdEditsLocation" 1
- -iv "mayaUsd_SerializedUsdEditsLocationPrompt" 1
- -sv "mjState" "01d9d0cb00030000000004c10000012e0000060400000300000004c20000014d00000603000002ff00000000000000000780000004c20000014d00000603000002ff"
- ;
-
-optionVar
- -sv "modelPanel4WindowState" "01d9d0cb00030000000009fffffffff8000011800000040700000a00000000170000117f000004060000000100000000078000000a00000000170000117f00000406"
- -sv "mtoaBuildID" "0e7067b4 (fix-5.1.2)"
- -iv "multipleBindPosesOpt" 0
- -sv "nodeEditorPanel1WindowState" "01d9d0cb00030000fffffbc7ffffff010000000000000659fffffbc8ffffff20ffffffff0000065800000002020000000438fffffbc8ffffff20ffffffff00000658"
+ -sv "mtoaBuildID" "466380ce (fix-5.1.0)"
  -iv "oneTimeAutoLoadPluginbifrostGraph" 1
  -iv "oneTimeAutoLoadPluginmayaVnnPlugin" 1
- -sv "pbtState" "01d9d0cb0003000000000d070000016200000e62000002de00000d080000018100000e61000002dd00000001000000000a0000000d080000018100000e61000002dd"
- -sv "playBlastToolbyLukeState" "01d9d0cb000300000000048f00000029000007800000040800000490000000480000077f000004070000000000000000078000000490000000480000077f00000407"
- -sv "pluginManagerWindowState" "01d9d0cb00030000000001ca000000fc0000049800000347000001cb0000011b000004970000034600000000000000000a00000001cb0000011b0000049700000346"
- -sv "polyTexturePlacementPanel1WindowState" "01d9d0cb0003000000000b3600000099000010320000036700000b37000000b800001031000003660000000100000000078000000b37000000b80000103100000366"
- ;
-
-optionVar
- -iv "proxyOptionsNewReferenceTagSpecified" 0
- -sv "referenceEditorPanel1WindowState" "01d9d0cb0003000000000492000000ff00000652000002d1000004930000011e00000651000002d000000000000000000780000004930000011e00000651000002d0"
- -sv "scriptEditorPanel1WindowState" "01d9d0cb00030000fffffffffffffff800000a0000000570000002c2000000f5000006f90000082d00000000020000000a000000000000000017000009ff0000056f"
- -sv "setDrivenWndState" "01d9d0cb00030000000005c800000154000007d800000380000005c900000173000007d70000037f00000000000000000a00000005c900000173000007d70000037f"
- -sv "shelfEditorState" "01d9d0cb0003000000000a8f0000017000000ccc000003b900000a970000018f00000cc4000003b1ffffffff00000000078000000a970000018f00000cc4000003b1"
- -iv "skinClusterInflListSize" 200
- -sv "sktState" "01d9d0cb00030000000000f1000001ef000001e600000492000000f20000020e000001e50000049100000000000000000a00000000f20000020e000001e500000491"
- -sv "snapWinState" "01d9d0cb00030000000001f6000001dd000002e60000024c000001f7000001fc000002e50000024b00000000000000000780000001f7000001fc000002e50000024b"
- -iv "sortSkinPaintList" 2
- -sv "studiolibrary_00169f17-3288-4767-8b5c-b6ec7c9191f8WorkspaceControlState" "01d9d0cb0003000000000232000000c9000005aa0000035000000233000000e8000005a90000034f0000000000000000078000000233000000e8000005a90000034f"
- ;
-
-optionVar
- -sv "studiolibrary_065d185b-3fcc-4e0b-8249-83200757a80cWorkspaceControlState" "01d9d0cb000300000000047f00000115000007210000039c0000048000000134000007200000039b000000000000000007800000048000000134000007200000039b"
- -sv "studiolibrary_0751ba38-8ac2-4ea5-b93e-6816aa78e9ccWorkspaceControlState" "01d9d0cb0003000000000b120000002c00000fa7000002af00000b130000004b00000fa6000002ae0000000100000000078000000b130000004b00000fa6000002ae"
- -sv "studiolibrary_28ea1491-5a39-4b1b-b3d5-6d5ddba7d3d8WorkspaceControlState" "01d9d0cb00030000fffffbc8ffffff09ffffffff00000672fffffbc9ffffff28fffffffe0000067100000001000000000438fffffbc9ffffff28fffffffe00000671"
- -sv "studiolibrary_3f5bf2d3-076a-4d1c-acda-5e81769169f4WorkspaceControlState" "01d9d0cb000300000000000000000000000003e2000003fb0000000100000026000003e1000003fa000000000000000007800000000100000026000003e1000003fa"
- -sv "studiolibrary_5114f606-c2f8-48ce-a22d-a8b952053debWorkspaceControlState" "01d9d0cb000300000000099b000000fe00000f63000004460000099c0000011d00000f620000044500000002000000000a000000099c0000011d00000f6200000445"
- -sv "studiolibrary_7059e486-5689-4531-8050-b8aa251071efWorkspaceControlState" "01d9d0cb0003000000000aa20000018b00000c430000040e00000aa3000001aa00000c420000040d00000002000000000a0000000aa3000001aa00000c420000040d"
- -sv "studiolibrary_7ebfcdf1-0ae7-40b4-ad59-0de0014d665cWorkspaceControlState" "01d9d0cb00030000fffffc9f00000156fffffeea000003ddfffffca000000175fffffee9000003dc00000002000000000438fffffca000000175fffffee9000003dc"
- -sv "studiolibrary_83ebd113-62d1-4851-b404-613288a725a6WorkspaceControlState" "01d9d0cb0003000000000a05fffffffb00000ed00000027e00000a060000001a00000ecf0000027d0000000100000000078000000a060000001a00000ecf0000027d"
- -sv "studiolibrary_85c32747-5f6b-4c75-abba-e0091e3f5bcbWorkspaceControlState" "01d9d0cb0003000000000aae0000010200000f530000038500000aaf0000012100000f520000038400000001000000000a0000000aaf0000012100000f5200000384"
- -sv "studiolibrary_8d566849-7712-4320-9d04-54d164308590WorkspaceControlState" "01d9d0cb0003000000000c7b0000015300001319000003d600000c7c0000017200001318000003d500000001000000000a0000000c7c0000017200001318000003d5"
- ;
-
-optionVar
- -sv "studiolibrary_99a91992-2eb6-42c1-bebb-f95e83878c3cWorkspaceControlState" "01d9d0cb00030000000000140000003a000007950000043f0000001500000060000007940000043e000000000000000007800000001500000060000007940000043e"
- -sv "studiolibrary_9e3d1509-9bf8-496c-ae56-2035aa9c9ea9WorkspaceControlState" "01d9d0cb00030000000008960000012500000c6a000003a8000008970000014400000c69000003a700000001000000000a00000008970000014400000c69000003a7"
- -sv "studiolibrary_a6b1deb2-2009-45ca-b8fe-3584075f0081WorkspaceControlState" "01d9d0cb0003000000000322000000ce00000657000003f900000323000000ed00000656000003f80000000000000000078000000323000000ed00000656000003f8"
- -sv "studiolibrary_ad678758-3f8a-4b38-beae-aaa578d40e07WorkspaceControlState" "01d9d0cb00030000000004700000011a00000853000003a1000004710000013900000852000003a000000000000000000780000004710000013900000852000003a0"
- -sv "studiolibrary_b31891b4-5c5a-4c9f-a5c8-63d9ad829471WorkspaceControlState" "01d9d0cb00030000000003b400000103000008e30000042d000003b60000013d000008e10000042b00000000000000000a00000003b60000013d000008e10000042b"
- -sv "studiolibrary_b6acdf01-96ae-4258-b736-fce030368718WorkspaceControlState" "01d9d0cb000300000000028b000000c9000004f3000003500000028c000000e8000004f20000034f000000000000000007800000028c000000e8000004f20000034f"
- -sv "studiolibrary_b87dde3c-80a0-40f8-9436-f33cc3264bf2WorkspaceControlState" "01d9d0cb0003000000000489000000d8000006550000035f0000048a000000f7000006540000035e000000000000000007800000048a000000f7000006540000035e"
- -sv "studiolibrary_cb044d3d-852b-4fe3-9d92-d26b7430f382WorkspaceControlState" "01d9d0cb00030000000004340000016c0000065f000003f3000004350000018b0000065e000003f200000000000000000780000004350000018b0000065e000003f2"
- -sv "studiolibrary_e24d4af3-0ee8-4816-a4b7-9941b5df08c8WorkspaceControlState" "01d9d0cb000300000000027e000000dd0000077f000005e700000280000001170000077d000005e500000000000000000a0000000280000001170000077d000005e5"
- -sv "studiolibrary_ecbcf524-e659-44ba-a664-b6a115839ff2WorkspaceControlState" "01d9d0cb0003000000000d21000000c0000010b40000034300000d22000000df000010b3000003420000000100000000078000000d22000000df000010b300000342"
- ;
-
-optionVar
- -sv "swRefToolWinState" "01d9d0cb00030000000003c60000013c0000054500000337000003c70000015b000005440000033600000000000000000780000003c70000015b0000054400000336"
- -sv "testWinState" "01d9d0cb000300000000036800000156000004a400000330000003690000017c000004a30000032f00000000000000000780000003690000017c000004a30000032f"
- -sv "window1State" "01d9d0cb000300000000028000000154000003af00000190000002810000017a000003ae0000018f00000000000000000780000002810000017a000003ae0000018f"
- -sv "window2State" "01d9d0cb000300000000028000000154000003e1000001de000002810000017a000003e0000001dd00000000000000000780000002810000017a000003e0000001dd"
- -sv "xRigDWinState" "01d9d0cb000300000000064e000000ee000007e1000003380000064f0000010d000007e00000033700000000000000000a000000064f0000010d000007e000000337"
+ -sv "scriptEditorPanel1WindowState" "01d9d0cb00030000000000f9000000a90000041f00000211000000fa000000c80000041e0000021000000000000000000780000000fa000000c80000041e00000210"
+ -sv "shelfEditorState" "01d9d0cb00030000000002800000015a0000054900000391000002810000017900000548000003900000000000000000078000000281000001790000054800000390"
  ;
 
 freezeOptions -dn none -up none -rn 0 -rt 0 -ep 0 -inv 0 -dl 0;
-autoKeyframe -state true ;
 
 makePaintable -ca;
 makePaintable -at "multiFloat" -sm "deformer" "cMuscleMultiCollide" "weights";
@@ -1121,27 +340,27 @@ makePaintable -at "multiFloat" -sm "deformer" "cMuscleSplineDeformer" "weights";
 makePaintable -at "multiFloat" -sm "deformer" "cMuscleRelative" "weights";
 makePaintable -at "multiFloat" -sm "deformer" "cMuscleMirror" "weights";
 makePaintable -at "multiFloat" -sm "deformer" "bulgeMesh" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "cluster" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "textureDeformer" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "oceanDeformer" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "nonLinear" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "softMod" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "jiggle" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "wire" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "deltaMush" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "tension" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "proximityWrap" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "ffd" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "transferAttributes" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "shrinkWrap" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "morph" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "solidify" "weights";
-makePaintable -at "multiDouble" "componentFalloff" "weights";
-makePaintable -at "multiFloat" -sm "deformer" "blendShape" "paintTargetWeights";
-makePaintable -at "multiFloat" -sm "deformer" "blendShape" "baseWeights";
-makePaintable -at "doubleArray" "skinCluster" "paintWeights";
-makePaintable -at "doubleArray" "cacheFile" "perPtWeights";
-makePaintable -at "doubleArray" "polyReduce" "vertexWeights";
 makePaintable -at "doubleArray" -aa "goalPP0" "particle" "goalPP";
+makePaintable -at "doubleArray" "polyReduce" "vertexWeights";
+makePaintable -at "doubleArray" "cacheFile" "perPtWeights";
+makePaintable -at "doubleArray" "skinCluster" "paintWeights";
+makePaintable -at "multiFloat" -sm "deformer" "blendShape" "baseWeights";
+makePaintable -at "multiFloat" -sm "deformer" "blendShape" "paintTargetWeights";
+makePaintable -at "multiDouble" "componentFalloff" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "solidify" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "morph" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "shrinkWrap" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "transferAttributes" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "ffd" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "proximityWrap" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "tension" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "deltaMush" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "wire" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "jiggle" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "softMod" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "nonLinear" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "oceanDeformer" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "textureDeformer" "weights";
+makePaintable -at "multiFloat" -sm "deformer" "cluster" "weights";
 
 ikSystem -e -sn true -ar false;

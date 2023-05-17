@@ -14,7 +14,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create MASH Network: Create MASH Network" 
+        -annotation "Create MASH Network: Procedurally scatter and animate instances." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -61,7 +61,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "MASH Editor: MASH Editor" 
+        -annotation "MASH Editor: Open the MASH Editor to organise and reorder MASH networks." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -95,7 +95,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Connect MASH to Type/ SVG: Connect MASH to Type/ SVG" 
+        -annotation "Connect MASH to Type/ SVG: Animate a Type or SVG object using MASH." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -129,7 +129,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Switch MASH Geometry Type: Switch MASH Geometry Type" 
+        -annotation "Switch MASH Geometry Type: Toggle between Repro (mesh) or Instancer MASH geometry types." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -163,7 +163,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Cache MASH network: Cache MASH network" 
+        -annotation "Cache MASH network: Create caches for network rendering or to speed up playback on heavy MASH networks." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -197,7 +197,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Add Trails to Particles: Add Trails to Particles" 
+        -annotation "Add Trails to Particles: Add Trails to Particles." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -231,12 +231,12 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Mesh from Points: Create Mesh from Points" 
+        -annotation "Create Mesh from MASH Points: Creates a mesh with a vertex at every MASH point in your network." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Mesh from Points" 
+        -label "Create Mesh from MASH Points" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -265,7 +265,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create MASH Points Node: Create MASH Points Node" 
+        -annotation "Create MASH Points Node: Create MASH Points Node." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -312,7 +312,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Polygon Type: Create polygonal text on the grid" 
+        -annotation "Polygon Type: Create 3D text on the grid" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -427,7 +427,7 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create MASH Deformer: Create MASH Deformer" 
+        -annotation "Create MASH Deformer: Use MASH points to deform a mesh." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
@@ -461,12 +461,12 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Jiggle Deformer: Create Jiggle Deformer" 
+        -annotation "Create MASH Jiggle Deformer: Create Jiggle Deformer." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Jiggle Deformer" 
+        -label "Create MASH Jiggle Deformer" 
         -labelOffset 0
         -rotation 0
         -flipX 0
@@ -495,12 +495,12 @@ global proc shelf_MASH () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "Create Blend Deformer: Create Blend Deformer" 
+        -annotation "Create MASH Blend Deformer: Blend meshes using MASH points and Falloffs." 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "Create Blend Deformer" 
+        -label "Create MASH Blend Deformer" 
         -labelOffset 0
         -rotation 0
         -flipX 0
