@@ -1,1 +1,61 @@
-source "Advance/AdvancedSkeleton5.mel";
+/*
+//ribobn
+file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/ribbon_temp.mb";
+//base rig
+file -import -type "mayaBinary"  -ignoreVersion -mergeNamespacesOnClash false -rpr "imp_" -options "v=0;"  -pr  -importFrameRate true  -importTimeRange "override" "Z:/Art/1_Assets/2_Rig/baseCtrl.mb";
+
+batchCreateFolicle($selsA[0],$selsB);
+
+asMirrorOptions asSelectorbiped;
+
+
+updateModel($selsA,$selsB,0);
+updateModel($selsA,$selsB,1);
+
+crPerspAnchor();
+
+exportPlayerRig();
+exportRig(1,1); 
+
+changeMAtoMB();
+
+batchExportAniFBXHub();
+exportAniFBXTest();
+
+refresh -suspend 0; 
+
+exportFBXPipelineTool();
+PBToolbyLuke();
+file -f -new;
+file -open $sn; 
+
+crPerspAnchor()
+updateModel($selsA,$selsB,1);
+
+source "byLuke/copyPasteByLuke";
+copyPastebyLuke();
+
+sortOutTool;
+
+source "byLuke/exportRigTool";
+exportRigTool();
+
+source "byLuke/swRefToolbyLuke";
+*/
+
+
+source "ackTool/ackCycleTangents.mel";
+source "ackTool/ackSpreadSqueezeTiming.mel";
+source "ackTool/ackDeleteRedundant.mel";
+source "ackTool/ackMoveKeys.mel";
+source "ackTool/ackSetup.mel";
+source "ackTool/ackSnapEndKeyValues.mel";
+source "ackTool/ackSwapKeys.mel";
+
+source "byLuke/procedureMath.mel";
+source "byLuke/procedureTimeFrame.mel";
+source "byLuke/procedureBase.mel";
+source "byLuke/procedureXRigD.mel";
+source "byLuke/procedureOptimizeFile.mel";
+source "byLuke/setKeyTool";
+source "byLuke/sortOutTool";
