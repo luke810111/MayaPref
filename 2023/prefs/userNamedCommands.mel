@@ -434,3 +434,15 @@ nameCommand
 	-command ("reOpenSn")
 	reOpenSnNameCommand;
 
+nameCommand
+	-annotation "getNextFileNameCommand"
+	-sourceType "mel"
+	-command ("getNextFile")
+	getNextFileNameCommand;
+
+nameCommand
+	-annotation "getPreviousFileNameCommand"
+	-sourceType "mel"
+	-command ("getPreviousFile")
+	getPreviousFileNameCommand;
+

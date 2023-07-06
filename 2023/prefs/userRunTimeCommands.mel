@@ -794,7 +794,7 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("$sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;\nfile -f -new;\nfile -open $sn;")
+	-command ("string $sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;\nfile -f -new;\nfile -open $sn;")
 	reOpenSn;
 
 runTimeCommand
@@ -1021,4 +1021,34 @@ runTimeCommand
 	-commandLanguage "mel"
 	-command ("setObjectPickMask \"Joint\" true;\nsetObjectPickMask \"Surface\" true;")
 	selMask_jointAndSurface_1;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("getNextFile();")
+	getNextFile;
+
+runTimeCommand
+	-label ""
+	-annotation ""
+	-longAnnotation ""
+	-category "Custom Scripts.Luke"
+	-image ""
+	-tags ""
+	-keywords ""
+	-plugin ""
+	-helpUrl ""
+	-hotkeyCtx ""
+	-commandLanguage "mel"
+	-command ("")
+	getPreviousFile;
 

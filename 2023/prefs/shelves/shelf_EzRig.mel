@@ -564,7 +564,7 @@ global proc shelf_EzRig () {
         -flexibleWidthType 3
         -flexibleWidthValue 32
         -enable 1
-        -width 39
+        -width 35
         -height 34
         -manage 1
         -visible 1
@@ -584,8 +584,8 @@ global proc shelf_EzRig () {
         -imageOverlayLabel "FCm2-2Ве" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2Ве.bmp" 
-        -image1 "C:/Documents and Settings/Administrator/My Documents/maya/Icon_Custom/FCm2-2Ве.bmp" 
+        -image "123d.png" 
+        -image1 "123d.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
@@ -1184,6 +1184,41 @@ global proc shelf_EzRig () {
         -marginWidth 0
         -marginHeight 1
         -command "string $vtx[] = `polyListComponentConversion -toVertexFace`;\nselect -r $vtx;\nPolygonNormalEditTool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "autoTexture" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/autoTexture.mel\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Texture" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "Textured.png" 
+        -image1 "Textured.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/autoTexture.mel\";" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1

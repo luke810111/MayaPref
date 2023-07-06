@@ -1,17 +1,7 @@
-select -r "Body_Ctrl_translateY_Merged_Layer_inputB";
-selectKey "Body_Ctrl_translateY_Merged_Layer_inputB";
-float $toffset=-1;
-setInfinity -pri cycle graphEditor1FromOutliner;
-setInfinity -poi cycle graphEditor1FromOutliner;
-
-$animCurves=`keyframe -q -n -sl`;
-$tc=getKeyPoseTime();
-cycleOffset($toffset,$animCurves);
-keepKeyPoseTime($tc,$animCurves);
-
-//clear $tc $tcO $tc2;
-////////////////////////////////////////////////////
-
-$animCurves=`keyframe -q -n -sl`;
-
-//setCycleRegion($animCurves);
+radioCollection -edit -select radioButtonTreeverseExportRigFBXdir radioCollectionProjectExportRigFBXdir;
+ 
+global proc turnOnDangerous(int $sw){
+    if($sw)button -e -en 1 -bgc 0.8 0 0 dangerousButton;
+    else button -e -en 0 -bgc 0.4 0.1 0.1 dangerousButton; 
+    }
+   
