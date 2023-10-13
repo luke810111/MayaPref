@@ -1,7 +1,2 @@
-radioCollection -edit -select radioButtonTreeverseExportRigFBXdir radioCollectionProjectExportRigFBXdir;
- 
-global proc turnOnDangerous(int $sw){
-    if($sw)button -e -en 1 -bgc 0.8 0 0 dangerousButton;
-    else button -e -en 0 -bgc 0.4 0.1 0.1 dangerousButton; 
-    }
-   
+file -loadReference "SK_Player_Weapon_BoxingGlovesL_001_rigRN" -type "mayaBinary" -options "v=0;" "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GauntletL_001_rig.mb";
+file -loadReference "SK_Player_Weapon_BoxingGlovesR_001_rigRN" -type "mayaBinary" -options "v=0;" "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GauntletR_001_rig.mb";

@@ -446,3 +446,15 @@ nameCommand
 	-command ("getPreviousFile")
 	getPreviousFileNameCommand;
 
+nameCommand
+	-annotation "selectConDrvNameCommand"
+	-sourceType "mel"
+	-command ("selectConDrv")
+	selectConDrvNameCommand;
+
+nameCommand
+	-annotation "selectConDvnNameCommand"
+	-sourceType "mel"
+	-command ("selectConDvn")
+	selectConDvnNameCommand;
+

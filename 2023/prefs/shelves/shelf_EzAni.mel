@@ -345,7 +345,7 @@ global proc shelf_EzAni () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "crHelper ($selsA, $selsB); \nglobal proc crHelper (string $selsA[], string $selsB[]) { \n    if (`size $selsA`!=`size $selsB`) { \n        print \"A B數量不一 \"; \n    }else if(!`size $selsA`||!`size $selsB`) {\n        print \"A B is empty\"; \n    }else{ \n        for ($i=0;$i<`size $selsA`; $i++) {\n            $dvn=`spaceLocator -n ($selsB[$i]+\"_loc\")`; \n            $ro=`xform -q -roo $selsB[$i]`; \n            xform -roo $ro $dvn; \n            $dvnOffset=`duplicate -n ($dvn[0]+\"_offset\") $dvn`; \n            parent $dvn[0] $dvnOffset[0]; \n            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con; \n            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con;\n            if(!`objExists ($selsA[$i]+\"_loc\")`) {\n                $drv=`spaceLocator -n ($selsA[$i]+\"_loc\")` ; \n                $ro=`xform -q -roo $selsA[$i]`; \n                xform -roo $ro $drv; \n                $drvOffset=`duplicate -n ($drv[0] +\"_offset\") $drv`; \n                parent $drv[0] $drvOffset[0]; \n                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con; \n                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con;\n                if(!`objExists \"dont delete\"`)\n                    group -em -n \"dont_delete\"; \n                parent $drvOffset \"dont_delete\";\n                parentConstraint $selsA[$i] $drvOffset ; \n                //scaleConstraint $selsA[$i] Sdrvoffset \n                }\n            parent $dvnOffset[0] ($selsA[$i]+\"_loc\"); \n            if(`getAttr -l ($selsB[$i]+\".tx\")`||`getAttr -l ($selsB[$i]+\".ty\") `||`getAttr -l ($selsB[$i]+\".tz\")`)\n                orientConstraint $dvn $selsB[$i]; \n            else if(`getAttr -l ($selsB[$i]+\".rx\")`||`getAttr -l ($selsB[$i]+\".ry\")`||`getAttr -l ($selsB[$i]+\".rz\")`)\n                pointConstraint $dvn $selsB[$i];\n            else\n                parentConstraint $dvn $selsB[$i]; \n            //scaleConstraint sdyn $selsB[$i];\n            }\n        }\n    }\n" 
+        -command "crHelper ($selsA, $selsB); \nglobal proc crHelper (string $selsA[], string $selsB[]) { \n    if (`size $selsA`!=`size $selsB`) { \n        print \"A B數量不一 \"; \n    }else if(!`size $selsA`||!`size $selsB`) {\n        print \"A B is empty\"; \n    }else{ \n        for ($i=0;$i<`size $selsA`; $i++) {\n            $dvn=`spaceLocator -n ($selsB[$i]+\"_loc\")`; \n            $ro=`xform -q -roo $selsB[$i]`; \n            xform -roo $ro $dvn; \n            $dvnOffset=`duplicate -n ($dvn[0]+\"_offset\") $dvn`; \n            parent $dvn[0] $dvnOffset[0]; \n            $con=`parentConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con; \n            $con=`scaleConstraint $selsB[$i] $dvnOffset[0]`; \n            delete $con;\n            if(!`objExists ($selsA[$i]+\"_loc\")`) {\n                $drv=`spaceLocator -n ($selsA[$i]+\"_loc\")` ; \n                $ro=`xform -q -roo $selsA[$i]`; \n                xform -roo $ro $drv; \n                $drvOffset=`duplicate -n ($drv[0] +\"_offset\") $drv`; \n                parent $drv[0] $drvOffset[0]; \n                $con=`parentConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con; \n                $con=`scaleConstraint $selsA[$i] $drvOffset[0]`; \n                delete $con;\n                if(!`objExists \"dont delete\"`)\n                    group -em -n \"dont_delete\"; \n                parent $drvOffset \"dont_delete\";\n                parentConstraint  -mo $selsA[$i] $drvOffset ; \n                //scaleConstraint  -mo $selsA[$i] Sdrvoffset \n                }\n            parent $dvnOffset[0] ($selsA[$i]+\"_loc\"); \n            if(`getAttr -l ($selsB[$i]+\".tx\")`||`getAttr -l ($selsB[$i]+\".ty\") `||`getAttr -l ($selsB[$i]+\".tz\")`)\n                orientConstraint -mo $dvn $selsB[$i]; \n            else if(`getAttr -l ($selsB[$i]+\".rx\")`||`getAttr -l ($selsB[$i]+\".ry\")`||`getAttr -l ($selsB[$i]+\".rz\")`)\n                pointConstraint -mo $dvn $selsB[$i];\n            else\n                parentConstraint  -mo $dvn $selsB[$i]; \n            //scaleConstraint -mo sdyn $selsB[$i];\n            }\n        }\n    }\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -380,7 +380,7 @@ global proc shelf_EzAni () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/selCons\";\nselectConDrv();" 
+        -command "\nselectConDrv();" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -415,7 +415,7 @@ global proc shelf_EzAni () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/selCons\";\nselectConDvn();" 
+        -command "\nselectConDvn();" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -815,41 +815,6 @@ global proc shelf_EzAni () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "expAni" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
         -annotation "source \"byLuke/overLappingEmulatorbyLuke.mel\";\nOverLappingEmulatorByLuke;" 
         -enableBackground 0
         -backgroundColor 0 0 0 
@@ -977,6 +942,109 @@ global proc shelf_EzAni () {
         -marginHeight 1
         -command "setAttr \"persp.translateX\" 400.456;\nsetAttr \"persp.translateY\" 505.947;\nsetAttr \"persp.translateZ\" 1023.947;\nsetAttr \"persp.rotateX\" -20.738;\nsetAttr \"persp.rotateY\" -1058.6;\nsetAttr \"persp.rotateZ\" 0;\nsetAttr \"persp.scaleX\" 1;\nsetAttr \"persp.scaleY\" 1;\nsetAttr \"persp.scaleZ\" 1;\n" 
         -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "expAni" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "animBot Toggle - This will toggle animBot toolbar ON and OFF." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "animBot - animBot Toggle" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/animBot/_resources/img/icons_shelf/white/create_toggle_button_on_shelf_shelf.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/animBot/_resources/img/icons_shelf/white/create_toggle_button_on_shelf_shelf.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "from animBot._api.core import CORE as ANIMBOT_CORE; ANIMBOT_CORE.trigger.animBotMenu_toggle();" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Blend to Bounce Tangent - Gradually blend to Bounce tangents." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "animBot - Blend to Bounce Tangent" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/animBot/_resources/img/icons_shelf/orange/bbt_shelf.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/animBot/_resources/img/icons_shelf/orange/bbt_shelf.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "from animBot._api.core import CORE as ANIMBOT_CORE; ANIMBOT_CORE.trigger.tangentSlider_blendToBounceTangent();" 
+        -sourceType "python" 
         -commandRepeatable 1
         -flat 1
     ;
