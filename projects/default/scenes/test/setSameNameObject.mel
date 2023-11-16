@@ -1,0 +1,10 @@
+$all=`ls`;
+if(`objExists "sameNameSet"`)
+    delete "sameNameSet";
+if(!`objExists "sameNameSet"`)
+    sets -em -n "sameNameSet";
+
+
+for ($i=0; $i<`size($all)`;$i++){ 
+    if(`gmatch $all[$i] "*|*"`) sets -add "sameNameSet" $all[$i];
+    }

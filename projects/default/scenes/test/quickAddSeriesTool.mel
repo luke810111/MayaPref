@@ -1,0 +1,9 @@
+string $pad;
+$sels=`ls -sl`;
+for ($i=0; $i<`size($sels)`;$i++){ 
+    $child=`listRelatives -c $sels[$i]`;
+    for ($j=0; $j<`size($child)`;$j++){ 
+        $pad = `python ("'%02d' % "+($j+1))`; //預設為十位 百位則把這句02改成03 
+        rename $child[$j] ($sels[$i]+"_"+$pad);
+        }
+    }
