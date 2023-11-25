@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 40,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1686047254",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/SK_Player_Default_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/SK_Player_Default_rig.mb",
+        "namespace": ":model",
+        "node": "modelRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "C:/Projects/EndlessClouds/Art/1_Assets/3_Animation/MAYA/Player/Greatsword/ANI_Player_GreatSword_Dead_001_v03.mb"
+  }
+,
+  "objects": {
+    "model:Main": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE1"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE2"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE3"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE4"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 6500.0,
+          "curve": "CURVE5"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE6"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE7"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE8"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE9"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "model:Body_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE12"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -3843.230592649391,
+          "curve": "CURVE13"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE14"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 2.167339931212878,
+          "curve": "CURVE15"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.6097658935986656,
+          "curve": "CURVE16"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.02263436620999332,
+          "curve": "CURVE17"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE18"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.45699220885546465,
+          "curve": "CURVE19"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE20"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -1107.6032977849356,
+          "curve": "CURVE21"
+        }
+      }
+    }
+  }
+}
