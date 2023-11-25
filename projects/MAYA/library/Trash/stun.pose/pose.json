@@ -1,0 +1,245 @@
+{
+  "metadata": {
+    "description": "",
+    "user": "luke",
+    "ctime": "1683623018",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/SK_Player_Default_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/SK_Player_Default_rig.mb",
+        "namespace": ":model",
+        "node": "modelRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Yoyo/ANI_Player_Yoyo_Stun_001_v01.mb"
+  }
+,
+  "objects": {
+    "model:Arm_R_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 28.86492537721333
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 16.595586752492174
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 2
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 41.22906998417172
+        }
+      }
+    },
+    "model:Hand_R_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -12.60695751573261
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 11.730369571650954
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "parameterV": {
+          "type": "double",
+          "value": 0.0
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -19.637375014154028
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 17.31222746847654
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -5.029632622727997
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "parameterU": {
+          "type": "double",
+          "value": -13.0
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "model:Arm_L_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 12.853801992649016
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 4.297160213497366
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 2
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 54.821091410010865
+        }
+      }
+    },
+    "model:Hand_L_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -1.2722218725854064e-14
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -6.3611093629270296e-15
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "parameterV": {
+          "type": "double",
+          "value": 0.0
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -28.363838413776428
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 30.95421518770106
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -10.101853768383293
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "parameterU": {
+          "type": "double",
+          "value": -10.0
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -3.81666561775622e-14
+        }
+      }
+    }
+  }
+}
