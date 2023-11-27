@@ -1,0 +1,48 @@
+//create a square plane joint
+$obj="test";
+$i=5;
+$j=3;
+
+if(`objExists "test_grp"`)delete "test_grp";
+$polyPlane=crGeo($obj,$i,$j);
+$jts=crJtAlignPolyVtx($obj,$polyPlane);
+
+
+group  -n "jt_grp" $jts;
+group  -n "poly_grp" $polyPlane;
+group  -n "test_grp" "poly_grp" "jt_grp";
+
+proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
+    if($i<2)$i=2;
+    if($j<2)$j=2;
+    string $polyPlane=($obj+"_Plane");
+    if(`objExists $polyPlane`)delete $polyPlane;
+    polyPlane -w $i -h $j -sx ($i-1) -sy ($j-1) -n  $polyPlane;
+    return $polyPlane;
+    }
+
+proc string[] crJtAlignPolyVtx(string $obj,string $polyPlane){
+    string $jts[],$buffer[];
+    string $vtx;
+    $vtxs = `polyListComponentConversion -tv $polyPlane`;
+    $vtxs = `filterExpand -selectionMask 31 $vtxs`;
+    
+    for($vtx in $vtxs){
+        string $component = `substitute "^[^.]*\\." $vtx ""`;
+        tokenize($component, "[.]", $buffer);    
+        $jt=($obj+"_jt_"+$buffer[1]);    
+        if(`objExists $jt`)delete $jt;        
+        $p=`xform -q -ws -t $vtx`;
+        select -cl;
+        joint -p $p[0] $p[1] $p[2] -n $jt;     
+        $jts=stringArrayCatenate($jts, {$jt}); 
+    }
+
+    return $jts;
+}
+
+/*
+select -r $jts $polyPlane;
+skinCluster -mi 1 -omi on -rui off -tsb;
+polySmooth -dv 2 $polyPlane;
+doBakeNonDefHistory( 1, {"prePost" });

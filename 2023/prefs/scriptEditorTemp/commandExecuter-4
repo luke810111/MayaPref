@@ -1,0 +1,9 @@
+proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
+    if($i<2)$i=2;
+    if($j<2)$j=2;
+    string $polyPlane=($obj+"_Plane");
+    if(`objExists $polyPlane`)delete $polyPlane;
+    polyCylinder -r ($w/2) -h $h -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+
+    return $polyPlane;
+    }

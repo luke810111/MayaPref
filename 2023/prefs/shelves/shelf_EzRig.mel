@@ -25,7 +25,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "reOpen" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -60,7 +59,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "cutKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -95,7 +93,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "lw" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -130,7 +127,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "carlaH_skinWeightsEditor" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -147,9 +143,9 @@ global proc shelf_EzRig () {
     shelfButton
         -enableCommandRepeat 1
         -flexibleWidthType 3
-        -flexibleWidthValue 38
+        -flexibleWidthValue 36
         -enable 1
-        -width 41
+        -width 39
         -height 34
         -manage 1
         -visible 1
@@ -165,7 +161,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "weightHammerVerts;\r" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -200,7 +195,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "paintSkinWeights.xpm" 
@@ -234,7 +228,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "mirrorSkinWeight.png" 
@@ -268,7 +261,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -302,7 +294,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "DS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -337,7 +328,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "transferIDs.png" 
@@ -371,7 +361,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "Set." 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -406,7 +395,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "copySkinWeight.png" 
@@ -440,7 +428,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "CVW" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -475,7 +462,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "PVW" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -510,7 +496,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "A" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -545,7 +530,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "B" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -580,7 +564,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "FCm2-2Ве" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -615,7 +598,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "SCm2-2Ве" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -650,7 +632,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "SCnm2-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -685,7 +666,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "cpSW2-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -720,7 +700,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "cpSW1-2" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -755,7 +734,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "delISJt" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -790,7 +768,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "sortOutTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -825,7 +802,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "DS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -860,7 +836,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "copySkinWeight.png" 
@@ -894,7 +869,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "RE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -929,7 +903,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "gcos" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -964,7 +937,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "qrn" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -999,7 +971,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "sortOutTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1034,7 +1005,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "xRigD" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1069,7 +1039,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "expRig" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1104,7 +1073,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "color" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1139,7 +1107,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "2-2updateModel" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1174,7 +1141,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "PolygonNormalEditTool;" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1209,7 +1175,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "Texture" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1244,7 +1209,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "om" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1279,7 +1243,6 @@ global proc shelf_EzRig () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "ck" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1289,6 +1252,39 @@ global proc shelf_EzRig () {
         -marginWidth 0
         -marginHeight 1
         -command "$sels=`ls -sl`;\nif(`size $sels`){\n    $sk=`findRelatedSkinCluster $sels[0]`;\n    $jts=`listConnections ($sk+\".matrix\")`;\n\t\n    for($i=0;$i<100;$i++){\n        $jts=`listConnections ($sk+\".matrix[\" +$i+ \"]\")`;\n        if(`size $jts`)print ($jts[0]+ \" connect \" + $sk +\".matrix[\" + $i + \"] : \"+$sels[0]+\"\\n\");   \n    }\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "//--------------------------------------------------------------------------\n//\n// ScriptName : AriSelectLoopRing\n// Contents   : ?G?b?W???????O???g???I????????B\n// Author     : Ari\n// URL        : http://cgjishu.net/\n// Since      : 2016/10\n// LastUpdate : 2022/01/10 AriSelectLoopRing??????X ?t?F?[?X???? ?A???I??????\n//              2019/07/30 AriSelectEdgeLoopRing??????X ???[?v?@?\\??? Option?p?~\n// Help       : http://cgjishu.net/blog-entry-282.html\n//\n//--------------------------------------------------------------------------\n\n\nproc float distanceVer(string $ver1,string $ver2)\n{\n\t\tfloat $dis;\n\t\tfloat $verPos0[]=`pointPosition $ver1`;\n\t\tfloat $verPos1[]=`pointPosition $ver2`;\n\t\t$dis=\t ($verPos1[0]-$verPos0[0])*($verPos1[0]-$verPos0[0])\n\t\t\t\t\t\t+($verPos1[1]-$verPos0[1])*($verPos1[1]-$verPos0[1])\n\t\t\t\t\t\t+($verPos1[2]-$verPos0[2])*($verPos1[2]-$verPos0[2]);\n\t\t$dis=sqrt ($dis);\n\t\treturn $dis;\n}\nproc string[] AriGetEdgeList(string  $getList_edges[],int $ringTrue, int $verMode){\n\tstring $getList_vartex[];\n\tfor($i=0;$i<size($getList_edges);$i++){\n\t\tstring $edgeToVer[];\n\t\tif($ringTrue){\n\t\t\t$edgeToVer = `polyListComponentConversion -tf $getList_edges[$i]`;\n\t\t\t$edgeToVer = `filterExpand -selectionMask 34 $edgeToVer`;\n\t\t}\n\t\telse{\n\t\t\t$edgeToVer = `polyListComponentConversion -tv $getList_edges[$i]`;\n\t\t\t$edgeToVer = `filterExpand -selectionMask 31 $edgeToVer`;\n\t\t}\n\t\t$getList_vartex = stringArrayCatenate( $getList_vartex, $edgeToVer );\n\t}\n\tint $maxVal = size($getList_edges);\n\tint $breakTrue = false;\n\tstring $sort_edgeList[];\n\tstring $sort_vertexList[];\n\tint $count=0;\n\tfor($i=0; $i<size($getList_edges); $i++){\n\t\tif(stringArrayContains($getList_edges[$i], $sort_edgeList))continue;\n\t\tint $verNum1=$i*2;\n\t\tstring $nowEdge;\n\t\tstring $workEdgeList[];\n\t\tstring $workVertexList[];\n\t\tclear $workEdgeList;\n\t\tclear $workVertexList;\n\t\tint $workEdgeListCounter=0;\n\t\tstring $leadEdge;\n\t\tint $loopTrue = false;\n\t\tfor($k=0;$k<2;$k++){\n\t\t\t$nowEdge   = $getList_edges[$i];\n\t\t\t$nowVertex = $getList_vartex[$i*2+$k];\n\t\t\tint $n=0;\n\t\t\tif(!stringArrayContains($nowVertex,$sort_vertexList)){\n\t\t\t\t$workVertexList[0] = $nowVertex;\n\t\t\t\tstring $beforeEdge=$nowVertex;\n\t\t\t\twhile($n<100000){\n\t\t\t\t\tfor($j=0;$j<size($getList_edges);$j++){\n\t\t\t\t\t\tif(                    $getList_edges[$j] == $nowEdge  )continue;\n\t\t\t\t\t\tif(stringArrayContains($getList_edges[$j],   $workEdgeList))continue;\n\t\t\t\t\t\tif(stringArrayContains($getList_edges[$j],   $sort_edgeList))continue;\n\t\t\t\t\t\tint $verNum2=$j*2;\n\t\t\t\t\t\tif($nowVertex == $getList_vartex[$verNum2]){\n\t\t\t\t\t\t\t$nowEdge   = $getList_edges[$j];\n\t\t\t\t\t\t\t$nowVertex = $getList_vartex[$verNum2+1];\n\t\t\t\t\t\t\tif(!stringArrayContains($nowVertex,$workVertexList)){\n\t\t\t\t\t\t\t\t$workEdgeList[$workEdgeListCounter]     = $nowEdge;\n\t\t\t\t\t\t\t\t$workVertexList[$workEdgeListCounter+1] = $nowVertex;\n\t\t\t\t\t\t\t\t$workEdgeListCounter++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\telse{\n\t\t\t\t\t\t\t\t$loopTrue = true;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif($nowVertex == $getList_vartex[$verNum2+1]){\n\t\t\t\t\t\t\t$nowEdge   = $getList_edges[$j];\n\t\t\t\t\t\t\t$nowVertex = $getList_vartex[$verNum2];\n\t\t\t\t\t\t\tif(!stringArrayContains($nowVertex,$workVertexList)){\n\t\t\t\t\t\t\t\t$workEdgeList[$workEdgeListCounter]     = $nowEdge;\n\t\t\t\t\t\t\t\t$workVertexList[$workEdgeListCounter+1] = $nowVertex;\n\t\t\t\t\t\t\t\t$workEdgeListCounter++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\telse{\n\t\t\t\t\t\t\t\t$loopTrue = true;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tif($beforeEdge == $nowVertex)break;\n\t\t\t\t\t$beforeEdge=$nowVertex;\n\t\t\t\t\t$n++;\n\t\t\t\t}\n\t\t\t}\n\t\t\tstring $plusEdge_Work[]   = $workEdgeList;\n\t\t\tstring $plusVertex_Work[] = $workVertexList;\n\t\t\tif($k==0){\n\t\t\t\tfor($j=0;$j<size($workEdgeList);$j++){\n\t\t\t\t\t$plusEdge_Work[(size($workEdgeList))-$j-1] = $workEdgeList[$j];\n\t\t\t\t}\n\t\t\t\tfor($j=0;$j<size($workVertexList);$j++){\n\t\t\t\t\t$plusVertex_Work[(size($workVertexList))-$j-1] = $workVertexList[$j];\n\t\t\t\t}\n\t\t\t}\n\t\t\t$sort_edgeList   = stringArrayCatenate( $sort_edgeList,   $plusEdge_Work );\n\t\t\t$sort_vertexList = stringArrayCatenate( $sort_vertexList, $plusVertex_Work );\n\t\t\tif($k==0){\n\t\t\t\tif($plusEdge_Work[0] != $getList_edges[$i]){\n\t\t\t\t\t$sort_edgeList[size($sort_edgeList)]=$getList_edges[$i];\n\t\t\t\t}\n\t\t\t\telse{\n\t\t\t\t\t$loopTrue = true;\n\t\t\t\t}\n\t\t\t}\n\t\t\telse{\n\t\t\t\tstring $sepaString=\"--\";\n\t\t\t\tif($loopTrue)$sepaString=\"--Loop\";\n\t\t\t\t$sort_edgeList[size($sort_edgeList)]     = $sepaString;\n\t\t\t\t$sort_vertexList[size($sort_vertexList)] = $sepaString;\n\t\t\t}\n\t\t\tclear $workEdgeList;\n\t\t\tclear $workVertexList;\n\t\t\t$workEdgeListCounter=0;\n\t\t\tint $sortSize = size($sort_edgeList);\n\t\t}\n\t\tif($breakTrue)break;\n\t}\n\tif($verMode) return $sort_vertexList;\n\telse         return $sort_edgeList;\n}\nproc string[] ArrayLeadSort(string $array[],string $lead){\n\tstring $sortArray[];\n\tint $i=0;\n\tint $inputTrue = false;\n\tfor($string in $array){\n\t\tif($string == $lead){\n\t\t\t$inputTrue=true;\n\t\t}\n\t\tif($inputTrue){\n\t\t\t$sortArray[$i] = $string;\n\t\t\t$i++;\n\t\t}\n\t}\n\tfor($string in $array){\n\t\tif($string == $lead){\n\t\t\tbreak;\n\t\t}\n\t\tif($inputTrue){\n\t\t\t$sortArray[$i] = $string;\n\t\t\t$i++;\n\t\t}\n\t}\n\treturn $sortArray;\n}\nproc int extractNumber(string $component){\n\tstring $sepa[];\n\ttokenize $component \".\" $sepa;\n\tstring  $thisEdgeNumString = substring ($sepa[1],3,size($sepa[1])-1);\n\tint $thisEdgeNum = int($thisEdgeNumString);\n\treturn $thisEdgeNum;\n}\nproc string extractObject(string $component){\n\tstring $sepa[];\n\ttokenize $component \".\" $sepa;\n\tstring $objName = $sepa[0];\n\treturn $objName;\n}\nproc string getNextEdge(string $edge, string $faceOrVer, int $mode){\n\tint $thisEdgeNum = extractNumber($edge);\n\tstring $objName  = extractObject($edge);\n\tstring $edgeListString[];\n\tif($mode==0){\n\t\t$edgeListString = `polyInfo -vertexToEdge $faceOrVer`;\n\t}\n\tif($mode==1){\n\t\t$edgeListString = `polyInfo -faceToEdge $faceOrVer`;\n\t}\n\tstring $sepa[];\n\ttokenize $edgeListString[0] \" \" $sepa;\n\tstring $edgeNumList[];\n\tclear $edgeNumList;\n\tfor($j=2; $j<size($sepa)-1; $j++){\n\t\t$edgeNumList[$j-2] = $sepa[$j];\n\t}\n\tstring  $nextEdge;\n\tif(size($edgeNumList) == 4 ){\n\t\tfor($j=0; $j<size($edgeNumList); $j++){\n\t\t\tif($thisEdgeNum == $edgeNumList[$j]){\n\t\t\t\tint $num = $j;\n\t\t\t\t$num = $num+2;\n\t\t\t\t$num = $num%4;\n\t\t\t\t$nextEdge = ($objName + \".e[\" + $edgeNumList[$num] + \"]\");\n\t\t\t}\n\t\t}\n\t}\n\tif(size($edgeNumList) == 3 && $mode==0){\n\t\tstring $edgeToFaces_1[] = `polyListComponentConversion -tf $edge`;\n\t\t$edgeToFaces_1 = `filterExpand -selectionMask 34 $edgeToFaces_1`;\n\t\tif(size($edgeToFaces_1)==1){\n\t\t\tfor($j=0; $j<size($edgeNumList); $j++){\n\t\t\t\tif($thisEdgeNum == $edgeNumList[$j])continue;\n\t\t\t\tstring $edgeName = ($objName + \".e[\" + $edgeNumList[$j] + \"]\");\n\t\t\t\tstring $edgeToFaces_2[] = `polyListComponentConversion -tf $edgeName`;\n\t\t\t\t$edgeToFaces_2 = `filterExpand -selectionMask 34 $edgeToFaces_2`;\n\t\t\t\tif(size($edgeToFaces_2)==1){\n\t\t\t\t\t$nextEdge = $edgeName;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn $nextEdge;\n}\nproc AriSelectLoopRingOptions_Save(){\n\tglobal string $AriSelectLoopRing_UI_loopValIF;\n\tglobal string $AriSelectLoopRing_UI_loopJumpIF;\n\tglobal string $AriSelectLoopRing_UI_loopRevCB;\n\tglobal string $AriSelectLoopRing_UI_ringValIF;\n\tglobal string $AriSelectLoopRing_UI_ringJumpIF;\n\tglobal string $AriSelectLoopRing_UI_ringRevCB;\n\tint $loop_repeat = `intSliderGrp -q -v $AriSelectLoopRing_UI_loopValIF`;\n\tint $loop_jump   = `intSliderGrp -q -v $AriSelectLoopRing_UI_loopJumpIF`;\n\tint $loop_rev    = `checkBox     -q -v $AriSelectLoopRing_UI_loopRevCB`;\n\tint $ring_repeat = `intSliderGrp -q -v $AriSelectLoopRing_UI_ringValIF`;\n\tint $ring_jump   = `intSliderGrp -q -v $AriSelectLoopRing_UI_ringJumpIF`;\n\tint $ring_rev    = `checkBox     -q -v $AriSelectLoopRing_UI_ringRevCB`;\n\toptionVar -intValue \"AriSelectLoopRing_loopRepeat\" $loop_repeat;\n\toptionVar -intValue \"AriSelectLoopRing_loopJump\"   $loop_jump;\n\toptionVar -intValue \"AriSelectLoopRing_loopRev\"    $loop_rev;\n\toptionVar -intValue \"AriSelectLoopRing_ringRepeat\" $ring_repeat;\n\toptionVar -intValue \"AriSelectLoopRing_ringJump\"   $ring_jump;\n\toptionVar -intValue \"AriSelectLoopRing_ringRev\"    $ring_rev;\n}\nglobal proc AriSelectLoopRingOptions_GO(){\n\tAriSelectLoopRingOptions_Save();\n}\nglobal proc AriSelectLoopRing_GO(int $mode){\n\tint $ringMode = $mode;\n\tint $conti = 2;\n\tglobal string $AriSelectLoopRing_UI_loopValIF;\n\tglobal string $AriSelectLoopRing_UI_loopJumpIF;\n\tglobal string $AriSelectLoopRing_UI_loopRevCB;\n\tglobal string $AriSelectLoopRing_UI_loopMaxIF;\n\tglobal string $AriSelectLoopRing_UI_ringValIF;\n\tglobal string $AriSelectLoopRing_UI_ringJumpIF;\n\tglobal string $AriSelectLoopRing_UI_ringRevCB;\n\tglobal string $AriSelectLoopRing_UI_ringMaxIF;\n\tAriSelectLoopRingOptions_Save();\n\tintField -e -bgc 0 0 0 $AriSelectLoopRing_UI_ringMaxIF;\n\tintField -e -bgc 0 0 0 $AriSelectLoopRing_UI_loopMaxIF;\n\tint $loop_repeat = `intSliderGrp -q -v $AriSelectLoopRing_UI_loopValIF`;\n\tint $loop_jump   = `intSliderGrp -q -v $AriSelectLoopRing_UI_loopJumpIF`;\n\tint $loop_rev    = `checkBox     -q -v $AriSelectLoopRing_UI_loopRevCB`;\n\tint $loop_max    = `intField     -q -v $AriSelectLoopRing_UI_loopMaxIF`;\n\tint $ring_repeat = `intSliderGrp -q -v $AriSelectLoopRing_UI_ringValIF`;\n\tint $ring_jump   = `intSliderGrp -q -v $AriSelectLoopRing_UI_ringJumpIF`;\n\tint $ring_rev    = `checkBox     -q -v $AriSelectLoopRing_UI_ringRevCB`;\n\tint $ring_max    = `intField     -q -v $AriSelectLoopRing_UI_ringMaxIF`;\n\tif($loop_repeat  < 1) $loop_repeat = 1;\n\tif($loop_jump < 0) $loop_jump = 0;\n\tif($ring_repeat  < 1) $ring_repeat = 1;\n\tif($ring_jump < 0) $ring_jump = 0;\n\tint $repeat = $loop_repeat;\n\tint $jump   = $loop_jump;\n\tint $reverse = $loop_rev;\n\tint $max    = $loop_max;\n\tif($mode == 1){\n\t\t$repeat = $ring_repeat;\n\t\t$jump   = $ring_jump;\n\t\t$reverse = $ring_rev;\n\t\t$max    = $ring_max;\n\t}\n\tfloat $time = `timerX`;\n\tstring $processedEdgeList[];        \n\tstring $nextEdgeList[]; \n\tstring $processedEdgeList_final[]; \n\tstring $processedFaceList[]; \n\tstring $processedFaceList_final[]; \n\tstring $sortEdgeList[];\n\tstring $selects[] = `ls -sl`;\n\tif(!size($selects))return;\n\tstring $selectedEdgeList[] = `filterExpand -selectionMask 32 $selects`;\n\tstring $selectedFaceList[] = `filterExpand -selectionMask 34 $selects`;\n\tstring $selectFaceList[] = $selectedFaceList;\n\tif(!size($selectedEdgeList) && !size($selectedFaceList))return;\n\tstring $borderEdgeList[];\n\tint $faceTrue = false;\n\tif(size($selectedFaceList)){\n\t\t$mode = 1;\n\t\t$faceTrue = true;\n\t\t$selectedEdgeList = `polyListComponentConversion -te $selectedFaceList`;\n\t\t$selectedEdgeList = `filterExpand -selectionMask 32 $selectedEdgeList`;\n\t\tif(!$reverse)$processedFaceList_final = $selectedFaceList;\n\t\tstring $selectedEdgeList[] = `polyListComponentConversion -toEdge $selectedFaceList`;\n\t\t$selectedEdgeList = `filterExpand -selectionMask 32 $selectedEdgeList`;\n\t\tstring $borderEdges[];\n\t\tfor($edge in $selectedEdgeList){\n\t\t\tstring $toFaces[] = `polyListComponentConversion -tf $edge`;\n\t\t\t$toFaces = `filterExpand -selectionMask 34 $toFaces`;\n\t\t\tif(size($toFaces)==1){\n\t\t\t\t$borderEdges[size($borderEdges)] = $edge;\n\t\t\t}\n\t\t}\n\t\tConvertSelectionToEdgePerimeter;\n\t\tselect -add $borderEdges;\n\t\t$borderEdgeList = `ls -sl`;\n\t\t$borderEdgeList = `filterExpand -selectionMask 32 $borderEdgeList`;\n\t\tselect -cl;\n\t\tSelectFacetMask;\n\t\tif($max < size($borderEdgeList)){\n\t\t\tprint (size($borderEdgeList) + \" Edges\");\n\t\t\tif( $ringMode)\tintField -e -bgc 1 0 0 $AriSelectLoopRing_UI_ringMaxIF;\n\t\t\telse\t\t\tintField -e -bgc 1 0 0 $AriSelectLoopRing_UI_loopMaxIF;\n\t\t\treturn;\n\t\t}\n\t\t$borderEdgeList = AriGetEdgeList($borderEdgeList,0,0);\n\t}\n\telse{\n\t\tif($max < size($selectedEdgeList)){\n\t\t\tprint (size($selectedEdgeList) + \" Edges\");\n\t\t\tif( $ringMode)\tintField -e -bgc 1 0 0 $AriSelectLoopRing_UI_ringMaxIF;\n\t\t\telse\t\t\tintField -e -bgc 1 0 0 $AriSelectLoopRing_UI_loopMaxIF;\n\t\t\treturn;\n\t\t}\n\t\t$borderEdgeList = AriGetEdgeList($selectedEdgeList,$mode,0);\n\t}\n\t$processedEdgeList = $selectedEdgeList;\n\tif(!$reverse)$processedEdgeList_final = $selectedEdgeList;\n\tstring $borderEdgeGroup[];\n\tfor($borderEdge in $borderEdgeList){\n\t\tif($borderEdge != \"--\" && $borderEdge != \"--Loop\"){\n\t\t\t$borderEdgeGroup[size($borderEdgeGroup)] = $borderEdge;\n\t\t}\n\t\telse{\n\t\t\tif(size($selectedFaceList)){\n\t\t\t\tstring $borderToFace[] = `polyListComponentConversion -tf $borderEdgeGroup`;\n\t\t\t\t$borderToFace = `filterExpand -selectionMask 34 $borderToFace`;\t\t\t\t\n\t\t\t\tstring $removeFace[] = stringArrayRemove($selectedFaceList, $borderToFace);\n\t\t\t\tstring $innerFace[]  = stringArrayRemove($removeFace, $borderToFace);\n\t\t\t\tstring $corner2_Edge[];\n\t\t\t\tstring $corner3_Edge[];\n\t\t\t\tstring $corner4_Edge[];\n\t\t\t\tfor($face in $innerFace){\n\t\t\t\t\tstring $faceToEdges[] = `polyListComponentConversion -te $face`;\n\t\t\t\t\t$faceToEdges = `filterExpand -selectionMask 32 $faceToEdges`;\n\t\t\t\t\tif(size($faceToEdges)!=4) continue;\n\t\t\t\t\tstring $removeEdges[] = stringArrayRemove($borderEdgeGroup, $faceToEdges);\n\t\t\t\t\t$faceToEdges = stringArrayRemove($removeEdges, $faceToEdges);\n\t\t\t\t\tif(size($faceToEdges)==2){\n\t\t\t\t\t\t$corner2_Edge = stringArrayCatenate($corner2_Edge, $faceToEdges);\n\t\t\t\t\t}\n\t\t\t\t\tif(size($faceToEdges)==3){\n\t\t\t\t\t\tstring $faceToEdgesSort[] = AriGetEdgeList($faceToEdges,0,0);\n\t\t\t\t\t\t$corner3_Edge[size($corner3_Edge)] = $faceToEdgesSort[1];\n\t\t\t\t\t}\n\t\t\t\t\tif(size($faceToEdges)==4){\n\t\t\t\t\t\t$corner4_Edge = $faceToEdges;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tint $corner2_true = false;\n\t\t\t\tint $corner3_true = false;\n\t\t\t\tint $oneface_true = false;\n\t\t\t\tif(size($corner2_Edge)==8 && size($corner3_Edge)==0)\t$corner2_true = true;\n\t\t\t\tif(size($corner3_Edge)==2 && $corner2_true==false)\t\t$corner3_true = true;\n\t\t\t\tif(size($corner4_Edge)==4) \t\t\t\t\t\t\t\t$oneface_true = true;\n\t\t\t\tif($corner2_true==false && $corner3_true==false && $oneface_true==false){\n\t\t\t\t\tclear $borderEdgeGroup;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tif($corner2_true==true){\n\t\t\t\t\tstring $startEdge;\n\t\t\t\t\tint $countFg = 0;\n\t\t\t\t\tfor($borderEdge in $borderEdgeGroup){\n\t\t\t\t\t\tif(stringArrayContains($borderEdge,$corner2_Edge)){\n\t\t\t\t\t\t\t$countFg++;\n\t\t\t\t\t\t\tif($countFg==2){\n\t\t\t\t\t\t\t\t$startEdge = $borderEdge;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t$countFg = 0;\n\t\t\t\t\t}\n\t\t\t\t\t$borderEdgeGroup = ArrayLeadSort($borderEdgeGroup,$startEdge);\n\t\t\t\t\tstring $horizonEdgeGroupA[];\n\t\t\t\t\tstring $horizonEdgeGroupB[];\n\t\t\t\t\tint $count = -1;\n\t\t\t\t\tfor($borderEdge in $borderEdgeGroup){\n\t\t\t\t\t\tif(stringArrayContains($borderEdge, $corner2_Edge))$count++;\n\t\t\t\t\t\tif($count==0 || $count==1) $horizonEdgeGroupA[size($horizonEdgeGroupA)] = $borderEdge;\n\t\t\t\t\t\tif($count==2 || $count==3) $horizonEdgeGroupB[size($horizonEdgeGroupB)] = $borderEdge;\n\t\t\t\t\t\tif($count==4 || $count==5) $horizonEdgeGroupA[size($horizonEdgeGroupA)] = $borderEdge;\n\t\t\t\t\t\tif($count==6 || $count==7) $horizonEdgeGroupB[size($horizonEdgeGroupB)] = $borderEdge;\n\t\t\t\t\t}\n\t\t\t\t\tint $manyTrue = true;\n\t\t\t\t\tif(size($horizonEdgeGroupA) <= size($horizonEdgeGroupB)){\n\t\t\t\t\t\tif($ringMode)\t$manyTrue = true;\n\t\t\t\t\t\telse \t\t\t$manyTrue = false;\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\tif($ringMode)\t$manyTrue = false;\n\t\t\t\t\t\telse \t\t\t$manyTrue = true;\n\t\t\t\t\t}\n\t\t\t\t\tif($manyTrue){\n\t\t\t\t\t\t$conti = size($horizonEdgeGroupA)/2;\n\t\t\t\t\t\t$selectedEdgeList = $horizonEdgeGroupB;\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\t$conti = size($horizonEdgeGroupB)/2;\n\t\t\t\t\t\t$selectedEdgeList = $horizonEdgeGroupA;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tif($corner3_true==true){\n\t\t\t\t\tstring $horizonEdgeGroupA[];\n\t\t\t\t\tstring $horizonEdgeGroupB[];\n\t\t\t\t\t$corner3_Edge = AriGetEdgeList($corner3_Edge,0,0);\n\t\t\t\t\t$horizonEdgeGroupA[0] = $corner3_Edge[0];\n\t\t\t\t\t$horizonEdgeGroupA[1] = $corner3_Edge[2];\n\t\t\t\t\t$horizonEdgeGroupB = stringArrayRemove($horizonEdgeGroupA, $borderEdgeGroup);\n\t\t\t\t\tint $manyTrue = false;\n\t\t\t\t\tif($ringMode)\t$manyTrue = true;\n\t\t\t\t\tif($manyTrue){\n\t\t\t\t\t\t$selectedEdgeList = $horizonEdgeGroupB;\n\t\t\t\t\t\t$conti = 1;\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\t$selectedEdgeList = $horizonEdgeGroupA;\n\t\t\t\t\t\t$conti = size($horizonEdgeGroupB)/2;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tif($oneface_true){\n\t\t\t\t\tstring $horizonEdgeGroupA[];\n\t\t\t\t\tstring $horizonEdgeGroupB[];\n\t\t\t\t\tstring $faceToEdges[] = $corner4_Edge;\n\t\t\t\t\t$faceToEdges = AriGetEdgeList($faceToEdges,0,0);\n\t\t\t\t\t$horizonEdgeGroupA[0] = $faceToEdges[0];\n\t\t\t\t\t$horizonEdgeGroupA[1] = $faceToEdges[2];\n\t\t\t\t\t$horizonEdgeGroupB[0] = $faceToEdges[1];\n\t\t\t\t\t$horizonEdgeGroupB[1] = $faceToEdges[3];\n\t\t\t\t\tstring $versA[] = `polyListComponentConversion -tv $horizonEdgeGroupA[0]`;\n\t\t\t\t\t$versA = `filterExpand -selectionMask 31 $versA`;\n\t\t\t\t\tfloat $distanceA = distanceVer($versA[0],$versA[1]);\n\t\t\t\t\tstring $versB[] = `polyListComponentConversion -tv $horizonEdgeGroupB[0]`;\n\t\t\t\t\t$versB = `filterExpand -selectionMask 31 $versB`;\n\t\t\t\t\tfloat $distanceB = distanceVer($versB[0],$versB[1]);\n\t\t\t\t\tint $manyTrue = false;\n\t\t\t\t\tif($distanceB >= $distanceA){\n\t\t\t\t\t\tif($ringMode)\t$manyTrue = true;\n\t\t\t\t\t\telse\t\t\t$manyTrue = false;\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\tif($ringMode)\t$manyTrue = false;\n\t\t\t\t\t\telse\t\t\t$manyTrue = true;\n\t\t\t\t\t}\n\t\t\t\t\t$conti = 1;\n\t\t\t\t\tif($manyTrue)\t$selectedEdgeList = $horizonEdgeGroupB;\n\t\t\t\t\telse\t\t\t$selectedEdgeList = $horizonEdgeGroupA;\n\t\t\t\t}\n\t\t\t\t$sortEdgeList = $selectedEdgeList;\n\t\t\t\t$sortEdgeList[size($sortEdgeList)] = \"--\";\n\t\t\t}\n\t\t\telse{\n\t\t\t\t$sortEdgeList = $borderEdgeGroup;\n\t\t\t}\n\t\t\tif(!$faceTrue)$conti = size($sortEdgeList);\n\t\t\tstring $nowEdgeList[] = $sortEdgeList;\n\t\t\tint $beforeSize;\n\t\t\tint $nn = 0;\n\t\t\tint $k = 0;\n\t\t\twhile($nn < $repeat){\n\t\t\t\tif($beforeSize == size($processedEdgeList))break;\n\t\t\t\t$beforeSize = size($processedEdgeList);\n\t\t\t\tclear $nextEdgeList;\n\t\t\t\tfor($edge in $nowEdgeList){\n\t\t\t\t\tif($edge==\"--\")continue;\n\t\t\t\t\tstring $faceOrVers[];\n\t\t\t\t\tif($mode==0){\n\t\t\t\t\t\t$faceOrVers = `polyListComponentConversion -tv $edge`;\n\t\t\t\t\t\t$faceOrVers = `filterExpand -selectionMask 31 $faceOrVers`;\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\t$faceOrVers = `polyListComponentConversion -tf $edge`;\n\t\t\t\t\t\t$faceOrVers = `filterExpand -selectionMask 34 $faceOrVers`;\n\t\t\t\t\t}\n\t\t\t\t\tfor($faceOrVer in $faceOrVers){\n\t\t\t\t\t\tif(stringArrayContains($faceOrVer, $selectFaceList))continue;\n\t\t\t\t\t\tif(stringArrayContains($faceOrVer, $processedFaceList))continue;\n\t\t\t\t\t\t$processedFaceList[size($processedFaceList)] = $faceOrVer; \n\t\t\t\t\t\tstring  $nextEdge = getNextEdge($edge, $faceOrVer, $mode);\n\t\t\t\t\t\tif($nextEdge==\"\")continue;\n\t\t\t\t\t\t\t$processedEdgeList[size($processedEdgeList)] = $nextEdge;\n\t\t\t\t\t\t\t$nextEdgeList[size($nextEdgeList)] = $nextEdge;\n\t\t\t\t\t\t\tif(($nn+$conti)%($conti+$jump) < $conti){\n\t\t\t\t\t\t\t\tif(!$reverse){\n\t\t\t\t\t\t\t\t\t$processedEdgeList_final[size($processedEdgeList_final)] = $nextEdge;\n\t\t\t\t\t\t\t\t\t$processedFaceList_final[size($processedFaceList_final)] = $faceOrVer; \n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\telse{\n\t\t\t\t\t\t\t\tif($reverse){\n\t\t\t\t\t\t\t\t\t$processedEdgeList_final[size($processedEdgeList_final)] = $nextEdge;\n\t\t\t\t\t\t\t\t\t$processedFaceList_final[size($processedFaceList_final)] = $faceOrVer; \n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t$nowEdgeList = $nextEdgeList;\n\t\t\t\t$nn++;\n\t\t\t}\n\t\t\tclear $borderEdgeGroup;\n\t\t\tclear $processedFaceList;\n\t\t}\n\t}\n\tif($faceTrue){\n\t\tselect $processedFaceList_final;\n\t}\n\telse{\n\t\tselect $processedEdgeList_final;\n\t}\n}\nglobal proc AriSelectLoopRing_windowSize(){\n\twindow -e -h 50  AriSelectLoopRing;\n}\nglobal proc AriSelectLoopRing(){\n\tglobal string $AriSelectLoopRing_UI_loopValIF;\n\tglobal string $AriSelectLoopRing_UI_loopJumpIF;\n\tglobal string $AriSelectLoopRing_UI_loopRevCB;\n\tglobal string $AriSelectLoopRing_UI_loopMaxIF;\n\tglobal string $AriSelectLoopRing_UI_ringValIF;\n\tglobal string $AriSelectLoopRing_UI_ringJumpIF;\n\tglobal string $AriSelectLoopRing_UI_ringRevCB;\n\tglobal string $AriSelectLoopRing_UI_ringMaxIF;\n\tint $loop_repeat  = 10;\n\tint $loop_jump = 0;\n\tint $loop_rev  = false;\n\tint $ring_repeat  = 10;\n\tint $ring_jump = 0;\n\tint $ring_rev  = false;\n\tif(`optionVar -exists \"AriSelectLoopRing_loopRepeat\"`)\t$loop_repeat  = `optionVar -q \"AriSelectLoopRing_loopRepeat\"`;\n\tif(`optionVar -exists \"AriSelectLoopRing_loopJump\"`)\t$loop_jump    = `optionVar -q \"AriSelectLoopRing_loopJump\"`;\n\tif(`optionVar -exists \"AriSelectLoopRing_loopRev\"`)\t\t$loop_rev     = `optionVar -q \"AriSelectLoopRing_loopRev\"`;\n\tif(`optionVar -exists \"AriSelectLoopRing_ringRepeat\"`)\t$ring_repeat  = `optionVar -q \"AriSelectLoopRing_ringRepeat\"`;\n\tif(`optionVar -exists \"AriSelectLoopRing_ringJump\"`)\t$ring_jump    = `optionVar -q \"AriSelectLoopRing_ringJump\"`;\n\tif(`optionVar -exists \"AriSelectLoopRing_ringRev\"`)\t\t$ring_rev     = `optionVar -q \"AriSelectLoopRing_ringRev\"`;\n\tif((`window -ex  AriSelectLoopRing`)==true)deleteUI AriSelectLoopRing;\n\twindow -title \"AriSelectLoopRing\" -tlb true -w 200 -h 50 AriSelectLoopRing;\n\tstring $form = `columnLayout -adj true`;\n\tstring $frameLoop = `frameLayout -cll true -l \"Loop\" -bgc 0.2 0 0  -cc \"AriSelectLoopRing_windowSize()\"`;\n\tcolumnLayout -adj true -bgc 0.2 0.1 0.1 ;\n\trowLayout -nc 2 -adj 2;\n\ttext -w 54 -l \"Repeat:\" -al \"left\";\n\t$AriSelectLoopRing_UI_loopValIF  = `intSliderGrp -field true -v $loop_repeat -min 1 -max 100 -fmx 10000 -cw 1 40 -w 50`;\n\tsetParent..;\n\trowLayout -nc 2 -adj 2;\n\ttext -w 54 -l \"Jump:\" -al \"left\";\n\t$AriSelectLoopRing_UI_loopJumpIF = `intSliderGrp -field true -v $loop_jump -min 0 -max 10 -fmx 1000 -cw 1 40 -w 50`;\n\tsetParent..;\n\trowLayout -nc 5 -adj 2;\n\t$AriSelectLoopRing_UI_loopRevCB = `checkBox -l \"Reversal\" -v $loop_rev`;\n\ttext -l \"\";\n\ttext -l \"Max:\";\n\t$AriSelectLoopRing_UI_loopMaxIF = `intField -v 500 -w 42`;\n\tbutton -h 20 -w 48 -bgc 0.2 0.2 0.2 -l \"Undo\" -c \"Undo;\";\n\tsetParent..;\n\ttext -h 4 -l \"\";\n\tbutton -h 30 -l \"Select Edge Loop\"  -bgc 0.35 0.1 0.1 -c \"AriSelectLoopRing_GO(0)\";\n\tsetParent..;\n\tsetParent..;\n\tstring $frameRing = `frameLayout -cll true -l \"Ring\" -bgc 0 0.2 0 -cc \"AriSelectLoopRing_windowSize()\"`;\n\tcolumnLayout -adj true -bgc 0.1 0.2 0.1 ;\n\trowLayout -nc 2 -adj 2;\n\ttext -w 54 -l \"Repeat:\" -al \"left\";\n\t$AriSelectLoopRing_UI_ringValIF = `intSliderGrp -field true -v $ring_repeat -min 1 -max 100 -fmx 10000 -cw 1 40 -w 50`;\n\tsetParent..;\n\trowLayout -nc 2 -adj 2;\n\ttext -w 54 -l \"Jump:\" -al \"left\";\n\t$AriSelectLoopRing_UI_ringJumpIF = `intSliderGrp -field true -v $ring_jump -min 0 -max 10 -fmx 1000 -cw 1 40 -w 50`;\n\tsetParent..;\n\trowLayout -nc 5 -adj 2;\n\t$AriSelectLoopRing_UI_ringRevCB = `checkBox -l \"Reversal\" -v $ring_rev`;\n\ttext -l \"\";\n\ttext -l \"Max:\";\n\t$AriSelectLoopRing_UI_ringMaxIF = `intField -v 500 -w 42`;\n\tbutton -h 20 -w 48 -bgc 0.2 0.2 0.2 -l \"Undo\" -c \"Undo;\";\n\tsetParent..;\n\ttext -h 4 -l \"\";\n\tbutton -h 30 -l \"Select Edge Ring\"  -bgc 0.1 0.35 0.1 -c \"AriSelectLoopRing_GO(1)\";\n\tsetParent..;\n\tsetParent..;\n\tsetParent..;\n\t/*\n\tformLayout -e\n\t\t-af $frameLoop \"left\"  0\n\t\t-af $frameLoop \"right\" 0\n\t\t-af $frameLoop \"top\"   0\n\t\t-ap $frameLoop \"bottom\" 0 50\n\t\t-af $frameRing \"left\" 0\n\t\t-af $frameRing \"right\" 0\n\t\t-af $frameRing \"bottom\" 0\n\t\t-ac $frameRing \"top\" 0 $frameLoop\n\t$form;\n\t*/\n\tshowWindow;\n}\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "//--------------------------------------------------------------..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:/Users/luke/Documents/maya/scripts/reference/Ari/AriSelectLoopRing.png" 
+        -image1 "C:/Users/luke/Documents/maya/scripts/reference/Ari/AriSelectLoopRing.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"reference/Ari/AriSelectLoopRing\";\nAriSelectLoopRing();" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1

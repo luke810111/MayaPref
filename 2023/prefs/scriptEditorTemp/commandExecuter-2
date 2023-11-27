@@ -1,2 +1,13 @@
-file -loadReference "SK_Player_Weapon_BoxingGlovesL_001_rigRN" -type "mayaBinary" -options "v=0;" "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GauntletL_001_rig.mb";
-file -loadReference "SK_Player_Weapon_BoxingGlovesR_001_rigRN" -type "mayaBinary" -options "v=0;" "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GauntletR_001_rig.mb";
+$sels=`ls -sl`;
+
+$vtxs = `polyListComponentConversion -tv $sels`;
+$vtxs = `filterExpand -selectionMask 31 $vtxs`;
+
+
+$edgs = `polyListComponentConversion -te $sels`;
+$edgs = `filterExpand -selectionMask 32 $edgs`;
+
+$facs = `polyListComponentConversion -tf $sels`;
+$facs = `filterExpand -selectionMask 34 $facs`;
+
+select -r $facs
