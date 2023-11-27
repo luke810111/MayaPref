@@ -25,6 +25,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "picker" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -59,6 +60,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "C:/Users/luke/Documents/maya/2023/prefs/icons/IKFKSwitchTool.png" 
@@ -92,6 +94,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -overlayLabelColor 0.156757 0.156757 0.156757 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "C:/Users/luke/Documents/maya/2023/prefs/icons/dingdingTool.png" 
@@ -125,6 +128,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "C:/Users/luke/Documents/maya/2023/prefs/icons/setKeyTool.png" 
@@ -157,6 +161,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "Studio Library" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -191,6 +196,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "getTop" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -225,6 +231,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "pptsl" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -259,6 +266,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "A" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -293,6 +301,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "B" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -327,6 +336,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "helper" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -361,6 +371,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "gCSource" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -395,6 +406,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "gCTarget" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -429,6 +441,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "dCons" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -463,6 +476,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "setAdd" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -497,6 +511,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "setRemove" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -531,6 +546,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "CK" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -565,6 +581,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "PK" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -574,6 +591,41 @@ global proc shelf_EzAni () {
         -marginWidth 0
         -marginHeight 1
         -command "doPasteKeyArgList 5 { \"0:10\",\"1\",\"3\",\"merge\", \"0\", \"animationList\", \"noOptions\", \"0\", \"0\", \"0\", \"0\"};" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\ncurrentUnit -t \"film\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\ncurrentUnit -t \"film\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "24fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\ncurrentUnit -t \"film\";" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -599,6 +651,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "30fps" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -633,6 +686,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "60fps" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -642,6 +696,41 @@ global proc shelf_EzAni () {
         -marginWidth 0
         -marginHeight 1
         -command "currentUnit -t \"ntscf\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentUnit -t \"240fps\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentUnit -t \"240fps\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "240fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentUnit -t \"240fps\";" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -667,6 +756,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "selAllAni" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -701,6 +791,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "copyPasteKey" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -735,6 +826,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "PBTool" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -769,6 +861,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "reParent" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -803,6 +896,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "overLapping" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -837,6 +931,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "swRef" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -871,6 +966,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "cycle" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -905,6 +1001,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "perpFrezze" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -939,6 +1036,7 @@ global proc shelf_EzAni () {
         -flipX 0
         -flipY 0
         -useAlpha 1
+        -font "plainLabelFont" 
         -imageOverlayLabel "expAni" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -948,6 +1046,76 @@ global proc shelf_EzAni () {
         -marginWidth 0
         -marginHeight 1
         -command "source \"byLuke/exportFBXPipeline\";\nexportAniFBXTool();" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "\ncurrentUnit -t \"film\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "\ncurrentUnit -t \"film\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "24fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "\ncurrentUnit -t \"film\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "currentUnit -t \"240fps\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentUnit -t \"240fps\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "240fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentUnit -t \"240fps\";" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
