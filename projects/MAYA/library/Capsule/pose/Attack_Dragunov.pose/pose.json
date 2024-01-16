@@ -2,7 +2,7 @@
   "metadata": {
     "description": "",
     "user": "luke",
-    "ctime": "1701327810",
+    "ctime": "1701744141",
     "version": "1.0.0",
     "references": [
       {
@@ -13,39 +13,39 @@
       }
     ],
     "mayaVersion": "2023",
-    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Dragunov/ANI_Player_Dragunov_Idle_001_v01.mb"
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Dragunov/ANI_Player_Dragunov_Attack_002_v01.mb"
   }
 ,
   "objects": {
     "model:body_ribbon_ctrl_1": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -36.16587101515944
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
-          "value": -46.62773417301601
+          "value": 0.0
         },
         "translateX": {
           "type": "doubleLinear",
-          "value": 8.282369831629962
+          "value": 0.0
         },
         "rotateY": {
           "type": "doubleAngle",
           "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -53,43 +53,43 @@
         },
         "rotateX": {
           "type": "doubleAngle",
-          "value": -60.934280158612495
+          "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:body_ribbon_ctrl_2": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -12.41166524572997
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
-          "value": -24.01784579418853
+          "value": 0.0
         },
         "translateX": {
           "type": "doubleLinear",
-          "value": 4.0103611589337484
+          "value": 0.0
         },
         "rotateY": {
           "type": "doubleAngle",
           "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -97,33 +97,29 @@
         },
         "rotateX": {
           "type": "doubleAngle",
-          "value": -52.03182465522181
+          "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:body_ribbon_ctrl_3": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -134,6 +130,10 @@
         "rotateY": {
           "type": "doubleAngle",
           "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -143,31 +143,27 @@
           "type": "doubleAngle",
           "value": -20.837351736524123
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:body_ribbon_ctrl_4": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -179,6 +175,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -187,31 +187,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:body_ribbon_ctrl_5": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -223,6 +219,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -231,21 +231,45 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:body_ribbon_top_ctrl": {
       "attrs": {
+        "affectToMid": {
+          "type": "double",
+          "value": 10.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -21.454264313058953
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -48.993483707138545
+        },
         "twistOffset": {
           "type": "double",
           "value": 0.0
         },
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -3.5456031503373184
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleZ": {
           "type": "double",
@@ -253,30 +277,6 @@
         },
         "twist": {
           "type": "double",
-          "value": 0.0
-        },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
-          "type": "doubleLinear",
-          "value": 53.688605459806546
-        },
-        "translateX": {
-          "type": "doubleLinear",
-          "value": -12.852851863571201
-        },
-        "affectToMid": {
-          "type": "double",
-          "value": 10.0
-        },
-        "rotateY": {
-          "type": "doubleAngle",
           "value": 0.0
         },
         "scaleX": {
@@ -287,21 +287,45 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.0
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 41.87431825781055
         }
       }
     },
     "model:body_ribbon_end_ctrl": {
       "attrs": {
+        "affectToMid": {
+          "type": "double",
+          "value": 10.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 5.510652399994598
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -0.8782299212689066
+        },
         "twistOffset": {
           "type": "double",
           "value": 0.0
         },
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 5.510652352698433
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleZ": {
           "type": "double",
@@ -309,31 +333,7 @@
         },
         "twist": {
           "type": "double",
-          "value": -27.29663082136124
-        },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
-          "type": "doubleLinear",
-          "value": 4.171635266165515
-        },
-        "translateX": {
-          "type": "doubleLinear",
-          "value": -0.8782301451496943
-        },
-        "affectToMid": {
-          "type": "double",
-          "value": 10.0
-        },
-        "rotateY": {
-          "type": "doubleAngle",
-          "value": 0.0
+          "value": -71.79663082136125
         },
         "scaleX": {
           "type": "double",
@@ -343,83 +343,23 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.0
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -30.79422125141532
         }
       }
     },
     "model:body_ribbon_mid_ctrl": {
       "attrs": {
-        "roll": {
-          "type": "double",
-          "value": 0.0
-        },
-        "showExtraCtrl": {
-          "type": "long",
-          "value": 1
-        },
-        "sineLength": {
-          "type": "double",
-          "value": 2.0
-        },
-        "twist": {
-          "type": "double",
-          "value": 0.0
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
-          "value": -37.75469833132666
-        },
-        "translateX": {
-          "type": "doubleLinear",
-          "value": 5.16061506182193
+          "value": -19.963934212538597
         },
         "endDropoff": {
           "type": "double",
           "value": 1.0
         },
-        "volumePosition": {
-          "type": "double",
-          "value": 0.0
-        },
-        "rotateX": {
-          "type": "doubleAngle",
-          "value": 0.0
-        },
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -33.56328421702898
-        },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "rotateY": {
-          "type": "doubleAngle",
-          "value": 0.0
-        },
-        "scaleX": {
-          "type": "double",
-          "value": 1.0
-        },
-        "autoVolume": {
-          "type": "long",
-          "value": 1
-        },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.0
-        },
-        "volumeMultiplier": {
-          "type": "double",
-          "value": 3.0
-        },
-        "offset": {
+        "roll": {
           "type": "double",
           "value": 0.0
         },
@@ -435,10 +375,6 @@
           "type": "double",
           "value": 0.0
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
-        },
         "amplitude": {
           "type": "double",
           "value": 0.0
@@ -446,38 +382,102 @@
         "startDropoff": {
           "type": "double",
           "value": 1.0
-        }
-      }
-    },
-    "model:Body_Ctrl": {
-      "attrs": {
-        "translateY": {
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
           "type": "doubleLinear",
-          "value": -5.53310328991691
+          "value": -62.00965064606233
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "sineLength": {
+          "type": "double",
+          "value": 2.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleZ": {
           "type": "double",
           "value": 1.0
         },
-        "scaleY": {
+        "twist": {
           "type": "double",
-          "value": 1.0
+          "value": 0.0
+        },
+        "volumeMultiplier": {
+          "type": "double",
+          "value": 3.0
         },
         "visibility": {
           "type": "bool",
           "value": true
         },
-        "translateZ": {
-          "type": "doubleLinear",
-          "value": -15.63656947802995
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
         },
         "translateX": {
           "type": "doubleLinear",
-          "value": 3.7178733080161908
+          "value": 69.80875390383066
+        },
+        "autoVolume": {
+          "type": "long",
+          "value": 1
+        },
+        "showExtraCtrl": {
+          "type": "long",
+          "value": 1
+        },
+        "offset": {
+          "type": "double",
+          "value": 0.0
+        },
+        "volumePosition": {
+          "type": "double",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "model:Body_Ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.4226931899847409
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -5.5331032899134955
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 3.7178719555062516
         },
         "rotateY": {
           "type": "doubleAngle",
-          "value": 8.534255410779627
+          "value": 8.534256836138184
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -485,33 +485,29 @@
         },
         "rotateX": {
           "type": "doubleAngle",
-          "value": 1.4478852305634917
+          "value": 1.4478845298865437
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.4226928615114569
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -15.636568732148381
         }
       }
     },
     "model:Arm_R_Ctrl": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0000000000000002
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -527,6 +523,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -535,55 +535,55 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:Hand_R_Ctrl": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -1.6950718288615576
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "parameterU": {
-          "type": "double",
-          "value": 0.0
-        },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
-        },
-        "parameterV": {
-          "type": "double",
-          "value": 0.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -17.96656302309173
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
+        "parameterU": {
+          "type": "double",
+          "value": 0.0
         },
-        "translateZ": {
+        "blendParent1": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
           "type": "doubleLinear",
-          "value": 60.966183130006684
+          "value": 33.89701322530488
         },
         "translateX": {
           "type": "doubleLinear",
-          "value": -6.880391515560433
+          "value": -12.602895772309921
         },
         "Follow": {
           "type": "enum",
           "value": 0
         },
+        "parameterV": {
+          "type": "double",
+          "value": 0.0
+        },
         "rotateY": {
           "type": "doubleAngle",
-          "value": 70.99702476819513
+          "value": 37.351536367083156
         },
-        "blendParent1": {
+        "scaleZ": {
           "type": "double",
           "value": 1.0
         },
@@ -593,57 +593,57 @@
         },
         "rotateX": {
           "type": "doubleAngle",
-          "value": -80.96586193083475
+          "value": -75.30089650621936
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": -41.525213189962535
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 48.462178590678015
         }
       }
     },
     "model:Hand_L_Ctrl": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": -33.3980724206023
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 50.937146835032344
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
         },
         "parameterU": {
           "type": "double",
           "value": 0.0
         },
-        "scaleZ": {
+        "blendParent1": {
           "type": "double",
           "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 65.79536575258041
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 33.28618416075962
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 0
         },
         "parameterV": {
           "type": "double",
           "value": 0.0
         },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
-          "type": "doubleLinear",
-          "value": 48.31086625334875
-        },
-        "translateX": {
-          "type": "doubleLinear",
-          "value": 37.871086601474865
-        },
-        "Follow": {
-          "type": "enum",
-          "value": 0
-        },
         "rotateY": {
           "type": "doubleAngle",
-          "value": -32.829387928241665
+          "value": 5.4375810461020855
         },
-        "blendParent1": {
+        "scaleZ": {
           "type": "double",
           "value": 1.0
         },
@@ -653,48 +653,48 @@
         },
         "rotateX": {
           "type": "doubleAngle",
-          "value": -84.5846072526015
+          "value": -69.81030083209329
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 71.25638410328054
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 114.7904639155701
         }
       }
     },
     "model:Arm_L_Ctrl": {
       "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "translateY": {
           "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "Follow": {
+          "type": "enum",
+          "value": 0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
           "value": 0.0
         },
         "scaleZ": {
           "type": "double",
           "value": 1.0000000000000002
         },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0000000000000002
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
-          "type": "doubleLinear",
-          "value": 0.0
-        },
-        "translateX": {
-          "type": "doubleLinear",
-          "value": 0.0
-        },
-        "Follow": {
-          "type": "enum",
-          "value": 0
-        },
-        "rotateY": {
-          "type": "doubleAngle",
-          "value": 0.0
-        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -703,53 +703,53 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:IK_Foot_R_Ctrl": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
           "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
         },
         "parameterU": {
           "type": "double",
           "value": 0.0
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
-        },
-        "parameterV": {
-          "type": "double",
-          "value": 0.0
-        },
-        "scaleY": {
-          "type": "double",
-          "value": 1.0
-        },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
-          "value": -52.348765418870876
+          "value": 0.0
         },
         "translateX": {
           "type": "doubleLinear",
-          "value": 11.327496261537732
+          "value": -9.068067333879464
         },
         "Follow": {
           "type": "enum",
           "value": 2
         },
+        "parameterV": {
+          "type": "double",
+          "value": 0.0
+        },
         "rotateY": {
           "type": "doubleAngle",
-          "value": -69.57796985069807
+          "value": -91.60046278798919
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -759,31 +759,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.0
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -107.12630743180907
         }
       }
     },
     "model:FootHeel_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -795,6 +791,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -803,31 +803,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootTip_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -839,6 +835,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -847,31 +847,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootOuter_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0000000000000002
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -883,6 +879,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0000000000000002
@@ -891,31 +891,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootInner_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -927,6 +923,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -935,31 +935,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootBall_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -971,6 +967,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -979,31 +979,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootToe_R_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0000000000000002
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0000000000000002
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1015,6 +1011,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0000000000000002
@@ -1023,41 +1023,33 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:IK_Foot_L_Ctrl": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "parameterU": {
-          "type": "double",
-          "value": 0.0
-        },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
-        },
-        "parameterV": {
-          "type": "double",
+        "rotateZ": {
+          "type": "doubleAngle",
           "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
+        "parameterU": {
+          "type": "double",
+          "value": 0.0
         },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
-          "value": 0.3235858984573985
+          "value": 0.0
         },
         "translateX": {
           "type": "doubleLinear",
@@ -1067,9 +1059,17 @@
           "type": "enum",
           "value": 2
         },
+        "parameterV": {
+          "type": "double",
+          "value": 0.0
+        },
         "rotateY": {
           "type": "doubleAngle",
           "value": 13.345520180617934
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
         },
         "scaleX": {
           "type": "double",
@@ -1079,31 +1079,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
-          "value": 0.0
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.3235858984573985
         }
       }
     },
     "model:FootHeel_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1115,6 +1111,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -1123,31 +1123,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootTip_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1159,6 +1155,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -1167,31 +1167,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootOuter_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0000000000000002
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1203,6 +1199,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0000000000000002
@@ -1211,31 +1211,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootInner_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1247,6 +1243,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -1255,31 +1255,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootBall_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1291,6 +1287,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0
@@ -1299,31 +1299,27 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
     },
     "model:FootToe_L_loc": {
       "attrs": {
-        "translateY": {
-          "type": "doubleLinear",
-          "value": 0.0
+        "visibility": {
+          "type": "bool",
+          "value": true
         },
-        "scaleZ": {
-          "type": "double",
-          "value": 1.0000000000000002
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
         },
         "scaleY": {
           "type": "double",
           "value": 1.0000000000000002
         },
-        "visibility": {
-          "type": "bool",
-          "value": true
-        },
-        "translateZ": {
+        "translateY": {
           "type": "doubleLinear",
           "value": 0.0
         },
@@ -1335,6 +1331,10 @@
           "type": "doubleAngle",
           "value": 0.0
         },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000002
+        },
         "scaleX": {
           "type": "double",
           "value": 1.0000000000000002
@@ -1343,8 +1343,8 @@
           "type": "doubleAngle",
           "value": 0.0
         },
-        "rotateZ": {
-          "type": "doubleAngle",
+        "translateZ": {
+          "type": "doubleLinear",
           "value": 0.0
         }
       }
