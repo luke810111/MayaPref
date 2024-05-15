@@ -1,0 +1,2981 @@
+{
+  "metadata": {
+    "description": "",
+    "user": "luke",
+    "ctime": "1704781645",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Env/SK_Env_Pigeon_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Env/SK_Env_Pigeon_rig.mb",
+        "namespace": ":SK_Env_Pigeon_rig",
+        "node": "SK_Env_Pigeon_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Env/ANI_Env_Pigeon_Idle_001.mb"
+  }
+,
+  "objects": {
+    "SK_Env_Pigeon_rig:FKExtraHipFix_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraHipFix_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKHipFix_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKHipFix_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKHip_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraHip_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraWrist_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKWrist_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 70.54405621278592
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraTail1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraTail2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKTail1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKTail2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKAnkle_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraAnkle_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraLeg_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKLeg_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "swivel": {
+          "type": "double",
+          "value": 0.0
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rollEndAngle": {
+          "type": "double",
+          "value": 60.0
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rollStartAngle": {
+          "type": "double",
+          "value": 30.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0
+        },
+        "roll": {
+          "type": "double",
+          "value": 0.0
+        },
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraToesEnd_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollHeel_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraHeel_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollToesEnd_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraLeg_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKLeg_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "swivel": {
+          "type": "double",
+          "value": 0.0
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rollEndAngle": {
+          "type": "double",
+          "value": 60.0
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rollStartAngle": {
+          "type": "double",
+          "value": 30.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0
+        },
+        "roll": {
+          "type": "double",
+          "value": 0.0
+        },
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraToesEnd_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollToesEnd_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraHeel_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollHeel_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKRoot_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:Main": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraRoot_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraChest_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKChest_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.000583330279945
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.000583330279945
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.000583330279945
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKNeck_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraNeck_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKHead_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -7.849973283416225
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 6.879229111228201
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.03890372770104667
+        },
+        "GlobalTranslate": {
+          "type": "double",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.24612746615470152
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 19.298870299205582
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "Global": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraHead_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKScapula_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraScapula_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:PoleExtraLeg_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:PoleLeg_L": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKIKLeg_R": {
+      "attrs": {
+        "FKVis": {
+          "type": "bool",
+          "value": true
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 10.0
+        },
+        "IKVis": {
+          "type": "bool",
+          "value": true
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RollExtraToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "followEnd": {
+          "type": "double",
+          "value": 5.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "FixedOrient": {
+          "type": "double",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridExtraSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridExtraSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKExtraSpine3_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKSpine3_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 10.0
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridSpine3_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:IKhybridExtraSpine3_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:PoleExtraLeg_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:PoleLeg_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraShoulder_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraWrist_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKShoulder_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 104.25865177442711
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -7.699717947994985
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 1.132641452983841
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.08089719958263593
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -158.41054706914147
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.22931191732186135
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKWrist_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 70.54405621278592
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKScapula_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraScapula_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraShoulder_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKShoulder_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 104.25865177442711
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -7.699717947994985
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.1326414530861297
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -0.08089719904289747
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -158.41054706914147
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -0.22947556324646085
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraHip_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKAnkle_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKHip_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraAnkle_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKExtraToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKIKLeg_L": {
+      "attrs": {
+        "FKVis": {
+          "type": "bool",
+          "value": true
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 10.0
+        },
+        "IKVis": {
+          "type": "bool",
+          "value": true
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKIKSpine_M": {
+      "attrs": {
+        "FKVis": {
+          "type": "bool",
+          "value": true
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 0.0
+        },
+        "IKVis": {
+          "type": "bool",
+          "value": true
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RootX_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -2.700629118474511
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -0.03214658775455051
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "CenterBtwFeet": {
+          "type": "double",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:RootExtraX_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        }
+      }
+    }
+  }
+}

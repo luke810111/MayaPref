@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 70,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1699859497",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Gatling_001_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Gatling_001_rig.mb",
+        "namespace": ":SK_Player_Weapon_Gatling_001_rig",
+        "node": "SK_Player_Weapon_Gatling_001_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Gatling/GatlingAttackMove/ANI_Player_Gatling_AttackMoveF_001_v01.mb"
+  }
+,
+  "objects": {
+    "SK_Player_Weapon_Gatling_001_rig:RootX_M": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE1"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -1.2122561630673279,
+          "curve": "CURVE2"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 2.774,
+          "curve": "CURVE3"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 13.285431811587555,
+          "curve": "CURVE4"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 18.199786962859726,
+          "curve": "CURVE5"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -0.23932953482703392,
+          "curve": "CURVE6"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.5797514726598978,
+          "curve": "CURVE7"
+        }
+      }
+    },
+    "SK_Player_Weapon_Gatling_001_rig:Main": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE9"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE16"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -66.887841040754,
+          "curve": "CURVE10"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE11"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE12"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE13"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 38.451,
+          "curve": "CURVE15"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 40.27193872085162,
+          "curve": "CURVE14"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE17"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE18"
+        }
+      }
+    }
+  }
+}

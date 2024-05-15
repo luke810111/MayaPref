@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 30,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1704683932",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Env/SK_Env_Pigeon_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Env/SK_Env_Pigeon_rig.mb",
+        "namespace": ":SK_Env_Pigeon_rig",
+        "node": "SK_Env_Pigeon_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Env/ANI_Env_Pigeon_Idle.mb"
+  }
+,
+  "objects": {
+    "SK_Env_Pigeon_rig:FKChest_M": {
+      "attrs": {
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE1"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE2"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE4"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE3"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE5"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE6"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE7"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE8"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE9"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKShoulder_R": {
+      "attrs": {
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE12"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE13"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE14"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE16"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE15"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE17"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE18"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE19"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE20"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -9.779247088875787e-05,
+          "curve": "CURVE21"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE22"
+        }
+      }
+    },
+    "SK_Env_Pigeon_rig:FKShoulder_L": {
+      "attrs": {
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE24"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE25"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE26"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE28"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE27"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE29"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE30"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE31"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE32"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 9.77927876588125e-05,
+          "curve": "CURVE33"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE34"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 50,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1690453408",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Rubik_001_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Rubik_001_rig.mb",
+        "namespace": ":SK_Player_Weapon_Rubik_001_rig",
+        "node": "SK_Player_Weapon_Rubik_001_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Rubik/ANI_Player_Rubik_OnHit_001_v01.mb"
+  }
+,
+  "objects": {
+    "SK_Player_Weapon_Rubik_001_rig:Main1": {
+      "attrs": {
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE1"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -93.70279061305206,
+          "curve": "CURVE2"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE3"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -691.5128992730158,
+          "curve": "CURVE4"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE5"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE6"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 42.38125192059141,
+          "curve": "CURVE7"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 14.50367238916826,
+          "curve": "CURVE8"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 22.2293051646278,
+          "curve": "CURVE9"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 109.45661452280257,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "SK_Player_Weapon_Rubik_001_rig:Main": {
+      "attrs": {
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE12"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE13"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE14"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE15"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE16"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE17"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 7.105427357601002e-15,
+          "curve": "CURVE18"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE19"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE20"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 1.4210854715202004e-14,
+          "curve": "CURVE21"
+        }
+      }
+    },
+    "SK_Player_Weapon_Rubik_001_rig:RootX_M": {
+      "attrs": {
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE23"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE24"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE25"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE26"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE27"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE28"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE29"
+        }
+      }
+    }
+  }
+}

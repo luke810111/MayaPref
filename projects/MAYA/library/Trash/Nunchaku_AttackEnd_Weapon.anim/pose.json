@@ -1,0 +1,802 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 60,
+    "startFrame": 44,
+    "user": "luke",
+    "ctime": "1695443980",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Nunchakus_001_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_Nunchakus_001_rig.mb",
+        "namespace": ":SK_Player_Weapon_Nunchucks_000_rig",
+        "node": "SK_Player_Weapon_Nunchucks_000_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Nunchakus/ANI_Player_Nunchakus_Attack_001_v01.mb"
+  }
+,
+  "objects": {
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_5": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE1"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE3"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE2"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE5"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE6"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE7"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE4"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE8"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE9"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_6": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE12"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE14"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE13"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE16"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE17"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE18"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE15"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE19"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE20"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE21"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_7": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE23"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE25"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE24"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE27"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE28"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE29"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE26"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE30"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE31"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE32"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_8": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE34"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE36"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE35"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE38"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE39"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE40"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE37"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE41"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE42"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE43"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Kontoh_R_ctrl1": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE45"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -54.36384157054563,
+          "curve": "CURVE47"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE46"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE49"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 79.26544814542353,
+          "curve": "CURVE50"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -142.31824674605394,
+          "curve": "CURVE51"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -35.42785620787438,
+          "curve": "CURVE48"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -22.916555758303765,
+          "curve": "CURVE52"
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE53"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE54"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -77.87387907099058,
+          "curve": "CURVE55"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_1": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE57"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE59"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE58"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE61"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE62"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE63"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE60"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE64"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE65"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE66"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_2": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE68"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE70"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE69"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE72"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE73"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE74"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE71"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE75"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE76"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE77"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_3": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE79"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE81"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE80"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE83"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE84"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE85"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE82"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE86"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE87"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE88"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_ctrl_4": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE90"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE92"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE91"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE94"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE95"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE96"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE93"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE97"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE98"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE99"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Chain_ribbon_mid_ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE101"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -70.1171181617157,
+          "curve": "CURVE103"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE102"
+        },
+        "roll": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE112"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE105"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -34.316768301257845,
+          "curve": "CURVE107"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE109"
+        },
+        "rollOffset": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE108"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 10.514796505700762,
+          "curve": "CURVE104"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE110"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE111"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE106"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Kontoh_L_ctrl1": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999996,
+          "curve": "CURVE114"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -52.78322528697239,
+          "curve": "CURVE116"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE115"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE118"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 76.59398809622184,
+          "curve": "CURVE119"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 30.79232439132001,
+          "curve": "CURVE120"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -83.64373859914346,
+          "curve": "CURVE117"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 215.8494616746269,
+          "curve": "CURVE121"
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE122"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE123"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 26.990664251117188,
+          "curve": "CURVE124"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Kontoh_R_ctrl2": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE126"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE128"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE127"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE130"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE131"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE132"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 63.235286845345215,
+          "curve": "CURVE129"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE133"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE134"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE135"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Kontoh_L_ctrl2": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE137"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE139"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE138"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE141"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE142"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE143"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -54.80582516432942,
+          "curve": "CURVE140"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE144"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE145"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE146"
+        }
+      }
+    },
+    "SK_Player_Weapon_Nunchucks_000_rig:Main": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE148"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 1.2984175557967195,
+          "curve": "CURVE150"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE149"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE152"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -35.50210730173614,
+          "curve": "CURVE153"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 2.5799647594324018,
+          "curve": "CURVE154"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 14.622641720229645,
+          "curve": "CURVE151"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 90.95378522109779,
+          "curve": "CURVE155"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE156"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -84.6558622574936,
+          "curve": "CURVE157"
+        }
+      }
+    }
+  }
+}

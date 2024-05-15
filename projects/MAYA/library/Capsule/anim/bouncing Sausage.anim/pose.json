@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 58,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1686018495",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GreatSword_002_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Weapon/SK_Player_Weapon_GreatSword_002_rig.mb",
+        "namespace": ":SK_Weapon_GreatSword_rig",
+        "node": "SK_Weapon_GreatSword_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Greatsword/ANI_Player_GreatSword_Idle_001_v05.mb"
+  }
+,
+  "objects": {
+    "SK_Weapon_GreatSword_rig:RootX_M": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -31.0,
+          "curve": "CURVE1"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 3.067,
+          "curve": "CURVE2"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE3"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE4"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 29.486,
+          "curve": "CURVE5"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 90.0,
+          "curve": "CURVE6"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE7"
+        }
+      }
+    },
+    "SK_Weapon_GreatSword_rig:Soft01_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0736834027237006,
+          "curve": "CURVE9"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0736834027237006,
+          "curve": "CURVE10"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 2.0569722476437846e-06,
+          "curve": "CURVE11"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE13"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE12"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE14"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE15"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE16"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE17"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE18"
+        }
+      }
+    },
+    "SK_Weapon_GreatSword_rig:Soft02_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -0.027134630523072634,
+          "curve": "CURVE20"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -3.335929825590858e-06,
+          "curve": "CURVE21"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -0.000314802990324762,
+          "curve": "CURVE22"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_Weapon_GreatSword_rig:Soft03_Ctrl": {
+      "attrs": {
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    }
+  }
+}

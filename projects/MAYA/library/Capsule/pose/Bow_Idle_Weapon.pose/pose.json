@@ -1,0 +1,593 @@
+{
+  "metadata": {
+    "description": "",
+    "user": "luke",
+    "ctime": "1679464384",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/Bip/Capsule/SK_Weapon_Bow_001_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Player/Bip/Capsule/SK_Weapon_Bow_001_rig.mb",
+        "namespace": ":SK_Weapon_Bow_001_rig",
+        "node": "SK_Weapon_Bow_001_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Player/Main/Capsule/ANI_Player_Bow_Idle_001_v01.mb"
+  }
+,
+  "objects": {
+    "SK_Weapon_Bow_001_rig:bowUp2_ctrl_dvn": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:RootX_M": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -19.284908667515726
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -24.73965576496387
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 26.66894088926565
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 3.4510064878690603
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -16.807930534851437
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -58.80524250965561
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowUp1_ctrl_dvn": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowUp1_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowUp2_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowDown2_ctrl_dvn": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowDown1_ctrl_dvn": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowDown1_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:bowDown2_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 3.552713678800501e-15
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 3.552713678800501e-15
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:arrow2_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:arrow1_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "space": {
+          "type": "enum",
+          "value": 1
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 2.1316282072803006e-14
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "show": {
+          "type": "long",
+          "value": 1
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.1094237467877974e-15
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -17.898164247452485
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:arrow3_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -1.7763568394002505e-15
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 2.220446049250313e-15
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    },
+    "SK_Weapon_Bow_001_rig:string_ctrl": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -1.9721522630525295e-31
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "bendAuto": {
+          "type": "long",
+          "value": 0
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -4.440892098500626e-16
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+//set FK IK constraint switch   
+$dvnKeys=`listConnections -type "animCurveUU" ($FKIKswitch+".IKFKBlend")`;
+for($i=0;$i<(`size $limbs`-1);$i++){
+    $cons=`listRelatives -typ "constraint" $limbs[$i]`;
+    for($con in $cons){
+        $attrs=`listAttr -ud $con`;
+        connectAttr -f ($dvnKeys[0]+".output") ($con+"."+$attrs[0]);
+        connectAttr -f ($dvnKeys[1]+".output") ($con+"."+$attrs[1]);             
+    }
+}
+
+
+
+
+for($i=0;$i<`size $limbs`;$i++){
+    createNode -n ("scale_blend_"+$limbs[$i]) "blendColors";
+    connectAttr -f ("IK_"+$limb+"_grp_visibility.output") ("scale_blend_"+$limbs[$i]+".blender");
+    connectAttr -f ("FKctrl_"+$limbs[$i]+".scale") ("scale_blend_"+$limbs[$i]+".color1");
+    connectAttr -f ("IKJt_"  +$limbs[$i]+".scale") ("scale_blend_"+$limbs[$i]+".color2");
+    connectAttr -f ("scale_blend_"+$limbs[$i]+".output") ($limbs[$i]+".scale");
+}
