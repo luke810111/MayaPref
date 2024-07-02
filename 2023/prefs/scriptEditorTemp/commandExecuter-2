@@ -11,3 +11,22 @@ $facs = `polyListComponentConversion -tf $sels`;
 $facs = `filterExpand -selectionMask 34 $facs`;
 
 select -r $facs
+
+
+//cpKeywithLayer(string $al, string $sObj, string $sAttr, string $tObj, string $tAttr, float $to, float $vs) { 
+    /*
+    $al: animLayer 
+    $to:time Offset 
+    $vs: valueScale 
+    */ 
+$ly="ly_breath";
+if(`objExists $ly`)delete $ly;
+animLayer $ly;
+select -r $selsB;
+animLayer -e  -addSelectedObjects $ly;
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[0], "rz", 2, 1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[1], "rz", 4, 1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[2], "rz", 4, 0.618);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[3], "rz", 4, -1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[4], "tz", 6, -0.382);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[5], "tz", 6, 0.382);

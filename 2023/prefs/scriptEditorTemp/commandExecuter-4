@@ -1,13 +1,72 @@
-proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
-    if($i<2)$i=2;
-    if($j<2)$j=2;
-    string $polyPlane=($obj+"_Plane");
-    if(`objExists $polyPlane`)delete $polyPlane;
-    polyCylinder -r ($w/2) -h $h -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
 
-    return $polyPlane;
+crSkirtModule("temp",100,6,3,1);
+proc crSkirtModule(string $name,float $baseSize,int $subdivisionX,int $subdivisionY,int $subdivisionZ){
+    //string $name="temp";
+    //float $baseSize=100;
+    //int $subdivisionX= 8;
+    //int $subdivisionY= 1;
+    //int $subdivisionZ= 1;
+    
+    //defind data
+    $geoName=("GEO_"+$name);
+    $jtgrp=($name+"_jt_grp");
+    $ctrlgrp=($name+"_ctrl_grp");
+    
+    //clean old 
+    if(`objExists $geoName`)delete $geoName;
+    if(`objExists $jtgrp`)delete $jtgrp;
+    if(`objExists $ctrlgrp`)delete $ctrlgrp;
+    
+    //main procedule
+    polyCylinder -n $geoName -r $baseSize -h (2*$baseSize)  -sx $subdivisionX -sy $subdivisionY -sz $subdivisionZ ;
+    rotate -r -ws -fo 180 -45 0 $geoName;
+    
+    $jts=crJtAlignPolyVtx($name,$geoName);
+    $ctrls=crCtrlAlignJt($jts,$baseSize);
+
+    
+    //organize group structure
+    if(!`objExists $jtgrp`)group -em -n $jtgrp;
+    parent $jts $jtgrp;
+    if(!`objExists $ctrlgrp`)group -em -n $ctrlgrp;
+    parent $ctrls $ctrlgrp;
+    
+    skinCluster $jts $geoName;    
+}
+
+proc string[] crJtAlignPolyVtx(string $obj,string $polyPlane){
+    string $jts[],$buffer[];
+    string $vtx;
+    $vtxs = `polyListComponentConversion -tv $polyPlane`;
+    $vtxs = `filterExpand -selectionMask 31 $vtxs`;
+    //$vtxs = `ls -flatten ($geo+".vtx[*]")`;    
+    
+    for($vtx in $vtxs){
+        string $component = `substitute "^[^.]*\\." $vtx ""`;
+        tokenize($component, "[.]", $buffer);    
+        string $pad = `python ("'%02d' % "+$buffer[1])`;
+        $jt=($obj+$pad+"_jt");         
+        $p=`pointPosition -w $vtx`;
+        select -cl;
+        joint -p $p[0] $p[1] $p[2] -n $jt;
+     
+        $jts=stringArrayCatenate($jts, {$jt}); 
     }
 
+    return $jts;
+}
 
-
-
+proc string[] crCtrlAlignJt(string $jts[],float $baseSize){
+    string $ctrls[],$buffer[];
+    $baseSize=$baseSize/50;
+    for($i=0;$i<`size($jts)`;$i++){
+        $ctrls[$i] = `substitute "_jt" $jts[$i] "_ctrl"`;       
+        crShp(29,$ctrls[$i]);
+        scale -r -ocp $baseSize $baseSize $baseSize ($ctrls[$i]+".cv[*]");
+        $p=`xform -q -ws -t $jts[$i]`;
+        xform -ws -t $p[0] $p[1] $p[2] $ctrls[$i];
+        parentConstraint  $ctrls[$i] $jts[$i];
+        connectAttr -f  ($ctrls[$i]+".scale") ($jts[$i]+".scale");
+    }
+    return $ctrls;
+}

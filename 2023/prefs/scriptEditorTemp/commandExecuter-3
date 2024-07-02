@@ -21,25 +21,7 @@ proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
     return $polyPlane;
     }
 
-proc string[] crJtAlignPolyVtx(string $obj,string $polyPlane){
-    string $jts[],$buffer[];
-    string $vtx;
-    $vtxs = `polyListComponentConversion -tv $polyPlane`;
-    $vtxs = `filterExpand -selectionMask 31 $vtxs`;
-    
-    for($vtx in $vtxs){
-        string $component = `substitute "^[^.]*\\." $vtx ""`;
-        tokenize($component, "[.]", $buffer);    
-        $jt=($obj+"_jt_"+$buffer[1]);    
-        if(`objExists $jt`)delete $jt;        
-        $p=`xform -q -ws -t $vtx`;
-        select -cl;
-        joint -p $p[0] $p[1] $p[2] -n $jt;     
-        $jts=stringArrayCatenate($jts, {$jt}); 
-    }
 
-    return $jts;
-}
 
 /*
 select -r $jts $polyPlane;
