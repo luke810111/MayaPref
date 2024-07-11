@@ -1,0 +1,757 @@
+{
+  "metadata": {
+    "description": "",
+    "user": "luke",
+    "ctime": "1720493858",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/NPC/SK_NPC_Villagers_01_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/NPC/SK_NPC_Villagers_01_rig.mb",
+        "namespace": ":SK_NPC_Villagers_01_rig",
+        "node": "SK_NPC_Villagers_01_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/NPC/Villagers/ANI_NPC_Villagers_ChopWood_v01.mb"
+  }
+,
+  "objects": {
+    "SK_NPC_Villagers_01_rig:FKIndexFinger2_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKPinkyFinger1_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKPinkyFinger2_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKIndexFinger3_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:Fingers_R": {
+      "attrs": {
+        "indexCurl": {
+          "type": "float",
+          "value": 0.0
+        },
+        "ringCurl": {
+          "type": "float",
+          "value": 0.0
+        },
+        "cup": {
+          "type": "float",
+          "value": 0.0
+        },
+        "middleCurl": {
+          "type": "float",
+          "value": 0.0
+        },
+        "pinkyCurl": {
+          "type": "float",
+          "value": 0.0
+        },
+        "thumbCurl": {
+          "type": "float",
+          "value": -2.0
+        },
+        "spread": {
+          "type": "float",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKThumbFinger1_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKRingFinger1_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKMiddleFinger3_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKRingFinger2_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKMiddleFinger1_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKCup_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKThumbFinger3_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKMiddleFinger2_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKPinkyFinger3_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKIndexFinger1_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKThumbFinger2_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    },
+    "SK_NPC_Villagers_01_rig:FKRingFinger3_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0
+        }
+      }
+    }
+  }
+}
