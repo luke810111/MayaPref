@@ -1,0 +1,12 @@
+//cpKeywithLayer("layer_name","source_object","source_object_attribute","target_object","target_object_attribute","time_offset","value_scale","middleMode");
+
+cpKeywithLayer("follow_head_ly","*:FKHead_M","rx","*:FKChest_M","rx",1,0.386,0);
+cpKeywithLayer("follow_head_ly","*:FKHead_M","rx","*:RootX_M","ry",2,0.1618,0);
+
+cpKeywithLayer("follow_head_ly","*:FKHead_M","rz","*:RootX_M","ty",2,-0.0618,0);
+
+
+cpKeywithLayer("laugh_ly","*:FKHead_M","rz","*:FKScapula_R","ry",-1,0.382,0);
+cpKeywithLayer("laugh_ly","*:FKHead_M","rz","*:FKScapula_L","ry",-1,0.382,0);
+cpKeywithLayer("laugh_ly","*:FKHead_M","rz","*:FKScapula_R","tz",-1,-0.0618,0);
+cpKeywithLayer("laugh_ly","*:FKHead_M","rz","*:FKScapula_L","tz",-1,0.0618,0);

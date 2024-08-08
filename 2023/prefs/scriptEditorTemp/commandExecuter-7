@@ -1,0 +1,28 @@
+/*
+$sn=`file -q -sn`;
+string $ref;
+if(`gmatch $sn "*01*"`){
+    $ref = `substitute "01_" $sn "02_"`;
+}
+if(`gmatch $sn "*02*"`){
+    $ref = `substitute "02_" $sn "01_"`;    
+}
+print $ref;
+file -r -type "mayaBinary"  -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "reference" -options "v=0;" $ref;
+move -a 0 0 150 "reference:SK_NPC_Villagers_01_rig:Main ";
+rotate -a 0 180 0 "reference:SK_NPC_Villagers_01_rig:Main ";
+*/
+//file -rr $ref;
+
+$refFile = `referenceQuery -filename "referenceRN"`;
+if(`size $refFile`){
+    $ref=`file -q -sn`;
+    file -rr $refFile;
+    file -force -save -options "v=0";
+    file -f -options "v=0;" -ignoreVersion -o $refFile;
+    file -r -ignoreVersion -gl -mergeNamespacesOnClash false -namespace "reference" -options "v=0;" $ref;
+    move -a 0 0 150 "reference:SK_NPC_Villagers_01_rig:Main ";
+    rotate -a 0 180 0 "reference:SK_NPC_Villagers_01_rig:Main ";
+}else{
+    print("must be have reference charater");
+}
