@@ -34,7 +34,7 @@ global proc shelf_EzRig () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "$sn = `file -q -sn`;\nfile -f -new;\nfile -open $sn;" 
+        -command "string $sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;$sn =`substitute \"/temp/\" $sn \"/\"`;\nfile -f -new;\nfile -open $sn;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
