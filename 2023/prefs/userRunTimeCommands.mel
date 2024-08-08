@@ -794,7 +794,7 @@ runTimeCommand
 	-helpUrl ""
 	-hotkeyCtx ""
 	-commandLanguage "mel"
-	-command ("string $sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;\nfile -f -new;\nfile -open $sn;")
+	-command ("string $sn = `file -q -sn`;\nif(`gmatch $sn \"*_export.*\"`)$sn =`substitute \"_export.\" $sn \".\"`;$sn =`substitute \"/temp/\" $sn \"/\"`;\nfile -f -new;\nfile -open $sn;")
 	reOpenSn;
 
 runTimeCommand
