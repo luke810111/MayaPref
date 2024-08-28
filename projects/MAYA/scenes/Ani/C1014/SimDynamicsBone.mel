@@ -1,0 +1,116 @@
+source "byLuke/EzRig";
+source "byLuke/crBoneDynamicsNodebyLuke";
+$sels=`ls -sl`;
+$ns=getPlayerNameSpace();
+$CloakBs={"CloakB1_ctrl","CloakB2_ctrl","CloakB3_ctrl","CloakB4_ctrl"}; 
+$SkirtF={"SkirtFa1_ctrl","SkirtFa2_ctrl","SkirtFa3_ctrl"};
+$SkirtB={"SkirtBa1_ctrl","SkirtBa2_ctrl","SkirtBa3_ctrl"};
+$HairBa={"HairB_ctrl","HairBa1_ctrl","HairBa2_ctrl","HairBaEnd"};
+$HairBb={"HairBb1_ctrl","HairBb2_ctrl","HairBbEnd"};
+$HairBc={"HairBc1_ctrl","HairBcEnd"};
+$HairBd={"HairBd1_ctrl","HairBdEnd"};
+$HairBe={"HairBe1_ctrl","HairBeEnd"};
+$HairBf={"HairBf1_ctrl","HairBfEnd"};
+$HairBg={"HairBg1_ctrl","HairBg2_ctrl","HairBgEnd"};
+$HairBh={"HairBh1_ctrl","HairBhEnd"};
+$HairBi={"HairBi1_ctrl","HairBiEnd"};
+$HairBj={"HairBj1_ctrl","HairBj2_ctrl","HairBjEnd"};
+$HairFa={"HairFa1_ctrl","HairFaEnd"};
+$HairFb={"HairFb1_ctrl","HairFbEnd"};
+$HairFc={"HairFc1_ctrl","HairFcEnd"};
+$HairFd={"HairFd1_ctrl","HairFdEnd"};
+$HairFe={"HairFe1_ctrl","HairFe2_ctrl","HairFeEnd"};
+$HairFf={"HairFf1_ctrl","HairFfEnd"};
+$HairFg={"HairFg1_ctrl","HairFgEnd"};
+
+$tests={"$CloakBs","$SkirtF","$SkirtB","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+for($test in $tests){
+    eval("buildKindCoreDynamics($ns,"+$test+")");
+}
+SetBoneDynamicsNodeAttrs();
+crKindCoreBodyCollider($ns);
+
+
+global proc buildKindCoreDynamics(string $ns,string $objs[]){
+    currentTime 0 ;
+    string $nObjs[];   
+    for($i=0;$i<`size($objs)`;$i++){
+        $nObjs[$i]=$ns+":"+$objs[$i];
+    }    
+    //build joint    
+    $jts=crJtString($nObjs,"dynamics");
+    $parent=`listRelatives -p $nObjs[0]`;
+    group -em -n ($jts[0]+"_offset");
+    if(!`objExists "dynamicsBone_grp"`){ 
+        group -n "dynamicsBone_grp";
+    }else{ 
+        parent ($jts[0]+"_offset") "dynamicsBone_grp";
+    }
+    parentConstraint $parent[0] ($jts[0]+"_offset");
+    parent $jts[0] ($jts[0]+"_offset");    
+    //build dynamics bone    
+    $boneDynamicsNodes=batchCrDynamicsNode($jts,5);
+    //setting dynamics attribute
+    for($boneDynamicsNode in $boneDynamicsNodes){   
+        setAttr ($boneDynamicsNode+".fps") 60;    
+        setAttr ($boneDynamicsNode+".damping") 0.7;
+        setAttr ($boneDynamicsNode+".elasticity") 500;        
+    }    
+    //connect object
+    for($i=0;$i<`size($nObjs)`;$i++){
+        parentConstraint -mo $jts[$i] $nObjs[$i];
+    }
+}
+global proc SetBoneDynamicsNodeAttrs(){
+    select -r "boneDynamicsNodeSets"; 
+    string $obj;
+    $objs=`ls -sl`;
+    $minTime = `playbackOptions -q -minTime`; 
+    $maxTime = `playbackOptions -q -maxTime`; 
+    $resetTime=(2*$minTime-$maxTime);
+    for($obj in $objs){
+        setAttr ($obj+".resetTime") $resetTime;        
+        if(`gmatch $obj "*Hair*"`){    
+            setAttr ($obj+".damping") 0.1;
+            setAttr ($obj+".elasticity") 50;
+            if(`gmatch $obj "*HairF*"`){         
+                setAttr ($obj+".radius") 2;      
+            }              
+        }else if(`gmatch $obj "*Cloak*"`){ 
+            setAttr ($obj+".damping") 0.2;
+            setAttr ($obj+".elasticity") 50;
+        }else if(`gmatch $obj "*Skirt*"`){ 
+            setAttr ($obj+".damping") 0.1;
+            setAttr ($obj+".elasticity") 50;   
+            if(`gmatch $obj "*SkirtFa1*"`){         
+                setAttr ($obj+".radius") 3;      
+            }             
+        }    
+    }
+}
+global proc crKindCoreBodyCollider(string $ns){
+    $ccsHead=crSphereCollider("Head",8);
+    $conHead=`parentConstraint ($ns+":Head_M") $ccsHead[0]`;
+    setAttr ($conHead[0]+".target[0].targetOffsetTranslateX") 8;          
+    
+    $ccsBody=crCapsuleCollider("Body",7,10);
+    $conBody=`pointConstraint ($ns+":Root_M") $ccsBody[0]`;
+    $conChest=`pointConstraint ($ns+":Neck_M") $ccsBody[1]`;
+
+    $ccsLegR=crCapsuleCollider("LegR",6,6);
+    $conHipR=`pointConstraint ($ns+":Hip_R") $ccsLegR[0]`;
+    $conKneeR=`pointConstraint ($ns+":Knee_R") $ccsLegR[1]`;
+    
+    $ccsLegL=crCapsuleCollider("LegL",6,6);
+    $conHipL=`pointConstraint ($ns+":Hip_L") $ccsLegL[0]`;
+    $conKneeL=`pointConstraint ($ns+":Knee_L") $ccsLegL[1]`;
+
+    $ccsArmR=crCapsuleCollider("ArmR",6,6);
+    $conShoulderR=`pointConstraint ($ns+":Shoulder_R") $ccsArmR[0]`;
+    $conElbowR=`pointConstraint ($ns+":Elbow_R") $ccsArmR[1]`;
+    
+    $ccsArmL=crCapsuleCollider("ArmL",6,6);
+    $conShoulderL=`pointConstraint ($ns+":Shoulder_L") $ccsArmL[0]`;
+    $conElbowL=`pointConstraint ($ns+":Elbow_L") $ccsArmL[1]`;    
+    parent $ccsHead[0] "capsuleCollider_Body_grp" "capsuleCollider_LegR_grp" "capsuleCollider_LegL_grp" "capsuleCollider_ArmR_grp" "capsuleCollider_ArmL_grp" "dynamicsBone_grp";    
+}
