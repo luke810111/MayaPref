@@ -1,0 +1,34 @@
+source "byLuke/EzRig";
+$sels=`ls -sl`;
+$ns=getPlayerNameSpace();
+setCloakAFollow($ns);
+
+global proc setCloakAFollow(string $ns){
+    string $MainClocks[]={"CloakA24_ctrl","CloakA25_ctrl"};
+    string $cloakUp[]={"CloakA00_ctrl","CloakA01_ctrl","CloakA02_ctrl","CloakA03_ctrl","CloakA04_ctrl","CloakA05_ctrl","CloakA06_ctrl","CloakA07_ctrl"};
+    string $cloakMiddle[]={"CloakA08_ctrl","CloakA09_ctrl","CloakA10_ctrl","CloakA11_ctrl","CloakA12_ctrl","CloakA13_ctrl","CloakA14_ctrl","CloakA15_ctrl"};
+    string $cloakDown[]={"CloakA16_ctrl","CloakA17_ctrl","CloakA18_ctrl","CloakA19_ctrl","CloakA20_ctrl","CloakA21_ctrl","CloakA22_ctrl","CloakA23_ctrl"};
+    string $Scapula[]={"FKScapula_R","FKScapula_L"};
+    $Scapula=AddPrefixToStringArray(($ns+":"),$Scapula);
+    $MainClocks=AddPrefixToStringArray(($ns+":"),$MainClocks);
+    $cloakUp=AddPrefixToStringArray(($ns+":"),$cloakUp);
+    $cloakMiddle=AddPrefixToStringArray(($ns+":"),$cloakMiddle);
+    $cloakDown=AddPrefixToStringArray(($ns+":"),$cloakDown);
+
+    currentTime 0 ;
+    setKeyframe $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula;  
+    currentTime -1 ;    
+    move -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; 
+    rotate -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; 
+    EightRingConstraintOffset($cloakUp);
+    EightRingConstraintOffset($cloakDown);
+    for($i=0;$i<`size $cloakMiddle`;$i++){
+        $offset=`listRelatives -p $cloakMiddle[$i]`;
+        pointConstraint -mo $cloakUp[$i] $cloakDown[$i] $offset[0];                
+    }
+    $offset=`listRelatives -p $cloakDown[2]`;
+    parentConstraint -mo $Scapula[0] $offset[0];
+    $offset=`listRelatives -p $cloakDown[6]`;
+    parentConstraint -mo $Scapula[1] $offset[0];    
+    cutKey -t -1 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; 
+}

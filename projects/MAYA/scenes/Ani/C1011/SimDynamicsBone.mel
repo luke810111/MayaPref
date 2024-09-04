@@ -30,7 +30,6 @@ for($test in $tests){
 SetBoneDynamicsNodeAttrs();
 crKindCoreBodyCollider($ns);
 
-
 global proc buildKindCoreDynamics(string $ns,string $objs[]){
     currentTime 0 ;
     string $nObjs[];   
