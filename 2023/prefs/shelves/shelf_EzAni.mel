@@ -1120,5 +1120,75 @@ global proc shelf_EzAni () {
         -commandRepeatable 1
         -flat 1
     ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"byLuke/EzRig\";\n$sels=`ls -sl`;\n$ns=getPlayerNameSpace();\nsetCloakAFollow($ns);\n\nglobal proc setCloakAFollow(string $ns){\n    string $MainClocks[]={\"CloakA24_ctrl\",\"CloakA25_ctrl\"};\n    string $cloakUp[]={\"CloakA00_ctrl\",\"CloakA01_ctrl\",\"CloakA02_ctrl\",\"CloakA03_ctrl\",\"CloakA04_ctrl\",\"CloakA05_ctrl\",\"CloakA06_ctrl\",\"CloakA07_ctrl\"};\n    string $cloakMiddle[]={\"CloakA08_ctrl\",\"CloakA09_ctrl\",\"CloakA10_ctrl\",\"CloakA11_ctrl\",\"CloakA12_ctrl\",\"CloakA13_ctrl\",\"CloakA14_ctrl\",\"CloakA15_ctrl\"};\n    string $cloakDown[]={\"CloakA16_ctrl\",\"CloakA17_ctrl\",\"CloakA18_ctrl\",\"CloakA19_ctrl\",\"CloakA20_ctrl\",\"CloakA21_ctrl\",\"CloakA22_ctrl\",\"CloakA23_ctrl\"};\n    string $Scapula[]={\"FKScapula_R\",\"FKScapula_L\"};\n    $Scapula=AddPrefixToStringArray(($ns+\":\"),$Scapula);\n    $MainClocks=AddPrefixToStringArray(($ns+\":\"),$MainClocks);\n    $cloakUp=AddPrefixToStringArray(($ns+\":\"),$cloakUp);\n    $cloakMiddle=AddPrefixToStringArray(($ns+\":\"),$cloakMiddle);\n    $cloakDown=AddPrefixToStringArray(($ns+\":\"),$cloakDown);\n\n    currentTime 0 ;\n    setKeyframe $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula;  \n    currentTime -1 ;    \n    move -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n    rotate -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n    EightRingConstraintOffset($cloakUp);\n    EightRingConstraintOffset($cloakDown);\n    for($i=0;$i<`size $cloakMiddle`;$i++){\n        $offset=`listRelatives -p $cloakMiddle[$i]`;\n        pointConstraint -mo $cloakUp[$i] $cloakDown[$i] $offset[0];                \n    }\n    $offset=`listRelatives -p $cloakDown[2]`;\n    parentConstraint -mo $Scapula[0] $offset[0];\n    $offset=`listRelatives -p $cloakDown[6]`;\n    parentConstraint -mo $Scapula[1] $offset[0];    \n    cutKey -t -1 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n}" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/EzRig\";\n$sels=`ls -sl`;\n$ns=getPlayerNameSpace();..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "set Cloak" 
+        -overlayLabelColor 1 1 0 
+        -overlayLabelBackColor 0 0 1 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/EzRig\";\n$sels=`ls -sl`;\n$ns=getPlayerNameSpace();\nsetCloakAFollow($ns);\n\nglobal proc setCloakAFollow(string $ns){\n    string $MainClocks[]={\"CloakA24_ctrl\",\"CloakA25_ctrl\"};\n    string $cloakUp[]={\"CloakA00_ctrl\",\"CloakA01_ctrl\",\"CloakA02_ctrl\",\"CloakA03_ctrl\",\"CloakA04_ctrl\",\"CloakA05_ctrl\",\"CloakA06_ctrl\",\"CloakA07_ctrl\"};\n    string $cloakMiddle[]={\"CloakA08_ctrl\",\"CloakA09_ctrl\",\"CloakA10_ctrl\",\"CloakA11_ctrl\",\"CloakA12_ctrl\",\"CloakA13_ctrl\",\"CloakA14_ctrl\",\"CloakA15_ctrl\"};\n    string $cloakDown[]={\"CloakA16_ctrl\",\"CloakA17_ctrl\",\"CloakA18_ctrl\",\"CloakA19_ctrl\",\"CloakA20_ctrl\",\"CloakA21_ctrl\",\"CloakA22_ctrl\",\"CloakA23_ctrl\"};\n    string $Scapula[]={\"FKScapula_R\",\"FKScapula_L\"};\n    $Scapula=AddPrefixToStringArray(($ns+\":\"),$Scapula);\n    $MainClocks=AddPrefixToStringArray(($ns+\":\"),$MainClocks);\n    $cloakUp=AddPrefixToStringArray(($ns+\":\"),$cloakUp);\n    $cloakMiddle=AddPrefixToStringArray(($ns+\":\"),$cloakMiddle);\n    $cloakDown=AddPrefixToStringArray(($ns+\":\"),$cloakDown);\n\n    currentTime 0 ;\n    setKeyframe $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula;  \n    currentTime -1 ;    \n    move -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n    rotate -a -os 0 0 0 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n    EightRingConstraintOffset($cloakUp);\n    EightRingConstraintOffset($cloakDown);\n    for($i=0;$i<`size $cloakMiddle`;$i++){\n        $offset=`listRelatives -p $cloakMiddle[$i]`;\n        pointConstraint -mo $cloakUp[$i] $cloakDown[$i] $offset[0];                \n    }\n    $offset=`listRelatives -p $cloakDown[2]`;\n    parentConstraint -mo $Scapula[0] $offset[0];\n    $offset=`listRelatives -p $cloakDown[6]`;\n    parentConstraint -mo $Scapula[1] $offset[0];    \n    cutKey -t -1 $MainClocks $cloakUp $cloakMiddle $cloakDown $Scapula; \n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "set Dynamics" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "source \"byLuke/EzRig\";\nsource \"byLuke/crBoneDynamicsNodebyLuke\";..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "set Dynamics" 
+        -overlayLabelColor 1 1 0 
+        -overlayLabelBackColor 0 0 1 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "source \"byLuke/EzRig\";\nsource \"byLuke/crBoneDynamicsNodebyLuke\";\n$sels=`ls -sl`;\n$ns=getPlayerNameSpace();\n$CloakBs={\"CloakB1_ctrl\",\"CloakB2_ctrl\",\"CloakB3_ctrl\",\"CloakB4_ctrl\"}; \n$SkirtF={\"SkirtFa1_ctrl\",\"SkirtFa2_ctrl\",\"SkirtFa3_ctrl\"};\n$SkirtB={\"SkirtBa1_ctrl\",\"SkirtBa2_ctrl\",\"SkirtBa3_ctrl\"};\n$HairBa={\"HairB_ctrl\",\"HairBa1_ctrl\",\"HairBa2_ctrl\",\"HairBaEnd\"};\n$HairBb={\"HairBb1_ctrl\",\"HairBb2_ctrl\",\"HairBbEnd\"};\n$HairBc={\"HairBc1_ctrl\",\"HairBcEnd\"};\n$HairBd={\"HairBd1_ctrl\",\"HairBdEnd\"};\n$HairBe={\"HairBe1_ctrl\",\"HairBeEnd\"};\n$HairBf={\"HairBf1_ctrl\",\"HairBfEnd\"};\n$HairBg={\"HairBg1_ctrl\",\"HairBg2_ctrl\",\"HairBgEnd\"};\n$HairBh={\"HairBh1_ctrl\",\"HairBhEnd\"};\n$HairBi={\"HairBi1_ctrl\",\"HairBiEnd\"};\n$HairBj={\"HairBj1_ctrl\",\"HairBj2_ctrl\",\"HairBjEnd\"};\n$HairFa={\"HairFa1_ctrl\",\"HairFaEnd\"};\n$HairFb={\"HairFb1_ctrl\",\"HairFbEnd\"};\n$HairFc={\"HairFc1_ctrl\",\"HairFcEnd\"};\n$HairFd={\"HairFd1_ctrl\",\"HairFdEnd\"};\n$HairFe={\"HairFe1_ctrl\",\"HairFe2_ctrl\",\"HairFeEnd\"};\n$HairFf={\"HairFf1_ctrl\",\"HairFfEnd\"};\n$HairFg={\"HairFg1_ctrl\",\"HairFgEnd\"};\n\n$tests={\"$CloakBs\",\"$SkirtF\",\"$SkirtB\",\"$HairBa\",\"$HairBb\",\"$HairBc\",\"$HairBd\",\"$HairBe\",\"$HairBf\",\"$HairBg\",\"$HairBh\",\"$HairBi\",\"$HairBj\",\"$HairFa\",\"$HairFb\",\"$HairFc\",\"$HairFd\",\"$HairFe\",\"$HairFf\",\"$HairFg\"};\nfor($test in $tests){\n    eval(\"buildKindCoreDynamics($ns,\"+$test+\")\");\n}\nSetBoneDynamicsNodeAttrs();\ncrKindCoreBodyCollider($ns);\n\nglobal proc buildKindCoreDynamics(string $ns,string $objs[]){\n    currentTime 0 ;\n    string $nObjs[];   \n    for($i=0;$i<`size($objs)`;$i++){\n        $nObjs[$i]=$ns+\":\"+$objs[$i];\n    }    \n    //build joint    \n    $jts=crJtString($nObjs,\"dynamics\");\n    $parent=`listRelatives -p $nObjs[0]`;\n    group -em -n ($jts[0]+\"_offset\");\n    if(!`objExists \"dynamicsBone_grp\"`){ \n        group -n \"dynamicsBone_grp\";\n    }else{ \n        parent ($jts[0]+\"_offset\") \"dynamicsBone_grp\";\n    }\n    parentConstraint $parent[0] ($jts[0]+\"_offset\");\n    parent $jts[0] ($jts[0]+\"_offset\");    \n    //build dynamics bone    \n    $boneDynamicsNodes=batchCrDynamicsNode($jts,5);\n    //setting dynamics attribute\n    for($boneDynamicsNode in $boneDynamicsNodes){   \n        setAttr ($boneDynamicsNode+\".fps\") 60;    \n        setAttr ($boneDynamicsNode+\".damping\") 0.7;\n        setAttr ($boneDynamicsNode+\".elasticity\") 500;        \n    }    \n    //connect object\n    for($i=0;$i<`size($nObjs)`;$i++){\n        parentConstraint -mo $jts[$i] $nObjs[$i];\n    }\n}\nglobal proc SetBoneDynamicsNodeAttrs(){\n    select -r \"boneDynamicsNodeSets\"; \n    string $obj;\n    $objs=`ls -sl`;\n    $minTime = `playbackOptions -q -minTime`; \n    $maxTime = `playbackOptions -q -maxTime`; \n    $resetTime=(2*$minTime-$maxTime);\n    for($obj in $objs){\n        setAttr ($obj+\".resetTime\") $resetTime;        \n        if(`gmatch $obj \"*Hair*\"`){    \n            setAttr ($obj+\".damping\") 0.1;\n            setAttr ($obj+\".elasticity\") 50;\n            if(`gmatch $obj \"*HairF*\"`){         \n                setAttr ($obj+\".radius\") 2;      \n            }              \n        }else if(`gmatch $obj \"*Cloak*\"`){ \n            setAttr ($obj+\".damping\") 0.2;\n            setAttr ($obj+\".elasticity\") 50;\n        }else if(`gmatch $obj \"*Skirt*\"`){ \n            setAttr ($obj+\".damping\") 0.1;\n            setAttr ($obj+\".elasticity\") 50;   \n            if(`gmatch $obj \"*SkirtFa1*\"`){         \n                setAttr ($obj+\".radius\") 3;      \n            }             \n        }    \n    }\n}\nglobal proc crKindCoreBodyCollider(string $ns){\n    $ccsHead=crSphereCollider(\"Head\",8);\n    $conHead=`parentConstraint ($ns+\":Head_M\") $ccsHead[0]`;\n    setAttr ($conHead[0]+\".target[0].targetOffsetTranslateX\") 8;          \n    \n    $ccsBody=crCapsuleCollider(\"Body\",7,10);\n    $conBody=`pointConstraint ($ns+\":Root_M\") $ccsBody[0]`;\n    $conChest=`pointConstraint ($ns+\":Neck_M\") $ccsBody[1]`;\n\n    $ccsLegR=crCapsuleCollider(\"LegR\",6,6);\n    $conHipR=`pointConstraint ($ns+\":Hip_R\") $ccsLegR[0]`;\n    $conKneeR=`pointConstraint ($ns+\":Knee_R\") $ccsLegR[1]`;\n    \n    $ccsLegL=crCapsuleCollider(\"LegL\",6,6);\n    $conHipL=`pointConstraint ($ns+\":Hip_L\") $ccsLegL[0]`;\n    $conKneeL=`pointConstraint ($ns+\":Knee_L\") $ccsLegL[1]`;\n\n    $ccsArmR=crCapsuleCollider(\"ArmR\",6,6);\n    $conShoulderR=`pointConstraint ($ns+\":Shoulder_R\") $ccsArmR[0]`;\n    $conElbowR=`pointConstraint ($ns+\":Elbow_R\") $ccsArmR[1]`;\n    \n    $ccsArmL=crCapsuleCollider(\"ArmL\",6,6);\n    $conShoulderL=`pointConstraint ($ns+\":Shoulder_L\") $ccsArmL[0]`;\n    $conElbowL=`pointConstraint ($ns+\":Elbow_L\") $ccsArmL[1]`;    \n    parent $ccsHead[0] \"capsuleCollider_Body_grp\" \"capsuleCollider_LegR_grp\" \"capsuleCollider_LegL_grp\" \"capsuleCollider_ArmR_grp\" \"capsuleCollider_ArmL_grp\" \"dynamicsBone_grp\";    \n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
 
 } 
