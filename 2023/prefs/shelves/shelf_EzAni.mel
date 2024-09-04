@@ -605,6 +605,41 @@ global proc shelf_EzAni () {
         -manage 1
         -visible 1
         -preventOverride 0
+        -annotation "currentUnit -t \"240fps\";" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "currentUnit -t \"240fps\";" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "12fps" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "currentUnit -t \"12fps\";" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
         -annotation "\ncurrentUnit -t \"film\";" 
         -enableBackground 0
         -backgroundColor 0 0 0 
@@ -1060,19 +1095,19 @@ global proc shelf_EzAni () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "\ncurrentUnit -t \"film\";" 
+        -annotation "source \"byLuke/procedureOptimizeFile.mel\";\nquickSwitchOffPlugin();\ncleanUnkownNode();\ncleanUnkownPlugin();\n\n" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "\ncurrentUnit -t \"film\";" 
+        -label "source \"byLuke/procedureOptimizeFile.mel\";\nquickSwitchOffPlugin(..." 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "24fps" 
+        -imageOverlayLabel "clean" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "commandButton.png" 
@@ -1080,42 +1115,7 @@ global proc shelf_EzAni () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "\ncurrentUnit -t \"film\";" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "currentUnit -t \"240fps\";" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "currentUnit -t \"240fps\";" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "240fps" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 0
-        -marginHeight 1
-        -command "currentUnit -t \"240fps\";" 
+        -command "source \"byLuke/procedureOptimizeFile.mel\";\nquickSwitchOffPlugin();\ncleanUnkownNode();\ncleanUnkownPlugin();\n\n" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
