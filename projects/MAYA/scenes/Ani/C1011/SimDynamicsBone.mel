@@ -1,3 +1,4 @@
+/*
 source "byLuke/EzRig";
 source "byLuke/crBoneDynamicsNodebyLuke";
 $sels=`ls -sl`;
@@ -29,7 +30,7 @@ for($test in $tests){
 }
 SetBoneDynamicsNodeAttrs();
 crKindCoreBodyCollider($ns);
-
+*/
 global proc buildKindCoreDynamics(string $ns,string $objs[]){
     currentTime 0 ;
     string $nObjs[];   

@@ -1,8 +1,9 @@
+/*
 source "byLuke/EzRig";
 $sels=`ls -sl`;
 $ns=getPlayerNameSpace();
 setCloakAFollow($ns);
-
+*/
 global proc setCloakAFollow(string $ns){
     string $MainClocks[]={"CloakA24_ctrl","CloakA25_ctrl"};
     string $cloakUp[]={"CloakA00_ctrl","CloakA01_ctrl","CloakA02_ctrl","CloakA03_ctrl","CloakA04_ctrl","CloakA05_ctrl","CloakA06_ctrl","CloakA07_ctrl"};
