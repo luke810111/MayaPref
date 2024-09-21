@@ -1,21 +1,22 @@
-//set FK IK constraint switch   
-$dvnKeys=`listConnections -type "animCurveUU" ($FKIKswitch+".IKFKBlend")`;
-for($i=0;$i<(`size $limbs`-1);$i++){
-    $cons=`listRelatives -typ "constraint" $limbs[$i]`;
-    for($con in $cons){
-        $attrs=`listAttr -ud $con`;
-        connectAttr -f ($dvnKeys[0]+".output") ($con+"."+$attrs[0]);
-        connectAttr -f ($dvnKeys[1]+".output") ($con+"."+$attrs[1]);             
-    }
-}
+$ly="follow_head_ly";
+if(`objExists $ly`)delete $ly;
+//animLayer $ly;
+// $selsA={"FKHead_M"};
+// $selsB={"FKHead_M","FKNeck_M","FKChest_M","FKSpine1_M","FKRoot_M","RootX_M","FKScapula_R","FKScapula_L"};
+cpKeywithLayer($ly,$selsA[0],"rx",$selsB[1],"rx",1,0.618,0);
+cpKeywithLayer($ly,$selsA[0],"rx",$selsB[2],"rx",2,0.382,0);
+cpKeywithLayer($ly,$selsA[0],"rx",$selsB[2],"rx",3,0.24,0);
+cpKeywithLayer($ly,$selsA[0],"rx",$selsB[5],"ry",4,0.13,0);
 
+cpKeywithLayer($ly,$selsA[0],"rz",$selsB[1],"rz",1,0.618,0);
+cpKeywithLayer($ly,$selsA[0],"rz",$selsB[2],"rz",2,0.382,0);
+cpKeywithLayer($ly,$selsA[0],"rz",$selsB[3],"rz",2,0.24,0);
+cpKeywithLayer($ly,$selsA[0],"rz",$selsB[4],"rz",2,-0.382,0);
 
+cpKeywithLayer($ly,$selsA[0],"ry",$selsB[1],"ry",1,0.618,0);
+cpKeywithLayer($ly,$selsA[0],"ry",$selsB[2],"ry",2,0.382,0);
+cpKeywithLayer($ly,$selsA[0],"ry",$selsB[3],"ry",2,0.24,0);
+cpKeywithLayer($ly,$selsA[0],"ry",$selsB[4],"ry",2,-0.382,0);
 
-
-for($i=0;$i<`size $limbs`;$i++){
-    createNode -n ("scale_blend_"+$limbs[$i]) "blendColors";
-    connectAttr -f ("IK_"+$limb+"_grp_visibility.output") ("scale_blend_"+$limbs[$i]+".blender");
-    connectAttr -f ("FKctrl_"+$limbs[$i]+".scale") ("scale_blend_"+$limbs[$i]+".color1");
-    connectAttr -f ("IKJt_"  +$limbs[$i]+".scale") ("scale_blend_"+$limbs[$i]+".color2");
-    connectAttr -f ("scale_blend_"+$limbs[$i]+".output") ($limbs[$i]+".scale");
-}
+cpKeywithLayer($ly,$selsA[0],"rz",$selsB[5],"tz",1,-0.1618,0);
+cpKeywithLayer($ly,$selsA[0],"rx",$selsB[5],"tx",2,-0.1618,0);

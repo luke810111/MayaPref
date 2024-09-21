@@ -1,13 +1,52 @@
-proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
-    if($i<2)$i=2;
-    if($j<2)$j=2;
-    string $polyPlane=($obj+"_Plane");
-    if(`objExists $polyPlane`)delete $polyPlane;
-    polyCylinder -r ($w/2) -h $h -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+source "byLuke/testQuadrupedLimbsRig.mel";
+source "byLuke/procedureCreatCtrl.mel";
+source "byLuke/procedureMath.mel";
+source "byLuke/procedureBase.mel";
+//lsSameNameObj({},"transform");  
+//$sels=`ls -sl`;
+//delete "FK_System_grp" "IK_System_grp" "FKIKswitch_System_grp"; 
+if(`objExists "hideOriginCtrl_ly"`) delete "hideOriginCtrl_ly";
+select -r PoleLegFront_R IKToes3_R IKLegBack_R RollFingers3_R PoleLegBack_R PoleLegBack_L RollToes4_R IKToes3_L RollFingers4_L IKFingers3_R IKFingers3_L IKLegFront_R RollbackHeel_R IKLegFront_L RollToes4_L RollfrontHeel_R RollFingers4_R RollfrontHeel_L IKLegBack_L RollbackHeel_L RollToes3_R RollFingers3_L RollToes3_L PoleLegFront_L FKFingers1_L FKFingers2_L FKFingers3_L FKElbow_R FKWrist_R FKFingers1_R FKFingers2_R FKFingers3_R FKShoulder_R FKShoulder_L FKElbow_L FKWrist_L FKIKLegBack_R FKIKLegFront_L FKIKLegBack_L FKHip_L FKKnee_L FKAnkle_L FKToes1_L FKToes2_L FKToes3_L FKIKLegFront_R FKHip_R FKKnee_R FKAnkle_R FKToes1_R FKToes3_R FKToes2_R;
+createDisplayLayer -nr -name "hideOriginCtrl_ly";
+editDisplayLayerMembers  -noRecurse "hideOriginCtrl_ly" `ls -selection`;
+setAttr "hideOriginCtrl_ly.visibility" 0;
+setAttr "FKIKLegFront_L.FKIKBlend" 0;
+setAttr "FKIKLegBack_R.FKIKBlend" 0;
+setAttr "FKIKLegBack_L.FKIKBlend" 0;
+setAttr "FKIKLegFront_R.FKIKBlend" 0;
 
-    return $polyPlane;
+$limbsFR={"FKShoulder_R","FKElbow_R","FKWrist_R","FKFingers1_R","FKFingers3_R","Fingers4_R"};
+$limbsFL={"FKShoulder_L","FKElbow_L","FKWrist_L","FKFingers1_L","FKFingers3_L","Fingers4_L"};
+$limbsBR={"FKHip_R","FKKnee_R","FKAnkle_R","FKToes1_R","FKToes3_R","Toes4_R"};
+$limbsBL={"FKHip_L","FKKnee_L","FKAnkle_L","FKToes1_L","FKToes3_L","Toes4_L"};
+
+
+/*
+main($limbsFR,"front","rt","Scapula_R");
+main($limbsFL,"front","lf","Scapula_L");
+main($limbsBR,"back","rt","Root_M");
+main($limbsBL,"back","lf","Root_M");
+*/
+
+proc main(string $objs[],string $place,string $side,string $jtRoot){
+    if(`size $objs`==6){
+        string $isSide,$isPlace;
+        if($side=="lf")$isSide="L";
+        if($side=="rt")$isSide="R";
+        if($place=="front")$isSide="F";
+        if($place=="back")$isSide="B";    
+        $limbs=orgnizeLimbsJt($objs,$place,$side);  
+        $limb=`substitute "01_" $limbs[0] "_"`;
+        $sizeRatio=getSize($limbs);
+        $IKctrls=buildUnguligradeLegIKsystem($limbs,$limb,$isSide,$isPlace,$jtRoot,$sizeRatio); 
+        $FKCtrls= buildUnguligradeLimbFKsystem($limbs,$limb,$jtRoot,$sizeRatio);
+        $FKIKswitch=buildUnguligradeLimbFKIKSwitchsystem($limbs,$limb,$sizeRatio);
+        setAttr ($FKIKswitch+".IKFKBlend") 10;
+        for($i=0;$i<(`size $limbs`-1);$i++){
+            parentConstraint -mo $limbs[$i] $objs[$i];
+            scaleConstraint $limbs[$i] $objs[$i];
+        }
+    }else{
+        print ("Unguligrade must be six segement of joint");
     }
-
-
-
-
+}
