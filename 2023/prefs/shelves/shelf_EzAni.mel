@@ -14,28 +14,25 @@ global proc shelf_EzAni () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "picker" 
         -enableBackground 0
         -backgroundColor 0 0 0 
         -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
-        -label "import dwpicker\ndwpicker.show()" 
         -labelOffset 0
         -rotation 0
         -flipX 0
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "picker" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "C:/Users/luke/Documents/maya/scripts/dwpicker/icons/picker.png" 
-        -image1 "C:/Users/luke/Documents/maya/scripts/dwpicker/icons/picker.png" 
+        -image "C:/Users/luke/Documents/maya/2023/plug-ins/picker\\AnimSchoolLogoIcon.png" 
+        -image1 "C:/Users/luke/Documents/maya/2023/plug-ins/picker\\AnimSchoolLogoIcon.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "import dwpicker\ndwpicker.show()" 
-        -sourceType "python" 
+        -command "loadPlugin -qt \"C:/Users/luke/Documents/maya/2023/plug-ins/picker/AnimSchoolPicker.mll\";\nAnimSchoolPicker();" 
+        -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
     ;
