@@ -1,0 +1,247 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 110,
+    "startFrame": 84,
+    "user": "luke",
+    "ctime": "1728204960",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1014_rig.mb",
+        "unresolved": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1014_rig.mb",
+        "namespace": ":SK_C1010_rig",
+        "node": "SK_C1010_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Ani/C1011/ANI_C1011_Terminate_003_v01.mb"
+  }
+,
+  "objects": {
+    "SK_C1010_rig:Hang_L_loc2": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE1"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 5.716634409885502,
+          "curve": "CURVE2"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE3"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE4"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -340.38297167422974,
+          "curve": "CURVE5"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 131.55036896252534,
+          "curve": "CURVE6"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 3.8663949515450615,
+          "curve": "CURVE7"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE8"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 3.5416212479423854,
+          "curve": "CURVE9"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -1.3291830223725039,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "SK_C1010_rig:FKShoulder_L": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE12"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 6.630665438933647e-08,
+          "curve": "CURVE13"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE14"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE15"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE16"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -26.716972735941578,
+          "curve": "CURVE17"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 12.685552462375243,
+          "curve": "CURVE18"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.3199630660997173e-08,
+          "curve": "CURVE19"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE20"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -29.618821239986822,
+          "curve": "CURVE21"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -8.47658796487849e-08,
+          "curve": "CURVE22"
+        }
+      }
+    },
+    "SK_C1010_rig:FKElbow_L": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE24"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 2.688293346256012e-07,
+          "curve": "CURVE25"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE26"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE27"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 53.9837458978083,
+          "curve": "CURVE28"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -4.807283906413633,
+          "curve": "CURVE29"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.0296727884717913e-07,
+          "curve": "CURVE30"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE31"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.6715997822919735,
+          "curve": "CURVE32"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 1.5932561669984574e-07,
+          "curve": "CURVE33"
+        }
+      }
+    },
+    "SK_C1010_rig:FKWrist_L": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE35"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 1.278143223988626e-07,
+          "curve": "CURVE36"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE37"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE38"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 24.075034124668747,
+          "curve": "CURVE39"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -42.13200759463121,
+          "curve": "CURVE40"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.7975285995797888e-07,
+          "curve": "CURVE41"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE42"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -24.53728444409751,
+          "curve": "CURVE43"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 3.414619864371147e-07,
+          "curve": "CURVE44"
+        }
+      }
+    }
+  }
+}
