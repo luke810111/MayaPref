@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 64,
+    "startFrame": 50,
+    "user": "luke",
+    "ctime": "1736078487",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1010_rig.mb",
+        "unresolved": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1010_rig.mb",
+        "namespace": ":SK_C1010_rig",
+        "node": "SK_C1010_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "C:/Users/luke/Documents/maya/projects/MAYA/scenes/Ani/C1010/ANI_C1010_Idle_001_v05.mb"
+  }
+,
+  "objects": {
+    "SK_C1010_rig:Face_ctrl": {
+      "attrs": {
+        "Mouth": {
+          "type": "enum",
+          "value": 3
+        },
+        "Eyes": {
+          "type": "enum",
+          "value": 1,
+          "curve": "CURVE1"
+        }
+      }
+    }
+  }
+}
