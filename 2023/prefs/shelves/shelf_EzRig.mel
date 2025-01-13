@@ -799,7 +799,7 @@ global proc shelf_EzRig () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "source \"byLuke/sortOut\";\nsortOutTool;" 
+        -command "source \"byLuke/sortOutTool\";\nsortOutTool;" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
