@@ -1,0 +1,4035 @@
+{
+  "metadata": {
+    "timeUnit": "ntscf",
+    "linearUnit": "cm",
+    "angularUnit": "deg",
+    "description": "",
+    "endFrame": 70,
+    "startFrame": 0,
+    "user": "luke",
+    "ctime": "1740470320",
+    "version": "1.0.0",
+    "references": [
+      {
+        "filename": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Enemies/Goon/SK_Enemy_YoungerRaider_rig.mb",
+        "unresolved": "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/Enemies/Goon/SK_Enemy_YoungerRaider_rig.mb",
+        "namespace": ":SK_Enemy_OlderBandit_rig",
+        "node": "SK_Enemy_OlderBandit_rigRN"
+      }
+    ],
+    "mayaVersion": "2023",
+    "mayaSceneFile": "X:/Art/1_Assets/3_Animation/MAYA/Enemies/Goon/Bandits/ANI_Enemy_YoungerRaider_Ability02_v01.mb"
+  }
+,
+  "objects": {
+    "SK_Enemy_OlderBandit_rig:IKToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE1"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE3"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE2"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE4"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE5"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE6"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE7"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE8"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE9"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE10"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE12"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE14"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE13"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE15"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE16"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE17"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE18"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE19"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE20"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE21"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollToesEnd_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE23"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE25"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE24"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE26"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE27"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE28"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE29"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE30"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE31"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE32"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollHeel_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE34"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE36"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE35"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE37"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE38"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE39"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE40"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE41"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE42"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE43"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKLeg_L": {
+      "attrs": {
+        "roll": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE45"
+        },
+        "rollEndAngle": {
+          "type": "double",
+          "value": 60.0,
+          "curve": "CURVE46"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE47"
+        },
+        "rock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE48"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 13.075804872892029,
+          "curve": "CURVE49"
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE50"
+        },
+        "rollStartAngle": {
+          "type": "double",
+          "value": 30.0,
+          "curve": "CURVE55"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE56"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE58"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -2.7017481042243428,
+          "curve": "CURVE59"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE64"
+        },
+        "Lenght2": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE65"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 19.869847275831063,
+          "curve": "CURVE51"
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE52"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE53"
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE54"
+        },
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE57"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE60"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE61"
+        },
+        "swivel": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE62"
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE63"
+        },
+        "Fatness2": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE66"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKArm_L": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE68"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -115.76885272440512,
+          "curve": "CURVE69"
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE70"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999988,
+          "curve": "CURVE76"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -48.09614956700585,
+          "curve": "CURVE78"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -167.22944572003328,
+          "curve": "CURVE79"
+        },
+        "blendParent1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE82"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.999999999999999,
+          "curve": "CURVE84"
+        },
+        "Lenght2": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE85"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE71"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 37.68198439189368,
+          "curve": "CURVE72"
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE73"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 5.530786058473114,
+          "curve": "CURVE74"
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE75"
+        },
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE77"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 14.531568630216924,
+          "curve": "CURVE80"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999989,
+          "curve": "CURVE81"
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE83"
+        },
+        "Fatness2": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE86"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE88"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE90"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE89"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE91"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE92"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE93"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE94"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE95"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE96"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE97"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollToesEnd_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE99"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE101"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE100"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE102"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE103"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE104"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE105"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE106"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE107"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE108"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE110"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE112"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE111"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE113"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE114"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE115"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE116"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE117"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE118"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE119"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RollHeel_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE121"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE123"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE122"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE124"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE125"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE126"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE127"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE128"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE129"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE130"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKNeck_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE132"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE134"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE133"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE135"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE136"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE137"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE138"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE139"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE140"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE141"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:HipSwinger_M": {
+      "attrs": {
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE143"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE145"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE144"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE146"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -7.360798686758603,
+          "curve": "CURVE148"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE150"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -2.3038632674582593,
+          "curve": "CURVE149"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE151"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE152"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE153"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE154"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE155"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -0.43770277511854194,
+          "curve": "CURVE156"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE157"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKChest_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -0.9552362187799233,
+          "curve": "CURVE159"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE161"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -2.303863267458264,
+          "curve": "CURVE160"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE162"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE163"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE164"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE165"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE166"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -0.43770277511854194,
+          "curve": "CURVE167"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE168"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKRoot_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE170"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE172"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE171"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE173"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE174"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE175"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE176"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE177"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE178"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE179"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:Fingers_L": {
+      "attrs": {
+        "cup": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE181"
+        },
+        "indexCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE183"
+        },
+        "thumbCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE182"
+        },
+        "spread": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE184"
+        },
+        "ringCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE185"
+        },
+        "middleCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE186"
+        },
+        "pinkyCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE187"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:Fingers_R": {
+      "attrs": {
+        "cup": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE189"
+        },
+        "indexCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE191"
+        },
+        "thumbCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE190"
+        },
+        "spread": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE192"
+        },
+        "ringCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE193"
+        },
+        "middleCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE194"
+        },
+        "pinkyCurl": {
+          "type": "float",
+          "value": 0.0,
+          "curve": "CURVE195"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKLeg_R": {
+      "attrs": {
+        "roll": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE197"
+        },
+        "rollEndAngle": {
+          "type": "double",
+          "value": 60.0,
+          "curve": "CURVE198"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE199"
+        },
+        "rock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE200"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -17.448968744048344,
+          "curve": "CURVE201"
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE202"
+        },
+        "rollStartAngle": {
+          "type": "double",
+          "value": 30.0,
+          "curve": "CURVE207"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE208"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE210"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -52.023931030840345,
+          "curve": "CURVE211"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE216"
+        },
+        "Lenght2": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE217"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -27.575005391212272,
+          "curve": "CURVE203"
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE204"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE205"
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE206"
+        },
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE209"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE212"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE213"
+        },
+        "swivel": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE214"
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE215"
+        },
+        "Fatness2": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE218"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKArm_R": {
+      "attrs": {
+        "Fatness1": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE229"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 6.427019809341337,
+          "curve": "CURVE230"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.871653779965584,
+          "curve": "CURVE231"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 33.93384064352743,
+          "curve": "CURVE232"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE220"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0000000000000004,
+          "curve": "CURVE233"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 15.52871584965282,
+          "curve": "CURVE221"
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE234"
+        },
+        "antiPop": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE222"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE223"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 11.392286597678616,
+          "curve": "CURVE224"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE235"
+        },
+        "Lenght1": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE225"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -168.0980104818151,
+          "curve": "CURVE226"
+        },
+        "Lenght2": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE236"
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE227"
+        },
+        "Fatness2": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE237"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0000000000000002,
+          "curve": "CURVE228"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:PoleLeg_L": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE239"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE240"
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE241"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE242"
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE243"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:PoleArm_L": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 4.02100622279157,
+          "curve": "CURVE245"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 28.26270977415483,
+          "curve": "CURVE246"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE247"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 10.214606136858997,
+          "curve": "CURVE248"
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE249"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:PoleLeg_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE251"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE252"
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE253"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE254"
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE255"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKWrist_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 16.23757233819862,
+          "curve": "CURVE257"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.5998147946258907e-07,
+          "curve": "CURVE259"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 32.506041752254916,
+          "curve": "CURVE258"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE260"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE261"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 1.426407209033722e-07,
+          "curve": "CURVE262"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -4.156963578368171e-08,
+          "curve": "CURVE263"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE264"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 88.3413680669318,
+          "curve": "CURVE265"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE266"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKElbow_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 80.5622465522254,
+          "curve": "CURVE268"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 7.820332825758669e-08,
+          "curve": "CURVE270"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -2.346954445419862,
+          "curve": "CURVE269"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE271"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE272"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -4.8993975099165255e-08,
+          "curve": "CURVE273"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 1.1856393200559978e-07,
+          "curve": "CURVE274"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE275"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 3.27219467872678,
+          "curve": "CURVE276"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE277"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKShoulder_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -45.56012687618881,
+          "curve": "CURVE279"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.7530776830199102e-08,
+          "curve": "CURVE281"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 21.084860509874144,
+          "curve": "CURVE280"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE282"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE283"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -1.1042544656447717e-10,
+          "curve": "CURVE284"
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE285"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 1.321581066804356e-09,
+          "curve": "CURVE286"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE287"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 42.402948765297715,
+          "curve": "CURVE288"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE289"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIndexFinger1_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -9.215024633471442,
+          "curve": "CURVE291"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE293"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -26.566940358324022,
+          "curve": "CURVE292"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE294"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE295"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE296"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE297"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE298"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 5.589914087303152,
+          "curve": "CURVE299"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE300"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKPinkyFinger1_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -20.15660751371799,
+          "curve": "CURVE302"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE304"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 30.883794460254265,
+          "curve": "CURVE303"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE305"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE306"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE307"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE308"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE309"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE310"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE311"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger2_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE313"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE315"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 24.162827528762755,
+          "curve": "CURVE314"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE316"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE317"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE318"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE319"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE320"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE321"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE322"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKMiddleFinger1_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE324"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE326"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 9.850227351859566,
+          "curve": "CURVE325"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE327"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE328"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE329"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE330"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE331"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE332"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE333"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger1_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 15.224989605888856,
+          "curve": "CURVE335"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE337"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -14.269497421613664,
+          "curve": "CURVE336"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE338"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE339"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE340"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE341"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE342"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -3.8378472944005844,
+          "curve": "CURVE343"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE344"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKToes_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE346"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE348"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE347"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE349"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE350"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE351"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE352"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE353"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE354"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE355"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIndexFinger1_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE357"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE359"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 36.567400937512815,
+          "curve": "CURVE358"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE360"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE361"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE362"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE363"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE364"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE365"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE366"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKPinkyFinger1_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 23.198743140560477,
+          "curve": "CURVE368"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE370"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 18.226564663994246,
+          "curve": "CURVE369"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE371"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE372"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE373"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE374"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE375"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -6.175873679249366,
+          "curve": "CURVE376"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE377"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger2_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE379"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE381"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE380"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE382"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE383"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE384"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE385"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE386"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE387"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE388"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger1_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 27.909539731789042,
+          "curve": "CURVE390"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE392"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 16.296850753430707,
+          "curve": "CURVE391"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE393"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE394"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE395"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE396"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE397"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -51.575363268850126,
+          "curve": "CURVE398"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE399"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKMiddleFinger1_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -7.1657722487178335,
+          "curve": "CURVE401"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE403"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 49.02969193659788,
+          "curve": "CURVE402"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE404"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE405"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE406"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE407"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE408"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -5.422650749213355,
+          "curve": "CURVE409"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE410"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKScapula_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0556623722390557,
+          "curve": "CURVE412"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 1.2521608709903376e-06,
+          "curve": "CURVE414"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.3810216177269466,
+          "curve": "CURVE413"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE415"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE416"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 1.2850024688759731e-07,
+          "curve": "CURVE417"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -2.4822734872032015e-06,
+          "curve": "CURVE418"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE419"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.004660526726842145,
+          "curve": "CURVE420"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE421"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKScapula_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -0.050364547576595094,
+          "curve": "CURVE423"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -1.6608428978770462e-06,
+          "curve": "CURVE425"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -1.9412351800760677,
+          "curve": "CURVE424"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE426"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE427"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 4.020229447121437e-07,
+          "curve": "CURVE428"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 3.2600930239823356e-06,
+          "curve": "CURVE429"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE430"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0027218589129788693,
+          "curve": "CURVE431"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE432"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKHead_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -43.06169740850213,
+          "curve": "CURVE434"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE436"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -9.75292507642464,
+          "curve": "CURVE435"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE437"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE438"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE439"
+        },
+        "Global": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE440"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE441"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE442"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 5.152114073237339,
+          "curve": "CURVE443"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE444"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKSpine3_M": {
+      "attrs": {
+        "stiff": {
+          "type": "double",
+          "value": 5.0,
+          "curve": "CURVE446"
+        },
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE447"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE449"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE448"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE450"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE451"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE452"
+        },
+        "stretchy": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE453"
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE454"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE455"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE456"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE457"
+        },
+        "volume": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE458"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE459"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKhybridSpine3_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE461"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE463"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE462"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE464"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE465"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE466"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE467"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE468"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE469"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE470"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKhybridSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE472"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE474"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE473"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE475"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE476"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE477"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE478"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE479"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE480"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE481"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKhybridSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE483"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE485"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE484"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE486"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE487"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE488"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE489"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE490"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE491"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE492"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKSpine1_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE494"
+        },
+        "FixedOrient": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE495"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE497"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE496"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE498"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE499"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE500"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE501"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE502"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE503"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE504"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:IKSpine2_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE506"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE508"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE507"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE509"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE510"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE511"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE512"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE513"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE514"
+        },
+        "followEnd": {
+          "type": "double",
+          "value": 5.0,
+          "curve": "CURVE515"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE516"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:PoleArm_R": {
+      "attrs": {
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -27.128965268050194,
+          "curve": "CURVE518"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 10.129089800519495,
+          "curve": "CURVE519"
+        },
+        "follow": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE520"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 73.6220252828069,
+          "curve": "CURVE521"
+        },
+        "lock": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE522"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKAnkle_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -1.1463966869763573,
+          "curve": "CURVE524"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 2.3221604550371922e-07,
+          "curve": "CURVE526"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 6.971231773105943,
+          "curve": "CURVE525"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE527"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999997,
+          "curve": "CURVE528"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -1.3864671064567347e-06,
+          "curve": "CURVE529"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": -1.364098167755401e-07,
+          "curve": "CURVE530"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE531"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -4.152201917958376,
+          "curve": "CURVE532"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999996,
+          "curve": "CURVE533"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKKnee_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -52.33595963609446,
+          "curve": "CURVE535"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 2.1663160509888257e-07,
+          "curve": "CURVE537"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE536"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE538"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999996,
+          "curve": "CURVE539"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 7.317150902963476e-07,
+          "curve": "CURVE540"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE541"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE542"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE543"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999997,
+          "curve": "CURVE544"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKHip_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 47.96202708792747,
+          "curve": "CURVE546"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE548"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -9.422092083527517,
+          "curve": "CURVE547"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE549"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999994,
+          "curve": "CURVE550"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE551"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE552"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999996,
+          "curve": "CURVE553"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 17.577564916259803,
+          "curve": "CURVE554"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE555"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKToes_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE557"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE559"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE558"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE560"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE561"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE562"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE563"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE564"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE565"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE566"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKAnkle_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -6.184535991970453,
+          "curve": "CURVE568"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.3221581813004377e-07,
+          "curve": "CURVE570"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 19.107834082075406,
+          "curve": "CURVE569"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE571"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE572"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 1.3864671446484067e-06,
+          "curve": "CURVE573"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 1.3640972440498444e-07,
+          "curve": "CURVE574"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999998,
+          "curve": "CURVE575"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -11.46961923407142,
+          "curve": "CURVE576"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE577"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKHip_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 19.408169619838016,
+          "curve": "CURVE579"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE581"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -33.448323244252045,
+          "curve": "CURVE580"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE582"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE583"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE584"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE585"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE586"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 39.7296833007356,
+          "curve": "CURVE587"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE588"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKKnee_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -42.276457700388335,
+          "curve": "CURVE590"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -2.1663160509888257e-07,
+          "curve": "CURVE592"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE591"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE593"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.999999999999999,
+          "curve": "CURVE594"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -7.317151204944139e-07,
+          "curve": "CURVE595"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE596"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999991,
+          "curve": "CURVE597"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE598"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999993,
+          "curve": "CURVE599"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKShoulder_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -33.58417680450137,
+          "curve": "CURVE601"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE603"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 39.79685311253687,
+          "curve": "CURVE602"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE604"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999991,
+          "curve": "CURVE605"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE606"
+        },
+        "follow": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE607"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE608"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.999999999999999,
+          "curve": "CURVE609"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 68.39651430035703,
+          "curve": "CURVE610"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999984,
+          "curve": "CURVE611"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKElbow_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 72.50277647142421,
+          "curve": "CURVE613"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -5.367453598523753e-07,
+          "curve": "CURVE615"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE614"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE616"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999979,
+          "curve": "CURVE617"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 1.2973271397527242e-06,
+          "curve": "CURVE618"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE619"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999977,
+          "curve": "CURVE620"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE621"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999976,
+          "curve": "CURVE622"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKWrist_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": -16.550986590118974,
+          "curve": "CURVE624"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 1.4884479797830056e-09,
+          "curve": "CURVE626"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 1.4703566973689524,
+          "curve": "CURVE625"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE627"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 0.9999999999999999,
+          "curve": "CURVE628"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -1.5785713083005248e-07,
+          "curve": "CURVE629"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 2.130491136793151e-09,
+          "curve": "CURVE630"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 0.9999999999999998,
+          "curve": "CURVE631"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 97.73729762588921,
+          "curve": "CURVE632"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 0.9999999999999998,
+          "curve": "CURVE633"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIKLeg_L": {
+      "attrs": {
+        "IKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE635"
+        },
+        "FKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE636"
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE637"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIKArm_L": {
+      "attrs": {
+        "IKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE639"
+        },
+        "FKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE640"
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE641"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:RootX_M": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE643"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": -22.56856841363138,
+          "curve": "CURVE645"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": -17.29163782572347,
+          "curve": "CURVE644"
+        },
+        "CenterBtwFeet": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE646"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE647"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": -4.932016277103171,
+          "curve": "CURVE648"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 10.724901699006693,
+          "curve": "CURVE649"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE650"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIKArm_R": {
+      "attrs": {
+        "IKVis": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE652"
+        },
+        "FKVis": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE653"
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE654"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIKLeg_R": {
+      "attrs": {
+        "IKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE656"
+        },
+        "FKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE657"
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 10.0,
+          "curve": "CURVE658"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIKSpine_M": {
+      "attrs": {
+        "IKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE660"
+        },
+        "FKVis": {
+          "type": "bool",
+          "value": false,
+          "curve": "CURVE661"
+        },
+        "FKIKBlend": {
+          "type": "double",
+          "value": 0.0,
+          "curve": "CURVE662"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKCup_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE664"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE666"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE665"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE667"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE668"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE669"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE670"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE671"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE672"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE673"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKPinkyFinger2_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE675"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE677"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 43.63855149317654,
+          "curve": "CURVE676"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE678"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE679"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE680"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE681"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE682"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE683"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE684"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKRingFinger2_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE686"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE688"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 49.251984550956955,
+          "curve": "CURVE687"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE689"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE690"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE691"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE692"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE693"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE694"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE695"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKRingFinger1_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 6.914818633063462,
+          "curve": "CURVE697"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE699"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 49.95265263761597,
+          "curve": "CURVE698"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE700"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE701"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE702"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE703"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE704"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": -6.241127920244966,
+          "curve": "CURVE705"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE706"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKMiddleFinger2_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE708"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE710"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 49.251984550956955,
+          "curve": "CURVE709"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE711"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE712"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE713"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE714"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE715"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE716"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE717"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIndexFinger2_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE719"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE721"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 70.84537096008673,
+          "curve": "CURVE720"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE722"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE723"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE724"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE725"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE726"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE727"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE728"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger3_R": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE730"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE732"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 45.90673065939413,
+          "curve": "CURVE731"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE733"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE734"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE735"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE736"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE737"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE738"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE739"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKThumbFinger3_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE741"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE743"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 26.31137088746457,
+          "curve": "CURVE742"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE744"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE745"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE746"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE747"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE748"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE749"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE750"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKIndexFinger2_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE752"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE754"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 50.40678178166604,
+          "curve": "CURVE753"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE755"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE756"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE757"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE758"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE759"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE760"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE761"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKMiddleFinger2_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE763"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE765"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 50.40678178166604,
+          "curve": "CURVE764"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE766"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE767"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE768"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE769"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE770"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE771"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE772"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKRingFinger2_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE774"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE776"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 50.40678178166604,
+          "curve": "CURVE775"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE777"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE778"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE779"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE780"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE781"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE782"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE783"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKRingFinger1_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE785"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE787"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 30.883794460254265,
+          "curve": "CURVE786"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE788"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE789"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE790"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE791"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE792"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE793"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE794"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKPinkyFinger2_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE796"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE798"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 50.40678178166604,
+          "curve": "CURVE797"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE799"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE800"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE801"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE802"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE803"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE804"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE805"
+        }
+      }
+    },
+    "SK_Enemy_OlderBandit_rig:FKCup_L": {
+      "attrs": {
+        "rotateZ": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE807"
+        },
+        "translateY": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE809"
+        },
+        "rotateY": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE808"
+        },
+        "visibility": {
+          "type": "bool",
+          "value": true,
+          "curve": "CURVE810"
+        },
+        "scaleZ": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE811"
+        },
+        "translateX": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE812"
+        },
+        "translateZ": {
+          "type": "doubleLinear",
+          "value": 0.0,
+          "curve": "CURVE813"
+        },
+        "scaleY": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE814"
+        },
+        "rotateX": {
+          "type": "doubleAngle",
+          "value": 0.0,
+          "curve": "CURVE815"
+        },
+        "scaleX": {
+          "type": "double",
+          "value": 1.0,
+          "curve": "CURVE816"
+        }
+      }
+    }
+  }
+}
