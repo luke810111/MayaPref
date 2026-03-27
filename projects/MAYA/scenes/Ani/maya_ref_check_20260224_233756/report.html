@@ -1,0 +1,75 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Maya References 檢查報告 - 多資料夾</title>
+        <style>
+            body { font-family: Arial, 'Microsoft JhengHei', sans-serif; margin: 20px; background: #f5f5f5; }
+            .container { max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+            h1 { color: #333; border-bottom: 3px solid #4caf50; padding-bottom: 10px; }
+            .timestamp { color: #666; font-size: 0.9em; margin-bottom: 20px; }
+            .folder-section { margin-bottom: 40px; border: 2px solid #ddd; padding: 20px; border-radius: 8px; background: #fafafa; }
+            .folder-title { font-size: 1.4em; font-weight: bold; color: #333; margin-bottom: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 5px; }
+            .folder-path { font-family: 'Courier New', monospace; font-size: 0.85em; color: #666; margin-bottom: 15px; padding: 8px; background: white; border-radius: 3px; }
+            .folder-stats { background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #2196F3; }
+            .summary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
+            .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+            .summary-item { text-align: center; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px; }
+            .summary-number { font-size: 2.5em; font-weight: bold; }
+            .summary-label { font-size: 0.9em; margin-top: 5px; opacity: 0.9; }
+            .file { margin-bottom: 12px; border: 1px solid #ddd; padding: 12px; border-radius: 5px; background: white; }
+            .file.error { border-left: 4px solid #f44336; background: #ffebee; }
+            .file.warning { border-left: 4px solid #ff9800; background: #fff3e0; }
+            .file.ok { border-left: 4px solid #4caf50; background: #f1f8e9; }
+            .file.empty { border-left: 4px solid #9e9e9e; background: #fafafa; }
+            .file-header { font-size: 1.05em; font-weight: bold; margin-bottom: 8px; }
+            .ref { margin: 8px 0 8px 20px; padding: 8px; background: #f9f9f9; border-left: 3px solid #ff9800; font-size: 0.9em; }
+            .path { font-family: 'Courier New', monospace; font-size: 0.8em; color: #666; word-break: break-all; background: white; padding: 5px; border-radius: 3px; margin-top: 5px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔍 Maya References 檢查報告</h1>
+            <div class="timestamp">檢查時間: 2026-02-24 23:37:56</div>
+    
+            <div class="summary">
+                <h2 style="margin-top: 0;">📊 總體統計</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-number">1</div>
+                        <div class="summary-label">檢查資料夾</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-number">29</div>
+                        <div class="summary-label">檢查檔案</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-number">0</div>
+                        <div class="summary-label">有遺失檔案</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-number">0</div>
+                        <div class="summary-label">遺失總數</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-number">0</div>
+                        <div class="summary-label">檢查錯誤</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="folder-section">
+                <div class="folder-title">📁 C2030</div>
+                <div class="folder-path">Y:\MAYA\scenes\Ani\C2030</div>
+                <div class="folder-stats">
+                    <strong>檢查:</strong> 29 個檔案 | 
+                    <strong style="color: #ff9800;">有遺失:</strong> 0 個檔案 | 
+                    <strong style="color: #f44336;">遺失:</strong> 0 個 references
+                    
+                </div>
+        <div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Dead_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Hurt_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Hurt_002_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Idle_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Knee_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Move_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_PlanCancel_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_PlanMove_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Prepare_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Prepare_002_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Prepare_003_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Push_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Relaxe_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Relaxe_002_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_SoulSkill01_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_SoulSkill01_002_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_SoulSkill02_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_SoulSkill03_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Spawn_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_StunOver_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Stun_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Support_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Terminate_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Terminate_002_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Terminate_003_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_TurnBack_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_TurnLeft_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_TurnRight_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div><div class="file ok"><div class="file-header">✅ 正常 ANI_C2030_Walk_001_v01.mb</div><p style="color: #4caf50; margin: 5px 0;">✓ 所有 5 個 references 正常</p></div></div>
+        </div>
+    </body>
+    </html>
+    
