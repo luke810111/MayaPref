@@ -1,0 +1,14 @@
+$ly="ly_ring";
+if(`objExists $ly`)delete $ly;
+animLayer $ly;
+select -r $selsB;
+animLayer -e  -addSelectedObjects $ly;
+
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[0], "rz", 5, 1,0);
+cpKeywithLayer($ly, $selsA[0], "rx", $selsB[0], "rx", 5, 1,0);
+
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[1], "rz", 15, 1,0);
+cpKeywithLayer($ly, $selsA[0], "rx", $selsB[1], "rx", 15, 1,0);
+
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[2], "rz", 30, 1,0);
+cpKeywithLayer($ly, $selsA[0], "rx", $selsB[2], "rx", 30, 1,0);
