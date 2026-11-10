@@ -1,0 +1,85 @@
+
+source "byLuke/EzRig";
+source "byLuke/crBoneDynamicsNodebyLuke";
+currentUnit -t "ntscf";
+$crvsTL=`ls -typ "animCurveTL"`;
+$crvsTA=`ls -typ "animCurveTA"`;
+$crvsTT=`ls -typ "animCurveTT"`;
+$crvsTU=`ls -typ "animCurveTU"`;
+select -r $crvsTL $crvsTA $crvsTT $crvsTU;
+selectKey $crvsTL $crvsTA $crvsTT $crvsTU;
+setInfinity -poi constant;setInfinity -pri constant;animCurveEditor -edit -displayInfinities 0 graphEditor1GraphEd;
+//$sels=`ls -sl`;
+$ns=getPlayerNameSpace();
+$SkirtF={"SkirtFa1_ctrl","SkirtFa2_ctrl","SkirtFa3_ctrl"};
+$SkirtRa={"SkirtRa1_ctrl","SkirtRa2_ctrl","SkirtRa3_ctrl"};
+$SkirtRb={"SkirtRb1_ctrl","SkirtRb2_ctrl","SkirtRb3_ctrl"};
+$SkirtLa={"SkirtLa1_ctrl","SkirtLa2_ctrl","SkirtLa3_ctrl"};
+$SkirtLb={"SkirtLb1_ctrl","SkirtLb2_ctrl","SkirtLb3_ctrl"};
+$CloakB={"CloakB1_ctrl ","CloakB2_ctrl ","CloakB3_ctrl ","CloakB4_ctrl"};
+$CloakC_L={"FKCloakC1_L ","FKCloakC2_L ","FKCloakC3_L ","FKCloakC4_L"};
+$CloakC_M={"FKCloakC1_M ","FKCloakC2_M ","FKCloakC3_M ","FKCloakC4_M"};
+$CloakC_R={"FKCloakC1_R ","FKCloakC2_R ","FKCloakC3_R ","FKCloakC4_R"};
+$CloakD_L={"FKCloakD1_L ","FKCloakD2_L ","FKCloakD3_L ","FKCloakD4_L ","FKCloakDEnd_L"};
+$CloakD_M={"CloakB1_ctrl ","CloakB2_ctrl ","CloakB3_ctrl ","CloakB4_ctrl ","FKCloakB_End"};
+$CloakD_R={"FKCloakD1_R ","FKCloakD2_R ","FKCloakD3_R ","FKCloakD4_R ","FKCloakDEnd_R"};
+$SkirtCa={"FKSkirtCa1_M ","FKSkirtCa2_M ","FKSkirtCa3_M ","FKskirtCaEnd_M"};
+$SkirtCc={"FKSkirtCc1_M ","FKSkirtCc2_M ","FKSkirtCc3_M ","FKskirtCcEnd_M"};
+
+$HairBa={"HairB_ctrl","HairBa1_ctrl","HairBa2_ctrl","HairBaEnd"};
+$HairBb={"HairBb1_ctrl","HairBb2_ctrl","HairBbEnd"};
+$HairBc={"HairBc1_ctrl","HairBcEnd"};
+$HairBd={"HairBd1_ctrl","HairBdEnd"};
+$HairBe={"HairBe1_ctrl","HairBeEnd"};
+$HairBf={"HairBf1_ctrl","HairBfEnd"};
+$HairBg={"HairBg1_ctrl","HairBg2_ctrl","HairBgEnd"};
+$HairBh={"HairBh1_ctrl","HairBhEnd"};
+$HairBi={"HairBi1_ctrl","HairBiEnd"};
+$HairBj={"HairBj1_ctrl","HairBj2_ctrl","HairBjEnd"};
+$HairFa={"HairFa1_ctrl","HairFaEnd"};
+$HairFb={"HairFb1_ctrl","HairFbEnd"};
+$HairFc={"HairFc1_ctrl","HairFcEnd"};
+$HairFd={"HairFd1_ctrl","HairFdEnd"};
+$HairFe={"HairFe1_ctrl","HairFe2_ctrl","HairFeEnd"};
+$HairFf={"HairFf1_ctrl","HairFfEnd"};
+$HairFg={"HairFg1_ctrl","HairFgEnd"};
+
+
+//assis
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb","$CloakB","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb"};
+//wizrd
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb","$CloakC_R","$CloakC_M","$CloakC_L","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+// female skirt
+$tests={"$SkirtCa","$SkirtCc"};
+//female cloak
+//$tests={"$CloakD_R","$CloakD_M","$CloakD_L"};
+
+for($test in $tests){
+    eval("buildKindCoreDynamics($ns,"+$test+")");
+}
+SetBoneDynamicsNodeAttrs();
+crKindCoreBodyCollider($ns);
+currentTime -101;setPreSimCollide();
+/*
+string $objs[];
+proc string[] getTargetObjects(string $ns,string $temps[]){
+    string $objs[];
+    string $obj;
+    for($obj in $temps){    
+        $objs=stringArrayCatenate($objs,{(($ns+":"+$obj))});
+    }
+    return $objs;
+}
+clear $objs;
+for($test in $tests){
+    $temps=`eval("getTargetObjects($ns,"+$test+")")`;
+    $objs=stringArrayCatenate($objs,$temps);
+}
+select -r $objs;
+bakeAndCleanBDN(1,$objs);
+if(`objExists "dynamicsBone_grp"`)delete "dynamicsBone_grp";
+cutKey -t "-100:-1" $objs;
+playbackOptions -animationStartTime 0 -minTime 0;
+currentTime 0;
+

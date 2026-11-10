@@ -1,0 +1,26 @@
+spaceLocator -n "FKHairCb3_L_loc";
+spaceLocator -n "FKHairCb3_R_loc";
+
+parent "FKHairCb3_L_loc" "FKHairCb3_R_loc" "SK_C1020_rig:FKHairCa3_M";
+
+setAttr "FKHairCb3_R_loc.translateX" 5.25;
+setAttr "FKHairCb3_R_loc.translateY" 6.457;
+setAttr "FKHairCb3_R_loc.translateZ" -30.721;
+setAttr "FKHairCb3_R_loc.rotateX" 1.646;
+setAttr "FKHairCb3_R_loc.rotateY" -23.187;
+setAttr "FKHairCb3_R_loc.rotateZ" -13.363;
+
+setAttr "FKHairCb3_L_loc.translateX" 5.25;
+setAttr "FKHairCb3_L_loc.translateY" 6.457;
+setAttr "FKHairCb3_L_loc.translateZ" 30.721;
+setAttr "FKHairCb3_L_loc.rotateX" 1.646;
+setAttr "FKHairCb3_L_loc.rotateY" -23.187;
+setAttr "FKHairCb3_L_loc.rotateZ" 166.637;
+
+parentConstraint "FKHairCb3_L_loc" "SK_C1020_rig:FKHairCb3_L";
+parentConstraint "FKHairCb3_R_loc" "SK_C1020_rig:FKHairCb3_R";
+
+aimConstraint -offset 0 0 0 -weight 1 -aimVector -1 0 0 -upVector 0 1 0 -worldUpType "object" -worldUpObject "SK_C1020_rig:FKExtraHairCb2_L" "FKHairCb3_L_loc" "SK_C1020_rig:FKHairCb2_L";
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 1 0 0 -upVector 0 1 0 -worldUpType "object" -worldUpObject "SK_C1020_rig:FKExtraHairCb2_R" "FKHairCb3_R_loc" "SK_C1020_rig:FKHairCb2_R";
+
+
