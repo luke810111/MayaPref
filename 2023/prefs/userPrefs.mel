@@ -9,9 +9,10 @@ optionVar -cat "Animation"
  -iv "autoKeyframeState" 1
  -iv "emManipulation" 0
  -iv "evaluationMode" 1
- -fv "playbackMax" 140
+ -sv "inTangentType" "plateau"
+ -fv "playbackMax" 125
  -fv "playbackMaxDefault" 70
- -fv "playbackMaxRange" 140
+ -fv "playbackMaxRange" 125
  -fv "playbackMaxRangeDefault" 70
  -fv "playbackMin" 0
  -fv "playbackMinDefault" 0
@@ -46,7 +47,7 @@ optionVar -cat "Animation.Key.Set Key"
 optionVar -cat "Animation.Playback.Playblast"
  -sv "playblastCompression" "jpg"
  -iv "playblastDisplaySizeSource" 3
- -sv "playblastFile" "ANI_StowF_Idle_002_v03"
+ -sv "playblastFile" "SK_NPC_FitM_bind_v11"
  -sv "playblastFormat" "image"
  -iv "playblastHeight" 540
  -iv "playblastSaveToFile" 1
@@ -62,12 +63,35 @@ optionVar -cat "Attribute Editor"
  -sva "activeAEShowFilterTypes" "typeAdjust"
  ;
 
+// Bake Simulation
+optionVar -cat "Bake Simulation"
+ -sv "bakeSimulationHierarchy" "below"
+ -iv "bakeSimulationWhichRange" 2
+ ;
+
 // Color Management
 optionVar -cat "Color Management"
  -sv "colorManagementColorPickerColorSpaceSelection" "Rendering Space"
  -sv "colorManagementColorPickerViewSelection" "ACES 1.0 SDR-video"
- -iv "colorManagementEnabledByDefault" 1
  -iv "colorManagementOCIORulesEnabled" 0
+ ;
+
+// Content Browser
+optionVar -cat "Content Browser"
+ -sa "WindowsMenuContentBrowserContext"
+ -sva "WindowsMenuContentBrowserContext" "projects"
+ -sva "WindowsMenuContentBrowserContext" "MAYA"
+ -sva "WindowsMenuContentBrowserContext" "C:/Users/LKK/Documents/maya/projects/MAYA"
+ -sva "WindowsMenuContentBrowserContext" "1"
+ -ia "WindowsMenuContentBrowserContextPanelsStatus"
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iva "WindowsMenuContentBrowserContextPanelsStatus" 1
+ -iv "WindowsMenuContentBrowserContextThumbnailSize" 1
  ;
 
 // Display
@@ -87,21 +111,20 @@ optionVar -cat "File Path Editor"
 
 // Files/Projects
 optionVar -cat "Files/Projects"
- -sv "" "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Ani/Stow"
+ -sv "" "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Bip/bind"
  -sa "CustomFileDialogSidebarUrls"
  -sva "CustomFileDialogSidebarUrls" "file:"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke/Desktop"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke/Documents"
  -sva "CustomFileDialogSidebarUrls" "C:/Users/luke"
  -sv "FBX exportOptions" "v=0;"
- -sv "browserLocationmayaBinaryscene" "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Ani/Stow"
+ -sv "browserLocationmayaBinaryscene" "X:/Art/1_Assets/2_Rig/MAYA/SkinnedMeshes/NPC/bind"
  -sv "defaultFileExportActiveType" "FBX export"
  -sv "defaultFileImportType" "Best Guess"
  -sv "defaultFileReferenceType" "Best Guess"
- -iv "fileOptionsRenameAll" 1
  -sv "fileWorkingNamespaceName" ":"
  -iv "isIncrementalSaveEnabled" 1
- -sv "lastLocalWS" "C:/Users/LKK/Documents/maya/projects/MAYA"
+ -sv "lastLocalWS" "X:/Art/1_Assets/3_Animation/MAYA"
  -sv "mayaAsciiOptions" "v=0;"
  -sv "mayaBinaryOptions" "v=0;"
  ;
@@ -117,6 +140,13 @@ optionVar -cat "Graph Editor"
 // Graph Editor.Resample Curve
 optionVar -cat "Graph Editor.Resample Curve"
  -fv "resampleTimeStep" 10
+ ;
+
+// Grid
+optionVar -cat "Grid"
+ -fv "gridDivisions" 1
+ -fv "gridSize" 1200
+ -fv "gridSpacing" 500
  ;
 
 // Heads Up Display
@@ -174,7 +204,7 @@ optionVar -cat "Hypershade"
  -iv "LookdevShaderballPanelHeight" 400
  -iv "LookdevShaderballPanelWidth" 700
  -iv "hyperShadeBringCreatePanelToFront" 1
- -sv "hyperShadeDockingLayout" "000000ff00000000fd00000003000000000000017a0000020afc0200000001fc000001630000020a000000a501000011fa000000000200000002fb00000024004c006f006f006b00640065007600430072006500610074006500500061006e0065006c0100000000ffffffff0000009300fffffffb00000020004c006f006f006b00640065007600420069006e007300500061006e0065006c0100000000ffffffff0000007e00ffffff00000001000001bd0000036dfc0200000002fb0000002c004c006f006f006b00640065007600530068006100640065007200620061006c006c00500061006e0065006c01000000000000017e0000003200fffffffb00000028004c006f006f006b00640065007600500072006f0070006500720074007900500061006e0065006c0100000184000001e9000000b500ffffff00000002000003d90000015dfc0100000001fb00000026004c006f006f006b00640065007600420072006f007700730065007200500061006e0065006c0100000000000003d90000008700ffffff000002590000020a00000004000000020000000800000002fc00000000"
+ -sv "hyperShadeDockingLayout" "000000ff00000000fd0000000300000000000000ea000001c8fc0200000001fc00000163000001c8000000a501000011fa000000000200000002fb00000024004c006f006f006b00640065007600430072006500610074006500500061006e0065006c0100000000ffffffff0000009300fffffffb00000020004c006f006f006b00640065007600420069006e007300500061006e0065006c0100000000ffffffff0000007e00ffffff00000001000001bd0000032bfc0200000002fb0000002c004c006f006f006b00640065007600530068006100640065007200620061006c006c00500061006e0065006c0100000000000001630000003200fffffffb00000028004c006f006f006b00640065007600500072006f0070006500720074007900500061006e0065006c0100000169000001c2000000ea00ffffff00000002000003c20000015dfc0100000001fb00000026004c006f006f006b00640065007600420072006f007700730065007200500061006e0065006c0100000000000003c20000008700ffffff000002d2000001c800000004000000020000000800000002fc00000000"
  -sa "hyperShadeFirstPaneTabs"
  -sva "hyperShadeFirstPaneTabs" "hyperShadeTab1"
  -sva "hyperShadeFirstPaneTabs" "hyperShadeTab2"
@@ -187,7 +217,7 @@ optionVar -cat "Hypershade"
  -sva "hyperShadeFirstPaneTabs" "hyperShadeTab9"
  -sva "hyperShadeFirstPaneTabs" "hyperShadeTab10"
  -sv "hyperShadePanelTabSectionsShown" "showTopTabsOnly"
- -sv "hyperShadePanelWorkAreaTab" "hyperShadePanel1dockStation|buttonsAndPaneForm|paneArrangement|secondPaneTabs|formLayout146"
+ -sv "hyperShadePanelWorkAreaTab" "hyperShadePanel1dockStation|buttonsAndPaneForm|paneArrangement|secondPaneTabs|formLayout133"
  -sa "hyperShadeSecondPaneTabs"
  -sva "hyperShadeSecondPaneTabs" "hyperShadeTab11"
  -sv "hyperShadeShaderballEnvironmentName" "Interior1 Color"
@@ -266,7 +296,7 @@ optionVar -cat "In-View Editors"
 // Interface
 optionVar -cat "Interface"
  -iv4 "OutputWindowGeometry" -32000 -32000 160 28
- -iv "channelsLayersPaneSize" 36
+ -iv "channelsLayersPaneSize" 63
  -iv "commandLineInputFieldWidth" 40
  -iv "commandLineNumHistoryLines" 50
  -sv "currentMenuBarTab" "animationMenuSet"
@@ -350,7 +380,6 @@ optionVar -cat "Modify.Reset Transformations"
 // Move Tool
 optionVar -cat "Move Tool"
  -iv "bakePivotOri_Move" 1
- -iv "mode_Move" 0
  -fv3 "orientAxes_Move" 1.729553 -0.553158 -1.011919
  -iv "pinPivot_Move" 1
  -iv "snapPivotOri_Move" 0
@@ -384,6 +413,7 @@ optionVar -cat "Plugins"
  -iv "oneTimeDefaultPluginLoad2021" 1
  -iv "oneTimeDefaultPluginLoad2022" 1
  -iv "oneTimeDefaultPluginLoad2023" 1
+ -iv "oneTimeDefaultPluginLoad2024" 1
  -iv "oneTimeDefaultPluginLoad50" 1
  -iv "oneTimeDefaultPluginLoad65" 1
  -iv "oneTimeDefaultPluginLoad70" 1
@@ -473,7 +503,7 @@ optionVar -cat "Security"
 
 // Settings
 optionVar -cat "Settings"
- -sv "workingUnitTime" "ntscf"
+ -sv "workingUnitTime" "12fps"
  ;
 
 // Shelves
@@ -609,19 +639,17 @@ optionVar -cat "Transform Tools"
 // UI Elements
 optionVar -cat "UI Elements"
  -iv "LastStateOutlinerVisibility" 1
- -iv "LastStateStatusLineVisibility" 0
  -sa "RecentSearchArray"
  -sva "RecentSearchArray" "network"
  -iv2 "optionBoxDimensionsExportSelectionOptions" 546 897
- -iv "statusLineVisible" 0
  ;
 
 // Viewports
 optionVar -cat "Viewports"
- -sv "modelPanel1" "modelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels modelPanel1;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|top\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 0\n-nurbsCurves 0\n-nurbsSurfaces 0\n-polymeshes 1\n-subdivSurfaces 0\n-planes 0\n-lights 0\n-cameras 0\n-controlVertices 0\n-hulls 0\n-grid 0\n-imagePlane 0\n-joints 0\n-ikHandles 0\n-deformers 0\n-dynamics 0\n-particleInstancers 0\n-fluids 0\n-hairSystems 0\n-follicles 0\n-nCloths 0\n-nParticles 0\n-nRigids 0\n-dynamicConstraints 0\n-locators 0\n-manipulators 1\n-pluginShapes 0\n-dimensions 0\n-handles 0\n-pivots 0\n-textures 0\n-strokes 0\n-motionTrails 0\n-clipGhosts 0\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 0 $editorName"
- -sv "modelPanel2" "modelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels modelPanel2;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|side\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 0\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 0\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
- -sv "modelPanel3" "modelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels modelPanel3;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|front\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1\n-height 1\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
- -sv "modelPanel4" "modelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels modelPanel4;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -camera \"|persp\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 0\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 0\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 895\n-height 729\n-sceneRenderFilter 0\n$editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel1" "modelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels modelPanel1;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -editorChanged \"updateModelPanelBar\" -camera \"|top\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"wireframe\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 0\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 0\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-bluePencil 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 748\n-height 350\n-sceneRenderFilter 0\n-activeShadingGraph \"ballora_animatronic_shadow_rig:rsMaterial1SG,ballora_animatronic_shadow_rig:MAT_ballora,ballora_animatronic_shadow_rig:MAT_ballora\" -activeCustomGeometry \"meshShaderball\" -activeCustomLighSet \"defaultAreaLightSet\" $editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel2" "modelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels modelPanel2;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -editorChanged \"updateModelPanelBar\" -camera \"|side\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"wireframe\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 1\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 0\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 0\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-bluePencil 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 748\n-height 350\n-sceneRenderFilter 0\n-activeShadingGraph \"ballora_animatronic_shadow_rig:rsMaterial1SG,ballora_animatronic_shadow_rig:MAT_ballora,ballora_animatronic_shadow_rig:MAT_ballora\" -activeCustomGeometry \"meshShaderball\" -activeCustomLighSet \"defaultAreaLightSet\" $editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel3" "modelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels modelPanel3;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -editorChanged \"updateModelPanelBar\" -camera \"|front\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"wireframe\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 1\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-bluePencil 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1503\n-height 745\n-sceneRenderFilter 0\n-activeShadingGraph \"ballora_animatronic_shadow_rig:rsMaterial1SG,ballora_animatronic_shadow_rig:MAT_ballora,ballora_animatronic_shadow_rig:MAT_ballora\" -activeCustomGeometry \"meshShaderball\" -activeCustomLighSet \"defaultAreaLightSet\" $editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
+ -sv "modelPanel4" "modelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels modelPanel4;\n$editorName = $panelName;\nmodelEditor -e -docTag \"RADRENDER\" -editorChanged \"updateModelPanelBar\" -camera \"|persp\" -useInteractiveMode 0\n-displayLights \"default\" -displayAppearance \"smoothShaded\" -activeOnly 0\n-ignorePanZoom 0\n-wireframeOnShaded 1\n-headsUpDisplay 1\n-holdOuts 1\n-selectionHiliteDisplay 1\n-useDefaultMaterial 0\n-bufferMode \"double\" -twoSidedLighting 0\n-backfaceCulling 0\n-xray 0\n-jointXray 1\n-activeComponentsXray 0\n-displayTextures 1\n-smoothWireframe 0\n-lineWidth 1\n-textureAnisotropic 0\n-textureHilight 1\n-textureSampling 2\n-textureDisplay \"modulate\" -textureMaxSize 32768\n-fogging 0\n-fogSource \"fragment\" -fogMode \"linear\" -fogStart 0\n-fogEnd 100\n-fogDensity 0.1\n-fogColor 0.5 0.5 0.5 1 -depthOfFieldPreview 1\n-maxConstantTransparency 1\n-rendererName \"vp2Renderer\" -objectFilterShowInHUD 1\n-isFiltered 0\n-colorResolution 256 256 -bumpResolution 512 512 -textureCompression 0\n-transparencyAlgorithm \"frontAndBackCull\" -transpInShadows 0\n-cullingOverride \"none\" -lowQualityLighting 0\n-maximumNumHardwareLights 1\n-occlusionCulling 0\n-shadingModel 0\n-useBaseRenderer 0\n-useReducedRenderer 0\n-smallObjectCulling 0\n-smallObjectThreshold -1 -interactiveDisableShadows 0\n-interactiveBackFaceCull 0\n-sortTransparent 1\n-controllers 1\n-nurbsCurves 1\n-nurbsSurfaces 1\n-polymeshes 1\n-subdivSurfaces 1\n-planes 1\n-lights 1\n-cameras 1\n-controlVertices 1\n-hulls 1\n-grid 1\n-imagePlane 1\n-joints 1\n-ikHandles 1\n-deformers 1\n-dynamics 1\n-particleInstancers 1\n-fluids 1\n-hairSystems 1\n-follicles 1\n-nCloths 1\n-nParticles 1\n-nRigids 1\n-dynamicConstraints 1\n-locators 1\n-manipulators 1\n-pluginShapes 1\n-dimensions 1\n-handles 1\n-pivots 1\n-textures 1\n-strokes 1\n-motionTrails 1\n-clipGhosts 1\n-bluePencil 1\n-greasePencils 0\n-shadows 0\n-captureSequenceNumber -1\n-width 1503\n-height 745\n-sceneRenderFilter 0\n-activeShadingGraph \"ballora_animatronic_shadow_rig:rsMaterial1SG,ballora_animatronic_shadow_rig:MAT_ballora,ballora_animatronic_shadow_rig:MAT_ballora\" -activeCustomGeometry \"meshShaderball\" -activeCustomLighSet \"defaultAreaLightSet\" $editorName;\nmodelEditor -e -viewSelected 0 $editorName;\nmodelEditor -e -pluginObjects \"gpuCacheDisplayFilter\" 1 $editorName"
  ;
 
 // Workspaces
@@ -637,13 +665,14 @@ optionVar -cat "Workspaces"
 
 // artAttrSkinContext Tool
 optionVar -cat "artAttrSkinContext Tool"
- -sv "attrSelected_artAttrSkinContext" "skinCluster.skinCluster771.paintWeights"
+ -sv "attrSelected_artAttrSkinContext" "skinCluster.skinCluster269.paintWeights"
  -fa "colorAlphaValue_artAttrSkinContext"
  -fva "colorAlphaValue_artAttrSkinContext" 0.02
  -sv "influence_artAttrSkinContext" "Headgear_M"
- -sv "objattrArray_artAttrSkinContext" "mesh.|Group|Geometry|SK_Armor_012:MESH_UpperBody_012|MESH_UpperBody_012ShapeDeformed.vertexColorRGB.1 mesh.|Group|Geometry|SK_Armor_012:MESH_UpperBody_012|MESH_UpperBody_012ShapeDeformed.vertexFaceColorRGB.1 skinCluster.skinCluster771.paintWeights.1"
- -sv "paintNodeArray_artAttrSkinContext" "|Group|Geometry|SK_Armor_012:MESH_UpperBody_012|MESH_UpperBody_012ShapeDeformed |Group|Geometry|SK_Armor_012:MESH_UpperBody_012|MESH_UpperBody_012ShapeDeformed skinCluster771"
+ -sv "objattrArray_artAttrSkinContext" "skinCluster.skinCluster269.paintWeights.1"
+ -sv "paintNodeArray_artAttrSkinContext" "skinCluster269"
  -sv "selectedattroper_artAttrSkinContext" "additive"
+ -iv "skinPaintMode_artAttrSkinContext" 0
  -iv "useColorRamp_artAttrSkinContext" 1
  -iv "useMaxMinColor_artAttrSkinContext" 1
  -fv "value_artAttrSkinContext" 0.02
@@ -663,35 +692,38 @@ optionVar -cat "texSculptCacheContextObj Tool"
 // Uncategorized
 optionVar
  -sv "AddAttrWinState" "01d9d0cb00030000000005c600000141000007bb0000036d000005c700000160000007ba0000036c00000000000000000a00000005c700000160000007ba0000036c"
+ -sv "AttributeEditorState" "01d9d0cb0003000000000837000001a000000a08000004e300000838000001bf00000a07000004e200000000000000000a0000000838000001bf00000a07000004e2"
  -sv "FbxWarningWindowState" "01d9d0cb00030000000005e80000014c000007dd0000035f000005e90000016b000007dc0000035e00000000000000000a00000005e90000016b000007dc0000035e"
  -sv "FilePathEditorState" "01d9d0cb000300000000009b000001a60000043b0000051d0000009c000001c50000043a0000051c00000000000000000a000000009c000001c50000043a0000051c"
  -sv "IKFKswitchToolWinState" "01d9d0cb00030000000006d00000026c0000079000000405000006d10000028b0000078f0000040400000000000000000a00000006d10000028b0000078f00000404"
  -sv "NEXDockControlState" "01d9d0cb00030000000000f9000000a900000202000003ec000000fa000000c800000201000003eb00000000000000000a00000000fa000000c800000201000003eb"
  -sv "OptionBoxWindowState" "01d9d0cb000300000000025d0000028000000480000003ff0000025e0000029f0000047f000003fe00000000000000000a000000025e0000029f0000047f000003fe"
- -sv "OverLappingEmulatorByLukeState" "01d9d0cb0003000000000d040000030f00000e1f000004a900000d050000032e00000e1e000004a80000000100000000078000000d050000032e00000e1e000004a8"
+ -sv "OverLappingEmulatorByLukeState" "01d9d0cb0003000000000b680000017100000c830000030b00000b690000019000000c820000030a0000000100000000078000000b690000019000000c820000030a"
  -iv "SDKclearOnLoad" 1
  -iv "SDKselectListItems" 1
- -iv "SDKshowShapes" 0
  ;
 
 optionVar
+ -iv "SDKshowShapes" 0
  -sa "SSEitem1"
  -sva "SSEitem1" "Arnold"
  -sa "SSEitem2"
  -sva "SSEitem2" "{\"aiOpaque\", \"aiMatte\", \"aiVisibleInDiffuseReflection\", \"aiVisibleInSpecularReflection\", \"aiVisibleInSpecularTransmission\", \"aiVisibleInDiffuseTransmission\", \"aiVisibleInVolume\", \"aiSelfShadows\", \"aiExportTangents\", \"aiExportColors\", \"aiExportRefPoints\", \"aiExportRefNormals\", \"aiExportRefTangents\", \"aiMotionVectorScale\", \"aiSubdivType\", \"aiSubdivIterations\", \"aiSubdivAdaptiveMetric\", \"aiSubdivPixelError\", \"aiSubdivAdaptiveSpace\", \"aiSubdivUvSmoothing\", \"aiSubdivSmoothDerivs\", \"aiDispHeight\", \"aiDispPadding\", \"aiDispZeroValue\", \"aiDispAutobump\", \"aiStepSize\", \"aiVolumePadding\", \"aiSampleRate\", \"aiCurveWidth\", \"aiCurveShader\", \"aiExportRefPoints\", \"aiMinPixelWidth\", \"aiMode\", \"standInDrawOverride\", \"overrideNodes\", \"overrideLightLinking\", \"overrideShaders\", \"overrideReceiveShadows\", \"overrideSelfShadows\", \"overrideOpaque\", \"overrideMatte\", \"aiColorTemperature\", \"aiExposure\", \"aiAngle\", \"aiSamples\", \"aiNormalize\", \"aiCastShadows\", \"aiShadowDensity\", \"aiCastVolumetricShadows\", \"aiVolumeSamples\", \"aiDiffuse\", \"aiSpecular\", \"aiSss\", \"aiIndirect\", \"aiVolume\", \"colorR\", \"colorG\", \"colorB\", \"intensity\", \"aiExposure\", \"aiSpread\", \"aiResolution\", \"aiSoftEdge\", \"aiSamples\", \"aiNormalize\", \"aiFormat\", \"aiPortalMode\"}"
  -ia "SSEitem3"
  -iva "SSEitem3" 1
- -sv "ToolSettingsState" "01d9d0cb0003000000000152000000e100000323000005760000015300000100000003220000057500000000000000000a0000000153000001000000032200000575"
+ -sv "ToolSettingsState" "01d9d0cb00030000000008320000011100000a0300000454000008330000013000000a020000045300000000000000000a00000008330000013000000a0200000453"
  -sv "UVToolkitDockControlState" "01d9d0cb00030000000009fd000000000000118100000406000009ff000000260000117f0000040400000001000000000780000009ff000000260000117f00000404"
+ -iv "arnold_viewportHUDColor" 18
+ -iv "arnold_viewportShowHUD" 1
  -sa "artAttrSkinInflClusters"
- -sva "artAttrSkinInflClusters" "skinCluster1836"
+ -sva "artAttrSkinInflClusters" "skinCluster269"
  -sa "artAttrSkinInflCollapsed"
- -iv "asATBodyFrameLayout" 0
- -iv "asATFaceFrameLayout" 1
- -iv "asATSkinningTestFrameLayout" 0
  ;
 
 optionVar
+ -iv "asATBodyFrameLayout" 0
+ -iv "asATFaceFrameLayout" 1
+ -iv "asATSkinningTestFrameLayout" 0
  -iv "asAboutFrameLayout" 1
  -iv "asBodyBuildFrameLayout" 0
  -iv "asBodyControlCurvesFrameLayout" 0
@@ -699,12 +731,12 @@ optionVar
  -iv "asBodyCorrectiveAdvancedFrameLayout" 1
  -iv "asBodyCorrectiveBakeFrameLayout" 1
  -iv "asBodyCorrectiveCBDFrameLayout" 1
- -iv "asBodyCorrectiveFrameLayout" 1
- -iv "asBodyCustomControlsFrameLayout" 1
- -iv "asBodyDeform1FrameLayout" 1
  ;
 
 optionVar
+ -iv "asBodyCorrectiveFrameLayout" 1
+ -iv "asBodyCustomControlsFrameLayout" 1
+ -iv "asBodyDeform1FrameLayout" 1
  -iv "asBodyDeform2FrameLayout" 1
  -iv "asBodyDeform3FrameLayout" 1
  -iv "asBodyDeform4FrameLayout" 1
@@ -712,12 +744,12 @@ optionVar
  -iv "asBodyDrivingSystemsFrameLayout" 1
  -iv "asBodyEditFrameLayout" 0
  -iv "asBodyFitFrameLayout" 0
- -iv "asBodyFrameLayout" 0
- -iv "asBodyGameEngineFrameLayout" 1
- -iv "asBodyGeometryMannequinFrameLayout" 1
  ;
 
 optionVar
+ -iv "asBodyFrameLayout" 0
+ -iv "asBodyGameEngineFrameLayout" 1
+ -iv "asBodyGeometryMannequinFrameLayout" 1
  -iv "asBodyGeometryMuscularFrameLayout" 1
  -iv "asBodyGeometryPolyBoxesFrameLayout" 1
  -iv "asBodyGeometryRetopologyFrameLayout" 1
@@ -725,12 +757,12 @@ optionVar
  -iv "asBodyMotionSystemFrameLayout" 1
  -iv "asBodyPartialJointsFrameLayout" 1
  -iv "asDemoFrameLayout" 0
- -iv "asDisplayFrameLayout" 0
- -iv "asExportFrameLayout" 0
- -iv "asFaceBlendShapesFrameLayout" 1
  ;
 
 optionVar
+ -iv "asDisplayFrameLayout" 0
+ -iv "asExportFrameLayout" 0
+ -iv "asFaceBlendShapesFrameLayout" 1
  -iv "asFaceBuildFrameLayout" 1
  -iv "asFaceCustomControlsFrameLayout" 1
  -iv "asFaceDeltaMushFrameLayout" 1
@@ -738,12 +770,12 @@ optionVar
  -iv "asFaceFitExtraEyeBrowFrameLayout" 1
  -iv "asFaceFitExtraNoseFrameLayout" 1
  -iv "asFaceFitExtraSmileLineFrameLayout" 1
- -iv "asFaceFitFrameLayout" 1
- -iv "asFaceFitPupilFrameLayout" 1
- -iv "asFaceFitTongueTeethFrameLayout" 1
  ;
 
 optionVar
+ -iv "asFaceFitFrameLayout" 1
+ -iv "asFaceFitPupilFrameLayout" 1
+ -iv "asFaceFitTongueTeethFrameLayout" 1
  -iv "asFaceFitUpMidLoFrameLayout" 1
  -iv "asFaceFrameLayout" 1
  -iv "asFaceNewBlendShapesFrameLayout" 1
@@ -751,12 +783,12 @@ optionVar
  -iv "asFaceSkinLayersFrameLayout" 1
  -iv "asFaceSquashFrameLayout" 1
  -iv "asFaceStepBuildFrameLayout" 1
- -iv "asFaceTweaksFrameLayout" 1
- -iv "asFaceWrinkleMapFrameLayout" 1
- -iv "asHaveRanThisVersion" 1
  ;
 
 optionVar
+ -iv "asFaceTweaksFrameLayout" 1
+ -iv "asFaceWrinkleMapFrameLayout" 1
+ -iv "asHaveRanThisVersion" 1
  -iv "asModelFrameLayout" 1
  -iv "asOptimizeFrameLayout" 0
  -iv "asPoseFrameLayout" 1
@@ -764,13 +796,14 @@ optionVar
  -iv "asPublishFrameLayout" 0
  -iv "asRigFrameLayout" 1
  -sv "asSelectorbipedState" "01d9d0cb00030000fffffe3c00000039ffffffb900000179fffffe3d00000058ffffffb80000017800000002000000000438fffffe3d00000058ffffffb800000178"
- -iv "asToolsFrameLayout" 0
- -iv "asUpdatesFrameLayout" 0
- -sv "assignNewMaterialWindowState" "01d9d0cb0003000000000355000001d000000482000004c900000356000001ef00000481000004c800000000000000000a0000000356000001ef00000481000004c8"
  ;
 
 optionVar
+ -iv "asToolsFrameLayout" 0
+ -iv "asUpdatesFrameLayout" 0
+ -sv "assignNewMaterialWindowState" "01d9d0cb0003000000000355000001d000000482000004c900000356000001ef00000481000004c800000000000000000a0000000356000001ef00000481000004c8"
  -iv "autoWeightThreshold" 1
+ -iv "bakeSimulationRemoveBakedAnimFromLayer" 0
  -sa "blendShapeEditorTreeViewSelection"
  -sva "blendShapeEditorTreeViewSelection" ""
  -sva "blendShapeEditorTreeViewSelection" ""
@@ -786,161 +819,164 @@ optionVar
  -sva "blendShapeEditorTreeViewSelection" ""
  -iv "commandExecuterPathCompletion" 1
  -iv "commandExecuterToolTipHelp" 1
- -sv "commandSearchAndReplaceWndState" "01d9d0cb00030000000001d1000002d30000038a00000392000001d2000002f2000003890000039100000000000000000a00000001d2000002f20000038900000391"
+ -sv "commandSearchAndReplaceWndState" "01d9d0cb00030000000007570000023200000910000002f100000758000002510000090f000002f000000000000000000a0000000758000002510000090f000002f0"
  -iv "connectWindowActive" 1
+ ;
+
+optionVar
  -sv "connectWindowAttrAlphaOrder" "default"
  -iv "connectWindowAutoConnect" 1
  -iv "connectWindowDisplayNamesCW" 2
  -iv "connectWindowLeftCNO" 0
- ;
-
-optionVar
  -iv "connectWindowLeftSHD" 0
  -iv "connectWindowLeftSNK" 1
  -iv "connectWindowLeftSP" 0
  -iv "connectWindowLeftToRight" 1
  -iv "connectWindowRightCNO" 0
  -iv "connectWindowRightSHD" 0
- -iv "connectWindowRightSNK" 1
- -iv "connectWindowRightSP" 0
- -sv "copyPastePosebyLukeState" "01d9d0cb00030000fffffd9f00000269ffffff9a000004e0fffffda000000288ffffff99000004df00000002000000000438fffffda000000288ffffff99000004df"
- -iv "createHairEqualize" 0
  ;
 
 optionVar
+ -iv "connectWindowRightSNK" 1
+ -iv "connectWindowRightSP" 0
+ -sv "copyPastePosebyLukeState" "01d9d0cb00030000000007540000026c000008e7000004e3000007550000028b000008e6000004e200000000000000000a00000007550000028b000008e6000004e2"
+ -iv "createHairEqualize" 0
  -iv "cteKeepTransitionsModeEnabled" 0
  -iv "cteRippleEditModeEnabled" 0
  -sv "cycleAnimationMasterState" "01d9d0cb0003000000000742000002ea0000087d0000050b00000743000003090000087c0000050a00000000000000000a0000000743000003090000087c0000050a"
  -sv "ddtState" "01d9d0cb0003000000000907000002ec000009f8000004b6000009080000030b000009f7000004b500000000000000000a00000009080000030b000009f7000004b5"
  -sv "dwpicker_auto_focus_behavior" "pickertomaya"
  -iv "dwpicker_auto_switch_tab" 0
+ ;
+
+optionVar
  -iv "dwpicker_check_for_update" 1
  -iv "dwpicker_check_images_paths" 1
  -sv "dwpicker_default_background_color" "#777777"
  -iv "dwpicker_default_height" 20
- ;
-
-optionVar
  -sv "dwpicker_default_label_color" ""
  -sv "dwpicker_default_text_color" "#000000"
  -iv "dwpicker_default_width" 30
  -iv "dwpicker_designer_background_items_locked" 1
  -iv "dwpicker_designer_search_field_index" 0
  -iv "dwpicker_designer_shape_filter_index" 0
+ ;
+
+optionVar
  -iv "dwpicker_designer_snap_items" 0
  -iv "dwpicker_designer_snap_x" 10
  -iv "dwpicker_designer_snap_y" 10
  -iv "dwpicker_disable_import_callbacks" 1
- ;
-
-optionVar
  -iv "dwpicker_display_dwtoolbar" 0
  -iv "dwpicker_display_quick_options" 1
  -iv "dwpicker_insert_tab_after_current" 0
  -iv "dwpicker_last_command_language_used" 0
  -sv "dwpicker_last_directory_used" "C:\\Users\\luke"
  -sv "dwpicker_last_file_import_directory" "C:\\Users\\luke"
+ ;
+
+optionVar
  -sv "dwpicker_last_file_open_directory" "C:\\Users\\luke"
  -sv "dwpicker_last_file_save_directory" "C:\\Users\\luke"
  -sv "dwpicker_opened_files" ""
  -sv "dwpicker_picker_zoom_mouse_button" "right"
- ;
-
-optionVar
  -sv "dwpicker_recent_files" ""
  -sv "dwpicker_settings_group_to_copy" "bordercolor;text;image;bgcolor;shape;borderwidth;border"
  -sv "dwpicker_settings_to_copy" "bgcolor.clicked;bgcolor.hovered;bgcolor.normal;bgcolor.transparency;border;bordercolor.clicked;bordercolor.hovered;bordercolor.normal;bordercolor.transparency;borderwidth.clicked;borderwidth.hovered;borderwidth.normal;image.fit;image.height;image.width;shape;shape.cornersx;shape.cornersy;shape.height;shape.left;shape.top;shape.width;text.bold;text.color;text.halign;text.italic;text.size;text.valign"
  -iv "dwpicker_synchronize_selection" 1
  -iv "dwpicker_trigger_search_and_replace_on_mirror" 0
  -iv "dwpicker_use_base64_data_encoding" 0
- -iv "dwpicker_use_icon_for_unsaved_tab" 1
- -iv "dwpicker_warn_on_tab_closed" 0
- -iv "dwpicker_zoom_sensitivity" 50
- -sv "ertState" "01d9d0cb00030000fffffe82000001b9ffffff7500000368fffffe83000001d8ffffff740000036700000002000000000438fffffe83000001d8ffffff7400000367"
  ;
 
 optionVar
+ -iv "dwpicker_use_icon_for_unsaved_tab" 1
+ -iv "dwpicker_warn_on_tab_closed" 0
+ -iv "dwpicker_zoom_sensitivity" 50
+ -sv "ertState" "01d9d0cb00030000000007df0000021f000009720000049c000007e00000023e000009710000049b00000000000000000a00000007e00000023e000009710000049b"
  -iv "exclusiveBind" 0
- -sv "exportAniFBXToolState" "01d9d0cb000300000000050d0000016900000704000004660000050e00000188000007030000046500000000000000000a000000050e000001880000070300000465"
+ -sv "exportAniFBXToolState" "01d9d0cb00030000000006a9000001ee000008a000000348000006aa0000020d0000089f0000034700000000000000000a00000006aa0000020d0000089f00000347"
  -sv "faceHelpImageState" "01d9d0cb00030000fffffc28ffffff93fffffec3000002dafffffc29ffffffb2fffffec2000002d900000002000000000438fffffc29ffffffb2fffffec2000002d9"
  -sv "falloffMode" "volume"
  -sv "fpeRepathWinState" "01d9d0cb00030000000002aa000000bf00000444000001a6000002ab000000de00000443000001a500000000000000000a00000002ab000000de00000443000001a5"
  -iv "graphEditorDisplayValues" 0
- -iv "graphEditorValueLinesToggle" 0
- -sv "hyperShadePanel1WindowState" "01d9d0cb00030000000009fffffffff700001180000003fc00000a000000001d0000117f000003fb0000000100000000078000000a000000001d0000117f000003fb"
- -iv "ikFKSwitchState" 0
- -iv "mayaUsd_SerializedUsdEditsLocation" 1
  ;
 
 optionVar
+ -iv "graphEditorValueLinesToggle" 0
+ -sv "hyperShadePanel1WindowState" "01d9d0cb0003000000000aaa0000014500001038000004aa00000aab0000016400001037000004a90000000100000000078000000aab0000016400001037000004a9"
+ -iv "ikFKSwitchState" 0
+ -iv "mayaUsd_SerializedUsdEditsLocation" 1
  -iv "mayaUsd_SerializedUsdEditsLocationPrompt" 1
- -sv "mtoaBuildID" "466380ce (fix-5.1.0)"
+ -sv "mtoaBuildID" "6a048927 (fix-5.2.1)"
  -sv "nodeEditorPanel1WindowState" "01d9d0cb00030000fffffbe000000186fffffff500000401fffffbe1000001a5fffffff40000040000000002000000000438fffffbe1000001a5fffffff400000400"
  -iv "oneTimeAutoLoadPluginbifrostGraph" 1
  -iv "oneTimeAutoLoadPluginmayaVnnPlugin" 1
  -sv "organizeModelFileToolState" "01d9d0cb00030000000006e500000175000008dc0000038a000006e600000194000008db0000038900000000000000000a00000006e600000194000008db00000389"
- -sv "playBlastToolbyLukeState" "01d9d0cb0003000000000a0f000003ba00000c06000004a300000a10000003d900000c05000004a20000000100000000078000000a10000003d900000c05000004a2"
- -sv "polyTexturePlacementPanel1WindowState" "01d9d0cb00030000000009fd000000000000118100000406000009ff000000260000117f0000040400000001000000000780000009ff000000260000117f00000404"
- -iv "proxyOptionsNewReferenceTagSpecified" 0
- -sv "referenceEditorPanel1WindowState" "01d9d0cb00030000fffffd47000001beffffff4f000004cdfffffd48000001ddffffff4e000004cc00000002000000000438fffffd48000001ddffffff4e000004cc"
  ;
 
 optionVar
+ -sv "playBlastToolbyLukeState" "01d9d0cb0003000000000a0f000003ba00000c06000004a300000a10000003d900000c05000004a20000000100000000078000000a10000003d900000c05000004a2"
+ -sv "polyTexturePlacementPanel1WindowState" "01d9d0cb00030000000009fd000000000000118100000406000009ff000000260000117f0000040400000001000000000780000009ff000000260000117f00000404"
+ -iv "proxyOptionsNewReferenceTagSpecified" 0
+ -sv "referenceEditorPanel1WindowState" "01d9d0cb0003000000000d6c0000032200000f4c0000048a00000d6d0000034100000f4b000004890000000100000000078000000d6d0000034100000f4b00000489"
  -iv "renderInfl" 1
  -sv "renderSetup_userPresetsDirectory" "C:/Users/luke/Documents/maya\\Presets"
  -sv "renderSetup_userPresetsDirectory_contents" "C:/Program Files/Autodesk/Maya2023\\presets\\Presets"
  -sv "renderSetup_userTemplateDirectory" "C:/Users/luke/Documents/maya\\RSTemplates"
  -sv "renderSetup_userTemplateDirectory_contents" "C:/Program Files/Autodesk/Maya2023\\presets\\RSTemplates"
- -sv "scriptEditorPanel1WindowState" "01d9d0cb00030000000006c4000002c9000009fd00000520000006c5000002e8000009fc0000051f00000000000000000a00000006c5000002e8000009fc0000051f"
+ -sv "scriptEditorPanel1WindowState" "01d9d0cb0003000000000a2c000000f500000d6e000004a700000a2d0000011400000d6d000004a60000000100000000078000000a2d0000011400000d6d000004a6"
+ ;
+
+optionVar
  -sv "setDrivenWndState" "01d9d0cb0003000000000426000000e8000005ad000003190000042700000107000005ac0000031800000000000000000a000000042700000107000005ac00000318"
  -sv "shelfEditorState" "01d9d0cb00030000000005ee0000018b000008b700000473000005ef000001aa000008b60000047200000000000000000a00000005ef000001aa000008b600000472"
  -sv "sktState" "01d9d0cb0003000000000c0d000002b200000d02000004ac00000c0e000002d100000d01000004ab0000000100000000078000000c0e000002d100000d01000004ab"
  -iv "sortSkinPaintList" 2
- ;
-
-optionVar
  -sv "studiolibrary_061ef1ca-b96a-44e4-b7bb-024ac5f3ad77WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc00000984000001c2000012e5000005080000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_069286b3-12fb-4f1b-bc32-09c43d386b4fWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000008d90000012c0000123a000006040000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_1048a790-0dcd-493d-94a7-da6710419cb8WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000083e000001450000119f0000061d0000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_1279097a-401b-4e62-ba62-4f7aeecd2602WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000008fc000002780000125d000007500000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_26945b27-2df5-4773-8721-3df13e1d857bWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000088200000217000011e3000006ef0000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_340a8a1e-639b-45cc-acc7-1b412fa237b6WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000080c0000012a0000116d000006020000000102000000078000000a000000001d0000117f000003fb"
- -sv "studiolibrary_3677444a-8c2e-460c-85c5-556ea282e13eWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000086700000188000011c8000006600000000102000000078000000a000000001d0000117f000003fb"
- -sv "studiolibrary_502c2206-943a-4506-8944-7b13a65438daWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000088d00000155000011ee0000062d0000000102000000078000000a000000001d0000117f000003fb"
- -sv "studiolibrary_51bf933f-3635-47a8-b753-721c8b4320a7WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000009f60000023a00001357000007120000000102000000078000000a000000001d0000117f000003fb"
- -sv "studiolibrary_535848c3-eff2-4605-a086-7713f96ee579WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000096f0000015e000012d0000006360000000102000000078000000a000000001d0000117f000003fb"
  ;
 
 optionVar
+ -sv "studiolibrary_3677444a-8c2e-460c-85c5-556ea282e13eWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000086700000188000011c8000006600000000102000000078000000a000000001d0000117f000003fb"
+ -sv "studiolibrary_462ffa6f-e057-4c40-accb-afeb04acf951WorkspaceControlState" "01d9d0cb0003000000000b87000001db00000f810000045e00000b88000001fa00000f800000045d0000000100000000078000000b88000001fa00000f800000045d"
+ -sv "studiolibrary_502c2206-943a-4506-8944-7b13a65438daWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000088d00000155000011ee0000062d0000000102000000078000000a000000001d0000117f000003fb"
+ -sv "studiolibrary_51bf933f-3635-47a8-b753-721c8b4320a7WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000009f60000023a00001357000007120000000102000000078000000a000000001d0000117f000003fb"
+ -sv "studiolibrary_535848c3-eff2-4605-a086-7713f96ee579WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000096f0000015e000012d0000006360000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_5ca9ec75-d9f9-460b-a8fb-863f6911a1d0WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000092a000001390000128b000006110000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_5f282ceb-769d-4e83-aa87-9ea8a0da9170WorkspaceControlState" "01d9d0cb000300000000055f0000012b0000081f000004e5000005600000014a0000081e000004e400000000000000000a00000005600000014a0000081e000004e4"
  -sv "studiolibrary_7b9bcd01-dad2-466b-8c10-5c674d4d17e5WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000007e0000001df00001141000006b70000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_7de44d2b-1f58-42d1-b0eb-39dd7b363343WorkspaceControlState" "01d9d0cb00030000000005fb000001b0000008f900000508000005fc000001cf000008f80000050700000000000000000a00000005fc000001cf000008f800000507"
  -sv "studiolibrary_8d87122c-3cd7-4d10-9450-8612f0313276WorkspaceControlState" "01d9d0cb0003000000000611000000d20000090f0000042a00000612000000f10000090e0000042900000000000000000a0000000612000000f10000090e00000429"
+ ;
+
+optionVar
  -sv "studiolibrary_92f81d11-b676-4262-9c53-4c748a2195f3WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc00000a4c000001dc000013ad000006b40000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_936eba40-4f16-4c54-96d5-43ee5b44baa2WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000090a0000005a0000126b000005320000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_ad883e0b-1493-4cff-b5b9-84f24ad3fcceWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000093d000000510000129e000005290000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_b55863de-69ec-474d-b08b-b5cfe19b1b28WorkspaceControlState" "01d9d0cb00030000000005fb00000104000008890000045b000005fc00000123000008880000045a00000000000000000a00000005fc00000123000008880000045a"
  -sv "studiolibrary_b760d762-b441-4ce5-be80-295b2ec5bc6eWorkspaceControlState" "01d9d0cb000300000000053200000052000007c0000003a90000053300000071000007bf000003a800000000000000000a000000053300000071000007bf000003a8"
- ;
-
-optionVar
+ -sv "studiolibrary_bc27954e-c073-4312-b3b5-7faef5cb0ca3WorkspaceControlState" "01d9d0cb00030000000004870000015e00000881000003e5000004880000017d00000880000003e400000000000000000a00000004880000017d00000880000003e4"
  -sv "studiolibrary_c0ea0ec3-a110-47dc-865d-a347b643ddc0WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc00000af60000007000001457000005480000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_cba19a5a-e788-4ff0-8318-8310ab90283fWorkspaceControlState" "01d9d0cb00030000fffffbc7ffffff010000000000000659fffffb4b00000171000002ca0000054f00000002020000000438fffffbc8ffffff20ffffffff00000658"
  -sv "studiolibrary_d52a0703-860b-4683-9017-b9d003c6365aWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc00000a42000001be000013a3000006960000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_daac0bd7-5286-483a-a804-6f1b455b617cWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc000008d50000013b00001236000006130000000102000000078000000a000000001d0000117f000003fb"
+ ;
+
+optionVar
  -sv "studiolibrary_e2ccc9d6-1b1d-4116-90c5-53ce35064e7bWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc00000a010000002400001362000004fc0000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_f0015ff7-adaa-48f4-aca2-d618c2b2e3e9WorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000091e000001230000127f000005fb0000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_f02b0a8a-849a-4df1-9239-fd9ca7038e1bWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000084900000226000011aa000006fe0000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_f47ffa57-12e9-4427-841f-5abe9eedf61aWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000080e000001600000116f000006380000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_f624583f-972f-4596-a2e7-a5b0e794416aWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000087f000001b3000011e0000006880000000102000000078000000a000000001d0000117f000003fb"
  -sv "studiolibrary_fb58c7f6-b181-4225-84f6-3ccf4bce412aWorkspaceControlState" "01d9d0cb00030000000009fffffffff700001180000003fc0000085b000000fd000011bc000005d50000000102000000078000000a000000001d0000117f000003fb"
- ;
-
-optionVar
  -sv "xRigDWinState" "01d9d0cb00030000fffffd0b000000f6fffffff5000004d2fffffd0c00000115fffffff4000004d100000002000000000438fffffd0c00000115fffffff4000004d1"
  ;
 
+keyTangent -global -inTangentType plateau;
 freezeOptions -dn none -up none -rn 0 -rt 0 -ep 0 -inv 0 -dl 0;
 autoKeyframe -state true ;
 

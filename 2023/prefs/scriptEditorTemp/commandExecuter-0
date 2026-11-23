@@ -1,3 +1,307 @@
+source "byLuke/swRefToolbyLuke";
+string $fileN="ANI_C1022_*.mb";
+string $refs[] = {
+    "SK_C1010_rigRN",
+    "SK_W1010_rigRN"
+};
+
+string $paths[] = {
+    "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1012_rig.mb",
+    "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Acs/LM_C1012_WS_rig.mb"
+};
+
+// 1 = 只預覽
+//batchSwapC1011PatternbyLuke($fileN, 0, $refs, $paths);
+swapCurrentReferencesbyLuke(0, $refs, $paths);
+
+//------------------------------------------------------------------
+
+source "byLuke/swRefToolbyLuke";
+string $fileN="ANI_C1022_*.mb";
+string $refs[] = {
+    "SK_C1010_rigRN",
+    "SK_W1010_rigRN",
+    "SK_C1010_WS_rigRN"
+};
+
+string $paths[] = {
+    "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Bip/SK_C1011_rig.mb",
+    "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Acs/SK_W2031TB01A_rig.mb",
+    "C:/Users/LKK/Documents/maya/projects/MAYA/scenes/Rig/Acs/SK_W2031TB01A_rig.mb"
+};
+
+// 1 = 只預覽
+//batchSwapC1011PatternbyLuke($fileN, 0, $refs, $paths);
+swapCurrentReferencesbyLuke(0, $refs, $paths);
+
+//------------------------------------------------------------------
+
+string $jnts[];
+clear $jnts;
+
+string $sel[] = `ls -sl -o -long`;
+for ($obj in $sel) {
+    string $history[] = `listHistory $obj`;
+    string $skins[] = `ls -type "skinCluster" $history`;
+    for ($skin in $skins) {
+        string $infs[] = `skinCluster -q -inf $skin`;
+        for ($inf in $infs) {
+            if (!stringArrayContains($inf, $jnts))
+                $jnts[size($jnts)] = $inf;
+        }
+    }
+}
+select -r $jnts;
+
+
+//------------------------------------------------------------------
+
+$selsB=`ls -sl`;
+$selsA=substituteStringArray("W1012_v06",$selsB,"W1012_05");
+for($i=0;$i<`size $selsB`;$i++){
+    if(`objExists $selsA[$i]`)graftBindMesh($selsA[$i],$selsB[$i]);
+}
+
+//------------------------------------------------------------------
+
+source "byLuke/EzRig";
+source "byLuke/crBoneDynamicsNodebyLuke";
+source "byLuke/procedureTimeFrame";
+simCloakTool();
+dynamicsBoneTool();
+
+//------------------------------------------------------------------
+
+// 假設A物體和B物體的名稱
+string $A_object = "pCube1";
+string $B_object = "pCone1";
+
+// 獲取A物體和B物體的世界矩陣
+float $A_matrix[16] = `xform -q -ws -m $A_object`;
+float $B_matrix[16] = `xform -q -ws -m $B_object`;
+
+// 將A物體的位置和旋轉提取出來
+vector $A_position = <<$A_matrix[12], $A_matrix[13], $A_matrix[14]>>;
+vector $A_rotation = `xform -q -ws -ro $A_object`;
+
+// 將B物體的位置提取出來
+vector $B_position = <<$B_matrix[12], $B_matrix[13], $B_matrix[14]>>;
+
+// 計算A物體相對於B物體的位置
+vector $relative_position = $A_position - $B_position;
+
+// 計算鏡像位置（假設在X軸上鏡像）
+vector $mirror_position = <<(-1*$relative_position.x), ($relative_position.y), ($relative_position.z)>>;
+
+// 計算鏡像位置在世界坐標系中的位置
+vector $new_position = $B_position + $mirror_position;
+
+// 計算鏡像旋轉（假設在X軸上鏡像，需要反轉Y和Z軸旋轉）
+vector $mirror_rotation = <<$A_rotation.x, (-1*$A_rotation.y), (-1*$A_rotation.z)>>;
+
+// 將新的位置和旋轉應用到A物體
+xform -ws -t ($new_position.x) ($new_position.y) ($new_position.z) $A_object;
+xform -ws -ro ($mirror_rotation.x) ($mirror_rotation.y) ($mirror_rotation.z) $A_object;
+
+//------------------------------------------------------------------
+
+source "byLuke/testHemRigModule";
+source "byLuke/EzRig";
+source "byLuke/crBoneDynamicsNodebyLuke";
+
+proc simpleHairStrucProc(string $ns){
+    if(!`objExists "FKHairCb3_L_loc"`){spaceLocator -n "FKHairCb3_L_loc";parent "FKHairCb3_L_loc" ($ns+":FKHairCa3_M");}
+    if(!`objExists "FKHairCb3_R_loc"`){spaceLocator -n "FKHairCb3_R_loc";parent "FKHairCb3_R_loc" ($ns+":FKHairCa3_M");}
+    
+    setAttr "FKHairCb3_R_loc.translateX" 5.25;
+    setAttr "FKHairCb3_R_loc.translateY" 6.457;
+    setAttr "FKHairCb3_R_loc.translateZ" -30.721;
+    setAttr "FKHairCb3_R_loc.rotateX" 1.646;
+    setAttr "FKHairCb3_R_loc.rotateY" -23.187;
+    setAttr "FKHairCb3_R_loc.rotateZ" -13.363;
+    
+    setAttr "FKHairCb3_L_loc.translateX" 5.25;
+    setAttr "FKHairCb3_L_loc.translateY" 6.457;
+    setAttr "FKHairCb3_L_loc.translateZ" 30.721;
+    setAttr "FKHairCb3_L_loc.rotateX" 1.646;
+    setAttr "FKHairCb3_L_loc.rotateY" -23.187;
+    setAttr "FKHairCb3_L_loc.rotateZ" 166.637;
+    
+    parentConstraint "FKHairCb3_L_loc" ($ns+":FKHairCb3_L");
+    parentConstraint "FKHairCb3_R_loc" ($ns+":FKHairCb3_R");
+    
+    aimConstraint -offset 0 0 0 -weight 1 -aimVector -1 0 0 -upVector 0 1 0 -worldUpType "object" -worldUpObject ($ns+":FKExtraHairCb2_L") "FKHairCb3_L_loc" ($ns+":FKHairCb2_L");
+    aimConstraint -offset 0 0 0 -weight 1 -aimVector 1 0 0 -upVector 0 1 0 -worldUpType "object" -worldUpObject ($ns+":FKExtraHairCb2_R") "FKHairCb3_R_loc" ($ns+":FKHairCb2_R");
+}
+
+
+
+currentUnit -t "ntscf";
+$crvsTL=`ls -typ "animCurveTL"`;
+$crvsTA=`ls -typ "animCurveTA"`;
+$crvsTT=`ls -typ "animCurveTT"`;
+$crvsTU=`ls -typ "animCurveTU"`;
+select -r $crvsTL $crvsTA $crvsTT $crvsTU;
+selectKey $crvsTL $crvsTA $crvsTT $crvsTU;
+setInfinity -poi constant;setInfinity -pri constant;animCurveEditor -edit -displayInfinities 0 graphEditor1GraphEd;
+//$sels=`ls -sl`;
+$ns=getPlayerNameSpace();
+$SkirtF={"SkirtFa1_ctrl","SkirtFa2_ctrl","SkirtFa3_ctrl","SkirtFaEnd_ctrl"};
+$SkirtRa={"SkirtRa1_ctrl","SkirtRa2_ctrl","SkirtRa3_ctrl","SkirtRaEnd_ctrl"};
+$SkirtRb={"SkirtRb1_ctrl","SkirtRb2_ctrl","SkirtRb3_ctrl","SkirtRbEnd_ctrl"};
+$SkirtLa={"SkirtLa1_ctrl","SkirtLa2_ctrl","SkirtLa3_ctrl","SkirtLaEnd_ctrl"};
+$SkirtLb={"SkirtLb1_ctrl","SkirtLb2_ctrl","SkirtLb3_ctrl","SkirtLbEnd_ctrl"};
+$CloakB={"CloakB1_ctrl ","CloakB2_ctrl ","CloakB3_ctrl ","CloakB4_ctrl"};
+$CloakC_L={"FKCloakC1_L ","FKCloakC2_L ","FKCloakC3_L ","FKCloakC4_L"};
+$CloakC_M={"FKCloakC1_M ","FKCloakC2_M ","FKCloakC3_M ","FKCloakC4_M"};
+$CloakC_R={"FKCloakC1_R ","FKCloakC2_R ","FKCloakC3_R ","FKCloakC4_R"};
+$CloakD_L={"FKCloakD1_L ","FKCloakD2_L ","FKCloakD3_L ","FKCloakD4_L ","FKCloakDEnd_L"};
+$CloakD_M={"CloakB1_ctrl ","CloakB2_ctrl ","CloakB3_ctrl ","CloakB4_ctrl ","FKCloakB_End"};
+$CloakD_R={"FKCloakD1_R ","FKCloakD2_R ","FKCloakD3_R ","FKCloakD4_R ","FKCloakDEnd_R"};
+$SkirtCa={"FKSkirtCa1_M ","FKSkirtCa2_M ","FKSkirtCa3_M ","FKskirtCaEnd_M"};
+$SkirtCc={"FKSkirtCc1_M ","FKSkirtCc2_M ","FKSkirtCc3_M ","FKskirtCcEnd_M"};
+$SkirtBa={"SkirtBa1_ctrl ","SkirtBa2_ctrl ","SkirtBa3_ctrl ","SkirtBaEnd_ctrl"};
+
+$HairBa={"HairB_ctrl","HairBa1_ctrl","HairBa2_ctrl","HairBaEnd"};
+$HairBb={"HairBb0_ctrl","HairBb1_ctrl","HairBb2_ctrl","HairBbEnd"};
+$HairBc={"HairBc1_ctrl","HairBcEnd"};
+$HairBd={"HairBd1_ctrl","HairBdEnd"};
+$HairBe={"HairBe1_ctrl","HairBeEnd"};
+$HairBf={"HairBf1_ctrl","HairBfEnd"};
+$HairBg={"HairBg0_ctrl","HairBg1_ctrl","HairBg2_ctrl","HairBgEnd"};
+$HairBh={"HairBh1_ctrl","HairBhEnd"};
+$HairBi={"HairBi0_ctrl","HairBi1_ctrl","HairBiEnd"};
+$HairBj={"HairBj0_ctrl","HairBj1_ctrl","HairBj2_ctrl","HairBjEnd"};
+$HairFa={"HairFa1_ctrl","HairFaEnd"};
+$HairFb={"HairFb1_ctrl","HairFbEnd"};
+$HairFc={"HairFc1_ctrl","HairFcEnd"};
+$HairFd={"HairFd1_ctrl","HairFdEnd"};
+$HairFe={"HairFe1_ctrl","HairFe2_ctrl","HairFeEnd"};
+$HairFf={"HairFf1_ctrl","HairFfEnd"};
+$HairFg={"HairFg1_ctrl","HairFgEnd"};
+$HairCa={"FKHairCa1_M ","FKHairCa2_M ","FKHairCa3_M ","FKHairCa4_M ","FKHairCaEnd_M"};
+//hair
+//$tests={"$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+
+//assis
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb","$CloakB","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+//$tests={"$CloakB"};
+//warrior
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+//wizrd
+//$tests={"$SkirtF","$SkirtRa","$SkirtRb","$SkirtLa","$SkirtLb","$CloakC_R","$CloakC_M","$CloakC_L","$HairBa","$HairBb","$HairBc","$HairBd","$HairBe","$HairBf","$HairBg","$HairBh","$HairBi","$HairBj","$HairFa","$HairFb","$HairFc","$HairFd","$HairFe","$HairFf","$HairFg"};
+//$tests={"$CloakC_R","$CloakC_M","$CloakC_L"};
+
+// female skirt
+//$tests={"$SkirtCa","$SkirtCc"};
+//female cloak
+//$tests={"$CloakD_R","$CloakD_M","$CloakD_L"};
+//female hair
+$tests={"$HairCa"};//simpleHairStrucProc($ns);
+// female 
+//$tests={"$SkirtCa","$SkirtCc","$CloakD_R","$CloakD_M","$CloakD_L","$HairCa"};//simpleHairStrucProc($ns);
+
+for($test in $tests){
+    eval("buildKindCoreDynamics($ns,"+$test+")");
+}
+SetBoneDynamicsNodeAttrs();
+crKindCoreBodyCollider($ns);
+currentTime -101;setPreSimCollide();
+/*
+string $objs[];
+proc string[] getTargetObjects(string $ns,string $temps[]){
+    string $objs[];
+    string $obj;
+    for($obj in $temps){    
+        $objs=stringArrayCatenate($objs,{(($ns+":"+$obj))});
+    }
+    return $objs;
+}
+clear $objs;
+for($test in $tests){
+    $temps=`eval("getTargetObjects($ns,"+$test+")")`;
+    $objs=stringArrayCatenate($objs,$temps);
+}
+select -r $objs;
+bakeAndCleanBDN(1,$objs);
+if(`objExists "dynamicsBone_grp"`)delete "dynamicsBone_grp";
+cutKey -t "-100:-1" $objs;
+playbackOptions -animationStartTime 0 -minTime 0;
+currentTime 0;
+*/
+
+//------------------------------------------------------------------
+
+//create a square plane joint
+$obj="test";
+$i=5;
+$j=3;
+
+if(`objExists "test_grp"`)delete "test_grp";
+$polyPlane=crGeo($obj,$i,$j);
+$jts=crJtAlignPolyVtx($obj,$polyPlane);
+
+
+group  -n "jt_grp" $jts;
+group  -n "poly_grp" $polyPlane;
+group  -n "test_grp" "poly_grp" "jt_grp";
+
+proc string crGeo(string $obj,float $i,float $j,float $h,float $w){
+    if($i<2)$i=2;
+    if($j<2)$j=2;
+    string $polyPlane=($obj+"_Plane");
+    if(`objExists $polyPlane`)delete $polyPlane;
+    polyPlane -w $i -h $j -sx ($i-1) -sy ($j-1) -n  $polyPlane;
+    return $polyPlane;
+    }
+
+
+
+/*
+select -r $jts $polyPlane;
+skinCluster -mi 1 -omi on -rui off -tsb;
+polySmooth -dv 2 $polyPlane;
+doBakeNonDefHistory( 1, {"prePost" });
+*/
+
+
+//------------------------------------------------------------------
+
+$sels=`ls -sl`;
+
+$vtxs = `polyListComponentConversion -tv $sels`;
+$vtxs = `filterExpand -selectionMask 31 $vtxs`;
+
+
+$edgs = `polyListComponentConversion -te $sels`;
+$edgs = `filterExpand -selectionMask 32 $edgs`;
+
+$facs = `polyListComponentConversion -tf $sels`;
+$facs = `filterExpand -selectionMask 34 $facs`;
+
+select -r $facs
+
+
+//cpKeywithLayer(string $al, string $sObj, string $sAttr, string $tObj, string $tAttr, float $to, float $vs) { 
+    /*
+    $al: animLayer 
+    $to:time Offset 
+    $vs: valueScale 
+    */ 
+$ly="ly_breath";
+if(`objExists $ly`)delete $ly;
+animLayer $ly;
+select -r $selsB;
+animLayer -e  -addSelectedObjects $ly;
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[0], "rz", 2, 1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[1], "rz", 4, 1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[2], "rz", 4, 0.618);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[3], "rz", 4, -1);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[4], "tz", 6, -0.382);
+cpKeywithLayer($ly, $selsA[0], "rz", $selsB[5], "tz", 6, 0.382);
+
+//------------------------------------------------------------------
+
 $minTime = `playbackOptions -q -minTime`; 
 $maxTime = `playbackOptions -q -maxTime`; 
 $midTime=($maxTime-$minTime)/2+$minTime;
@@ -71,3 +375,5 @@ proc string selTime(){
                 }
         return $trng;
         }
+
+//------------------------------------------------------------------
